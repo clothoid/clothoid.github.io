@@ -1,0 +1,67 @@
+#+SETUPFILE: ../0000/00org-web-template
+#+TITLE: emacs でワールドカップの日程をサクッと表示する
+#+DESCRIPTION:
+#+KEYWORDS: git
+#+SUBTITLE:
+
+* 目的
+
+  calfw.el、calfw-ical.el を使用して、Worldcup 2018 の日程をワンコマンドで表示します。
+  ぶっちゃけ、calfw-ical で以下を設定するだけです。
+
+  - http://www.skysports.com/calendars/football/fixtures/competitions/world-cup
+
+* 設定
+
+  1. calfw.el のインストール (M-x package-install calfw)
+  2. calfw-ical.el のインストール (M-x package-install calfw-ical)
+  3. init.el に以下を追加
+     #+BEGIN_SRC elisp
+     (require 'calfw)
+
+     (require 'calfw-ical)
+     (setq worldcup2018-calendar-url
+	   "http://www.skysports.com/calendars/football/fixtures/competitions/world-cup")
+
+     (defun worldcup2018-calendar ()
+       (interactive)
+       (cfw:open-ical-calendar worldcup2018-calendar-url))
+     #+END_SRC
+
+* 結果
+
+  M-x worldcup2018-calendar
+
+  #+ATTR_HTML: :width 800px
+  file:../img/2018/Screenshot_2018-06-13_19-47-53.png
+
+  M	で月表示、W	で 1週間表示、T で 2 週間表示、D で日表示、f で次の日、など。
+
+* おまけ
+
+  J リーグの予定も同時に表示させたければ
+
+  #+BEGIN_SRC elisp
+  (require 'calfw)
+
+  (require 'calfw-ical)
+  (setq worldcup2018-calendar-url
+        "http://www.skysports.com/calendars/football/fixtures/competitions/world-cup")
+  (setq J-calendar-url
+        "http://web-japp.datastadium.net/J/icals/download3/0/0/0/ical.ics")
+
+  (defun football-calendar ()
+    (interactive)
+    (cfw:open-calendar-buffer
+     :view 'month
+     :contents-sources
+     (list
+      (cfw:ical-create-source "J-league" J-calendar-url "#b7193f")
+      (cfw:ical-create-source "WC2018" worldcup2018-calendar-url "DarkOrange")
+      )))
+  #+END_SRC
+
+  M-x football-calendar
+  
+  #+ATTR_HTML: :width 800px
+  file:../img/2018/Screenshot_2018-06-13_20-01-30.png

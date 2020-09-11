@@ -1,0 +1,30 @@
+#+SETUPFILE: ../0000/00org-web-template
+#+TITLE: List for 1st-3rd labels of 5 chateaus
+#+DESCRIPTION:
+#+KEYWORDS:
+#+SUBTITLE: wine vine 
+
+* Lafite Rothschild 
+  1. Lafite (ラフィット)
+  2. Carruades De Lafite (カリュアド・ド・ラフィット)
+  3. ネゴシアンによる
+
+* Latour
+  1. Latour (ラトゥール)
+  2. Les Forts de Latour (レ・フォール・ド・ラトゥール)
+  3. Pauillac (ポイヤック)
+
+* Mouton
+  1. Mouton (ムートン)
+  2. Le Petit Mouton (レ・プティ・ムートン)
+  3. ネゴシアンによる
+
+* Haut brion
+  1. Haut Brion (オーブリオン)
+  2. Chateau Bahans Haut-Brion (シャトー・バーン・オー・ブリオン)
+  3. Clarendelle Rouge (クラレンドル・ルージュ)
+
+* Margaux
+  1. Margaux (マルゴー)
+  2. Pavillon Rouge du Chateau Margaux (パヴィヨン・ルージュ・デュ・シャトー・マルゴー)
+  3. Margaux du Ch. Margaux (マルゴー・デュ・シャトー・マルゴー)

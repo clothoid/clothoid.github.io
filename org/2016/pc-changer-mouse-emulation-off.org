@@ -1,0 +1,24 @@
+#+SETUPFILE: ../0000/00org-web-template
+#+TITLE: PC自動切替器とトラックボールマウスの相性
+#+DESCRIPTION:
+#+KEYWORDS:
+#+SUBTITLE:
+
+* 環境
+  - Windows 7 64bit
+  - [[http://amzn.to/1SnrjNu][SANWA SUPPLY デュアルリンク DVI 対応 パソコン自動切替器 SW-KVM4HDCN]]
+  - [[http://amzn.to/23MNyXO][ELECOM EX-G ワイヤレス トラックボール M-XT4DR シリーズ]]
+* 問題
+  SW-KVM2HDCN のマウスコンソールに M-XT4DR のレシーバーユニットを刺して、HID 準拠マウスとして認識させても、マウスが正常に動作しない。
+* 対処方法
+  - マウスエミュレーション機能を OFF にする [fn:emuoff]
+    - [Num Lock]+[-] => [M]
+  - SW-KVM2HDCN の USB2.0 ハブポートに M-XT4DR のレシーバーユニットを接続する
+  - [[http://adventcomputers.co.uk/node/1589][Advent M312 Wireless Optical Mouse]] (正常動作確認済み)など別マウスを使用する
+  - 子マシンに直刺しする
+
+* Footnotes
+
+[fn:emuoff] 取扱説明書にも書いてあるとおり、これを OFF にすると画面切り替え時のマウス認識が少し遅くなる
+
+

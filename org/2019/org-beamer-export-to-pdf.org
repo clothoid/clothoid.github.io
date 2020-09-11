@@ -1,0 +1,325 @@
+# -*- Mode: org ; Coding: utf-8 -*-
+#+SETUPFILE: ../0000/00org-web-template
+#+TITLE: emacs の org-beamer-export-to-pdf 設定手順
+#+DESCRIPTION:
+#+KEYWORDS: emacs org beamer latex export
+#+SUBTITLE:
+#+OPTIONS: ^:{}
+
+* 目的
+
+  emacs のテキスト編集モードの一つである org-mode で M-x org-beamer-export-to-pdf (C-c C-e l P) コマンド一発により、以下のようなスライドを簡単に生成できるように構築する。
+   
+  #+ATTR_HTML: :width 800px
+  file:../img/2019/org-beamer-export-to-pdf.png
+
+* 設定手順 
+  
+** 環境
+
+   - Windows: 10 Pro
+   - Emacs: 26.1
+   - Org mode: 9.1.9
+   - Python: 3.7.2
+   - platex: e-pTeX 3.14159265-p3.8.1-180226-2.6(utf8.sjis)(TeX Live 2018/W32TeX)
+
+   ソースコードへの色付け(シンタックスハイライト)は [[https://ctan.org/pkg/minted][minted]] を使用するため、Python の [[http://pygments.org/][Pygments]] もインストールする[fn:listings]。
+   インストール手順を簡易化するため、可能な限り、空っぽの OS に各プログラムをデフォルトのままインストールする(Anaconda などを用いないように書いておく)。
+   また、将来を考えて emacs26、 Python3 の構築としたが、日々の運用は emacs 25, Python2 で行っている(init.el はそのままで動く)。
+     
+** TeX Live 2018 のインストール
+
+   01. [[https://www.tug.org/texlive/acquire-netinstall.html][ここ]]から install-tl-windows.exe をダウンロードして実行
+   02. [Unpack only] にチェック
+   03. [Next] を選択
+   04. [Destination Folder] で適当な場所を選択(たとえば [C:\texliveinstaller])
+   05. [Next] を選択
+   06. [Install] を選択
+   07. しばらくして完了したら、[Close] を選択
+   08. [C:\texliveinstaller\install-tl-20190227\tlpkg\installer\wget] フォルダを開く
+   09. [.wgetrc] を作成する (Powershell であれば ni .wgetrc で作成可能)
+   10. [.wgetrc] の中身は以下のとおり
+       #+begin_example
+       http_proxy=http://proxy.example.net:port
+       ftp_proxy=http://proxy.example.net:port
+       use_proxy=on
+       #+end_example
+   12. [C:\texliveinstaller\install-tl-20190227\install-tl-windows.bat] を実行[fn:persist]
+   
+** Python のインストール
+
+   1. [[https://www.python.org/downloads/release/python-372/][ここ]]から、[Windows x86-64 executable installer] をダウンロード
+   2. [python-3.7.2-amd64-webinstall.exe] を実行
+   3. 画面に従いインストール(デフォルトでは、たとえば [C:/Users/Administrator/AppData/Local/Programs/Python/Python37/] 以下にインストールされる)
+   4. 以下を実行[fn:locationofpip]
+      #+begin_src powershell
+      PS > .\pip.exe install pygments --proxy=user@proxy.hoge.jp:port
+      #+end_src
+
+** emacs のインストール
+
+   1. [[https://github.com/mhatta/emacs-26-x86_64-win-ime][ここ]]以下から [emacs-26.1-x86_64-win-ime-20180619.zip] をダウンロード
+   2. [C:\emacs-26.1] に展開
+   3. [C:\emacs-26.1\bin\runemacs.exe] を実行[fn:bug]
+
+** init.el の設定
+
+   #+begin_src elisp
+   ; -*- Mode: Emacs-Lisp ; Coding: utf-8 -*-
+   PATHを追加する
+   (setenv "PATH"
+     (concat
+      "C:/texlive/2018/bin/win32;"
+      "C:/Users/Administrator/AppData/Local/Programs/Python/Python37/Scripts;"
+      (getenv "PATH")))
+   (setq exec-path (parse-colon-path (getenv "PATH")))
+
+   (require 'ox-latex)
+   (require 'ox-beamer)
+
+   (setq org-latex-pdf-process
+         '("platex -shell-escape %f"
+           "platex -shell-escape %f"
+           "pbibtex %b"
+           "platex -shell-escape %f"
+           "platex -shell-escape %f"
+           "dvipdfmx %b.dvi"))
+
+   (setq org-export-latex-listings t)
+   (setq org-latex-listings 'minted)
+   (setq org-beamer-outline-frame-title "目次")
+
+   (setq org-latex-minted-options
+         '(("frame" "lines")
+           ("framesep=2mm")
+           ("linenos=true")
+           ("baselinestretch=1.2")
+           ("fontsize=\\footnotesize")
+           ("breaklines")
+           ))
+   #+end_src
+
+   
+* サンプル
+
+  たとえば、以下のようなテキストファイルを作成して、C-c C-e l P とすると冒頭の PDF が一発で作成できる(*emacs.png はどこから拾っておくこと*)[fn:xelatex]。
+
+  #+begin_src org
+  # -*- Mode: org ; Coding: utf-8-unix -*-
+  ,#+TITLE: Sample for Beamer with Org-mode
+  ,#+AUTHOR: @clothoid
+  ,#+OPTIONS: H:2 toc:t num:t
+  ,#+LATEX_CLASS: beamer
+  ,#+LATEX_CLASS_OPTIONS: [dvipdfmx,12pt]
+  ,#+BEAMER_THEME: metropolis
+  ,#+LATEX_HEADER: \usepackage{bxdpx-beamer}
+  ,#+LATEX_HEADER: \usepackage{pxjahyper}
+  ,#+LATEX_HEADER: \usepackage{minijs}
+  ,#+LATEX_HEADER: \usepackage{minted}
+  ,#+LATEX_HEADER: \renewcommand{\kanjifamilydefault}{\gtdefault}
+
+  ,* その1: 基本的な使い方
+  ,** 最初のスライド
+
+     M-x org-beamer-export-to-pdf 一発で PDF が作成できます。
+
+  ,** 次のスライド
+  ,*** Eric Fraga さんへ
+      :PROPERTIES:
+      :BEAMER_COL: 0.48
+      :BEAMER_ENV: block
+      :END:
+      作ってくれてありがとう
+  ,*** みなさんへ
+      :PROPERTIES:
+      :BEAMER_COL: 0.48
+      :BEAMER_ACT: <2->
+      :BEAMER_ENV: block
+      :END:
+      使ってくれてありがとう
+
+  ,* その2: 装飾など
+
+  ,** 箇条書き
+     ,#+ATTR_BEAMER: :overlay +-
+     - りんご
+     - バナナ
+     - オレンジ
+
+  ,** 文字の装飾
+
+     文字を装飾する記法もいくつか用意されています。
+
+     - *太字 abc*
+     - /斜体 abc/
+     - _下線付き abc_
+     - +取消線付き acb+
+     - =コード abc=
+     - ~等幅 abc~
+
+  ,** リスト
+
+     1. January
+        - 元旦
+        - 成人の日
+     2. Feburuary
+        - 建国記念の日
+
+  ,** 引用
+
+     以下は引用です。
+
+     ,#+BEGIN_QUOTE
+     すべてをできる限りシンプルにせよ．
+     ただしそれ以上はシンプルにするな． -- アインシュタイン
+     ,#+END_QUOTE  
+
+  ,** テーブル
+
+     ,#+ATTR_LaTeX: align=|l|r|r|r|r|r|
+     |----------+----+----+----+----+-------|
+     |          | Q1 | Q2 | Q3 | Q4 | Total |
+     |----------+----+----+----+----+-------|
+     | PC       | 30 |  0 | 50 |  0 |    80 |
+     | Software |  5 | 15 | 20 |  3 |    43 |
+     | Network  |  2 |  2 |  2 |  2 |     8 |
+     |----------+----+----+----+----+-------|
+     | Sum      | 37 | 17 | 72 |  5 |   131 |
+     |----------+----+----+----+----+-------|
+
+  ,* その3: 応用編
+
+
+  ,** 数式
+
+  ,*** 文中で数式を使用する例:
+
+      $\sum_{i=1}^n a_i x_i \ge b$ の時、どうすればいいのか、誰か教えてください。
+      私には分かりません。
+
+  ,*** ブロックとして数式を使用する例:
+
+       \begin{eqnarray*}
+       x & = & \sqrt{\frac{a}{b}}
+       \end{eqnarray*}
+
+  ,** プログラムソース
+
+     ,#+BEGIN_SRC c++
+      #include <iostream>
+
+      int main(int argc, char** argv)
+      {
+          std::cout << "Hello, world." << std::endl;
+          return 0;
+      }
+     ,#+END_SRC
+
+  ,** 画像
+
+     ,#+ATTR_LATEX: :float wrap :width 0.16\textwidth :placement :options angle=45
+     file:emacs.png
+
+     Lorem ipsum dolor sit amet, consectetur
+     adipiscing elit, sed do eiusmod tempor
+     incididunt ut labore et dolore magna aliqua. Ut
+     enim ad minim veniam, quis nostrud exercitation
+     ullamco laboris nisi ut aliquip ex ea commodo
+     consequat. Duis aute irure dolor in
+     reprehenderit in voluptate velit esse cillum
+     dolore eu fugiat nulla pariatur. Excepteur sint
+     occaecat cupidatat non proident, sunt in culpa
+     qui officia deserunt mollit anim id est
+     laborum.
+
+  ,** 脚注
+
+     ここに脚注です[fn:fntest]
+
+  ,* Footnotes
+
+  [fn:fntest] これは脚注です
+
+
+  #+end_src
+
+* おまけ
+
+  metropolis の色などを変えたい時には setbeamercolor を利用すればよいが、\usetheme の後ろに記載しないと上書きされてしまう。
+  一方、#+LATEX_HEADER: は #+LATEX_CLASS beamer で挿入される \usetheme{metropolis} より前に書かえれてしまう。
+  このような場合は org-latex-classes を別途、自分用に定義する[fn:question]。
+
+  たとえば、以下のように行う。
+
+  #+begin_src elisp
+  (add-to-list 'org-latex-classes
+               '("mybeamer-metropolis"
+                 "\\documentclass{beamer}
+  [NO-DEFAULT-PACKAGES]
+  \\usepackage[utf8]{inputenc}
+  \\usepackage[T1]{fontenc}
+  \\usepackage{graphicx}
+  \\usepackage{grffile}
+  \\usepackage{longtable}
+  \\usepackage{wrapfig}
+  \\usepackage{rotating}
+  \\usepackage[normalem]{ulem}
+  \\usepackage{amsmath}
+  \\usepackage{textcomp}
+  \\usepackage{amssymb}
+  \\usepackage{capt-of}
+  \\usepackage{graphicx}
+  \\usepackage{color}
+  \\usepackage{hyperref}
+  \\usepackage{bxdpx-beamer}
+  \\usepackage{pxjahyper}
+  \\usepackage{minijs}
+  \\usepackage{minted}
+  \\renewcommand{\\kanjifamilydefault}{\\gtdefault}
+  \\usetheme{metropolis}
+  \\definecolor{BlueTOL}{HTML}{222255}
+  \\definecolor{BrownTOL}{HTML}{666633}
+  \\definecolor{GreenTOL}{HTML}{225522}
+  \\setbeamercolor{normal text}{fg=BlueTOL,bg=white}
+  \\setbeamercolor{alerted text}{fg=BrownTOL}
+  \\setbeamercolor{example text}{fg=GreenTOL}
+  \\setbeamercolor{block title alerted}{use=alerted text, fg=alerted text.fg, bg=}
+  \\setbeamercolor{block body alerted}{use={block title alerted, alerted text}, fg=alerted text.fg, bg=}
+  \\setbeamercolor{block title example}{use=example text, fg=example text.fg, bg=}
+  \\setbeamercolor{block body example}{use={block title example, example text}, fg=example text.fg, bg=}
+  "
+  ("\\section{%s}" . "\\section*{%s}")
+  ("\\subsection{%s}" . "\\subsection*{%s}")
+  ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))
+  #+end_src
+  
+* 参考
+  
+  - [[https://orgmode.org/manual/Beamer-export.html][12.8 Beamer export]]
+  - [[https://ichiro-maruta.blogspot.com/2012/04/windows-tex-live.html][プロキシ環境下で Windowsマシンに TeX Live を入れる際のメモ]]
+  - [[https://qiita.com/zr_tex8r/items/69e8cc32038ff29f5ac3][今さら人に聞けない「日本語でBeamer」のキホン]]
+  - [[https://risa.is.tokushima-u.ac.jp/~tetsushi/howtomakeslides.pdf][LaTeX できれいなスライドを! なぜキミは PowerPoint を使い続けるのか?]]
+  - [[https://github.com/matze/mtheme/issues/193][Block background color]]
+    
+* Footnotes
+
+[fn:question] これ以外の方法があれば教えてください。 
+
+[fn:xelatex] metropolis では XeLaTeX や LuaTeX を利用するよう設計されており、pLateXを利用すると以下のようなワーニングが log に出力される。
+#+begin_example
+Package beamerthememetropolis Warning: You need to compile with XeLaTeX or LuaLaTeX to use the Fira fonts on input line 91.
+#+end_example
+しかし、XeLaTeX を利用したいところだが、日本語を利用すると、以下のような font 周りのエラーが発生することも多く、さらに、pLaTex 用の package は \NeedsTeXFormat で蹴られるので使えない。
+#+begin_example
+! LaTeX Error: Option clash for package fontspec.
+#+end_example
+
+[fn:listings] [[https://ctan.org/pkg/listings][listings]] を利用する場合は不要(未確認)
+
+[fn:bug] 手元の環境では[[https://github.com/chuntaro/NTEmacs64/issues/3#issuecomment-386591920][このバグ]]が発生した。これが嫌で、手元の emacs は 25 のままにしてある。
+
+[fn:locationofpip] pip.exe は C:/Users/Administrator/AppData/Local/Programs/Python/Python37/Scripts にある
+
+[fn:persist] コマンドラインオプションで --no-persistent-downloads をつけると早くなるらしい(未確認)
+
+ 

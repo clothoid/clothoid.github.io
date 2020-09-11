@@ -1,0 +1,20 @@
+# -*- Mode: org ; Coding: utf-8-unix -*-
+#+SETUPFILE: ../0000/00org-web-template
+#+TITLE: emacs twittering-mode で公式引用 RT のようにリツイートする方法
+#+DESCRIPTION:
+#+KEYWORDS: emacs twitter twittering-mode retweet
+#+SUBTITLE:
+#+OPTIONS: ^:{}
+
+* 設定方法
+
+  #+begin_src elisp
+  (setq twittering-retweet-format '(nil _ " %u")) 
+  #+end_src
+
+  と設定しておいて、C-c C-m を行うと、引用先のURLが末尾に付いた状態で編集バッファが開くので、通常どおりツイート
+  
+* 参考
+
+  - https://twitter.com/cvmat/status/1088276492855832576
+

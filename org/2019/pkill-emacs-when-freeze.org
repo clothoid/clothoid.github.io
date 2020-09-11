@@ -1,0 +1,13 @@
+# -*- Mode: org ; Coding: utf-8-unix -*-
+#+SETUPFILE: ../0000/00org-web-template
+#+TITLE: emacs がフリーズした場合に復旧させる方法
+#+DESCRIPTION:
+#+KEYWORDS: emacs freeze hangup pkill kill USR ps 
+#+SUBTITLE:
+#+OPTIONS: ^:{}
+
+以下を実行
+
+#+begin_src sh
+pkill -USR2 emacs
+#+end_src

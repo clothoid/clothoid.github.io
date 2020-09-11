@@ -1,0 +1,30 @@
+#+SETUPFILE: ../0000/00org-web-template
+#+TITLE: aws ec2 run-instances で Non-Windows instances のエラー
+#+DESCRIPTION:
+#+KEYWORDS: An error occurred (InvalidParameterCombination) when calling the RunInstances operation: Non-Windows instances with a virtualization type of 'hvm' are currently not supported for this instance type.
+#+SUBTITLE:
+
+
+* エラー
+  #+BEGIN_SRC sh
+  $ aws ec2 run-instances --image-id ami-5c9a933b --count 1 --instance-type t1.micro --key-name MyKeyPair --security-group-ids sg-xxxxxxxx --subnet-id subnet-xxxxxxxx
+  An error occurred (InvalidParameterCombination) when calling the RunInstances operation: Non-Windows instances with a virtualization type of 'hvm' are currently not supported for this instance type.
+  #+END_SRC
+
+* 理由
+
+  以下の AMI では t1.micro が使用できない。
+
+  - RHEL-7.3_HVM-20170613-x86_64-4-Hourly2-GP2 - ami-5c9a933b
+  - Provided by Red Hat, Inc.
+  - Root device type: ebs
+  - Virtualization type: hvm 
+
+
+* 対処
+
+  t2.micro にする。
+
+  #+BEGIN_SRC sh
+  $ aws ec2 run-instances --image-id ami-5c9a933b --count 1 --instance-type t2.micro --key-name MyKeyPair --security-group-ids sg-xxxxxxxx --subnet-id subnet-xxxxxxxx
+  #+END_SRC

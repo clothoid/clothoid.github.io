@@ -1,0 +1,341 @@
+# -*- Mode: org ; Coding: utf-8 -*-
+#+SETUPFILE: ../0000/00org-web-template
+#+TITLE: org-latex-export-to-pdf の設定手順
+#+DESCRIPTION:
+#+KEYWORDS: org latex emacs export pdf
+#+SUBTITLE:
+#+OPTIONS: ^:{}
+
+* 目的
+
+  emacs の org-mode で M-x org-latex-export-to-pdf (C-c C-e l p) 一発で以下のような PDF を生成できるように構築する。
+   
+  #+ATTR_HTML: :width 800px
+  file:../img/2019/org-latex-export-to-pdf-0.png
+
+  #+ATTR_HTML: :width 800px
+  file:../img/2019/org-latex-export-to-pdf-1.png
+
+  #+ATTR_HTML: :width 800px
+  file:../img/2019/org-latex-export-to-pdf-2.png
+
+  #+ATTR_HTML: :width 800px
+  file:../img/2019/org-latex-export-to-pdf-3.png   
+
+* 設定手順 
+  
+** 環境
+
+   - Windows: 10 Pro
+   - Emacs: 26.1
+   - Org mode: 9.1.9
+   - Python: 3.7.2
+   - platex: e-pTeX 3.14159265-p3.8.1-180226-2.6(utf8.sjis)(TeX Live 2018/W32TeX)
+
+   ソースコードへの色付け(シンタックスハイライト)は [[https://ctan.org/pkg/minted][minted]] を使用するため、Python の [[http://pygments.org/][Pygments]] もインストールする。
+   インストール手順を簡易化するため、可能な限り、空っぽの OS に各プログラムをデフォルトのままインストールする(Anaconda などを用いないように書いておく)。
+   また、将来を考えて emacs26、 Python3 の構築としたが、日々の運用は emacs 25, Python2 で行っている(init.el はそのままで動く)。
+     
+** TeX Live 2018 のインストール
+
+   01. 以下から install-tl-windows.exe をダウンロードして実行
+       - https://www.tug.org/texlive/acquire-netinstall.html
+   02. [Unpack only] にチェック
+   03. [Next] を選択
+   04. [Destination Folder] で適当な場所を選択(たとえば C:\texliveinstaller)
+   05. [Next] を選択
+   06. [Install] を選択
+   07. しばらくして完了したら、[Close] を選択
+   08. 以下のフォルダを開く
+       - C:\texliveinstaller\install-tl-20190227\tlpkg\installer\wget
+   09. [.wgetrc] を作成する (Powershell であれば ni .wgetrc で作成可能)
+   10. [.wgetrc] の中身は以下のとおり
+       #+begin_example
+       http_proxy=http://proxy.example.net:8080
+       ftp_proxy=http://proxy.example.net:8080
+       use_proxy=on
+       #+end_example
+
+   12. 以下を実行[fn:persist]
+       - C:\texliveinstaller\install-tl-20190227\install-tl-windows.bat
+   
+** Python のインストール
+
+   1. 以下から、[Windows x86-64 executable installer] をダウンロード
+      - https://www.python.org/downloads/release/python-372/
+   2. python-3.7.2-amd64-webinstall.exe を実行
+   3. 画面に従いインストール(デフォルトでは、たとえば以下にインストールされる)
+      - C:/Users/Administrator/AppData/Local/Programs/Python/Python37/
+   4. 以下を実行[fn:locationofpip]
+      #+begin_src powershell
+      PS > .\pip.exe install pygments --proxy=user@proxy.hoge.jp:port
+      #+end_src
+
+** emacs のインストール
+
+   1. 以下から [emacs-26.1-x86_64-win-ime-20180619.zip] をダウンロード
+      - https://github.com/mhatta/emacs-26-x86_64-win-ime
+   2. [C:\emacs-26.1] に展開
+   3. [C:\emacs-26.1\bin\runemacs.exe] を実行[fn:bug]
+
+** init.el の設定
+
+   #+begin_src elisp
+   ; -*- Mode: Emacs-Lisp ; Coding: utf-8 -*-
+
+   ;; PATHを追加
+   (setenv "PATH"
+     (concat
+      "C:/texlive/2018/bin/win32;"
+      "C:/Users/Administrator/AppData/Local/Programs/Python/Python37/Scripts;"
+      (getenv "PATH")))
+   (setq exec-path (parse-colon-path (getenv "PATH")))
+
+   ;; babel の中で tab が ^^I に変換されてしまうので、スペースにする
+   (setq-default tab-width 4 indent-tabs-mode nil)
+
+   (require 'ox-latex)
+
+   ;;; 勝手に入力される \hypersetup{} は使わない(usepackage の順序依存に配慮)
+   (setq org-latex-with-hyperref nil)
+   (add-to-list 'org-latex-packages-alist "\\hypersetup{setpagesize=false}" t)
+   (add-to-list 'org-latex-packages-alist "\\hypersetup{colorlinks=true}" t)
+   (add-to-list 'org-latex-packages-alist "\\hypersetup{linkcolor=blue}" t)
+
+   (setq org-latex-pdf-process
+         '("platex -shell-escape %f"
+           "platex -shell-escape %f"
+           "pbibtex %b"
+           "platex -shell-escape %f"
+           "platex -shell-escape %f"
+           "dvipdfmx %b.dvi"))
+
+   (setq org-latex-title-command "\\maketitle")
+   (setq org-latex-toc-command
+         "\\tableofcontents\n")
+   (setq org-latex-text-markup-alist '((bold . "\\textbf{%s}")
+                   (code . verb)
+                   (italic . "\\it{%s}")
+                   (strike-through . "\\sout{%s}")
+                   (underline . "\\uline{%s}")
+                   (verbatim . protectedtexttt)))
+   (setq org-export-latex-listings t)
+   (setq org-latex-listings 'minted)
+   (setq org-latex-minted-options
+         '(("frame" "lines")
+           ("framesep=2mm")
+           ("linenos=true")
+           ("baselinestretch=1.2")
+           ("fontsize=\\footnotesize")
+           ("breaklines")
+           ))
+
+   ;; class は自分で再定義
+   ;; NO-DEFAULT-PACKAGES で勝手に入る package を抑制
+   ;; (上記のように org-latex-packages-alist で定義すべきかも?)
+   (add-to-list 'org-latex-classes
+                '("myjsarticle"
+                  "\\documentclass{jsarticle}
+   [NO-DEFAULT-PACKAGES]
+   \\usepackage[dvipdfmx]{graphicx}
+   \\usepackage[dvipdfmx]{color}
+   \\usepackage[dvipdfmx]{hyperref}
+   \\usepackage{pxjahyper}"
+     ("\\section{%s}" . "\\section*{%s}")
+     ("\\subsection{%s}" . "\\subsection*{%s}")
+     ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+     ("\\paragraph{%s}" . "\\paragraph*{%s}")
+     ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+   #+end_src
+
+* サンプル
+
+  たとえば、以下のようなテキストファイルを作成して、C-c C-e l p とすると冒頭の PDF が一発で作成できる(*emacs.png はどこから拾っておくこと*)。
+
+  #+begin_src org
+  ,#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
+  ,#+OPTIONS: author:t broken-links:nil c:nil creator:nil
+  ,#+OPTIONS: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:t
+  ,#+OPTIONS: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
+  ,#+OPTIONS: timestamp:t title:t toc:t todo:t |:t
+  ,#+TITLE: org-emacs-latex-template
+  ,#+DATE: \today
+  ,#+AUTHOR: clothoid
+  ,#+EMAIL: clothoid@silverstone
+  ,#+LANGUAGE: ja
+  ,#+SELECT_TAGS: export
+  ,#+EXCLUDE_TAGS: noexport
+  ,#+CREATOR: Emacs 26.1 (Org mode 9.1.9)
+  ,#+LATEX_CLASS: myjsarticle
+  ,#+LATEX_CLASS_OPTIONS: [12pt,a4paper,notitlepage]
+  ,#+LATEX_HEADER: \usepackage{amsfonts}
+  ,#+LATEX_HEADER: \usepackage{amsmath}
+  ,#+LATEX_HEADER: \usepackage[normalem]{ulem}
+  ,#+LATEX_HEADER: \usepackage{textcomp}
+  ,#+LATEX_HEADER: \usepackage{minted}
+  ,#+LATEX_HEADER: \usemintedstyle{emacs}
+  ,#+LATEX_HEADER: \usepackage{booktabs}
+  ,#+LATEX_HEADER: \usepackage{longtable}
+  ,#+LATEX_HEADER: \usepackage{wrapfig}
+  ,#+LATEX_HEADER_EXTRA:
+  ,#+DESCRIPTION: org template for exporting pdf with latex
+  ,#+KEYWORDS: org latex platex 
+  ,#+SUBTITLE: This is sub title
+  ,#+LATEX_COMPILER: dvipdfmx
+
+  ,* はじめに
+    近年、○○が注目を集めている。
+
+  ,* 文字の装飾
+
+    文字を装飾する記法もいくつか用意されています。
+
+    - *太字 abc*
+    - /斜体 abc/
+    - _下線付き abc_
+    - +取消線付き acb+
+    - =コード abc=
+    - ~等幅 abc~
+
+  ,* リスト
+
+    1. January
+       - 元旦
+       - 成人の日
+    2. Feburuary
+       - 建国記念の日
+
+  ,* 引用
+
+    以下は引用です。
+
+    ,#+BEGIN_QUOTE
+    すべてをできる限りシンプルにせよ．
+    ただしそれ以上はシンプルにするな． -- アインシュタイン
+    ,#+END_QUOTE  
+
+  ,* テーブル
+
+    ,#+ATTR_LaTeX: align=|l|r|r|r|r|r|
+    |----------+----+----+----+----+------|
+    |          | Q1 | Q2 | Q3 | Q4 | 合計 |
+    |----------+----+----+----+----+------|
+    | パソコン | 30 |  0 | 50 |  0 |   80 |
+    | ソフト   |  5 | 15 | 20 |  3 |   43 |
+    | 通信     |  2 |  2 |  2 |  2 |    8 |
+    |----------+----+----+----+----+------|
+    | 合計     | 37 | 17 | 72 |  5 |  131 |
+    |----------+----+----+----+----+------|
+
+  ,* 数式
+
+  ,** 文中
+
+      $\sum_{i=1}^n a_i x_i \ge b$ の時
+
+  ,** ブロック  
+
+      \begin{eqnarray*}
+      x & = & \sqrt{\frac{a}{b}}
+      \end{eqnarray*}
+
+  ,* プログラムソース
+
+    ,#+BEGIN_SRC c++
+     #include <iostream>
+
+     int main(int argc, char** argv)
+     {
+         std::cout << "Hello, world." << std::endl;
+         return 0;
+     }
+    ,#+END_SRC
+
+  ,* 画像
+
+    ,#+ATTR_LATEX: :float wrap :width 0.16\textwidth :placement :options angle=90
+    file:emacs.png
+
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.  
+
+  ,* 脚注
+
+    これは脚注です[fn:fntest]
+
+  ,* Footnotes
+
+  [fn:fntest] これは脚注です
+  #+end_src
+
+* おまけ
+
+  Python が不要な [[https://ctan.org/pkg/listings][listings]] を利用した場合の init.el の参考例(lualatex を利用に注意)。
+
+  #+begin_src elisp
+  ; -*- Mode: Emacs-Lisp ; Coding: utf-8 -*-
+  (require 'ox-latex)
+
+  ;; PATHを追加
+  (setenv "PATH"
+    (concat
+     "C:/texlive/2018/bin/win32;"
+     (getenv "PATH")))
+  (setq exec-path (parse-colon-path (getenv "PATH")))
+
+  (setq org-latex-listings 'listings)
+  (setq org-latex-listings-options
+        '(
+          ("frame" "single")
+          ("breaklines" "true")
+          ("basicstyle" "\\footnotesize")
+          ("numbers" "left")
+          ("numberstyle" "\\tiny")
+          ))
+
+  (setq org-latex-pdf-process
+        '("lualatex --draftmode %f"
+          "lualatex %f"))
+
+  (add-to-list 'org-latex-classes
+               '("myjsarticle"
+                 "
+  \\documentclass[10pt,a4paper, oneside, openany]{ltjsarticle}
+  \\usepackage{luatexja-fontspec}
+  \\setmainfont{IPAexMincho}
+  \\setsansfont{IPAexGothic}
+  \\setmainjfont[BoldFont=IPAexGothic]{IPAexMincho}
+  \\setsansjfont{IPAexGothic}
+  \\newjfontfamily\\jisninety[CJKShape=JIS1990]{IPAexMincho}
+  [NO-DEFAULT-PACKAGES]
+  \\usepackage{graphicx}
+  \\usepackage{booktabs}
+  \\usepackage{longtable}
+  \\usepackage{wrapfig}
+  \\usepackage{hyperref}
+  \\urlstyle{sf}
+  \\usepackage{enumitem}
+  \\setlist[itemize]{font={\\bfseries\\jisninety}}
+  \\setlist[itemize,2]{font={\\bfseries\\jisninety}}
+  \\makeatletter
+  \\makeatother
+  \\hypersetup{pdfencoding=auto}"
+    ("\\section{%s}" . "\\section*{%s}")
+    ("\\subsection{%s}" . "\\subsection*{%s}")
+    ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+    ("\\paragraph{%s}" . "\\paragraph*{%s}")
+    ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+  #+end_src
+  
+* 参考
+
+  - [[https://ichiro-maruta.blogspot.com/2012/04/windows-tex-live.html][プロキシ環境下で Windowsマシンに TeX Live を入れる際のメモ]]
+    
+* Footnotes
+
+[fn:bug] 手元の環境では[[https://github.com/chuntaro/NTEmacs64/issues/3#issuecomment-386591920][このバグ]]が発生した
+
+[fn:locationofpip] pip.exe は C:/Users/Administrator/AppData/Local/Programs/Python/Python37/Scripts にある
+
+[fn:persist] コマンドラインオプションで --no-persistent-downloads をつけると早くなるらしい(未確認)
+
+ 

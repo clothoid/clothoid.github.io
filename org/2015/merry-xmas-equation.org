@@ -1,0 +1,29 @@
+#+SETUPFILE: ../0000/00org-web-template
+#+TITLE: Merry Xmas Equation
+
+* Image
+
+  file:../img/2015/2015-12-24-182520-merry-xmas-equation.png
+  
+* MathJax (TEX)
+
+  \begin{eqnarray*}
+  y &=& \frac{\log _e \left( \frac{x}{m} -sa \right)}{r^2} \\
+  yr^2 &=& \log _e \left( \frac{x}{m} -sa \right) \\
+  e^{yr^2} &=& \frac{x}{m} -sa \\
+  me^{yr^2} &=& x -msa \\
+  me^{rry} &=& x -mas \\
+  \end{eqnarray*}
+
+* Source
+
+  #+BEGIN_SRC TeX
+  \begin{eqnarray*}
+  y &=& \frac{\log _e \left( \frac{x}{m} -sa \right)}{r^2} \\
+  yr^2 &=& \log _e \left( \frac{x}{m} -sa \right) \\
+  e^{yr^2} &=& \frac{x}{m} -sa \\
+  me^{yr^2} &=& x -msa \\
+  me^{rry} &=& x -mas \\
+  \end{eqnarray*}
+  #+END_SRC
+  

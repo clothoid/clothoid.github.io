@@ -1,0 +1,95 @@
+#+SETUPFILE: ../0000/00org-web-template
+#+TITLE: netsh -f で reset がみつからない
+#+DESCRIPTION:
+#+KEYWORDS: netsh reset command error powershell commandprompt cmd
+#+SUBTITLE:
+
+* 現象
+  TCP/IP の設定を切り変える方法として、古いものには以下のように書いてある。
+  1. 現在の設定を以下のようなコマンドで保存
+     #+BEGIN_EXAMPLE
+     PS C:\> netsh -c interface dump > test_conf.nsh
+     #+END_EXAMPLE
+  2. 前に設定した内容を以下のように読み込み
+     #+BEGIN_EXAMPLE
+     PS C:\> netsh -f test_conf.nsh
+     #+END_EXAMPLE
+  上記をそのまま実行すると以下のようなエラーとなる。
+  #+BEGIN_EXAMPLE
+  PS C:\>netsh -c interface dump > test_conf.nsh
+  PS C:\>netsh -f test_conf.nsh
+  次のコマンドは見つかりませんでした: ■■# (ここで■は文字化け)
+  #+END_EXAMPLE
+  これは保存された
+  conf.nsh の文字コードが Unicode だからなようで、ASCII にしてやれば解決できる。
+  しかし、引数が間違っているだの、reset コマンドが無いだのと言われる( -u domain\user -p pass でも同じ)。
+  #+BEGIN_EXAMPLE
+  PS C:\> Get-Content test_conf.nsh -encoding Unicode | Set-Content conf.nsh -encoding ASCII
+  PS C:\> netsh -f .\conf.nsh
+  グローバル のリセットに成功しました。
+  インターフェイス のリセットに成功しました。
+  ユニキャスト アドレス のリセットに成功しました。
+  ルート のリセットに成功しました。
+  コンピューターを再起動してこの操作を完了してください。
+  ファイル名、ディレクトリ名、またはボリューム ラベルの構文が間違っています。
+  
+  ファイル名、ディレクトリ名、またはボリューム ラベルの構文が間違っています。
+  
+  リセットするユーザー指定の設定はありません。
+  次のコマンドは見つかりませんでした: reset
+  
+  すべての TCP パラメーターをリセットしました。
+  次のコマンドは見つかりませんでした: reset
+  #+END_EXAMPLE
+  で、再起動したけど、設定は戻らず。うん、Windouze わからない。
+
+* 結論
+  netsh を手で直接打つか、例えば batch ファイルを作成した方が良さそう。
+  netsh の実行はプロンプトが返ってくるまで結構時間がかかることもあるので注意。
+  #+BEGIN_EXAMPLE
+  @echo off
+  
+  REM netsh interface ip set address "設定する接続名" static IPaddress サブネットマスク ゲートウェイ 
+  netsh interface ip set address "ローカル エリア接続" static AAA.AAA.AAA.AAA BBB.BBB.BBB.BBB CCC.CCC.CCC.CCC
+  REM netsh interface ip set dns "設定する接続名" static プライマリ DNS サーバー
+  netsh interface ip set dns "ローカル エリア接続" static XXX.XXX.XXX.XXX
+  REM netsh interface ip add dns "設定する接続名" セカンダリ DNS サーバー
+  netsh interface ip add dns "ローカル エリア接続" XXX.XXX.XXX.XXX
+  #+END_EXAMPLE
+
+  DHCP に戻す場合は以下を実行する。
+  
+  #+BEGIN_EXAMPLE
+  @echo off
+
+  REM アドレスを DHCP に戻す場合は以下
+  REM netsh interface ip set address "ローカル エリア接続" dhcp
+  REM DNS を DHCP に戻す場合は以下
+  REM netsh interface ip set dns "ローカル エリア接続" dhcp
+  #+END_EXAMPLE
+
+* 環境
+
+  #+BEGIN_EXAMPLE
+  C:\Users\clothoid> $PSVersionTable
+  
+  Name                           Value
+  ----                           -----
+  CLRVersion                     2.0.50727.5485
+  BuildVersion                   6.1.7601.17514
+  PSVersion                      2.0
+  WSManStackVersion              2.0
+  PSCompatibleVersions           {1.0, 2.0}
+  SerializationVersion           1.1.0.1
+  PSRemotingProtocolVersion      2.1
+  #+END_EXAMPLE
+  
+* 参考
+  - [[https://msdn.microsoft.com/en-us/library/windows/desktop/aa368046][Copy a Unicode File to an ANSI File (Windows)]]
+  - [[http://oshiete.goo.ne.jp/qa/7142705.html][ネットワーク設定の切り替え - Windows 7 解決済 | 教えて！goo]]
+  - [[http://www.atmarkit.co.jp/ait/articles/0109/04/news003.html][Tech TIPS：ノート PC の TCP/IP 設定を簡単に切り替える方法（netsh コマンドを使ったネットワーク設定の高速切り替え） - ＠ IT]]
+  - [[http://www.atmarkit.co.jp/ait/articles/1002/05/news097.html][Tech TIPS：Windows の netsh コマンドで TCP/IP のパラメータを設定する - ＠ IT]]
+  - [[http://tinyurl.com/j67q4h6][メモ Windows コマンドラインで IP アドレスを変更する – Nobwak's Lair]]
+  - [[http://itpro.nikkeibp.co.jp/article/COLUMN/20060809/245476/][管理者必見！ ネットワーク・コマンド集 - netsh interface ip コマンドで IP アドレスを設定する：ITpro]]
+  - [[http://kikky.net/pc/net.html][コマンドプロンプトから IP アドレスを設定する方法 - パソコンＱ＆Ａ]]
+

@@ -1,0 +1,22 @@
+# -*- Mode: org ; Coding: utf-8-unix -*-
+#+SETUPFILE: ../0000/00org-web-template
+#+TITLE: SKK 日本語入力 FEP をインターネット未接続の状態でインストールする方法
+#+DESCRIPTION:
+#+KEYWORDS: emacs skk fep internet install
+#+SUBTITLE:
+#+OPTIONS: ^:{}
+
+* 手順
+  
+   1. 最新版のZIPをダウンロード
+   2. 2. ZIPを適当なフォルダ内に解凍
+   3. 3. 解凍したフォルダ内(setup.jsと同じ場所)にL辞書のファイルをskk-dict.txtにリネームして格納
+   4. このフォルダをUSBメモリなどを経由して、なんらかの方法で端末にコピー
+   5. セットアップを起動
+
+   これは「管理者にネットワークアクセスを一切感知されないようにする」方法である。
+   通常は普通にインストールし、L辞書を他のPCからコピーして再起動で十分。
+* 参考
+
+  - https://twitter.com/coexe/status/1109725992254205952
+  - https://twitter.com/coexe/status/1109740938501320706

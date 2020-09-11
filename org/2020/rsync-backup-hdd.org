@@ -1,0 +1,51 @@
+#+SETUPFILE: ../0000/00org-web-template
+#+TITLE: rsync によるディスクのフルバックアップ
+#+DESCRIPTION: 
+#+KEYWORDS: rsynk cron crontab
+#+SUBTITLE:
+#+OPTIONS: ^:{}
+
+** スクリプトの作成
+   
+   [/usr/local/sbin/daily-backup]
+   #+begin_src sh
+   rsync -xa --delete --exclude={'/500g/','/2000g/'} / /500g/backup-125g 
+   rsync -xa --delete /500g /2000g/backup-500g
+   #+end_src
+   
+   実行権限の付与
+   #+begin_src sh
+   chmod a+x /usr/local/sbin/daily-backup
+   #+end_src
+   
+** クーロンの設置
+   
+   [/etc/crontab]
+   #+begin_example
+   # /etc/crontab: system-wide crontab
+   # Unlike any other crontab you don't have to run the `crontab'
+   # command to install the new version when you edit this file
+   # and files in /etc/cron.d. These files also have username fields,
+   # that none of the other crontabs do.
+
+   SHELL=/bin/sh
+   PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+   # m h dom mon dow user	command
+   17 *	* * *	root    cd / && run-parts --report /etc/cron.hourly
+   25 6	* * *	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.daily )
+   47 6	* * 7	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.weekly )
+   52 6	1 * *	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.monthly )
+   0 4 * * * root /usr/local/sbin/daily-backup
+   #
+   #+end_example
+
+* Footnotes
+
+[fn:endmmm] 月末の end of month や last day of month などは通じず [[https://github.com/sandst1/lastdayofmonth][こんなもの]]があったが、未確認 <Fri Mar 27 15:44:28 2020>
+
+[fn:9am] 時間を省略した場合は午前 9 時となる 
+
+[fn:todays] 明々後日の  two days after tomorrow は通じなかった <Fri Mar 27 15:33:49 2020>
+
+[fn:slackattention] [[https://slack.com/intl/ja-jp/help/articles/208423427-%E3%83%AA%E3%83%9E%E3%82%A4%E3%83%B3%E3%83%80%E3%83%BC%E3%82%92%E8%A8%AD%E5%AE%9A%E3%81%99%E3%82%8B][リマインダーを設定する]] の[気をつけてほしいこと] <Fri Mar 27 15:19:41 2020>

@@ -1,0 +1,254 @@
+#+SETUPFILE: ../0000/00org-web-template
+#+TITLE: emacs 24 で Python の環境を作る
+* 環境
+  - Windows 7 64bit
+  - gnupack_devel-13.06-2015.11.08
+    - binutils 2.25-4
+    - libuuid-devel 2.25.2-2
+  - GNU Emacs 24.5.1 (i686-pc-cygwin) of 2015-11-08 on gnupack
+  - Python 2.7.10
+    - python-setuptools 15.2-1
+    - easy_install 2.7
+    - pip 8.1.1 from /usr/lib/python2.7/site-packages/pip-8.1.1-py2.7.egg (python 2.7)
+      - apipkg==1.4
+      - autopep8==1.2.2
+      - epc==0.0.5
+      - execnet==1.4.1
+      - jedi==0.9.0
+      - pbr==1.8.1
+      - pep8==1.7.0
+      - py==1.4.31
+      - pyflakes==1.1.0
+      - pytest==2.9.1
+      - pytest-cache==1.0
+      - pytest-pep8==1.0.6
+      - sexpdata==0.0.3
+      - six==1.10.0
+      - stevedore==1.12.0
+      - virtualenv==15.0.1
+      - virtualenv-clone==0.2.6
+      - virtualenvwrapper==4.7.1
+
+* python
+  #+BEGIN_SRC sh 
+  $ apt-cyg install python
+  $ python --version
+  Python 2.7.10
+  #+END_SRC
+  emacs で python を快適に使用するために、python-mode を入れる。
+  #+BEGIN_EXAMPLE
+  M-x package-install python-mode
+  #+END_EXAMPLE
+  init.el の設定は以下のとおり。
+  #+BEGIN_SRC emacs-lisp 
+  (add-hook 'python-mode-hook
+                     '(lambda ()
+                          (setq indent-tabs-mode nil)
+                          (setq indent-level 4)
+                          (setq python-indent 4)
+                          (setq tab-width 4)))
+  #+END_SRC
+* easy_install
+  python のパッケージ管理ツール。python-setuptools の中に入っている。
+  #+BEGIN_SRC sh 
+  $ apt-cyg install python-setuptools
+  $ easy_install-2.7 --version
+  setuptools 15.2
+  #+END_SRC
+
+* pip
+  easy_install の強化版。
+  #+BEGIN_SRC sh 
+  $ apt-cyg install binutils libuuid-devel
+  $ easy_install-2.7 pip
+  $ pip --version
+  pip 8.1.1 from /usr/lib/python2.7/site-packages/pip-8.1.1-py2.7.egg (python 2.7)
+  #+END_SRC
+
+* virtualenv 
+  プロジェクト毎に仮想環境を作れるツール。
+  #+BEGIN_SRC sh 
+  $ easy_install-2.7 virtualenv
+  $ easy_install-2.7 virtualenvwrapper
+  $ source virtualenvwrapper.sh
+  $ export WORKON_HOME=~/.virtualenvs
+  $ virtualenv --version
+  15.0.1
+  #+END_SRC
+  例えば次のように使う。~/.virtualenvs/myproject を仮想環境用ディレクトリとして、cherrypy を入れている。不要になったら、削除して終り。
+  #+BEGIN_SRC sh 
+  $ mkdir -p ~/.virtualenvs/myproject
+  $ cd ~/.virtualenvs/myproject
+  $ virtualenv .
+  $ source bin/activate
+  $ pip install cherrypy
+  $ deactivate
+  $ cd ..
+  $ rmvirtualenv myproject
+  #+END_SRC
+
+* PEP8
+  Python のコーディング規約 PEP8 のチェックなどを簡単にするツール群。
+  #+BEGIN_SRC sh 
+  $ pip install pep8 pytest pytest-pep8 autopep8
+  #+END_SRC
+
+  pep8 は、PEP8 に準拠しているかを調べるツール。例えば、以下のように使う。
+  #+BEGIN_SRC sh
+  $ cat 2016-03-29-174409.py
+  import sys, os
+  $ pep8 2016-03-29-174409.py
+  2016-03-29-174409.py:1:11: E401 multiple imports on one line
+  #+END_SRC
+
+  pytest-pep8 は、pep8 をより見易くしたもの。例えば、以下のように使う[fn:hev]。
+  #+BEGIN_SRC sh
+  $ cat 2016-03-29-174409.py
+  import sys, os
+  $ py.test --pep8 2016-03-29-174409.py
+  ============================= test session starts ==============================
+  platform cygwin -- Python 2.7.10, pytest-2.9.1, py-1.4.31, pluggy-0.3.1
+  rootdir: /home/clothoid/junk, inifile: 
+  plugins: pep8-1.0.6
+  collected 1 items 
+  
+  2016-03-29-174409.py F
+  
+  =================================== FAILURES ===================================
+  __________________________________ PEP8-check __________________________________
+  /home/clothoid/junk/2016-03-29-174409.py:1:11: E401 multiple imports on one line
+  import sys, os
+            ^
+  
+  =========================== 1 failed in 0.02 seconds ===========================
+  #+END_SRC
+
+  autopep8 は pep8 に準拠したものとなるように自動で直してくれるツール。例えば、以下のように使う。
+  #+BEGIN_SRC sh
+  $ cat 2016-03-29-174409.py
+  import sys, os
+  $ autopep8 2016-03-29-174409.py
+  import sys
+  import os
+  #+END_SRC
+
+  pep8 を emacs から利用するために、package を入れる。
+  #+BEGIN_EXAMPLE
+  M-x package-install RET python-pep8 RET 
+  #+END_EXAMPLE
+  そして、init.el に以下を記述
+  #+BEGIN_SRC emacs-lisp 
+  (require "python-pep8")
+  ; pep8 のインストールパスを指定
+  (defcustom python-pep8-command "/usr/bin/pep8"
+    "PEP8 command."
+    :type '(file)
+    :group 'python-pep8)
+  #+END_SRC
+  python-pep8 の使い方は、例えば、2016-03-29-174409.py を開き、M-x python-pep8 とすると python-pep8 バッファに以下のように表示される。
+  #+BEGIN_EXAMPLE
+  [*python-pep8*]
+  ===
+  -*- mode: python-pep8; default-directory: "~/junk/" -*-
+  PEP8 started at Tue Mar 29 18:01:10
+  
+  pep8 --repeat /home/clothoid/junk/2016-03-29-174409.py | sort -n -t: -k2
+  /home/clothoid/junk/2016-03-29-174409.py:1:11: E401 multiple imports on one line
+  
+  PEP8 finished at Tue Mar 29 18:01:10
+  ===
+  #+END_EXAMPLE
+
+* pyflakes
+  Python の文法エラーをチェックするもの。
+  #+BEGIN_SRC sh
+  pip install pyflakes
+  #+END_SRC
+  pyflakes は、例えば、以下のように使う。
+  #+BEGIN_SRC sh
+  $ cat 2016-03-29-180555.py
+  #!/usr/bin/env python
+  # -*- coding: utf-8 -*-
+  
+  if __name__ == '__main__'
+          print 'OK!'
+  $ pyflakes 2016-03-29-180555.py
+  2016-03-29-180555.py:4:26: invalid syntax
+  if __name__ == '__main__'
+                           ^
+  $ cat 2016-03-29-180555.py
+  #!/usr/bin/env python
+  # -*- coding: utf-8 -*-
+  
+  if __name__ == '__main__':
+          print 'OK!'
+  $ pyflakes 2016-03-29-180555.py
+  $ python 2016-03-29-180555.py
+  OK!
+  #+END_SRC
+
+  pyflakes を emacs から使うために、以下のように設定する。
+  #+BEGIN_EXAMPLE
+  M-x package-install RET flymake RET
+  M-x package-install RET flymake-python-pyflakes RET 
+  M-x package-install RET flymake-cursor RET 
+  #+END_EXAMPLE
+  init.el は以下のようにする。
+  #+BEGIN_SRC emacs-lisp 
+  (require 'flymake-python-pyflakes)
+  (require 'flymake-cursor)
+  (add-hook 'python-mode-hook 'flymake-python-pyflakes-load)
+  #+END_SRC
+  
+  flymake-python-pyflakes および flymake-cursor の使い方は、例えば、以下のようなファイルで、
+  #+BEGIN_SRC sh
+  #!/usr/bin/env python
+  # -*- coding: utf-8 -*-
+  
+  if __name__ == '__main__'
+          print 'OK!'
+  #+END_SRC
+  if の行にカーソルがくると、ミニバッファに以下のように表示される。
+  #+BEGIN_EXAMPLE
+  invalid syntax
+  #+END_EXAMPLE
+
+* jedi
+  python でのかしこい補完機能[fn:ac-mode]。
+  #+BEGIN_SRC sh
+  pip install epc jedi
+  #+END_SRC
+  emacs から利用するために、以下を設定する。
+  #+BEGIN_EXAMPLE
+  M-x package-install RET jedi RET
+  #+END_EXAMPLE
+  init.el は以下のとおり。
+  #+BEGIN_SRC emacs-lisp
+  (add-hook 'python-mode-hook 'jedi:setup)
+  (setq jedi:complete-on-dot t)
+  #+END_SRC
+  上記を設定後、M-x jedi:install-server とすると設定が終る。
+
+  使い方は .py ファイルを開いて、例えば、impo まで書くと補完候補が表示される。
+
+* 参考
+  - [[http://qiita.com/kunst1080/items/8349ad2d3bbe808651d1][Cygwin 環境に virtualenv を入れてみた - Qiita]]
+  - [[http://qiita.com/caad1229/items/325ca5c8ad198b0ebce7][virtualenv で python 環境を管理する - Qiita]]
+  - [[http://chiranoura.nobody.jp/articles/2014-03-04_01_how_to_install_pip_and_setuptools/][ちらのうら - Cygwin 上で pip と setuptools をインストールする方法]]
+  - [[http://futurismo.biz/archives/2680][Emacs で Python 開発環境を構築 | Futurismo]]
+  - [[https://www.emacswiki.org/emacs/PythonProgrammingInEmacs][EmacsWiki: Python Programming In Emacs]]
+  - [[http://qiita.com/ynakayama/items/8616f4c0c6e372de9a42][Python のコーディング規約 PEP8 に準拠する - Qiita]]
+  - [[http://tkf.github.io/emacs-jedi/latest/][Jedi.el - Python auto-completion for Emacs — Emacs Jedi 0.2.0alpha2 documentation]]
+  - [[http://yukke.hateblo.jp/entry/2015/01/09/222311][emacs+pyflakes+flymake で python の構文チェックを勝手にしてもらう - yukke::note]]
+  - [[http://hiroom2.jimdo.com/2015/09/18/emacs%E3%81%AEflymake%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9/][emacs の flymake パッケージの使い方 - Narrow Escape]]
+  - [[http://www.yunabe.jp/docs/python_package_management.html][Python パッケージ管理技術まとめ (pip, setuptools, easy_install, etc)]]
+  - [[http://pep8-ja.readthedocs.org/ja/latest/][はじめに — pep8-ja 1.0 ドキュメント]]
+  - [[http://qiita.com/kitsuyui/items/5ab4608003a29ff7689f][Python の Lint (文法チェッカ) まとめ - flake8 + hacking を使う - - Qiita]]
+    
+* Footnotes
+
+[fn:hev] 表示されるまで、くっそ重い。。。。
+
+[fn:ac-mode] auto-complete と同時設定するとうまく効かなかった。
+
+  

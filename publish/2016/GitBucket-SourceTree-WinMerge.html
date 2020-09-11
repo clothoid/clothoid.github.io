@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+<!-- 2020-09-12 Sat 07:25 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Windows で GitBucket で Git サーバーを立て、SourceTree + WinMerge で利用する方法</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="clothoid" />
+<meta name="keywords" content="git" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="https://clothoid.github.io/sitemap.html"> UP </a>
+ |
+ <a accesskey="H" href="https://clothoid.github.io/"> HOME </a>
+</div><div id="content">
+<h1 class="title">Windows で GitBucket で Git サーバーを立て、SourceTree + WinMerge で利用する方法</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#27425;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org9194947">1. 環境</a></li>
+<li><a href="#orgdcd23e1">2. Git サーバーの構築</a>
+<ul>
+<li><a href="#org155ab5c">2.1. Java 8 のダンロード</a></li>
+<li><a href="#orgcd83128">2.2. Tomcat 7 のインストール</a></li>
+<li><a href="#org218bf19">2.3. GitBucket のインストールと起動</a></li>
+</ul>
+</li>
+<li><a href="#orgc0ab2b1">3. Git クライアントのインストール</a></li>
+<li><a href="#org1e1d742">4. SourceTree のインストール</a></li>
+<li><a href="#org1e529c3">5. WinMerge のインストールと xdocdiff プラグインの設定</a>
+<ul>
+<li><a href="#org1d1dc82">5.1. WinMerge 日本語版</a></li>
+<li><a href="#org1dd0de6">5.2. xdocdiff</a></li>
+</ul>
+</li>
+<li><a href="#org28b30c7">6. SourceTree で WinMerge を設定</a></li>
+<li><a href="#org8b213cc">7. 動作確認</a>
+<ul>
+<li><a href="#org7a71bbc">7.1. GitBucket で sample リポジトリの作成</a></li>
+<li><a href="#orgc93eac4">7.2. SourceTree から接続</a>
+<ul>
+<li><a href="#org3a3efe3">7.2.1. クローン</a></li>
+<li><a href="#orgb5efcb4">7.2.2. コミット</a></li>
+<li><a href="#orgb213496">7.2.3. プッシュ</a></li>
+</ul>
+</li>
+<li><a href="#org2187979">7.3. GitBucket で 確認</a></li>
+</ul>
+</li>
+<li><a href="#orgf41d013">8. 参考</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org9194947" class="outline-2">
+<h2 id="org9194947"><span class="section-number-2">1</span> 環境</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>サーバー
+<ul class="org-ul">
+<li>Windows 2012 R2</li>
+<li>Java 8.0.91-b15</li>
+<li>Tomcat 7.0</li>
+<li>GitBucket 4.1.0</li>
+</ul></li>
+<li>クライアント
+<ul class="org-ul">
+<li>Windows 7</li>
+<li>Git 2.9.0.windows.1</li>
+<li>SourceTree 1.8.3.0</li>
+<li>WinMerge 2.14.0.0 - Japanese Unicode
+<ul class="org-ul">
+<li>xdocdiff WinMerge Plugin 1.0.6d</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgdcd23e1" class="outline-2">
+<h2 id="orgdcd23e1"><span class="section-number-2">2</span> Git サーバーの構築</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org155ab5c" class="outline-3">
+<h3 id="org155ab5c"><span class="section-number-3">2.1</span> Java 8 のダンロード</h3>
+<div class="outline-text-3" id="text-2-1">
+<ol class="org-ol">
+<li><a href="https://java.com/ja/download/manual.jsp">https://java.com/ja/download/manual.jsp</a> にアクセス</li>
+<li>[Windows オフライン (64 ビット)]をダンロード</li>
+<li>画面にしたがいインストール</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgcd83128" class="outline-3">
+<h3 id="orgcd83128"><span class="section-number-3">2.2</span> Tomcat 7 のインストール</h3>
+<div class="outline-text-3" id="text-2-2">
+<ol class="org-ol">
+<li><a href="http://tomcat.apache.org/download-70.cgi">http://tomcat.apache.org/download-70.cgi</a> にアクセス</li>
+<li>画面にしたがいインストール (ここでは F:/Program Files にインストール)</li>
+<li><p>
+conf/server.xml を、下記の通り変更 (検索キーワード文字化け防止)
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">*** <span style="color: #008000;">"/f/Program Files/Apache Software Foundation/Tomcat 7.0/conf/server.xml.orig"</span>   2016-06-28 15:05:32.34805../0000 +0900
+--- <span style="color: #008000;">"/f/Program Files/Apache Software Foundation/Tomcat 7.0/conf/server.xml"</span>    2016-06-28 15:06:25.659592300 +0900
+***************
+*** 70,76 ****
+      --&gt;
+      &lt;Connector <span style="color: #BA36A5;">port</span>=<span style="color: #008000;">"50001"</span> <span style="color: #BA36A5;">protocol</span>=<span style="color: #008000;">"HTTP/1.1"</span>
+                 <span style="color: #BA36A5;">connectionTimeout</span>=<span style="color: #008000;">"2../0000"</span>
+!                <span style="color: #BA36A5;">redirectPort</span>=<span style="color: #008000;">"8443"</span> /&gt;
+      &lt;!-- A <span style="color: #008000;">"Connector"</span> using the shared thread pool--&gt;
+      &lt;!--
+      &lt;Connector <span style="color: #BA36A5;">executor</span>=<span style="color: #008000;">"tomcatThreadPool"</span>
+--- 70,78 ----
+      --&gt;
+      &lt;Connector <span style="color: #BA36A5;">port</span>=<span style="color: #008000;">"50001"</span> <span style="color: #BA36A5;">protocol</span>=<span style="color: #008000;">"HTTP/1.1"</span>
+                 <span style="color: #BA36A5;">connectionTimeout</span>=<span style="color: #008000;">"2../0000"</span>
+!                <span style="color: #BA36A5;">redirectPort</span>=<span style="color: #008000;">"8443"</span>
+!                <span style="color: #BA36A5;">URIEncoding</span>=<span style="color: #008000;">"UTF-8"</span>
+!                <span style="color: #BA36A5;">useBodyEncodingForURI</span>=<span style="color: #008000;">"true"</span> /&gt;
+      &lt;!-- A <span style="color: #008000;">"Connector"</span> using the shared thread pool--&gt;
+      &lt;!--
+      &lt;Connector <span style="color: #BA36A5;">executor</span>=<span style="color: #008000;">"tomcatThreadPool"</span>
+</pre>
+</div></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org218bf19" class="outline-3">
+<h3 id="org218bf19"><span class="section-number-3">2.3</span> GitBucket のインストールと起動</h3>
+<div class="outline-text-3" id="text-2-3">
+<ol class="org-ol">
+<li><a href="https://github.com/takezoe/gitbucket/releases">https://github.com/takezoe/gitbucket/releases</a> から gitbucket.war をダウンロード</li>
+<li>システム環境変数に GITBUCKET _ HOME を設定（例：F:/GitBucket）</li>
+<li>F:/Program Files/Apache Software Foundation/Tomcat 7.0/webapps に war ファイルを配置</li>
+<li>F:/Program Files/Apache Software Foundation/Tomcat 7.0/bin/Tomcat7w.exe を起動</li>
+<li>[Start] で実行</li>
+<li><a href="http://hostname:8080/gitbucket">http://hostname:8080/gitbucket</a> へ接続</li>
+<li>root/root でログイン確認</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc0ab2b1" class="outline-2">
+<h2 id="orgc0ab2b1"><span class="section-number-2">3</span> Git クライアントのインストール</h2>
+<div class="outline-text-2" id="text-3">
+<ol class="org-ol">
+<li><a href="https://git-for-windows.github.io/">https://git-for-windows.github.io/</a> にアクセス</li>
+<li>[Download]よりダウンロード</li>
+<li>画面に従いインストール</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org1e1d742" class="outline-2">
+<h2 id="org1e1d742"><span class="section-number-2">4</span> SourceTree のインストール</h2>
+<div class="outline-text-2" id="text-4">
+<ol class="org-ol">
+<li><a href="https://www.sourcetreeapp.com/">https://www.sourcetreeapp.com/</a> にアクセス</li>
+<li>[Download Source Tree]よりダウンロード</li>
+<li>画面に従いインストール
+<ul class="org-ul">
+<li>My Atlassian アカウントは作成しなければならなっぽい</li>
+<li>[Connect an Account] はスキップで OK</li>
+<li>[SSH キーを読み込みますか？]は No で OK</li>
+</ul></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org1e529c3" class="outline-2">
+<h2 id="org1e529c3"><span class="section-number-2">5</span> WinMerge のインストールと xdocdiff プラグインの設定</h2>
+<div class="outline-text-2" id="text-5">
+</div>
+<div id="outline-container-org1d1dc82" class="outline-3">
+<h3 id="org1d1dc82"><span class="section-number-3">5.1</span> WinMerge 日本語版</h3>
+<div class="outline-text-3" id="text-5-1">
+<ol class="org-ol">
+<li><a href="http://www.geocities.co.jp/SiliconValley-SanJose/8165/winmerge.html">http://www.geocities.co.jp/SiliconValley-SanJose/8165/winmerge.html</a> にアクセス</li>
+<li>WinMerge 日本語版 <b>32bit 版</b> をダウンロード (xdocdiff が 32bit でないと動かないため)</li>
+<li>画面に従いインストール</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org1dd0de6" class="outline-3">
+<h3 id="org1dd0de6"><span class="section-number-3">5.2</span> xdocdiff</h3>
+<div class="outline-text-3" id="text-5-2">
+<ol class="org-ol">
+<li><a href="http://freemind.s57.xrea.com/xdocdiffPlugin/">http://freemind.s57.xrea.com/xdocdiffPlugin/</a> にアクセス</li>
+<li>xdocdiffPlugin<sub>1</sub><sub>0</sub><sub>6d.zip</sub> をダウンロード</li>
+<li>xdoc2txt.exe、zlib.dll を WinMerge のインストールフォルダ（WinMerge.exe と同じフォルダ）にコピー</li>
+<li>amb<sub>xdocdiffPlugin.dll</sub> をインストールフォルダのサブフォルダ"MergePlugins"にコピー</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-org28b30c7" class="outline-2">
+<h2 id="org28b30c7"><span class="section-number-2">6</span> SourceTree で WinMerge を設定</h2>
+<div class="outline-text-2" id="text-6">
+<ol class="org-ol">
+<li>WinMerge を起動
+<ol class="org-ol">
+<li>[プラグイン]&gt;[リスト]</li>
+<li>[プラグインを有効にする]にチェック</li>
+<li>[OK]</li>
+<li>[プラグイン]&gt;[自動展開]にチェック</li>
+</ol></li>
+<li>SourceTree を起動
+<ol class="org-ol">
+<li>[ツール]&gt;[オプション]</li>
+<li>[Diff]タブ</li>
+<li>[外部 Diff ツール]を[WinMerge]に設定</li>
+<li>[OK]</li>
+<li>WinMergeU.exe を選択</li>
+</ol></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org8b213cc" class="outline-2">
+<h2 id="org8b213cc"><span class="section-number-2">7</span> 動作確認</h2>
+<div class="outline-text-2" id="text-7">
+</div>
+<div id="outline-container-org7a71bbc" class="outline-3">
+<h3 id="org7a71bbc"><span class="section-number-3">7.1</span> GitBucket で sample リポジトリの作成</h3>
+<div class="outline-text-3" id="text-7-1">
+<ol class="org-ol">
+<li><a href="http://hostname:8080/gitbucket">http://hostname:8080/gitbucket</a> へ接続</li>
+<li>root/root でログイン</li>
+<li>[+]&gt;[New repository]</li>
+<li>[Repository name] を [sample] に</li>
+<li>[Create repository] を選択</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgc93eac4" class="outline-3">
+<h3 id="orgc93eac4"><span class="section-number-3">7.2</span> SourceTree から接続</h3>
+<div class="outline-text-3" id="text-7-2">
+</div>
+<div id="outline-container-org3a3efe3" class="outline-4">
+<h4 id="org3a3efe3"><span class="section-number-4">7.2.1</span> クローン</h4>
+<div class="outline-text-4" id="text-7-2-1">
+<ol class="org-ol">
+<li>[新規/クローンを作成する]を選択</li>
+<li>[リポジトリをクローン]タブの[元のパス/URL]に [<a href="http://hostname:8080/gitbucket/git/root/sample.git">http://hostname:8080/gitbucket/git/root/sample.git</a>] を入力</li>
+<li>[保存先のパス]に適当なものを入力</li>
+<li>[クローン]を選択</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgb5efcb4" class="outline-4">
+<h4 id="orgb5efcb4"><span class="section-number-4">7.2.2</span> コミット</h4>
+<div class="outline-text-4" id="text-7-2-2">
+<ol class="org-ol">
+<li>[保存先のパス] で指定したフォルダに適当なエクセルファイルを追加</li>
+<li>SourceTree の[作業ツリーのファイル]で作成したファイルにチェックを入れる</li>
+<li>コミットメッセージ欄に適当にメッセージを入力</li>
+<li>[コミット]を選択</li>
+<li>エクセルファイルを編集</li>
+<li>[操作]&gt;[外部 Diff]で確認</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgb213496" class="outline-4">
+<h4 id="orgb213496"><span class="section-number-4">7.2.3</span> プッシュ</h4>
+<div class="outline-text-4" id="text-7-2-3">
+<ol class="org-ol">
+<li>[プッシュ]を選択</li>
+<li>[プッシュ先]を確認</li>
+<li>[対象]にチェック</li>
+<li>[OK]</li>
+<li>[Authenticate]で、root/root を入力</li>
+<li>[Login]</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-org2187979" class="outline-3">
+<h3 id="org2187979"><span class="section-number-3">7.3</span> GitBucket で 確認</h3>
+<div class="outline-text-3" id="text-7-3">
+<ol class="org-ol">
+<li><a href="http://hostname:8080/gitbucket">http://hostname:8080/gitbucket</a> へ接続</li>
+<li>root/root でログイン</li>
+<li>Your repositories で [sample] を選択</li>
+<li>内容を確認</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf41d013" class="outline-2">
+<h2 id="orgf41d013"><span class="section-number-2">8</span> 参考</h2>
+<div class="outline-text-2" id="text-8">
+<ul class="org-ul">
+<li><a href="https://github.com/gitbucket/gitbucket">GitHub - gitbucket/gitbucket: A Git platform powered by Scala with easy installation, high extensibility &amp; github API compatibility</a></li>
+<li><a href="http://qiita.com/yuann/items/5759a11a49dd0580d80b">Windows 環境で GitBucket - Qiita</a></li>
+<li><a href="http://celtislab.net/archives/20140520/git-step1/">Git 入門（GitBucket と SourceTree の準備） – セルティスラボ</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#33879;&#32773;: clothoid</p>
+<p class="date">Created: 2020-09-12 Sat 07:25</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

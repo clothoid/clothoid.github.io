@@ -1,0 +1,19 @@
+#+SETUPFILE: ../0000/00org-web-template
+#+TITLE: Install surfraw on Cygwin
+
+* 環境
+  - Windows 7 64bit
+  - gnupack_devel-13.06-2015.11.08
+  - Surfraw version (2.2.8)
+
+* 手順
+  Cygwin port から入れる
+  #+BEGIN_EXAMPLE
+  apt-cyg update -m ftp://ftp.cygwinports.org/pub/cygwinports
+  apt-cyg install surfraw
+  apt-cyg update -m  ftp://ftp.jaist.ac.jp/pub/cygwin/
+  apt-cyg -m ftp://ftp.iij.ad.jp/pub/cygwin/ update
+  #+END_EXAMPLE
+
+* 参考
+  - [[http://takuya-1st.hatenablog.jp/entry/20120103/1325564362][cygwin の apt-cyg で cygport を有効無効を切り替える]]

@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2020-09-12 Sat 07:27 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sitemap</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="clothoid" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Sitemap</h1>
+<ul class="org-ul">
+<li><a href="index.html">Contents</a></li>
+<li>2015
+<ul class="org-ul">
+<li><a href="2015/good-things-2015.html">2015 年版、買って良かったもの</a></li>
+<li><a href="2015/visited-japanse-good-restaurant-list.html">2015 美味しかったレストラン 8 選</a></li>
+<li><a href="2015/cygwin-port-link-grammar.html">Cygwin に link-grammar をインストールする方法</a></li>
+<li><a href="2015/Doing-vfork-Resource-temporarily-unavailable.html">Doing vfork: Resource temporarily unavailable</a></li>
+<li><a href="2015/cygwin-port-gnupack-surfraw.html">Install surfraw on Cygwin</a></li>
+<li><a href="2015/merry-xmas-equation.html">Merry Xmas Equation</a></li>
+<li><a href="2015/S-username-must-have-mode-700.html">S-username must have mode 700.</a></li>
+<li><a href="2015/gnupack-cygwin-cron-rsync.html">Windows で cron + rsync でフルバックアップ</a></li>
+<li><a href="2015/ditaa-of-cygwin-with-emacs.html">ditaa of cygwin with emacs org-mode</a></li>
+<li><a href="2015/delete-a-part-of-PATH.html">コマンドプロンプトで PATH の一部だけ削除</a></li>
+<li><a href="2015/japanase-kanji-hiragana-number-convert.html">漢字と平仮名、算用数字と漢数字</a></li>
+<li><a href="2015/these-carbohydrates-cannot-be-decomposed.html">腸で分解できない糖類</a></li>
+<li><a href="2015/tatsuno-kazuo-bunsyounomigakikata.html">辰濃和男『文章のみがき方』岩波書店</a></li>
+</ul></li>
+<li>2016
+<ul class="org-ul">
+<li><a href="2016/cygwin-port-cygports-gnupack-ffmpeg.html">Cygwin に ffmpeg を入れる</a></li>
+<li><a href="2016/happy-new-year-equation.html">Happy New Year Equation</a></li>
+<li><a href="2016/iijmio-au-docomo-dmm-fee.html">IIJmio で携帯料金を節約</a></li>
+<li><a href="2016/redhat-linux-dropbox-proxy-install.html">Install dropbox over proxy on RHEL7</a></li>
+<li><a href="2016/five-Chateau-wine-labels.html">List for 1st-3rd labels of 5 chateaus</a></li>
+<li><a href="2016/pc-changer-mouse-emulation-off.html">PC自動切替器とトラックボールマウスの相性</a></li>
+<li><a href="2016/powershell-timestamp-file-name.html">PowerShell でファイル名に作成時刻をつける</a></li>
+<li><a href="2016/GitBucket-SourceTree-WinMerge.html">Windows で GitBucket で Git サーバーを立て、SourceTree + WinMerge で利用する方法</a></li>
+<li><a href="2016/emacs-python-gnupack-setting.html">emacs 24 で Python の環境を作る</a></li>
+<li><a href="2016/emacs-web-development-environment.html">emacs 24 で Web 開発の環境を作る</a></li>
+<li><a href="2016/emacs-isearch-functions.html">emacs における isearch の標準便利機能</a></li>
+<li><a href="2016/netsh-reset-command-is-not-found.html">netsh -f で reset がみつからない</a></li>
+<li><a href="2016/yum-versioin-fix-subscription-manager.html">yum でバージョン固定を subscription-manager で</a></li>
+<li><a href="2016/butter-beurre-list.html">フランス産の無塩バターのまとめ</a></li>
+<li><a href="2016/dry-bath-towel-ranking.html">速乾性バスタオルランキング</a></li>
+<li><a href="2016/kashima-antlers-kakeibo-2015.html">鹿島アントラーズのサポーター家計簿</a></li>
+</ul></li>
+<li>2017
+<ul class="org-ul">
+<li><a href="2017/GitBucket-on-Windows7-with-Tomcat8.html">GitBucket + Tomcat + Java on Windows 7</a></li>
+<li><a href="2017/InvalidParameterCombination-Non-Windows-instances.html">aws ec2 run-instances で Non-Windows instances のエラー</a></li>
+</ul></li>
+<li>2018
+<ul class="org-ul">
+<li><a href="2018/emacs-worldcup2018-ical-calendar.html">emacs でワールドカップの日程をサクッと表示する</a></li>
+<li><a href="2018/emacs-nodejs-nmp-textlint-flycheck.html">emacs の flycheck で textlint を利用し、日本語の自動校正を行う</a></li>
+<li><a href="2018/emacs-google-calendar-org-gcal.html">emacs の org-mode と google calendar を連携させる org-gcal</a></li>
+<li><a href="2018/org-latex-pdf-with-minted-python.html">org で minted ハイライト表示した PDF 一発作成</a></li>
+<li><a href="2018/football-japan-national-team-worldcup2018-poland.html">グループリーグ突破から見えてきた日本のサッカー</a></li>
+<li><a href="2018/english-world-wide-accents-learning-japanese-books.html">世界中の英語の訛りが学べる参考書のまとめ</a></li>
+<li><a href="2018/football-japan-national-team-worldcup2018-supporters.html">日本代表が理解できる人と理解できない人の決定的な違い</a></li>
+<li><a href="2018/difference-between-japanese-supporters.html">日本代表が理解できる人と理解できない人の決定的な違い</a></li>
+</ul></li>
+<li>2019
+<ul class="org-ul">
+<li><a href="2019/install-skkfep-without-internet.html">SKK 日本語入力 FEP をインターネット未接続の状態でインストールする方法</a></li>
+<li><a href="2019/emacs-twittering-mode-quote-retweet.html">emacs twittering-mode で公式引用 RT のようにリツイートする方法</a></li>
+<li><a href="2019/pkill-emacs-when-freeze.html">emacs がフリーズした場合に復旧させる方法</a></li>
+<li><a href="2019/org-beamer-export-to-pdf.html">emacs の org-beamer-export-to-pdf 設定手順</a></li>
+<li><a href="2019/org-pandoc-export-to-docx.html">emacs の org-pandoc-export-to-docx サンプル</a></li>
+<li><a href="2019/org-pandoc-export-to-pptx.html">emacs の org-pandoc-export-to-pptx サンプル</a></li>
+<li><a href="2019/org-latex-export-to-pdf.html">org-latex-export-to-pdf の設定手順</a></li>
+<li><a href="2019/txakoli-list.html">サンセバスチャンで買ってきたチャコリ</a></li>
+<li><a href="2019/bilbao-sansebastian-travellers-trip.html">ビルバオ、サンセバスチャン旅行用メモ</a></li>
+</ul></li>
+<li>2020
+<ul class="org-ul">
+<li><a href="2020/install-mecab-on-ubuntu-20.04.1LTS.html">/bin/sh: 1: mecab-config: not found と RuntimeError</a></li>
+<li><a href="2020/debian-linux-add-hdd.html">Debian HDD 増設時の設定手順</a></li>
+<li><a href="2020/slack-reminder-format.html">Slack reminder の日付け書き方サンプル集</a></li>
+<li><a href="2020/rsync-backup-hdd.html">rsync によるディスクのフルバックアップ</a></li>
+</ul></li>
+</ul>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: clothoid</p>
+<p class="date">Created: 2020-09-12 Sat 07:27</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

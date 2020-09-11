@@ -1,0 +1,37 @@
+#+SETUPFILE: ../0000/00org-web-template
+#+TITLE: PowerShell でファイル名に作成時刻をつける
+#+DESCRIPTION:
+#+KEYWORDS: powershell file name time date
+#+SUBTITLE:
+
+* 方法
+  #+BEGIN_EXAMPLE
+  PS E:\home\tmp> echo hoge > "$(get-date -f yyyy-MM-dd-HHmmss)"
+  PS E:\home\tmp> ls
+  
+  
+      ディレクトリ: E:\home\tmp
+  
+  
+  Mode                LastWriteTime     Length Name
+  ----                -------------     ------ ----
+  -a---        2016/02/08     15:32         14 2016-02-08-153231  
+  #+END_EXAMPLE
+
+
+* 環境
+  
+  #+BEGIN_EXAMPLE
+  C:\Users\clothoid> $PSVersionTable
+  
+  Name                           Value
+  ----                           -----
+  CLRVersion                     2.0.50727.5485
+  BuildVersion                   6.1.7601.17514
+  PSVersion                      2.0
+  WSManStackVersion              2.0
+  PSCompatibleVersions           {1.0, 2.0}
+  SerializationVersion           1.1.0.1
+  PSRemotingProtocolVersion      2.1
+  #+END_EXAMPLE
+

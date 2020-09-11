@@ -1,0 +1,30 @@
+#+SETUPFILE: ../0000/00org-web-template
+#+TITLE: コマンドプロンプトで PATH の一部だけ削除
+
+* 環境
+  - Windows 7 64bit
+  - Microsoft Windows [Version 6.1.7601]
+* 具体例
+  環境変数の拡張展開を使う。
+  
+  #+BEGIN_EXAMPLE -n
+  c:\tmp>set test=abc;123;cde
+   
+  c:\tmp>echo %test%
+  abc;123;cde
+   
+  c:\tmp>set test=%test:123;=%
+   
+  c:\tmp>echo %test%
+  abc;cde
+  #+END_EXAMPLE
+
+* 参考
+  「SET /?」より抜粋
+
+   /環境変数の置換は、次のように拡張されます:/
+
+   / %PATH:文字列 1 = 文字列 2% /
+
+   /は、PATH 環境変数を展開し、その結果に含まれるすべての "文字列 1" を "文字列 2" に置き換えます。"文字列 2" に空の文字列を指定すると、展開された出力からすべての "文字列 1" を削除することができます。"文字列 1"をアスタリスクで始め、展開された出力の先頭から、文字列 1 の残りの部分が最初に現れるまでのすべてを一致させることもできます。cmd.exe 環境変数を表示、設定、または削除します。/
+

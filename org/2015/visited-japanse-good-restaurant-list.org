@@ -1,0 +1,29 @@
+#+SETUPFILE: ../0000/00org-web-template
+#+TITLE: 2015 美味しかったレストラン 8 選
+#+DESCRIPTION:
+#+KEYWORDS:
+#+SUBTITLE:
+
+1. ピャチェーレ（Piacere）- 東京/イタリアン
+  - [[http://www.shangri-la.com/jp/tokyo/shangrila/dining/restaurants/piacere/][オフィシャルサイト]]
+  - [[http://tabelog.com/tokyo/A1302/A130201/13069992/][食ベログ]]
+2. 中華そば くにまつ（國松）- 立町/担々麺
+  - [[http://www.gochi-machi.jp/hiroshima/shop.asp?id=4450768][オフィシャルサイト]]
+  - [[http://tabelog.com/hiroshima/A3401/A340101/34012022/][食べログ]]
+3. エノテカラウラ - 神楽坂/イタリアン
+  - [[https://tokyo-calendar.jp/restaurant/483][オフィシャルサイト]]
+  - [[http://tabelog.com/tokyo/A1309/A130905/13158552/][食べログ]]
+4. オービカモッツァレラバー六本木ヒルズ店（OBIKA MOZZARELLA BAR）- 六本木（イタリアン）
+  - [[http://obica.jp/][オフィシャルサイト]]
+  - [[http://tabelog.com/tokyo/A1307/A130701/13058961/][食べログ]]
+5. 鶴八 （つるはち） - 神保町/寿司
+  - [[http://tabelog.com/tokyo/A1310/A131003/13000419/][食べログ]]
+6. kemuri（ケムリ） - 牛込神楽坂/懐石・会席料理
+  - [[http://www.enrest.co.jp/kemuri/][オフィシャルサイト]]
+  - [[http://tabelog.com/tokyo/A1309/A130905/13019631/][食べログ]]
+7. うちたて家 （うちたてや） - 池袋/うどん
+  - [[http://www.uchitateya.co.jp/][オフィシャルサイト]]
+  - [[http://tabelog.com/tokyo/A1305/A130501/13003889/][食べログ]]
+8. 銀座一丁目の焼き鳥屋
+   言いたくないので、気になる人はリプ下さいー。[[https://twitter.com/clothoid][@clothoid]]
+

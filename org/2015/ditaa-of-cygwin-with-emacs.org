@@ -1,0 +1,150 @@
+#+SETUPFILE: ../0000/00org-web-template
+#+TITLE:  ditaa of cygwin with emacs org-mode
+
+* 問題
+
+  - gnupack (Cygwin) の環境で、Windows の java を使い org-babel-execute-src-block を使いたい
+  - ditaa を実行すると、UNIX パスと Windows パスが異なるため、正常に動作してくれない
+
+* 環境
+  - Windows 7 64bit
+  - gnupack _ devel-13.06-2015.11.08 
+    - GNU Emacs 24.5.1 (i686-pc-cygwin) of 2015-11-08 on gnupack
+  - Org-mode version 8.2.10
+  - Windows java version "1.8.0 _ 66"
+    - Java(TM) SE Runtime Environment (build 1.8.0_66-b18)
+    - Java HotSpot(TM) 64-Bit Server VM (build 25.66-b18, mixed mode)
+  - ditaa 0.9
+    
+* 対処方法
+
+  ob-ditaa.el を以下のように修正する。
+
+  #+begin_src emacs-lisp
+  ,*** /home/clothoid/Dropbox/.emacs.d/local-lisp/org-8.2.10/lisp/ob-ditaa.el.orig	2014-12-09 23:42:18.../0000../00000 +0900
+  --- /home/clothoid/Dropbox/.emacs.d/local-lisp/org-8.2.10/lisp/ob-ditaa.el	2015-12-09 15:52:55.../0000../00000 +0900
+  ,***************
+  ,*** 90,103 ****
+         (java (cdr (assoc :java params)))
+         (in-file (org-babel-temp-file "ditaa-"))
+         (eps (cdr (assoc :eps params)))
+         (cmd (concat org-babel-ditaa-java-cmd
+                  " " java " " org-ditaa-jar-option " "
+  !               (shell-quote-argument
+  !                (expand-file-name
+  !             (if eps org-ditaa-eps-jar-path org-ditaa-jar-path)))
+                  " " cmdline
+  !               " " (org-babel-process-file-name in-file)
+  !               " " (org-babel-process-file-name out-file)))
+         (pdf-cmd (when (and (or (string= (file-name-extension out-file) "pdf")
+                         (cdr (assoc :pdf params))))
+                (concat
+  --- 90,124 ----
+         (java (cdr (assoc :java params)))
+         (in-file (org-babel-temp-file "ditaa-"))
+         (eps (cdr (assoc :eps params)))
+  +      (jar-file-name (shell-quote-argument
+  +              (expand-file-name
+  +               (if eps org-ditaa-eps-jar-path org-ditaa-jar-path))))
+  +      (emacs-p (string-match "cygwin" (emacs-version)))
+  +      (jar-file-name-wrapped
+  +       (if emacs-p
+  +           ;; Cygwin doesn't have Jave, have to use Windows native Java.
+  +           ;; So Cygwin paths must be converted to Windows paths.
+  +           (format "`cygpath -w %s`" jar-file-name)
+  +         jar-file-name))
+  +      (in-file-wrapped
+  +       (if emacs-p
+  +           (format "`cygpath -w %s`" (org-babel-process-file-name in-file))
+  +         (org-babel-process-file-name in-file)))
+  +      (out-file-wrapped
+  +       (if emacs-p
+  +           (format "`cygpath -w %s`" (org-babel-process-file-name out-file))
+  +         (org-babel-process-file-name out-file)))
+         (cmd (concat org-babel-ditaa-java-cmd
+                  " " java " " org-ditaa-jar-option " "
+  !               ;; (shell-quote-argument
+  !               ;;  (expand-file-name
+  !               ;;     (if eps org-ditaa-eps-jar-path org-ditaa-jar-path)))
+  !               jar-file-name-wrapped
+                  " " cmdline
+  !               ;; " " (org-babel-process-file-name in-file)
+  !               ;; " " (org-babel-process-file-name out-file)))
+  !               " " in-file-wrapped
+  !               " " out-file-wrapped))
+         (pdf-cmd (when (and (or (string= (file-name-extension out-file) "pdf")
+                         (cdr (assoc :pdf params))))
+                (concat
+  #+end_src
+
+    
+* 理由
+
+  ob-ditta.el は cygwin のパスまで解釈してくれる分けではない。例えば、以下のように書いて、C-c C-c を実行すると
+
+  #+BEGIN_EXAMPLE
+  #+begin_src ditaa :file 2015-12-16-182508-ditaa_example1.png
+    /-----------------\
+    | Summer Triangle |
+    | o Vega          |
+    | o Deneb         |
+    | o Altair        |
+    \-----------------/
+  #+end_src
+  #+END_EXAMPLE
+
+  ob-ditaa.el では
+  
+  #+BEGIN_SRC sh -n
+  $ java -Dfile.encoding=UTF-8 -jar /home/clothoid/bin/ditaa.jar  /c/temp/gnupack/babel-7616WAi/ditaa-7616CMn /home/clothoid/junk/2015-12-16-182508-ditaa_example1.png
+  #+END_SRC
+
+  が実行されてしまい、以下のように *Message* に出力されるように、エラーとなってしまう。
+  
+  #+BEGIN_EXAMPLE
+  executing Ditaa code block...
+  java -Dfile.encoding=UTF-8 -jar /home/clothoid/bin/ditaa.jar  /c/temp/gnupack/babel-7616WAi/ditaa-7616CMn /home/clothoid/junk/2015-12-16-182508-ditaa_example1.png
+
+  ditaa version 0.9, Copyright (C) 2004--2009  Efstathios (Stathis) Sideris
+  
+  Running with options:
+  Reading file: /c/temp/gnupack/babel-8596kk9/ditaa-8596oeR
+  Error: File /c/temp/gnupack/babel-8596kk9/ditaa-8596oeR does not exist
+  Code block evaluation complete.
+  #+END_EXAMPLE
+
+  自分の環境だと、本当に実行したいのは以下になる。
+
+  #+BEGIN_SRC sh -n
+  $ java -Dfile.encoding=UTF-8 -jar E:\home\clothoid\bin\ditaa.jar C:\temp\gnupack\babel-7616WAi/ditaa-7616CMn E:\home\clothoid\junk\2015-12-16-182508-ditaa_example1.pngs
+  #+END_SRC
+
+* 結果
+  
+  *Message* バッファは以下のとおり。
+  
+  #+BEGIN_EXAMPLE
+  executing Ditaa code block...
+  java -Dfile.encoding=UTF-8 -jar `cygpath -w /home/clothoid/bin/ditaa.jar`  `cygpath -w /c/temp/gnupack/babel-6976x_8/ditaa-69761AF` `cygpath -w /home/clothoid/junk/2015-12-16-182508-ditaa_example1.png`
+  
+  ditaa version 0.9, Copyright (C) 2004--2009  Efstathios (Stathis) Sideris
+
+  Running with options:
+  Reading file: C:\temp\gnupack\babel-6976x_8\ditaa-69761AF
+  Locale: ja_JP
+  Dialog.bold
+  Rendering to file: E:\home\clothoid\junk\2015-12-16-182508-ditaa_example1.png
+  Done in 0sec
+  Code block evaluation complete.
+  #+END_EXAMPLE
+
+  出力された画像は以下のとおり。
+  
+  file:../img/2015/2015-12-16-182508-ditaa_example1.png
+
+* 参考  
+
+  - [[https://lists.gnu.org/archive/html/emacs-orgmode/2013-07/msg00669.html][Re: ob-ditaa.el for Cygwin ]]
+  - [[http://takuya-1st.hatenablog.jp/entry/20110910/1315644196][cygpath の便利なオプション ]]
+  - [[http://tinyurl.com/oucwnpj][ditaa で遊ぶ ]]
+

@@ -1,0 +1,40 @@
+#+SETUPFILE: ../0000/00org-web-template
+#+TITLE: Happy New Year Equation
+#+DESCRIPTION:
+#+KEYWORDS:
+#+SUBTITLE:
+
+* Image
+
+  file:../img/2016/2016-01-05-153636-happy-new-year-equation.png
+  
+* MathJax
+
+  \begin{eqnarray*}
+  w + \ln |N| &=& \ln | ap^2 H + e^{ar} | + \ln |Y| \\
+  w  &=& \ln | ap^2 H + e^{ar} | + \ln |Y| - \ln |N| \\
+  w &=& \ln | ap^2 H + e^{ar} | + \ln \left| \frac{Y}{N} \right| \\
+  w &=& \ln \left| \left( ap^2 H + e^{ar} \right) \cdot \frac{Y}{N} \right| \\
+  e^{w} &=& \left( ap^2 H + e^{ar} \right) \cdot \frac{Y}{N} \\
+  \left( ap^2 H + e^{ar} \right) Y &=& e^{w} \cdot N \\
+  ap^2 H y + e^{ar}Y &=& e^{w} \cdot N \\
+  ap^2 H y &=& e^{w} \cdot N - e^{ar}Y \\
+  H ap^2 y &=& Ne^{w} - Ye^{ar} \\
+  Happy &=& Ne^{w} - Ye^{ar}
+  \end{eqnarray*}
+
+* source
+  #+BEGIN_SRC tex
+  \begin{eqnarray*}
+  w + \ln |N| &=& \ln | ap^2 H + e^{ar} | + \ln |Y| \\
+  w  &=& \ln | ap^2 H + e^{ar} | + \ln |Y| - \ln |N| \\
+  w &=& \ln | ap^2 H + e^{ar} | + \ln \left| \frac{Y}{N} \right| \\
+  w &=& \ln \left| \left( ap^2 H + e^{ar} \right) \cdot \frac{Y}{N} \right| \\
+  e^{w} &=& \left( ap^2 H + e^{ar} \right) \cdot \frac{Y}{N} \\
+  \left( ap^2 H + e^{ar} \right) Y &=& e^{w} \cdot N \\
+  ap^2 H y + e^{ar}Y &=& e^{w} \cdot N \\
+  ap^2 H y &=& e^{w} \cdot N - e^{ar}Y \\
+  H ap^2 y &=& Ne^{w} - Ye^{ar} \\
+  Happy &=& Ne^{w} - Ye^{ar}
+  \end{eqnarray*}
+  #+END_SRC

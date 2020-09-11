@@ -1,0 +1,67 @@
+#+SETUPFILE: ../0000/00org-web-template
+#+TITLE: Install dropbox over proxy on RHEL7
+#+DESCRIPTION:
+#+KEYWORDS: dropbox redhat linux proxy
+#+SUBTITLE:
+
+* 環境
+  - Red Hat Enterprise Linux Server release 7.2 (Maipo)
+  - nautilus-dropbox 2015.10.28-1
+* 環境変数 HTTP_PROXY の設定
+  #+BEGIN_SRC sh 
+  export http_proxy = "http://proxy_adress:port/"
+  export https_proxy = "http://proxy_adress:port/"
+  export ftp_proxy = "http://proxy_adress:port/"
+  #+END_SRC
+* wgetrc の設定
+  ~/.wgetrc に以下のように記載 [fn:wgetrc]
+  #+BEGIN_SRC sh
+   HTTP_PROXY     = http://proxy_adress:port/
+   http_proxy     = http://proxy_adress:port/
+   HTTPS_PROXY    = http://proxy_adress:port/
+  #+END_SRC
+* dropbox のインストール
+  #+BEGIN_SRC sh
+  sudo yum install libgnome
+  wget -O nautilus-dropbox-2015.10.28-1.fedora.x86_64.rpm "https://www.dropbox.com/download?dl=packages/fedora/nautilus-dropbox-2015.10.28-1.fedora.x86_64.rpm"
+  sudo rpm -ivh nautilus-dropbox-2015.10.28-1.fedora.x86_64.rpm
+  dropbox start -i 
+  #+END_SRC
+* yum の設定
+  このままだと、yum った時に以下のようなエラーが出る。
+  
+  #+BEGIN_EXAMPLE
+  http://linux.dropbox.com/fedora/7Server/repodata/repomd.xml: [Errno 14] HTTP Error 404 - Not Found Trying other mirror.
+  #+END_EXAMPLE
+
+  これは dropbox.repo が $releasever を利用していて、fedra のそれと redhat のそれが合わないため。
+
+  #+BEGIN_EXAMPLE
+  sudo yum-config-manager --disablerepo=Dropbox
+  #+END_EXAMPLE
+
+  と無効化してしまうか、
+  
+  #+BEGIN_EXAMPLE
+  --- /etc/yum.repos.d/dropbox.repo.orig	2016-08-15 02:57:27.950632263 -0400
+  +++ /etc/yum.repos.d/dropbox.repo	2016-08-15 02:57:39.710632263 -0400
+  @@ -1,4 +1,4 @@
+   [Dropbox]
+   name=Dropbox Repository
+  -baseurl=http://linux.dropbox.com/fedora/$releasever/
+  +baseurl=https://linux.dropbox.com/fedora/24/
+   gpgkey=https://linux.dropbox.com/fedora/rpm-public-key.asc
+  #+END_EXAMPLE
+
+  などと、指定してしまう。
+  
+* 参考
+  - [[http://www.techonia.com/790/install-dropbox-centos-7][How to install Dropbox on CentOS 7 – Techonia]]
+  - [[https://www.dropbox.com/ja/install?os=linux][アプリ - Dropbox (JP)]]
+  - [[https://ask.fedoraproject.org/en/question/27217/why-doesnt-the-dropbox-repository-for-fedora-19-work/][Why doesn't the Dropbox repository for Fedora 19 work? - Ask Fedora: Community Knowledge Base and Support Forum]]
+
+* Footnotes
+
+[fn:wgetrc] 他ソフトで、大文字、小文字両方定義しておいた方がいい場合があったので。。。
+
+

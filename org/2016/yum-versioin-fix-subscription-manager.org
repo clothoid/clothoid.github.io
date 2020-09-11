@@ -1,0 +1,21 @@
+#+SETUPFILE: ../0000/00org-web-template
+#+TITLE: yum でバージョン固定を subscription-manager で
+#+DESCRIPTION:
+#+KEYWORDS:
+#+SUBTITLE:
+
+* 環境
+  - Red Hat Enterprise Workstation release 7.1 (Maipo)
+
+* コマンド
+  例えば、バージョン 7.1 に固定する場合は以下のようにするとあるが、実行すると、そんなオプションないとか言われる。
+  #+BEGIN_SRC sh 
+  sudo yum --releasever=7.1
+  #+END_SRC
+  その場合は以下でうまく。
+  #+BEGIN_SRC sh 
+  sudo subscription-manager release --set=7.1 ~$ yum distro-sync
+  #+END_SRC
+  
+* 参考
+  - [[https://access.redhat.com/ja/solutions/329383][`yum --releasever` オプションの利用方法 - Red Hat Customer Portal]]

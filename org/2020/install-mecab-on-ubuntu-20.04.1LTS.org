@@ -1,0 +1,261 @@
+# -*- Mode: org ; Coding: utf-8-unix -*-
+#+SETUPFILE: ../0000/00org-web-template
+#+TITLE: /bin/sh: 1: mecab-config: not found と RuntimeError
+#+DESCRIPTION:
+#+KEYWORDS: ubuntu mecab mecab-config not found python pip iconv g++ RuntimeError
+#+SUBTITLE:
+#+OPTIONS: ^:{}
+
+** 環境
+   - Ubuntu 20.04.1 LTS
+   - Python 3.8.2
+   - pip 20.0.2 from /usr/lib/python3/dist-packages/pip (python 3.8)
+   - iconv (Ubuntu GLIBC 2.31-0ubuntu9) 2.31
+   - g++ (Ubuntu 9.3.0-10ubuntu2) 9.3.0
+   - mecab of 0.996
+   - mecab-config 0.996
+   - python package mecab-0.996.2
+
+** 手順
+
+   #+begin_src sh
+   sudo apt update
+   sudo apt install mecab libmecab-dev mecab-ipadic mecab-ipadic-utf8 -y 
+   sudo pip3 install mecab
+   #+end_src
+
+** 確認
+
+   #+begin_src python
+   #!/usr/bin/env python3
+   # -*- mode: python coding: utf-8 -*-
+
+   # MeCabのインポート
+   import MeCab
+
+   # 分かち書きのパーサーを指定
+   parser = MeCab.Tagger("-Owakati")
+
+   # 解析対象
+   text = "私は土曜日にサッカーを観ます。"
+
+   # 変数textの分かち書きを行う
+   ans = parser.parse(text)
+
+   # 結果の表示
+   print(ans)                             # => 私 は 土曜日 に サッカー を 観 ます 。 
+   #+end_src
+
+   #+begin_src python
+   #!/usr/bin/env python3
+   # -*- mode: python coding: utf-8 -*-
+
+   # MeCabのインポート
+   import MeCab
+
+   # 分かち書きのパーサーを指定
+   parser = MeCab.Tagger("-Ochasen")
+
+   # 解析対象
+   text = "私は土曜日にサッカーを観ます。"
+
+   # 変数textの分かち書きを行う
+   ans = parser.parse(text)
+
+   # 結果の表示
+   print(ans)
+   # =>
+   # 私	ワタシ	私	名詞-代名詞-一般
+   # は	ハ	は	助詞-係助詞
+   # 土曜日	ドヨウビ	土曜日	名詞-副詞可能
+   # に	ニ	に	助詞-格助詞-一般
+   # サッカー	サッカー	サッカー	名詞-一般
+   # を	ヲ	を	助詞-格助詞-一般
+   # 観	ミ	観る	動詞-自立	一段	連用形
+   # ます	マス	ます	助動詞	特殊・マス	基本形
+   # 。	。	。	記号-句点
+   # EOS
+   #+end_src
+   
+** 経緯
+
+   python で mecab を利用しようと思い、pipしたら以下のエラーが発生。
+
+   #+begin_example
+   lothoid@silverstone:~$ sudo pip3 install mecab
+   Collecting mecab
+     Using cached mecab-0.996.2.tar.gz (62 kB)
+       ERROR: Command errored out with exit status 1:
+        command: /usr/bin/python3 -c 'import sys, setuptools, tokenize; sys.argv[0] = '"'"'/tmp/pip-install-hjqmz7zd/mecab/setup.py'"'"'; __file__='"'"'/tmp/pip-install-hjqmz7zd/mecab/setup.py'"'"';f=getattr(tokenize, '"'"'open'"'"', open)(__file__);code=f.read().replace('"'"'\r\n'"'"', '"'"'\n'"'"');f.close();exec(compile(code, __file__, '"'"'exec'"'"'))' egg_info --egg-base /tmp/pip-install-hjqmz7zd/mecab/pip-egg-info
+            cwd: /tmp/pip-install-hjqmz7zd/mecab/
+       Complete output (10 lines):
+       /bin/sh: 1: mecab-config: not found
+       Traceback (most recent call last):
+         File "<string>", line 1, in <module>
+         File "/tmp/pip-install-hjqmz7zd/mecab/setup.py", line 53, in <module>
+           include_dirs=cmd2("mecab-config --inc-dir"),
+         File "/tmp/pip-install-hjqmz7zd/mecab/setup.py", line 19, in cmd2
+           return cmd1(strings).split()
+         File "/tmp/pip-install-hjqmz7zd/mecab/setup.py", line 15, in cmd1
+           return os.popen(strings).readlines()[0].rstrip()
+       IndexError: list index out of range
+       ----------------------------------------
+   ERROR: Command errored out with exit status 1: python setup.py egg_info Check the logs for full command output.
+   #+end_example
+
+
+   mecab がインストールされていない。
+     
+** 試行錯誤の手順
+
+   #+begin_example
+   clothoid@silverstone:~$ sudo apt install mecab
+   パッケージリストを読み込んでいます... 完了
+   依存関係ツリーを作成しています                
+   状態情報を読み取っています... 完了
+   以下の追加パッケージがインストールされます:
+     libmecab2 mecab-jumandic mecab-jumandic-utf8 mecab-utils
+   以下のパッケージが新たにインストールされます:
+     libmecab2 mecab mecab-jumandic mecab-jumandic-utf8 mecab-utils
+   アップグレード: 0 個、新規インストール: 5 個、削除: 0 個、保留: 4 個。
+   16.5 MB のアーカイブを取得する必要があります。
+   この操作後に追加で 219 MB のディスク容量が消費されます。
+   続行しますか? [Y/n] Y
+   取得:1 http://jp.archive.ubuntu.com/ubuntu focal/main amd64 libmecab2 amd64 0.996-10build1 [233 kB]
+   取得:2 http://jp.archive.ubuntu.com/ubuntu focal/main amd64 mecab-utils amd64 0.996-10build1 [4,912 B]
+   取得:3 http://jp.archive.ubuntu.com/ubuntu focal/universe amd64 mecab-jumandic-utf8 all 7.0-20130310-7 [16.2 MB]
+   取得:4 http://jp.archive.ubuntu.com/ubuntu focal/universe amd64 mecab-jumandic all 7.0-20130310-7 [2,204 B]
+   取得:5 http://jp.archive.ubuntu.com/ubuntu focal/universe amd64 mecab amd64 0.996-10build1 [132 kB]
+   16.5 MB を 3秒 で取得しました (4,850 kB/s)
+   以前に未選択のパッケージ libmecab2:amd64 を選択しています。
+   (データベースを読み込んでいます ... 現在 395137 個のファイルとディレクトリがイン
+   ストールされています。)
+   .../libmecab2_0.996-10build1_amd64.deb を展開する準備をしています ...
+   libmecab2:amd64 (0.996-10build1) を展開しています...
+   以前に未選択のパッケージ mecab-utils を選択しています。
+   .../mecab-utils_0.996-10build1_amd64.deb を展開する準備をしています ...
+   mecab-utils (0.996-10build1) を展開しています...
+   以前に未選択のパッケージ mecab-jumandic-utf8 を選択しています。
+   .../mecab-jumandic-utf8_7.0-20130310-7_all.deb を展開する準備をしています ...
+   mecab-jumandic-utf8 (7.0-20130310-7) を展開しています...
+   以前に未選択のパッケージ mecab-jumandic を選択しています。
+   .../mecab-jumandic_7.0-20130310-7_all.deb を展開する準備をしています ...
+   mecab-jumandic (7.0-20130310-7) を展開しています...
+   以前に未選択のパッケージ mecab を選択しています。
+   .../mecab_0.996-10build1_amd64.deb を展開する準備をしています ...
+   mecab (0.996-10build1) を展開しています...
+   libmecab2:amd64 (0.996-10build1) を設定しています ...
+   mecab-utils (0.996-10build1) を設定しています ...
+   mecab-jumandic-utf8 (7.0-20130310-7) を設定しています ...
+   Compiling Juman dictionary for Mecab.
+   reading /usr/share/mecab/dic/juman/unk.def ... 37
+   emitting double-array: 100% |###########################################| 
+   reading /usr/share/mecab/dic/juman/Noun.koyuu.csv ... 7964
+   reading /usr/share/mecab/dic/juman/ContentW.csv ... 551145
+   reading /usr/share/mecab/dic/juman/Assert.csv ... 34
+   reading /usr/share/mecab/dic/juman/Wikipedia.csv ... 167709
+   reading /usr/share/mecab/dic/juman/Emoticon.csv ... 972
+   reading /usr/share/mecab/dic/juman/Noun.suusi.csv ... 49
+   reading /usr/share/mecab/dic/juman/Noun.keishiki.csv ... 8
+   reading /usr/share/mecab/dic/juman/AuxV.csv ... 593
+   reading /usr/share/mecab/dic/juman/Prefix.csv ... 90
+   reading /usr/share/mecab/dic/juman/Postp.csv ... 108
+   reading /usr/share/mecab/dic/juman/Special.csv ... 158
+   reading /usr/share/mecab/dic/juman/Demonstrative.csv ... 97
+   reading /usr/share/mecab/dic/juman/Noun.hukusi.csv ... 81
+   reading /usr/share/mecab/dic/juman/Rengo.csv ... 1118
+   reading /usr/share/mecab/dic/juman/Suffix.csv ... 2128
+   reading /usr/share/mecab/dic/juman/Auto.csv ... 18931
+   emitting double-array: 100% |###########################################| 
+   reading /usr/share/mecab/dic/juman/matrix.def ... 1876x1876
+   emitting matrix      : 100% |###########################################| 
+
+   done!
+   update-alternatives: /var/lib/mecab/dic/debian (mecab-dictionary) を提供するため
+   に自動モードで /var/lib/mecab/dic/juman-utf8 を使います
+   mecab-jumandic (7.0-20130310-7) を設定しています ...
+   mecab (0.996-10build1) を設定しています ...
+   man-db (2.9.1-1) のトリガを処理しています ...
+   libc-bin (2.31-0ubuntu9) のトリガを処理しています ...
+   #+end_example
+
+   これでいいかと思って、やったけどエラー。
+
+   #+begin_example
+   clothoid@silverstone:~$ sudo pip3 install mecab
+   Collecting mecab
+     Using cached mecab-0.996.2.tar.gz (62 kB)
+       ERROR: Command errored out with exit status 1:
+        command: /usr/bin/python3 -c 'import sys, setuptools, tokenize; sys.argv[0] = '"'"'/tmp/pip-install-jenc9kps/mecab/setup.py'"'"'; __file__='"'"'/tmp/pip-install-jenc9kps/mecab/setup.py'"'"';f=getattr(tokenize, '"'"'open'"'"', open)(__file__);code=f.read().replace('"'"'\r\n'"'"', '"'"'\n'"'"');f.close();exec(compile(code, __file__, '"'"'exec'"'"'))' egg_info --egg-base /tmp/pip-install-jenc9kps/mecab/pip-egg-info
+            cwd: /tmp/pip-install-jenc9kps/mecab/
+       Complete output (10 lines):
+       /bin/sh: 1: mecab-config: not found
+       Traceback (most recent call last):
+         File "<string>", line 1, in <module>
+         File "/tmp/pip-install-jenc9kps/mecab/setup.py", line 53, in <module>
+           include_dirs=cmd2("mecab-config --inc-dir"),
+         File "/tmp/pip-install-jenc9kps/mecab/setup.py", line 19, in cmd2
+           return cmd1(strings).split()
+         File "/tmp/pip-install-jenc9kps/mecab/setup.py", line 15, in cmd1
+           return os.popen(strings).readlines()[0].rstrip()
+       IndexError: list index out of range
+       ----------------------------------------
+   ERROR: Command errored out with exit status 1: python setup.py egg_info Check the logs for full command output.
+      #+end_example
+
+   追加で、libmecab-dev
+
+   #+begin_example
+   clothoid@silverstone:~$ sudo apt install libmecab-dev
+   パッケージリストを読み込んでいます... 完了
+   依存関係ツリーを作成しています                
+   状態情報を読み取っています... 完了
+   以下のパッケージが新たにインストールされます:
+     libmecab-dev
+   アップグレード: 0 個、新規インストール: 1 個、削除: 0 個、保留: 4 個。
+   285 kB のアーカイブを取得する必要があります。
+   この操作後に追加で 3,112 kB のディスク容量が消費されます。
+   取得:1 http://jp.archive.ubuntu.com/ubuntu focal/main amd64 libmecab-dev amd64 0.996-10build1 [285 kB]
+   285 kB を 0秒 で取得しました (1,478 kB/s)
+   以前に未選択のパッケージ libmecab-dev を選択しています。
+   (データベースを読み込んでいます ... 現在 395262 個のファイルとディレクトリがイン
+   ストールされています。)
+   .../libmecab-dev_0.996-10build1_amd64.deb を展開する準備をしています ...
+   libmecab-dev (0.996-10build1) を展開しています...
+   libmecab-dev (0.996-10build1) を設定しています ...
+   man-db (2.9.1-1) のトリガを処理しています ...
+   clothoid@silverstone:~$ mecab-config --version
+   0.996
+   #+end_example
+
+   これで、python の mcab パッケージはインストールできる。
+
+   #+begin_example
+   lothoid@silverstone:~$ sudo pip3 install mecab
+   Collecting mecab
+     Using cached mecab-0.996.2.tar.gz (62 kB)
+   Building wheels for collected packages: mecab
+     Building wheel for mecab (setup.py) ... done
+     Created wheel for mecab: filename=mecab-0.996.2-cp38-cp38-linux_x86_64.whl size=185686 sha256=c93dd2583ac6ae7c149e1bfb9c590f2b366530f80026681dba30c16332bcc0fb
+     Stored in directory: /root/.cache/pip/wheels/b4/0b/fc/3d23954057135d1b09f7d258ca6c071fc25ae227e9825f173b
+   Successfully built mecab
+   Installing collected packages: mecab
+   Successfully installed mecab-0.996.2
+   #+end_example
+
+   パースに -Owakati を指定した場合は問題ないが、-Ochasen を指定した場合は以下のランタイムエラー
+
+   #+begin_example
+   Traceback (most recent call last):
+     File "2020-09-08-165153.py", line 10, in <module>
+       m = MeCab.Tagger("-Ochasen")
+     File "/usr/local/lib/python3.8/dist-packages/MeCab.py", line 355, in __init__
+       _MeCab.Tagger_swiginit(self, _MeCab.new_Tagger(*args))
+   RuntimeError
+   #+end_example
+
+   追加で、以下を実施にて解決。
+
+   #+begin_example
+   sudo apt install mecab-ipadic mecab-ipadic-utf8
+   #+end_example

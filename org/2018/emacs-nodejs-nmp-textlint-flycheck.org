@@ -1,0 +1,280 @@
+# -*- Mode: org ; Coding: utf-8 -*-
+#+SETUPFILE: ../0000/00org-web-template
+#+TITLE: emacs の flycheck で textlint を利用し、日本語の自動校正を行う
+#+DESCRIPTION:
+#+KEYWORDS: emacs flycheck nodejs textlint japanese
+#+SUBTITLE:
+#+OPTIONS: ^:{}
+
+* 目的
+
+  textlint を emacs の flycheck で利用し、日本語の文章をチェックするよう設定する。
+
+  #+ATTR_HTML: :width 800px
+  file:../img/2018/Screenshot_from_2018-06-26_15-23-39.png
+  
+  校正ルールとして以下を利用する。
+  - [[https://github.com/textlint-ja/textlint-rule-preset-japanese][textlint-rule-preset-japanese]](入門向け日本語のプリセット)
+    - 一文で使える"、"の数
+    - 逆接の接続助詞「が」が、同一文中に複数回出現していないかどうか
+    - 同じ接続詞で開始されていることを検出
+    - 二重否定の検出
+    - 二重助詞の検出
+    - 一文の最大の長さ
+    - ら抜き言葉の使用
+    - 文の敬体(ですます調)、常体(である調)の混合をチェック
+    - UTF8-MAC 濁点の検出
+    - 制御文字の検出
+  - [[https://github.com/textlint-ja/textlint-rule-preset-JTF-style][textlint-rule-preset-JTF-style]]
+    - [[https://www.jtf.jp/jp/style_guide/styleguide_top.html][JTF日本語標準スタイルガイド(翻訳用)]]
+  
+  
+* Windows
+
+** 環境
+
+   - Windows 7/10 pro
+   - nodejs 10.5.0
+   - textlint 10.2.1
+   - emacs 25.2.1/26.1
+
+** nodejs のインストールと設定
+
+   textlint は npm で提供されているため、nodejs をインストールする。
+   ここでは textlint だけのために nodejs をインストールするため、インストーラーは使用しない。
+   すでにインストール済みの場合、この作業は不要である。
+
+   1. [[https://nodejs.org/en/][nodejsの公式]] より、[other download] を選択
+   2. [Windows Binary (.zip)] より、[64bit] を選択
+   3. [node-v10.5.0-win-x64.zip] を適当な場所(例えば %HOME%\app\node-v10.5.0-win-x64)に展開[fn:home]
+   4. (オプション) 以下の手順で Proxy を設定する
+      #+BEGIN_SRC powershell
+      PS > cd $Env:HOME\app\node-v10.5.0-win-x64
+      PS > .\npm config set proxy http://proxy.example.com:8080
+      PS > .\npm config set https-proxy https://proxy.example.com:8080
+      #+END_SRC
+
+** textlint のインストールと設定 [fn:savedev]
+
+   1. textlint をインストール (ちょっと時間かかる)
+      #+BEGIN_SRC powershell
+      PS > .\npm install -g textlint
+      #+END_SRC
+   2. ルールプリセットのインストール (ちょっと時間かかる)[fn:textlint-rule-preset][fn:warning]
+      #+BEGIN_SRC powershell
+      PS > .\npm install -g textlint textlint-rule-preset-japanese textlint-rule-preset-jtf-style
+      #+END_SRC
+   3. 設定ファイルを作成
+      #+BEGIN_SRC powershell
+      PS > cd $Env:HOME
+      PS > .\app\node-v10.5.0-win-x64\textlint --init
+      #+END_SRC
+   4. 作成された設定ファイル [~/.textlintrc] を開き、以下のように編集
+      #+BEGIN_SRC json
+      {
+          "rules": {
+              "preset-japanese": true,
+              "preset-jtf-style": true	
+          }
+      }
+      #+END_SRC
+   5. テスト用の test.md を *utf-8* で以下のように作成[fn:cp932][fn:ext]
+      #+BEGIN_EXAMPLE
+      我輩は猫である。
+      この文章を校正してください、お願いします, ダメ?、そこをなんとか、して欲しいところです
+      #+END_EXAMPLE
+   6. テストを実行
+      #+BEGIN_SRC powershell
+      PS > .\app\node-v10.5.0-win-x64\textlint --version
+      v10.2.1
+      PS > .\app\node-v10.5.0-win-x64\textlint test.md
+
+      HOME\test.md
+      1:5   error    本文: "である"調 と "ですます"調 が混在 => "である。" がである調
+            Total:
+            である  : 1
+            ですます: 1                                                                                                   preset-japanese/no-mix-dearu-desumasu
+      2:21  ✓ error  句読点には全角の「、」と「。」を使います。和文の句読点としてピリオド(.)とカンマ(,)を使用しません。  preset-jtf-style/1.2.1.句点(。)と読点(、)
+      2:25  ✓ error  疑問符(？)を使用する場合は「全角」で表記します。                                                    preset-jtf-style/4.2.2.疑問符(？)
+
+      ✖ 3 problems (3 errors, 0 warnings)
+      ✓ 2 fixable problems.
+      Try to run: $ textlint --fix [file]
+      #+END_SRC
+
+** emacs の設定
+
+   init.el を以下のように設定する。
+   
+   #+BEGIN_SRC elisp
+   ;; add PATH
+   (setenv "PATH"
+     (concat
+      "~/app/node-v10.5.0-win-x64;"
+
+      (getenv "PATH")))
+   (setq exec-path (parse-colon-path (getenv "PATH")))
+
+   ;; flycheck for textlint
+   (require 'flycheck)
+   (flycheck-define-checker textlint
+     "A linter for prose."
+     :command ("textlint" "--format" "unix" source-inplace)
+    :error-patterns
+     ((warning line-start (file-name) ":" line ":" column ": "
+           (id (one-or-more (not (any " "))))
+           (message (one-or-more not-newline)
+            (zero-or-more "\n" (any " ") (one-or-more not-newline)))
+           line-end))
+     :modes (text-mode markdown-mode))
+
+   (add-to-list 'flycheck-checkers 'textlint)
+   (add-hook 'markdown-mode-hook 'flycheck-mode)
+   #+END_SRC
+
+
+* Linux (Debian)
+
+** 環境
+
+   - debian 9.4
+   - nodejs 10.5.0
+   - textlint 10.2.1
+   - emacs 25.1.1
+
+** nodejs のインストールと設定
+
+   textlint は npm で提供されているため、nodejs をインストールする。
+   Debian Stretch で提供されている nodejs ではバージョンが古く、npm も提供されないため、公式サイトからダウンロードしてくる必要がある。
+   ここでは textlint だけのために nodejs をインストールするため、パッケージは使用しない[fn:nodejspackage]。
+   すでにインストール済みの場合、この作業は不要である。
+
+   1. [[https://nodejs.org/en/][nodejsの公式]] より、[other download] を選択
+   2. [Linux Binaries (x64)] より、[64bit] を選択
+   3. [node-v10.5.0-linux-x64.tar.xz] を適当な場所(例えば ~\app\node-v10.5.0-linux-x64)に展開[fn:home]
+   4. (オプション) 以下の手順で Proxy を設定する
+      #+BEGIN_SRC sh
+      $ cd ~/app/node-v10.5.0-linux-x64/bin
+      $ ./node npm config set proxy http://proxy.example.com:8080
+      $ ./node npm config set https-proxy https://proxy.example.com:8080
+      #+END_SRC
+
+** textlint のインストールと設定 [fn:savedev]
+
+   1. textlint をインストール (ちょっと時間かかる)
+      #+BEGIN_SRC powershell
+      $ ./node npm install -g textlint
+      #+END_SRC
+   2. ルールプリセットのインストール (ちょっと時間かかる[fn:textlint-rule-preset])
+      #+BEGIN_SRC powershell
+      $ ./node npm install -g textlint-rule-preset-japanese textlint-rule-preset-jtf-style
+      #+END_SRC
+   3. 設定ファイルを作成
+      #+BEGIN_SRC powershell
+      $ cd ~
+      $ ./app/node-v10.5.0-linux-x64/bin/node ./app/node-v10.5.0-linux-x64/bin/textlint --init
+      #+END_SRC
+   4. 作成された設定ファイル [~/.textlintrc] を開き、以下のように編集
+      #+BEGIN_SRC json
+      {
+          "rules": {
+              "preset-japanese": true,
+              "preset-jtf-style": true	
+          }
+      }
+      #+END_SRC
+   5. テスト用の test.md を *utf-8* で以下のように作成[fn:cp932][fn:ext]
+      #+BEGIN_EXAMPLE
+      我輩は猫である。
+      この文章を校正してください、お願いします, ダメ?、そこをなんとか、して欲しいところです
+      #+END_EXAMPLE
+   6. テストを実行
+      #+BEGIN_SRC sh
+      $ ./app/node-v10.5.0-linux-x64/bin/node ./app/node-v10.5.0-linux-x64/bin/textlint --version
+      v10.2.1
+      $ ./app/node-v10.5.0-linux-x64/bin/node ./app/node-v10.5.0-linux-x64/bin/textlint test.md
+
+      /home/clothoid/test.md
+      1:5   error    本文を敬体(ですます調)に統一して下さい。
+		     本文の文体は、敬体(ですます調)あるいは常体(である調)のどちらかで統一します。
+		     "である。"が常体(である調)です。                                               preset-jtf-style/1.1.1.本文
+      1:5   error    本文: "である"調 と "ですます"調 が混在 => "である。" がである調
+
+	    Total:
+	    である  : 1
+	    ですます: 1                                                                             preset-japanese/no-mix-dearu-desumasu
+	2:21  ✓ error  全角のピリオドとカンマは使用しません。                                      preset-jtf-style/1.2.2.ピリオド(.)とカンマ(,)
+	2:24  ✓ error  疑問符(？)を使用する場合は「全角」で表記します。                            preset-jtf-style/4.2.2.疑問符(？)
+
+      ✖ 4 problems (4 errors, 0 warnings)
+      ✓ 2 fixable problems.
+      Try to run: $ textlint --fix [file]
+      #+END_SRC
+   7. PATH の追加
+      #+BEGIN_SRC sh
+      $ export PATH=$PATH:~/app/node-v10.5.0-linux-x64/bin/
+      #+END_SRC
+
+** emacs の設定
+
+   init.el を以下のように設定する。
+   
+   #+BEGIN_SRC elisp
+   ;; flycheck for textlint
+   (require 'flycheck)
+   (flycheck-define-checker
+    textlint
+    "A linter for prose."
+    :command ("textlint" "--format" "unix" source-inplace)
+    :error-patterns
+    ((warning line-start (file-name) ":" line ":" column ": "
+              (id (one-or-more (not (any " "))))
+              (message (one-or-more not-newline)
+                       (zero-or-more "\n" (any " ") (one-or-more not-newline)))
+              line-end))
+    :modes (text-mode markdown-mode))
+
+   (add-to-list 'flycheck-checkers 'textlint)
+   (add-hook 'markdown-mode-hook 'flycheck-mode)
+   #+END_SRC
+
+* やりたいけど、分からないこと
+
+  - org-mode への対応[fn:extmd]
+  - "You must install peer dependencies yourself" と出る理由への対処(nodejs インストーラー版やパッケージでも同じ)
+  - Windows と debian で textlint の出力結果が微妙に違う理由への対処
+  - PATH を init.el に設定する方法(現在は .bashrc に書いて exec-path-from-shell.el で対処)
+  
+* 参考
+
+  - [[https://textlint.github.io/][textlint]]
+  -  [[https://efcl.info/][Web Scratch ブラウザ/JavaScript等についてのブログ]]
+    - [[https://efcl.info/2014/12/30/textlint/][JavaScriptでルールを書けるテキスト/Markdownの校正ツール textlint を作った]]
+    - [[https://efcl.info/2015/09/10/introduce-textlint/][textlintで日本語の文章をチェックする]]
+    - [[https://efcl.info/2015/12/30/textlint-preset/][ルールプリセットを使ってお手軽にtextlint入門]]
+  - [[http://ksknw.hatenablog.com/entry/2017/11/04/124552][EmacsでブラウザのテキストボックスにMarkdownを書く (校正もする)/やったことの説明]]
+  - [[https://nodejs.org/][Node.js]]
+    - [[https://nodejs.org/ja/download/package-manager/][パッケージマネージャを利用した Node.js のインストール]]
+
+* Footnotes
+
+[fn:nodejspackage] パッケージマネージャーを使用したインストール方法は[[https://nodejs.org/ja/download/package-manager/][こちら]]
+
+[fn:savedev] node.js の package.json があるプロジェクトなら --save-dev とかでインストールして使うことが[[https://textlint.github.io/][推奨されている]]
+
+[fn:warning] インストール中に以下のワーニングが出るが無視して大丈夫っぽい
+#+BEGIN_SRC sh
+npm WARN textlint-rule-preset-jtf-style@2.3.1 requires a peer of textlint@>= 5.6.0 but none is installed. You must install peer dependencies yourself.
+npm WARN textlint-rule-prh@5.0.1 requires a peer of textlint@>= 5.5.0 but none is installed. You must install peer dependencies yourself.
+npm WARN textlint-rule-prh@5.0.1 requires a peer of textlint@>= 5.5.0 but none is installed. You must install peer dependencies yourself.
+#+END_SRC
+
+[fn:ext] 拡張子は .md か .txt じゃないとダメ
+
+[fn:cp932] cp932 だと動かなかった
+
+[fn:extmd] せめて、.org の拡張子で .md の textlint を動かしたい
+
+[fn:textlint-rule-preset] textlint だけでは校正ルールが入っていない
+
+[fn:home] Windows の場合、いわゆる"ホームディレクトリ"は環境変数 HOME で指定できる

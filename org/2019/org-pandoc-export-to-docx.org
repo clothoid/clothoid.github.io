@@ -1,0 +1,167 @@
+# -*- Mode: org ; Coding: utf-8-unix -*-
+#+SETUPFILE: ../0000/00org-web-template
+#+TITLE: emacs の org-pandoc-export-to-docx サンプル
+#+DESCRIPTION:
+#+KEYWORDS: emacs pandoc export docx word office
+#+SUBTITLE:
+#+OPTIONS: ^:{}
+
+** 環境
+
+   - GNU Emacs 25.1.1 (x86_64-pc-linux-gnu, GTK+ Version 3.22.11) of 2017-09-15, modified by Debian
+   - Org mode version 9.2 
+   - pandoc 2.7.1
+     - Compiled with pandoc-types 1.17.5.4, texmath 0.11.2.2, skylighting 0.7.7
+
+** org ファイル
+
+   #+begin_src org
+   ,#+TITLE: org-pandoc-export-to-docx
+   ,#+DATE: <Sun Mar 24 12:23:51 2019>
+   ,#+AUTHOR: clothoid
+   ,#+LANGUAGE: ja
+   ,#+SELECT_TAGS: export
+   ,#+EXCLUDE_TAGS: noexport
+   ,#+CREATOR: Emacs 25.1.1 (Org mode 9.1.13)
+   ,#+DESCRIPTION:
+   ,#+SUBTITLE: with emacs
+   ,#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
+   ,#+OPTIONS: author:t
+   ,#+OPTIONS: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:t
+   ,#+OPTIONS: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
+   ,#+OPTIONS: timestamp:t title:t toc:t todo:t |:t
+
+
+   ,* はじめに
+
+   ,** org mode
+  
+      近年、emacs の org mode が注目を集めているため、調査しています。
+
+   ,** pandoc
+
+      pandoc も使用すると幅が広がります。
+
+   ,* 英文の例
+
+     "Lorem ipsum dolor sit amet, consectetur
+     adipiscing elit, sed do eiusmod tempor
+     incididunt ut labore et dolore magna aliqua. Ut
+     enim ad minim veniam, quis nostrud exercitation
+     ullamco laboris nisi ut aliquip ex ea commodo
+     consequat. Duis aute irure dolor in
+     reprehenderit in voluptate velit esse cillum
+     dolore eu fugiat nulla pariatur. Excepteur sint
+     occaecat cupidatat non proident, sunt in culpa
+     qui officia deserunt mollit anim id est
+     laborum."
+
+   ,* 和文の例
+
+     吾輩は猫である。名前はまだ無い。　
+  
+     どこで生れたかとんと見当がつかぬ。何でも薄暗いじ
+     めじめした所でニャーニャー泣いていた事だけは記憶
+     している。吾輩はここで始めて人間というものを見た。
+     しかもあとで聞くとそれは書生という人間中で一番獰
+     悪な種族であったそうだ。この書生というのは時々我々
+     を捕えて煮て食うという話である。しかしその当時は
+     何という考もなかったから別段恐しいとも思わなかっ
+     た。ただ彼の掌に載せられてスーと持ち上げられた時
+     何だかフワフワした感じがあったばかりである。掌の
+     上で少し落ちついて書生の顔を見たのがいわゆる人間
+     というものの見始であろう。この時妙なものだと思っ
+     た感じが今でも残っている。第一毛をもって装飾され
+     べきはずの顔がつるつるしてまるで薬缶だ。その後猫
+     にもだいぶ逢ったがこんな片輪には一度も出会わした
+     事がない。のみならず顔の真中があまりに突起してい
+     る。そうしてその穴の中から時々ぷうぷうと煙を吹く。
+     どうも咽せぽくて実に弱った。これが人間の飲む煙草
+     というものである事はようやくこの頃知った。
+  
+   ,* リスト
+
+     1. January
+        - 元旦
+        - 成人の日
+     2. Feburuary
+        - 建国記念の日
+
+   ,* 文字の装飾
+
+      - *太字 abc*
+      - /斜体 abc/
+      - _下線付き abc_
+      - +取消線付き acb+
+      - =コード abc=
+      - ~等幅 abc~
+
+   ,* テーブル
+  
+     |-------+----+----+----+-----|
+     |       | Q1 | Q2 | Q3 | Sum |
+     |-------+----+----+----+-----|
+     | A     | 30 |  0 | 50 |  80 |
+     | B     |  5 | 15 | 20 |  43 |
+     | C     |  2 |  2 |  2 |   8 |
+     |-------+----+----+----+-----|
+     | Total | 37 | 17 | 72 | 131 |
+     |-------+----+----+----+-----|
+
+   ,* 画像
+
+     [[./emacs.png]]
+  
+  
+   ,* 数式
+
+   ,** 文中
+
+       $\sum_{i=1}^n a_i x_i \ge b$ の時、
+
+   ,** ブロック  
+
+       \begin{eqnarray*}
+       x = \sqrt{\frac{a}{b}}
+       \end{eqnarray*}
+
+   ,* 引用
+
+     次に引用を使用した例を示します。
+
+     ,#+BEGIN_QUOTE
+     すべてをできる限りシンプルにせよ．
+     ただしそれ以上はシンプルにするな． -- アインシュタイン
+     ,#+END_QUOTE  
+    
+    
+   ,* プログラムソース
+
+     ,#+BEGIN_SRC python
+     class TestClass():
+         def __init__(self, message):
+             self.value = message
+ 
+     testinstance = TestClass("Hello!")
+     print(testinstance.value)
+     ,#+END_SRC
+  
+   ,* 脚注
+
+     ここに脚注をつけたいと思います[fn:fntest]。
+
+   ,* Footnotes
+
+   [fn:fntest] これは脚注です
+   #+end_src
+
+** 完成品の画像
+
+  #+ATTR_HTML: :width 800px
+  file:../img/2019/org-pandoc-export-to-docx-0.png
+
+  #+ATTR_HTML: :width 800px
+  file:../img/2019/org-pandoc-export-to-docx-1.png
+
+  #+ATTR_HTML: :width 800px
+  file:../img/2019/org-pandoc-export-to-docx-2.png

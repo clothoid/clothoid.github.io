@@ -1,0 +1,216 @@
+# -*- Mode: org ; Coding: utf-8-unix -*-
+#+SETUPFILE: ../0000/00org-web-template
+#+TITLE: 世界中の英語の訛りが学べる参考書のまとめ
+#+DESCRIPTION:
+#+KEYWORDS: English accent world wide books 英語 訛り なまり 世界 国
+#+SUBTITLE:
+#+OPTIONS: ^:{}
+
+キレイな英語だけを学んでいても、ビジネスや旅行ではなかなか役に立たないものです。
+色々な英語を学べる参考書を調査し、国別にリストアップしています。
+
+* Afghanistan (アフガニンスタン)
+
+  - [[https://amzn.to/2LHJ29L][ダボス会議で聞く世界の英語]]
+
+* America (アメリカ) [fn:america]
+  
+  - [[https://amzn.to/2Lq6ada][American Accent Training: A Guide to Speaking and Pronouncing Colloquial American English]]
+  - [[https://amzn.to/2A5EtBg][AFN最強の生英語リスニング―スポット・アナウンスメント]]
+  - [[https://amzn.to/2mJbWIs][リスニング難度A+_街を行くアメリカ人の声]]
+  - [[https://amzn.to/2mIOY4b][ボトムアップ式 映画英語のリスニング 新装版―NewYork Detective Story]]
+  - [[https://amzn.to/2LHJ29L][ダボス会議で聞く世界の英語]]
+  - [[https://amzn.to/2mJXRug][いろんな英語をリスニング 「英語のなまり」に強くなろう!]]
+    - ニューヨーク
+    - 中西部
+  - [[https://amzn.to/2OfBfOM][ナマった英語のリスニング]]
+    - ボストン
+    - ニューヨーク
+    - シカゴ
+    - ニューオリンズ
+    - カリフォルニア
+  - [[https://amzn.to/2LmD8LM][究極の英語リスニングWORLDWIDE―Standard Vocabulary List1- 6 6000語レベルで世界に]]
+    - アメリカ全般
+    - 南部アメリカ
+  - [[https://amzn.to/2mGigAb][生英語で聞く外国人の本音クロストーク]]
+
+* Australia (オーストラリア)
+  
+  - [[https://amzn.to/2LHJ29L][ダボス会議で聞く世界の英語]]
+  - [[https://amzn.to/2mJXRug][いろんな英語をリスニング 「英語のなまり」に強くなろう!]]
+  - [[https://amzn.to/2OfBfOM][ナマった英語のリスニング]]
+  - [[https://amzn.to/2LmD8LM][究極の英語リスニングWORLDWIDE―Standard Vocabulary List1- 6 6000語レベルで世界に]]
+  - [[https://amzn.to/2mGigAb][生英語で聞く外国人の本音クロストーク]]
+
+* Bangladesh (バングラディシュ)
+
+  - [[https://amzn.to/2AbB300][アジアの英語]]
+
+* Brazil (ブラジル)
+
+  - [[https://amzn.to/2LmD8LM][究極の英語リスニングWORLDWIDE―Standard Vocabulary List1- 6 6000語レベルで世界に]]
+
+* Bulgaria (ブルガリア)
+
+  - [[https://amzn.to/2OfBfOM][ナマった英語のリスニング]]
+
+* Canada (カナダ)
+
+  - [[https://amzn.to/2mJXRug][いろんな英語をリスニング 「英語のなまり」に強くなろう!]]
+  - [[https://amzn.to/2LmD8LM][究極の英語リスニングWORLDWIDE―Standard Vocabulary List1- 6 6000語レベルで世界に]]
+  - [[https://amzn.to/2mGigAb][生英語で聞く外国人の本音クロストーク]]
+
+* China (中華人民共和国)
+  
+  - [[https://amzn.to/2LHJ29L][ダボス会議で聞く世界の英語]]
+  - [[https://amzn.to/2AbB300][アジアの英語]]
+  - [[https://amzn.to/2LmD8LM][究極の英語リスニングWORLDWIDE―Standard Vocabulary List1- 6 6000語レベルで世界に]]
+  - [[https://amzn.to/2mGigAb][生英語で聞く外国人の本音クロストーク]]
+    - 香港
+
+* France (フランス)
+
+  - [[https://amzn.to/2LHJ29L][ダボス会議で聞く世界の英語]]
+  - [[https://amzn.to/2LmD8LM][究極の英語リスニングWORLDWIDE―Standard Vocabulary List1- 6 6000語レベルで世界に]]
+
+* Germany (ドイツ)
+
+  - [[https://amzn.to/2LHJ29L][ダボス会議で聞く世界の英語]]
+  - [[https://amzn.to/2OfBfOM][ナマった英語のリスニング]]
+  - [[https://amzn.to/2LmD8LM][究極の英語リスニングWORLDWIDE―Standard Vocabulary List1- 6 6000語レベルで世界に]]
+  - [[https://amzn.to/2mGigAb][生英語で聞く外国人の本音クロストーク]]
+
+* Ghana (ガーナ)
+  
+  - [[https://amzn.to/2LHJ29L][ダボス会議で聞く世界の英語]]
+
+* India (インド)
+  
+  - [[https://amzn.to/2zB3vFY][ENGLISH JOURNAL 2014年07月号]]
+  - [[https://amzn.to/2LlJUl0][インド英語のリスニング]]
+  - [[https://amzn.to/2LHJ29L][ダボス会議で聞く世界の英語]]
+  - [[https://amzn.to/2AbB300][アジアの英語]]
+  - [[https://amzn.to/2mJXRug][いろんな英語をリスニング 「英語のなまり」に強くなろう!]]
+  - [[https://amzn.to/2LmD8LM][究極の英語リスニングWORLDWIDE―Standard Vocabulary List1- 6 6000語レベルで世界に]]
+
+* Ireland (アイルランド)
+  
+  - [[https://amzn.to/2mJXRug][いろんな英語をリスニング 「英語のなまり」に強くなろう!]]
+  - [[https://amzn.to/2mGigAb][生英語で聞く外国人の本音クロストーク]]
+
+* Italy (イタリア)
+
+  - [[https://amzn.to/2LHJ29L][ダボス会議で聞く世界の英語]]
+  - [[https://amzn.to/2mGigAb][生英語で聞く外国人の本音クロストーク]]
+
+* Japan (日本)
+  
+  - [[https://amzn.to/2AbB300][アジアの英語]]
+
+* Jordan (ヨルダン)
+
+  - [[https://amzn.to/2LHJ29L][ダボス会議で聞く世界の英語]]
+
+* Korea (韓国)
+
+  - [[https://amzn.to/2LHJ29L][ダボス会議で聞く世界の英語]]
+  - [[https://amzn.to/2AbB300][アジアの英語]]
+  - [[https://amzn.to/2OfBfOM][ナマった英語のリスニング]]
+
+* Liberia (リベリア)
+
+  - [[https://amzn.to/2LHJ29L][ダボス会議で聞く世界の英語]]
+
+* Malaysia (マレーシア)
+
+  - [[https://amzn.to/2LHJ29L][ダボス会議で聞く世界の英語]]
+
+* Myanmar (ミャンマー)
+
+  - [[https://amzn.to/2AbB300][アジアの英語]]
+
+* Netherlands (オランダ)
+
+  - [[https://amzn.to/2LHJ29L][ダボス会議で聞く世界の英語]]
+
+* New Zealand (ニュージーランド)
+
+  - [[https://amzn.to/2mJXRug][いろんな英語をリスニング 「英語のなまり」に強くなろう!]]
+
+* Pakistan (パキスタン)
+
+  - [[https://amzn.to/2AbB300][アジアの英語]]
+
+* Philippines (フィリピン)
+  
+  - [[https://amzn.to/2LHJ29L][ダボス会議で聞く世界の英語]]
+
+* Russian Federation (ロシア)
+
+  - [[https://amzn.to/2LHJ29L][ダボス会議で聞く世界の英語]]
+  - [[https://amzn.to/2OfBfOM][ナマった英語のリスニング]]
+  - [[https://amzn.to/2LmD8LM][究極の英語リスニングWORLDWIDE―Standard Vocabulary List1- 6 6000語レベルで世界に]]
+
+* Singapore (シンガポール)
+
+  - [[https://amzn.to/2AbB300][アジアの英語]]
+  - [[https://amzn.to/2mGigAb][生英語で聞く外国人の本音クロストーク]]
+
+* South Africa (南アフリカ)
+
+  - [[https://amzn.to/2mJXRug][いろんな英語をリスニング 「英語のなまり」に強くなろう!]]
+
+* Spain (スペイン)
+
+  - [[https://amzn.to/2OfBfOM][ナマった英語のリスニング]]
+
+* Sri Lanka (スリランカ)
+
+  - [[https://amzn.to/2mGigAb][生英語で聞く外国人の本音クロストーク]]
+
+* Switzerland (スイス)
+  
+  - [[https://amzn.to/2LHJ29L][ダボス会議で聞く世界の英語]]
+
+* Taiwan (台湾)
+  
+  - [[https://amzn.to/2AbB300][アジアの英語]]
+
+* United Arab Emirates (アラブ首長国連邦)
+
+  - [[https://amzn.to/2LHJ29L][ダボス会議で聞く世界の英語]]
+
+* United Kingdom (イギリス)
+  
+  - [[https://amzn.to/2v2LU6r][ENGLISH JOURNAL 2009年 12月号]]
+  - [[https://amzn.to/2OdC3n7][ENGLISH JOURNAL 2012年 08月号]]
+    - RP(Received Pronunviation=容認発音)
+    - スコットランド
+    - 北アイルランド
+    - イングランド中部・北部
+    - ウェールズ
+    - イングランド南部
+  - [[https://amzn.to/2zB3vFY][ENGLISH JOURNAL 2014年 07月号]]
+  - [[https://amzn.to/2AbdILQ][ENGLISH JOURNAL 2014年 08月号]]
+  - [[https://amzn.to/2A8VF9f][現地収録!イギリス英語でめぐるLONDON(CD1枚付き)]]
+  - [[https://amzn.to/2mGSv2E][イギリス英語を聞く THE RED BOOK]]
+  - [[https://amzn.to/2AgnYTg][イギリス英語を聞く THE BLUE BOOK]]
+  - [[https://amzn.to/2A9hhlM][LIVE from LONDON ナマのイギリス英語を味わう! ]]
+  - [[https://amzn.to/2Lxq31v][究極のイギリス英語リスニング Standard―3000語レベルでUK英語入門 ]]
+  - [[https://amzn.to/2A9PSzX][究極のイギリス英語リスニング Deluxe―6000語レベルでUK英語探究]]
+  - [[https://amzn.to/2LmD8LM][究極の英語リスニングWORLDWIDE―Standard Vocabulary List1- 6 6000語レベルで世界に]]
+    - イギリス全般
+    - ロンドン コックニー
+  - [[https://amzn.to/2mJ6Snq][本場のイギリス英語を聞く]]
+  - [[https://amzn.to/2LHJ29L][ダボス会議で聞く世界の英語]]
+  - [[https://amzn.to/2mJXRug][いろんな英語をリスニング 「英語のなまり」に強くなろう!]]
+    - イングランド
+    - スコットランド
+    - ウェールズ
+  - [[https://amzn.to/2OfBfOM][ナマった英語のリスニング]]
+  - [[https://amzn.to/2mGigAb][生英語で聞く外国人の本音クロストーク]]
+
+* Footnotes
+
+[fn:america] アメリカ英語の教材は日本にありふれているので、特徴的なもののみ記載
+

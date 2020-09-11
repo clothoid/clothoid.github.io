@@ -1,0 +1,63 @@
+#+SETUPFILE: ../0000/00org-web-template
+#+TITLE: S-username must have mode 700. 
+
+* エラー
+  screen をインストールし、実行すると以下のエラーが出る
+  #+BEGIN_EXAMPLE
+  # apt-cyg install screen
+  # screen
+  Directory /tmp/uscreens/S-username must have mode 700.
+  #+END_EXAMPLE
+* 原因
+  [[https://gist.github.com/pasela/3401354][screen-4.1.0-cygwin-sock-permission.patch]] が反映されていない。
+* 対処方法
+  screen v4.2.1 [fn:v431] をソースから持ってきて、screen-4.1.0-cygwin-sock-permission.patch を当てて、インストールする。
+  #+BEGIN_EXAMPLE
+  # apt-cyg install gcc4 autoconf automake libncurses-devel
+  # mkdir ~/tmp
+  # cd ~/tmp
+  # wget http://git.savannah.gnu.org/cgit/screen.git/snapshot/v.4.2.1.tar.gz
+  # tar xzvf v.4.2.1.tar.gz
+  # cd v.4.2.1/patches
+  # wget https://gist.githubusercontent.com/pasela/3401354/raw/4357422e6589ed2bef5a40deb9244ae05ab7057a/screen-4.1.0-cygwin-sock-permission.patch
+  # cd ~/tmp/v.4.2.1/src
+  # patch -u screen.c < ../patches/screen-4.1.0-cygwin-sock-permission.patch
+  # ./autogen.sh
+  # ./configure --enable-colors256
+  # cp Makefile Makefile.orig
+  # emacs -Q Makefile
+  # diff Makefile.orig Makefile
+  89c89
+  <       -chown root $(DESTDIR)$(bindir)/$(SCREEN) && chmod 4755 $(DESTDIR)$(bindir)/$(SCREEN)
+  ---
+  >       -chown username $(DESTDIR)$(bindir)/$(SCREEN) && chmod 4755 $(DESTDIR)$(bindir)/$(SCREEN)
+  # mkdir /usr/lib/terminfo/s
+  # cp ./terminfo/screencap /usr/lib/terminfo/s/
+  # make
+  # make install
+  # screen -v
+  Screen version 4.02.01 (GNU) 28-Apr-14
+  # screen
+  #+END_EXAMPLE
+* 環境
+  - Windows 7 64bit
+  - gnupack_devel-13.06-2015.11.08
+  - Screen version 4.03.01 (GNU) 28-Jun-15
+
+* 参考
+  - [[https://gist.github.com/pasela/3401354][GNU screen: A patch to avoid /tmp/uscreens permission check on Cygwin]]
+  - [[http://tu3.jp/01012][Windows 8.1 の cygwin で group の permission が設定できない。]]
+  - [[http://taquet.air-nifty.com/blog/2014/01/cygwinscreenper.html][【 Cygwin/GNU screen 】 permission 問題とりあえず解決。]]
+    
+* Footnotes
+
+[fn:v431] 最新の v4.3.1 だと make で以下のように出力され失敗する(解決方法不明)。
+
+  #+BEGIN_EXAMPLE
+  utmp.c:634:4: エラー: ‘ struct utmp ’ は ‘ ut_tv ’ という名前のメンバを持っていません
+   u->ut_tv.tv_sec = now;
+    ^
+  Makefile:82: ターゲット 'utmp.o' のレシピで失敗しました
+  make: *** [utmp.o] エラー 1
+  #+END_EXAMPLE
+  

@@ -1,0 +1,97 @@
+#+SETUPFILE: ../0000/00org-web-template
+#+TITLE: emacs の org-mode と google calendar を連携させる org-gcal
+#+DESCRIPTION:
+#+KEYWORDS: emacs google calendar ics org
+#+SUBTITLE:
+#+OPTIONS: ^:{}
+
+* 目的
+
+  google calendar の内容を org ファイルと同期連携させる
+
+* 設定
+
+  01. gogole calendar API の有効化
+      01. [[https://console.developers.google.com/cloud-resource-manager][Google Developers Console]] へアクセス
+      02. [プロジェクトを作成] を選択
+      03. [プロジェクト名] に [org-gcal] を入力
+      04. [作成] を選択
+      05. プロジェクトの選択より、[org-gcal] を選択
+      06. バーガーメニューより、[API とサービス] > [ライブラリ] を選択
+      07. [google calendar] で検索
+      08. [Google Calendar API] を選択 [fn:calDAV]
+      09. [有効にする] を選択
+      10. [認証情報を作成] を選択
+      11. [API を呼び出す場所] で [その他の UI (Windows、CL ツールなど)] を選択
+      12. [アクセスするデータの種類] で [ユーザーデータ] を選択
+      13. [必要な認証情報] を選択
+      14. [OAuth 2.0 クライアント ID を作成する] にて、[org-gcal] を入力
+      15. [OAuth クライアント ID を作成] ボタンを選択
+      16. [OAuth 2.0 同意画面を設定する] で以下を設定
+          - メールアドレス : (メールアドレスを選択)
+          - ユーザーに表示するサービス名 : (適当に org-gcal など)
+      17. [次へ] を選択
+      18. [認証情報をダウンロードする] で [ダウンロード] を選択
+      19. ダウンロードされた [client_id.json] を開き、 client_id、client_secret の値を確認
+          #+BEGIN_SRC json 
+          {
+            "installed": {
+              "client_id": "ThisIsClientID",
+              "project_id": "ThisIsProjectID",
+              "auth_uri": "ThisIsAuthURL",
+              "token_uri": "ThisIsTokenURL",
+              "auth_provider_x509_cert_url": "ThisIsCertURL",
+              "client_secret": "ThisIsClientSecret",
+              "redirect_uris": [
+                "ThisIsURN",
+                "ThisIsHTTP"
+              ]
+            }
+          }
+          #+END_SRC
+  02. [カレンダー ID] の取得
+      01. [[https://calendar.google.com][Google Calendar]] にアクセス
+      02. [歯車マーク] > [設定 を選択]
+      03. [マイカレンダーの設定] の中から同期したいカレンダーを選択
+      04. [カレンダー ID] の値をメモ (e.g. sample@foo.google.com)
+  03. org-gcal.el のインストール (M-x package-install org-gcal)
+  04. init.el を設定
+      #+BEGIN_SRC elisp
+      (require 'org-gcal)
+      (setq
+       org-gcal-client-id
+       "ThisIsClientID"
+       org-gcal-client-secret "ThisIsClientSecret"
+       ;; ID が sample@foo.google.com のカレンダーを ~/calendar.org を同期
+       org-gcal-file-alist '(
+                             ("sample@foo.google.com" .  "~/calendar.org")
+                             ;; ("sample2@foo.google.com" .  "~/calendar2.org")
+                             ))
+      ;; token の保存場所を変更
+      (setq org-gcal-dir "~/Dropbox/.emacs.d/local-lisp/org-gcal")
+      #+END_SRC
+  05. M-x org-gcal-fetch を実行
+  06. ブラウザが開いて、token が表示されるので、コピーしてミニバッファに入力
+
+* 使い方
+
+  - M-x org-gcal-sync で同期
+  - M-x org-gcal-post-at-point でカーソル位置の内容をカレンダーに登録
+  - M-x org-gcal-delete-at-point で削除
+
+* やりたいけど、分からないこと
+
+  - Time Zone の設定
+  - Proxy 下での利用方法
+  - M-x org-gcal-fetch/sync の定期実行方法
+  - M-x org-set-tags-command との連携方法
+  - M-x org-schedule との連携方法
+  - 階層のつけ方
+
+* 参考
+
+  - [[https://github.com/myuhe/org-gcal.el][Org sync with Google Calendar ]]
+
+* Footnotes
+
+[fn:calDAV] 同じアイコンの [calDAV] に注意

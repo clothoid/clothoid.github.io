@@ -1,0 +1,269 @@
+#+SETUPFILE: ../0000/00org-web-template
+#+TITLE: emacs 24 で Web 開発の環境を作る
+
+* 環境
+  - Windows 7 64bit
+  - gnupack _ devel-13.06-2015.11.08
+    - xmllint: /usr/bin/xmllint: using libxml version 20902 compiled with: Threads Tree Output Push Reader Patterns Writer SAXv1 FTP HTTP DTDValid HTML Legacy C14N Catalog XPath XPointer XInclude Iconv ISO8859X Unicode Regexps Automata Expr Schemas Schematron Modules Debug Zlib Lzma 
+  - GNU Emacs 24.5.1 (i686-pc-cygwin) of 2015-11-08 on gnupack
+    - emmet-mode-20151213.738
+    - web-mode-20160323.1550
+    - js2-mode-20160326.1758
+    - moz-20150805.1006
+    - moz-controller-20141001.2347
+  - Waterfox 44.03
+  - Node.js v5.9.1 
+* emmet-mode
+  HTML や CSS を簡単に記述できる emmet 記法を emacs 上で使用するもの [fn:zencoding-mode]。
+  #+BEGIN_EXAMPLE
+  M-x package-install emmet-mode
+  #+END_EXAMPLE
+  init.el は以下のような感じ。
+  #+BEGIN_SRC emacs-lisp 
+  (require 'emmet-mode)
+  (add-hook 'web-mode-hook 'emmet-mode)
+  ;; (eval-after-load "emmet-mode"
+  ;;   '(define-key emmet-mode-keymap (kbd "C-j") nil)) ;; C-j は newline のままにしておく
+  (add-hook 'emmet-mode-hook (lambda () (setq emmet-indentation 2)))
+  (define-key emmet-mode-keymap (kbd "C-<return>") 'emmet-expand-line)
+  #+END_SRC
+  使い方は、例えば、html ファイルを開いて
+  #+BEGIN_SRC html
+  a+b
+  #+END_SRC
+  として、C-<return> すると
+  #+BEGIN_SRC html
+  <a href=""></a>
+  <b></b>
+  #+END_SRC
+  と展開されるような感じ。より詳しく学ぶためには [[http://dotinstall.com/lessons/basic_emmet][Emmet/Zen-coding 入門 (全 10 回) - プログラミングならドットインストール]]をやるといいかも。
+
+* web-mode
+  HTML、JavaScript、CSS、PHP、JSP、Twig、Jinja2、ASPX、ERB、FreeMarker 包括的にサポートする環境。
+  #+BEGIN_EXAMPLE
+  M-x package-install web-mode
+  #+END_EXAMPLE
+  init.el は以下のような感じ。
+  #+BEGIN_SRC emacs-lisp 
+  (require 'web-mode)
+  ;; *.phtml, *.html, *.htm, *.tpl.php, *.jsp, *.ascx, *.aspx, *.erb
+  (add-to-list 'auto-mode-alist '("\\.p?html?\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.jsp\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+  ;; なぜか C-;に C-c C-;と同じ機能が割り当てられてるので削除する
+  (define-key web-mode-map (kbd "C-;") nil)
+  ;;; 
+  (add-hook 'web-mode-hook 'rainbow-mode)
+  #+END_SRC
+  さらに、org-mode と合わせるよう、以下のように設定している。
+  #+BEGIN_EXAMPLE
+  M-x package-install smartrep
+  #+END_EXAMPLE
+  init.el は以下のように。
+  #+BEGIN_SRC emacs-lisp 
+  (require 'smartrep)
+  (smartrep-define-key web-mode-map "C-c"
+    '(("C-p" . web-mode-parent-element)
+      ("C-n" . web-mode-match-tag)
+      ("C-l" . web-mode-previous-element)
+      ("C-m" . web-mode-mark-and-expand)))
+  #+END_SRC
+  使い方は、例えば、タグ内で C-c C-p とすれば開始タグに移動するといったもの。
+* js2-mode
+  超強力な JavaScript のモード。
+  #+BEGIN_EXAMPLE
+  M-x package-install js2-mode
+  #+END_EXAMPLE
+  init.el は以下のような感じ。
+  #+BEGIN_SRC emacs-lisp 
+  (require 'js2-mode)
+  (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+  (add-to-list 'auto-mode-alist '("\\.jsx\\'" . js2-jsx-mode))
+  #+END_SRC
+  使い方は javascript を書きまくっていけば分かるはず。。。
+* MozRepl + moz.el
+  MozRepl は telnet 経由で Mozilla ベースのブラウザ(firefox や waterfox など)を操作するアドオン。
+  1. [[https://addons.mozilla.org/en-US/firefox/addon/mozrepl/][mozrepl]] を インストール
+  2. ブラウザを再起動
+  3. [F10] を押す
+  4. [Tools] > [MozRepl] > [Activate on startup]
+  5. ブラウザを再起動
+
+  moz.el は MozRepl と連携をとるもの。
+  #+BEGIN_EXAMPLE
+  M-x package-install moz.el
+  #+END_EXAMPLE
+
+  init.el は以下のような感じ。
+  #+BEGIN_SRC emacs-lisp 
+  (require 'moz)
+  (add-hook 'js2-mode-hook 'moz-minor-mode)
+  
+  ;;; リロードの設定
+  (defun reload-firefox-if-local ()
+    (interactive)
+    (comint-send-string
+      (inferior-moz-process)
+      "if (content.location.host == \"localhost\" || content.location.host == \"\") { BrowserReload(); }"))
+  #+END_SRC
+
+  使い方は例えば、jstest.html として以下のものを用意しておいて、MozRepl を入れたブラウザで開き、
+  #+BEGIN_SRC html
+  <html>
+      <head>
+  	  <title>sample</title>
+      </head>
+      <body>
+  	  <script src="./jstest.js" type="text/javascript"></script>
+      </body>
+  </html>
+  #+END_SRC
+  test.js として、同じ場所に、以下のような内容で用意しておいて、
+  #+BEGIN_SRC js
+  document.write("Hello, World!");
+  #+END_SRC
+  Hello, World! の文字列を適当に変えた後、M-x reload-firefox-if-local とすると自動でブラウザ表示が更新される[fn:auto-reload]。
+  
+* flycheck
+  構文チェックツール。
+  #+BEGIN_EXAMPLE
+  M-x package-install flycheck
+  #+END_EXAMPLE
+* nxml-mode
+  nxml-mode はデフォルトで入っている。構文チェックツールとして cygwin の xmllint を使う。
+  #+BEGIN_SRC sh :results output :session
+  $ apt-cyg install libxml2
+  $ xmllint --version
+  /usr/bin/xmllint: using libxml version 20902
+     compiled with: Threads Tree Output Push Reader Patterns Writer SAXv1 FTP HTTP DTDValid HTML Legacy C14N Catalog XPath XPointer XInclude Iconv ISO8859X Unicode Regexps Automata Expr Schemas Schematron Modules Debug Zlib Lzma 
+  #+END_SRC
+  init.el は以下のような感じ。smartrep は web-mode と同じ感じに。
+  #+BEGIN_SRC emacs-lisp 
+  (require 'nxml-mode)
+  (add-to-list 'auto-mode-alist '("\\.xml$" . nxml-mode))
+  (add-hook 'nxlm-mode-hook #'flycheck-mode)
+  (add-hook 'nxlm-mode-hook 'emmet-mode)
+  (require 'smartrep)
+  (smartrep-define-key nxml-mode-map "C-c"
+    '(("C-p" . nxml-backward-element)
+      ("C-n" . nxml-forward-element) 	; デフォルトは rng-next-error
+      ("C-u" . nxml-up-element)
+      ("C-d" . nxml-down-element)
+      ))
+  #+END_SRC
+* json-mode
+
+  json-mode を入れる。
+  #+BEGIN_EXAMPLE
+  M-x package-install json-mode
+  #+END_EXAMPLE
+  
+  init.el は以下のような感じ。
+
+  #+BEGIN_SRC emacs-lisp 
+  (require 'json-mode)
+  (add-to-list 'auto-mode-alist '("\\.json$" . json-mode))
+  #+END_SRC
+
+  構文チェックツールとして、Windows の node.js に入っている jsonlint を使うため [[https://nodejs.org/en/][Node.js]] からダウンロードしてインストール。
+  その後、PATH を設定して動作確認する。
+  #+BEGIN_SRC sh 
+  $ export PATH=$PATH:/home/clothoid/node_modules/.bin/jsonlint
+  $ which jsonlint
+  /home/clothoid/node_modules/.bin/jsonlint
+  $ jsonlint --version
+  1.6.2
+  #+END_SRC
+
+  使い方は以下のような感じ[fn:jsonlintcygpath]。
+
+  #+BEGIN_SRC sh :results output :session
+  $ cat 2016-03-31-191947.json
+  [{ "name":"clothoid", "favarite":["kashima antlers" "emacs"]},]
+  $ jsonlint 2016-03-31-191947.json
+  [Error: Parse error on line 1:
+  ...:["kashima antlers" "emacs"]},]
+  -----------------------^
+  Expecting 'EOF', '}', ':', ',', ']', got 'STRING']
+  #+END_SRC
+  
+* 参考
+  - [[http://catcher-in-the-tech.net/55/][Emacs の便利な設定 - Catcher in the tech]]
+  - [[http://qiita.com/ironsand/items/55f2ced218949efbb1fb][Emacs に zen-coding の後継の Emmet mode を入れる - Qiita]]
+  - [[https://github.com/smihica/emmet-mode][GitHub - smihica/emmet-mode: emmet's support for emacs.]]
+  - [[http://dotinstall.com/lessons/basic_emmet][Emmet/Zen-coding 入門 (全 10 回) - プログラミングならドットインストール]]
+  - [[http://daifuku-p.org/w/?p=830][emacs に js2-mode をインストールする． | ~Daifuku-p]]
+  - [[https://sites.google.com/site/shidoinfo/Home/programing-lang/%E9%96%A2%E6%95%B0%E5%9E%8B%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0%E8%A8%80%E8%AA%9E/ecmascript/javascript-kai-fa-huan-jing/emacs-javascript/js2-mode][js2-mode - 紫藤の Wiki]]
+  - [[http://drumken.blog8.fc2.com/blog-entry-360.html][zencoding-mode 後継の emmet-mode が便利 - Code & Note]]
+  - [[http://catcher-in-the-tech.net/55/][Emacs の便利な設定 - Catcher in the tech]]
+  - [[http://cortyuming.hateblo.jp/entry/2015/11/05/174929][Emacs で React の jsx を js2-mode で書けるようになってたメモ - 牌語備忘録 -pygo]]
+  - [[http://proshunsuke.hatenablog.com/entry/2016/03/22/023126][js2-jsx-mode で auto-complete を有効にする - エンジニアになりたい]]
+  - [[http://qiita.com/mysticatea/items/f523dab04a25f617c87d][ESLint 最初の一歩 - Qiita]]
+  - [[http://qiita.com/noriaki/items/8122e83867ff0cdb5d13][flycheck を特定のモードでだけ有効にする - Qiita]]
+  - [[http://yak-shaver.blogspot.com/2013/06/emacs-json-flymake.html][Emacs で JSON を Flymake する | The Yak Shaver]]
+  - [[http://syohex.hatenablog.com/entry/20130123/1358950322][flymake の設定する前に flycheck を確認しよう - syohex ’ s diary]]
+  - [[http://fukuyama.co/?p=4589][Emacs で xhtml と html5 の flymake をトグル - Web 学び]]
+  - [[http://codewinds.com/blog/2015-04-02-emacs-flycheck-eslint-jsx.html][Configuring emacs to use eslint and babel with flycheck for javascript and React.js JSX | CodeWinds]]
+  - [[http://qiita.com/takaxp/items/73d9f2fbd15debe1ce2c][init.el マッチョ化進行中 - Qiita]]
+  - [[http://qiita.com/tt2004d/items/2ea1af8bfd324585dd07][JSON Lint をつかって文法チェック - Qiita]]
+  - [[http://yak-shaver.blogspot.com/2013/06/json-lint.html][コマンドラインで使える JSON Lint | The Yak Shaver]]
+  - [[http://syohex.hatenablog.com/entry/20150304/1425447271][json の validation - syohex ’ s diary]]
+  - [[http://nkenbou.hatenablog.com/entry/2015/05/04/150434][Cygwin 版 Emacs の flycheck (JSHint) で JavaScript のシンタックスチェックをする - nkenbou のはまり日記]]
+
+#+BEGIN_HTML
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="clothoid" data-size="large">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+#+END_HTML
+
+#+BEGIN_HTML
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- responsive -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-6390292679676181"
+     data-ad-slot="9831612556"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+#+END_HTML
+  
+* Footnotes
+[fn:zencoding-mode] これの古いものに zencoding-mode というものがある。
+
+[fn:auto-reload] after-save-hook に reload-firefox-if-local を add-hook するような設定もよくある。昔、これをやって、org-html-export-to-html や org-html-export-as-html で以下のようなエラーが出てハマッたことがあったから、使ってない。reload-firefox-if-local をどこかのキーバインドに割り当てて使うのがいいと思う。
+#+BEGIN_EXAMPLE
+Can't start MozRepl, the error message was:
+
+     make client process failed: connection refused, :name, MozRepl, :buffer, *MozRepl*, :host, localhost, :service, 4242, :nowait, nil
+
+A possible reason is that you have not installed
+the MozRepl add-on to Firefox or that you have not
+started it.  You start it from the menus in Firefox:
+
+     Tools / MozRepl / Start
+
+See MozRepl home page for more information.
+
+MozRepl is also available directly from Firefox add-on
+pages, but is updated less frequently there.
+#+END_EXAMPLE
+
+[fn:jsonlintcygpath] (add-hook 'json-mode-hook #'flycheck-mode) としたいところだけど、以下のエラーが出る。この理由はコレ→ [[http://nkenbou.hatenablog.com/entry/2015/05/04/150434][Cygwin 版 Emacs の flycheck (JSHint) で JavaScript のシンタックスチェックをする - nkenbou のはまり日記]]
+
+#+BEGIN_EXAMPLE
+Error: ENOENT: no such file or directory, open 'E:\c\temp\gnupack\flycheck7352doC\2016-03-31-191947.json'
+    at Error (native)
+    at Object.fs.openSync (fs.js:584:18)
+    at Object.fs.readFileSync (fs.js:431:33)
+    at main (E:\home\clothoid\node_modules\jsonlint\lib\cli.js:135:23)
+    at Object.<anonymous> (E:\home\clothoid\node_modules\jsonlint\lib\cli.js:179:1)
+    at Module._compile (module.js:413:34)
+    at Object.Module._extensions..js (module.js:422:10)
+    at Module.load (module.js:357:32)
+    at Function.Module._load (module.js:314:12)
+    at Function.Module.runMain (module.js:447:10)
+#+END_EXAMPLE
+

@@ -1,0 +1,20 @@
+#+SETUPFILE: ../0000/00org-web-template
+#+TITLE: Cygwin に ffmpeg を入れる
+#+DESCRIPTION:
+#+KEYWORDS:
+#+SUBTITLE:
+
+* 環境
+  - Windows 7 64bit
+  - gnupack_devel-13.06-2015.11.08
+* 手順
+  Cygwin port から入れる
+  #+BEGIN_EXAMPLE
+  apt-cyg update -m ftp://ftp.cygwinports.org/pub/cygwinports
+  apt-cyg install ffmpeg
+  apt-cyg update -m  ftp://ftp.jaist.ac.jp/pub/cygwin/
+  #+END_EXAMPLE
+* 参考
+  - [[http://takuya-1st.hatenablog.jp/entry/20120103/1325564362][cygwin の apt-cyg で cygport を有効無効を切り替える]]
+  - [[https://sourceforge.net/p/cygwin-ports/ffmpeg/ci/master/tree/ffmpeg.cygport][Cygwin Ports / ffmpeg / 3f774c /ffmpeg.cygport]]
+

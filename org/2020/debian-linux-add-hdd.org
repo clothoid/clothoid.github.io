@@ -1,0 +1,349 @@
+#+SETUPFILE: ../0000/00org-web-template
+#+TITLE: Debian HDD 増設時の設定手順
+#+DESCRIPTION: 
+#+KEYWORDS: debian stretch 9 add hdd
+#+SUBTITLE:
+#+OPTIONS: ^:{}
+
+* 手順
+
+** HDD が認識されているか確認
+
+   #+begin_src sh
+   clothoid@silverstone:~$ sudo fdisk -l
+   Disk /dev/sda: 119.2 GiB, 128035676160 bytes, 250069680 sectors
+   Units: sectors of 1 * 512 = 512 bytes
+   Sector size (logical/physical): 512 bytes / 512 bytes
+   I/O size (minimum/optimal): 512 bytes / 512 bytes
+   Disklabel type: gpt
+   Disk identifier: 717F68DA-1EA0-4675-BC19-5E9CCB19C147
+
+   Device       Start       End   Sectors   Size Type
+   /dev/sda1     2048   1050623   1048576   512M EFI System
+   /dev/sda2  1050624   1550335    499712   244M Linux filesystem
+   /dev/sda3  1550336 250068991 248518656 118.5G Linux LVM
+
+
+   Disk /dev/sdb: 465.8 GiB, 500107862016 bytes, 976773168 sectors
+   Units: sectors of 1 * 512 = 512 bytes
+   Sector size (logical/physical): 512 bytes / 512 bytes
+   I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+   Disk /dev/sdc: 1.8 TiB, 2000398934016 bytes, 3907029168 sectors
+   Units: sectors of 1 * 512 = 512 bytes
+   Sector size (logical/physical): 512 bytes / 4096 bytes
+   I/O size (minimum/optimal): 4096 bytes / 4096 bytes
+
+
+
+
+   Disk /dev/mapper/silverstone--vg-root: 114.6 GiB, 123086045184 bytes, 240402432 sectors
+   Units: sectors of 1 * 512 = 512 bytes
+   Sector size (logical/physical): 512 bytes / 512 bytes
+   I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+   Disk /dev/mapper/silverstone--vg-swap_1: 3.9 GiB, 4152360960 bytes, 8110080 sectors
+   Units: sectors of 1 * 512 = 512 bytes
+   Sector size (logical/physical): 512 bytes / 512 bytes
+   I/O size (minimum/optimal): 512 bytes / 512 bytes
+   #+end_src
+
+   今回は 2TB の HDD を増設したので、Disk /dev/sdc だと推測して、以下を実行
+
+   #+begin_src sh
+   clothoid@silverstone:~$ sudo hdparm -i /dev/sdc
+
+   /dev/sdc:
+
+    Model=WDC WD20EZAZ-00GGJB0, FwRev=80.00A80, SerialNo=WD-WX82A305HTN1
+    Config={ HardSect NotMFM HdSw>15uSec SpinMotCtl Fixed DTR>5Mbs FmtGapReq }
+    RawCHS=16383/16/63, TrkSize=0, SectSize=0, ECCbytes=0
+    BuffType=unknown, BuffSize=unknown, MaxMultSect=16, MultSect=16
+    (maybe): CurCHS=16383/16/63, CurSects=16514064, LBA=yes, LBAsects=3907029168
+    IORDY=on/off, tPIO={min:120,w/IORDY:120}, tDMA={min:120,rec:120}
+    PIO modes:  pio0 pio3 pio4 
+    DMA modes:  mdma0 mdma1 mdma2 
+    UDMA modes: udma0 udma1 udma2 udma3 udma4 udma5 *udma6 
+    AdvancedPM=no WriteCache=enabled
+    Drive conforms to: unknown:  ATA/ATAPI-1,2,3,4,5,6,7
+
+    ,* signifies the current active mode
+   #+end_src
+
+   Model から増設したHDDを同定。
+   
+** パーティションの作成
+
+   #+begin_src sh
+   clothoid@silverstone:~$ sudo fdisk /dev/sdc
+
+   Welcome to fdisk (util-linux 2.29.2).
+   Changes will remain in memory only, until you decide to write them.
+   Be careful before using the write command.
+
+   Device does not contain a recognized partition table.
+   Created a new DOS disklabel with disk identifier 0x5f388f93.
+
+   Command (m for help): m
+
+   Help:
+
+     DOS (MBR)
+      a   toggle a bootable flag
+      b   edit nested BSD disklabel
+      c   toggle the dos compatibility flag
+
+     Generic
+      d   delete a partition
+      F   list free unpartitioned space
+      l   list known partition types
+      n   add a new partition
+      p   print the partition table
+      t   change a partition type
+      v   verify the partition table
+      i   print information about a partition
+
+     Misc
+      m   print this menu
+      u   change display/entry units
+      x   extra functionality (experts only)
+
+     Script
+      I   load disk layout from sfdisk script file
+      O   dump disk layout to sfdisk script file
+
+     Save & Exit
+      w   write table to disk and exit
+      q   quit without saving changes
+
+     Create a new label
+      g   create a new empty GPT partition table
+      G   create a new empty SGI (IRIX) partition table
+      o   create a new empty DOS partition table
+      s   create a new empty Sun partition table
+
+
+   Command (m for help): n
+   Partition type
+      p   primary (0 primary, 0 extended, 4 free)
+      e   extended (container for logical partitions)
+   Select (default p): p
+   Partition number (1-4, default 1): 1
+   First sector (2048-3907029167, default 2048): 
+   Last sector, +sectors or +size{K,M,G,T,P} (2048-3907029167, default 3907029167): 
+
+   Created a new partition 1 of type 'Linux' and of size 1.8 TiB.
+
+   Command (m for help): p
+   Disk /dev/sdc: 1.8 TiB, 2000398934016 bytes, 3907029168 sectors
+   Units: sectors of 1 * 512 = 512 bytes
+   Sector size (logical/physical): 512 bytes / 4096 bytes
+   I/O size (minimum/optimal): 4096 bytes / 4096 bytes
+   Disklabel type: dos
+   Disk identifier: 0x5f388f93
+
+   Device     Boot Start        End    Sectors  Size Id Type
+   /dev/sdc1        2048 3907029167 3907027120  1.8T 83 Linux
+
+   Command (m for help): w
+   The partition table has been altered.
+   Calling ioctl() to re-read partition table.
+   Syncing disks.
+   #+end_src
+
+   確認するために、
+
+   #+begin_src sh
+   lothoid@silverstone:~$ sudo fdisk -l
+   Disk /dev/sda: 119.2 GiB, 128035676160 bytes, 250069680 sectors
+   Units: sectors of 1 * 512 = 512 bytes
+   Sector size (logical/physical): 512 bytes / 512 bytes
+   I/O size (minimum/optimal): 512 bytes / 512 bytes
+   Disklabel type: gpt
+   Disk identifier: 717F68DA-1EA0-4675-BC19-5E9CCB19C147
+
+   Device       Start       End   Sectors   Size Type
+   /dev/sda1     2048   1050623   1048576   512M EFI System
+   /dev/sda2  1050624   1550335    499712   244M Linux filesystem
+   /dev/sda3  1550336 250068991 248518656 118.5G Linux LVM
+
+
+   Disk /dev/sdb: 465.8 GiB, 500107862016 bytes, 976773168 sectors
+   Units: sectors of 1 * 512 = 512 bytes
+   Sector size (logical/physical): 512 bytes / 512 bytes
+   I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+   Disk /dev/sdc: 1.8 TiB, 2000398934016 bytes, 3907029168 sectors
+   Units: sectors of 1 * 512 = 512 bytes
+   Sector size (logical/physical): 512 bytes / 4096 bytes
+   I/O size (minimum/optimal): 4096 bytes / 4096 bytes
+   Disklabel type: dos
+   Disk identifier: 0x5f388f93
+
+   Device     Boot Start        End    Sectors  Size Id Type
+   /dev/sdc1        2048 3907029167 3907027120  1.8T 83 Linux
+
+
+
+
+   Disk /dev/mapper/silverstone--vg-root: 114.6 GiB, 123086045184 bytes, 240402432 sectors
+   Units: sectors of 1 * 512 = 512 bytes
+   Sector size (logical/physical): 512 bytes / 512 bytes
+   I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+   Disk /dev/mapper/silverstone--vg-swap_1: 3.9 GiB, 4152360960 bytes, 8110080 sectors
+   Units: sectors of 1 * 512 = 512 bytes
+   Sector size (logical/physical): 512 bytes / 512 bytes
+   I/O size (minimum/optimal): 512 bytes / 512 bytes
+   #+end_src
+
+   をして、以下を確認。
+
+   #+begin_example
+   Device     Boot Start        End    Sectors  Size Id Type
+   /dev/sdc1        2048 3907029167 3907027120  1.8T 83 Linux
+   #+end_example
+
+** ファイルシステムの作成
+
+  #+begin_src sh
+  clothoid@silverstone:~$ sudo mkfs -t ext4 /dev/sdc1
+  mke2fs 1.43.4 (31-Jan-2017)
+  Discarding device blocks: done                            
+  Creating filesystem with 488378390 4k blocks and 122101760 inodes
+  Filesystem UUID: ca684648-42c1-4002-b7c0-d1e818da96f1
+  Superblock backups stored on blocks: 
+      32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632, 2654208, 
+      4096000, 7962624, 11239424, 2048../0000, 23887872, 71663616, 78675968, 
+      1024../00000, 214990848
+
+  Allocating group tables: done                            
+  Writing inode tables: done                            
+  Creating journal (262144 blocks): done
+  Writing superblocks and filesystem accounting information: done       
+  #+end_src
+   
+** マウント
+
+   現状を確認。
+
+   #+begin_src sh
+   clothoid@silverstone:~$ df -H
+   Filesystem                        Size  Used Avail Use% Mounted on
+   udev                              7.3G     0  7.3G   0% /dev
+   tmpfs                             1.5G  9.8M  1.5G   1% /run
+   /dev/mapper/silverstone--vg-root  121G  106G  8.6G  93% /
+   tmpfs                             7.3G  216M  7.1G   3% /dev/shm
+   tmpfs                             5.3M  4.1k  5.3M   1% /run/lock
+   tmpfs                             7.3G     0  7.3G   0% /sys/fs/cgroup
+   /dev/sda2                         248M   75M  161M  32% /boot
+   /dev/sda1                         536M  136k  536M   1% /boot/efi
+   /dev/sdb                          493G  226G  242G  49% /500g
+   tmpfs                             1.5G  4.1k  1.5G   1% /run/user/110
+   tmpfs                             1.5G   17k  1.5G   1% /run/user/1000
+   #+end_src
+
+   マウントポイントを作成。
+
+   #+begin_src sh
+   sudo mkdir /2000g
+   #+end_src
+
+   マウント。
+
+   #+begin_src sh
+   sudo mount /dev/sdc1 /2000g
+   #+end_src
+
+   再度状況を確認。
+
+   #+begin_src sh
+   clothoid@silverstone:~$ sudo df -H
+   Filesystem                        Size  Used Avail Use% Mounted on
+   udev                              7.3G     0  7.3G   0% /dev
+   tmpfs                             1.5G  9.8M  1.5G   1% /run
+   /dev/mapper/silverstone--vg-root  121G  106G  8.6G  93% /
+   tmpfs                             7.3G  216M  7.1G   3% /dev/shm
+   tmpfs                             5.3M  4.1k  5.3M   1% /run/lock
+   tmpfs                             7.3G     0  7.3G   0% /sys/fs/cgroup
+   /dev/sda2                         248M   75M  161M  32% /boot
+   /dev/sda1                         536M  136k  536M   1% /boot/efi
+   /dev/sdb                          493G  226G  242G  49% /500g
+   tmpfs                             1.5G  4.1k  1.5G   1% /run/user/110
+   tmpfs                             1.5G   17k  1.5G   1% /run/user/1000
+   /dev/sdc1                         2.0T   80M  1.9T   1% /2000g
+   #+end_src
+
+** 自動マウント設定
+
+   UUIDの確認
+
+   #+begin_src sh
+   clothoid@silverstone:~$ sudo blkid /dev/sdc1
+   /dev/sdc1: UUID="ca684648-42c1-4002-b7c0-d1e818da96f1" TYPE="ext4" PARTUUID="5f388f93-01"
+   #+end_src
+
+   fstab に追記。
+   #+begin_example
+   # /etc/fstab: static file system information.
+   #
+   # Use 'blkid' to print the universally unique identifier for a
+   # device; this may be used with UUID= as a more robust way to name devices
+   # that works even if disks are added and removed. See fstab(5).
+   #
+   # <file system> <mount point>   <type>  <options>       <dump>  <pass>
+   /dev/mapper/silverstone--vg-root /               ext4    errors=remount-ro 0       1
+   # /boot was on /dev/sda2 during installation
+   UUID=aa4a4e86-6349-4206-97a8-c25b3979c5b4 /boot           ext2    defaults        0       2
+   # /boot/efi was on /dev/sda1 during installation
+   UUID=CF84-E179  /boot/efi       vfat    umask=0077      0       1
+   /dev/mapper/silverstone--vg-swap_1 none            swap    sw              0       0
+   /dev/sr0        /media/cdrom0   udf,iso9660 user,noauto     0       0
+   /dev/sdb /500g ext4 defaults,noatime,errors=remount-ro 0 1
+   # /dev/sdc /320g ext4 defaults,noatime,errors=remount-ro 0 1
+   UUID=ca684648-42c1-4002-b7c0-d1e818da96f1 /2000g               ext4    defaults        1 2
+   #+end_example
+
+   再起動して確認。
+   
+** 自分のものにする
+
+   #+begin_src sh
+   clothoid@silverstone:~$ ll / |more
+   total 113
+   drwxr-xr-x   3 root     root      4096 Jun 20 11:45 2000g
+   drwxrwxrwx   6 root     root      4096 Jun 18 06:18 320g
+   drwxrwxrwx  16 clothoid clothoid  4096 Apr 11 16:03 500g
+   drwxr-xr-x   2 root     root      4096 Apr 11 15:00 bin
+   drwxr-xr-x   5 root     root      1024 Jun 13 06:29 boot
+   drwxr-xr-x  21 root     root      3560 Jun 20 11:53 dev
+   drwxr-xr-x 151 root     root     12288 Jun 20 11:51 etc
+   drwxr-xr-x   4 root     root      4096 Aug 18  2018 home
+   clothoid@silverstone:~$ sudo chown clothoid /2000g
+   clothoid@silverstone:~$ sudo chgrp clothoid /2000g
+   clothoid@silverstone:~$ ls -l / |more
+   total 113
+   drwxr-xr-x   3 clothoid clothoid  4096 Jun 20 11:45 2000g
+   drwxrwxrwx   6 root     root      4096 Jun 18 06:18 320g
+   drwxrwxrwx  16 clothoid clothoid  4096 Apr 11 16:03 500g
+   drwxr-xr-x   2 root     root      4096 Apr 11 15:00 bin
+   #+end_src
+   
+* 環境
+  
+  #+begin_src sh
+  clothoid@silverstone:~$ lsb_release -a
+  No LSB modules are available.
+  Distributor ID:	Debian
+  Description:	Debian GNU/Linux 9.12 (stretch)
+  Release:	9.12
+  Codename:	stretch
+  #+end_src
+
+* 参考
+
+  - https://qiita.com/bwtakacy/items/c181f661e8655c42d85a

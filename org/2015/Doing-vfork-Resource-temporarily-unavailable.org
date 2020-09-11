@@ -1,0 +1,24 @@
+#+SETUPFILE: ../0000/00org-web-template
+#+TITLE:  Doing vfork: Resource temporarily unavailable
+
+* エラー
+  Emacs 起動時に以下のエラーが発生。
+  #+BEGIN_EXAMPLE
+  Doing vfork: Resource temporarily unavailable
+  #+END_EXAMPLE
+  その後、dired や mew、save-buffers-kill-emacs などで、全てこのエラーが出力されるようになる。
+* 原因
+  不明だが、emacs が異常終了した場合や、複数の gnupack を起動した場合などに発生する。
+* 対処方法
+  1. gnupack のものを全て終了する
+  2. 以下のフォルダを削除
+     #+BEGIN_EXAMPLE
+     %tmp%gnupack
+     #+END_EXAMPLE
+* 環境
+  - Windows 7 64bit
+  - GNU Emacs 24.5.1 (i686-pc-cygwin) of 2015-11-08 on gnupack (Cygwin)
+* 参考
+  - [[http://gunslinger-yassan.blogspot.jp/2013/06/cygwinemacs-problem.html][Cygwin+Emacs Problem]]
+  - [[http://nekonenene.hatenablog.com/entry/2015/04/18/122016][Cygwin から Emacs を立ち上げると child_info_fork::abort というエラーが]]
+  - [[http://st-jp.blogspot.jp/2012/02/doing-vfork-resource-temporarily.html][Doing vfork: resource temporarily unavailable]]

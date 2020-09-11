@@ -1,0 +1,160 @@
+#+SETUPFILE: ../0000/00org-web-template
+#+TITLE: サンセバスチャンで買ってきたチャコリ
+#+DESCRIPTION:
+#+KEYWORDS: Bilbao San sebastian Donostia txakoli wine French Basque
+#+SUBTITLE:
+#+OPTIONS: ^:{}
+
+
+* リスト
+
+  合計金額 126.5 EUR (15,506 JPY) なり。
+
+**  Txomin Etxaniz 2018
+ - Appellation: Getariko
+ - Type: Blanco
+ - Grapes: 75% Hondarribi Zuri, 25% Beltza
+ - Alc: 11.5%
+ - Serve: 8 degrees
+ - URL: https://www.txominetxaniz.com/
+ - Price: 8.50 EUR (1,040 JPY)
+ - Shop: [[https://www.vinosezeiza.com/][Vinos Ezeiza]]
+ - Copy: 透き通った小麦色。白桃とミネラル感。酸とのバランスが良く、多少の鉄分とシトラスの余韻。
+
+**  Aitaren 2017
+ - Appellation: Getariko
+ - Type: Blanco
+ - Grapes: 100% Hondarribi Zuri
+ - Alc: 12%
+ - Serve: 9 degrees
+ - URL: http://aitaren.com/
+ - Price: --[fn:total]
+ - Shop: [[https://www.essenciawine.com][Essencia Wine]]
+ - Copy: 複雑でトロピカルな香りの中に、樽香とミネラル感が多少。優雅で艶っぽい味わいに、バランスのとれた酸の余韻が段階的に強まる。伝統的な手摘製法で、フレンチ樽による熟成。
+
+**  Marko Gure Arbasoak 2018
+ - Appellation: Bizkaiko
+ - Type: Blanco
+ - Grapes: 40% Hondarribi Zuri Zerratia, 30% Hondarribi Zuri, 20% Izkiota Txikia
+ - Alc: 13%
+ - Serve: 6-8 degrees
+ - URL: N/A
+ - Price: --[fn:total]
+ - Shop: [[https://www.essenciawine.com][Essencia Wine]]
+ - Copy: 緑がかった黄金色。白桃や花の香りの中に、かすかな燻香とトースト香。滑らかな穀物の甘み。伝統的な製法を守り、フレンチ樽で熟成。
+
+
+**  Doniene Gorrondona Doniene XX 2016
+ - Appellation: Bizkaiko
+ - Type: Blanco
+ - Grapes: 100% Hondarrabi Zurri
+ - Alc: 13.0%
+ - Serve: 11-12 degrees
+ - URL: https://www.donienegorrondona.com/
+ - Price: --[fn:total]
+ - Shop: [[https://www.essenciawine.com][Essencia Wine]]
+ - Copy: 黄色味が強い黄金色。厳格でありつつも繊細で優雅。香りは西洋カリンの中に、ヘーゼルナッツやフェンネルが微かに感じられる。限定1200本。
+
+**  HIKA Rose 2018
+ - Appellation: Getariko
+ - Type: Ojo de Gallo (rosado)
+ - Grapes: Hondarribi Beltza and Zuri
+ - Alc: 11.5%
+ - Serve: ?
+ - URL: https://www.hikatxakolina.com/
+ - Price: 13.00 EUR (1,593 JPY)
+ - Price: --[fn:total]
+ - Shop: [[https://www.mimofood.com/en/location/san-sebastian][Mimo San Sebastian]]
+ - Copy: 茶色がかったピンク色。シトラス系のベースに、ベリー系の甘酢っぱい香りが含まれる。果実味がダイレクトに感じられ、ボリューム感と余韻がほどよく続く。
+
+**  Doniene Gorrondona Beltza 2018
+ - Appellation: Bizkaiko
+ - Type: Gorri (tinto)
+ - Grapes: 100% Hondarrabi beltza
+ - Alc: 12.3%
+ - Serve: 14 degrees
+ - URL: https://www.donienegorrondona.com/
+ - Price: --[fn:total]
+ - Shop: [[https://www.essenciawine.com][Essencia Wine]]
+ - Copy: 青みがかった赤色。複雑性の中に、ブラックベリー、ミネラル、草原が現われる。滑らかな舌触りとタンニン、ほど良い酸味。最初に果実味を感じ、その後、フレッシュなハーブの味が複雑さを与える。
+
+* 学んだこと、雑記
+
+  Txakoli には広義に blanco(白), rosado(ロゼ), tinto(赤) があるが、狭義は blanco のみであり、一般に Txakoli といったら blanco を指す。
+  このことに気づくまで時間がかかった。
+  rosado は地元で Ojo de Gallo と呼ばれ、 tinto は gorri と呼ばれている。
+  古くは blanco と gorri の両方が生産されていたが、リオハの赤ワインと競合し、品質も劣ることから、gorri はほとんど生産されなくなった(サンセバスチャンとリオハは近い)。
+  サンセバスチャンの旧市街中心部にあるワインショップ Essencia Wine で 「gorri はないか」と聞いたところ、「おまえ、gorri が欲しいのか!? だが、Doniene Gorrondona の Beltza しかない」という答えだった。
+  Vinos Martinez でも、同銘柄しかないとのこと。
+  Essencia Wine の店主によれば「他の gorri は飲めたものじゃない。Doniene Gorrondona が唯一飲むに値する」らしい。
+  公式サイトでは 81.60 EUR で販売されている。
+  もっと安く売っていたと思うので、なんだか怖い。
+  日本では 3,500 JPY で売られていた(2017)。
+  関係ないが、希少な赤チャコリとして、Ojo de Gallo を売っている日本のショップを発見した。
+  悲しい。
+  21世紀にもなって、世界には誤解が溢れているのだ。
+  
+  生産地は Biskaiko, Arabaco, Getariko が主であり、それぞれ DO（原産地呼称）認定を受けている。
+  使用される主なブドウは以下のとおり。
+  シャルドネ様も混ぜることがある。
+  - Hondarrabi zuri
+  - Hondarrabi beltza
+  - Hondarrabi zuri zerratia
+  - Folle Blanche
+  - Izkiota
+  - Izkiriota Ttikia
+  - Bordeleza Zuria
+  - Courbu
+  - Oilar Begi
+  zuri はバスク語で白、beltza は黒である。
+  この旅で唯一覚えたバスク語となった。
+  ハズい。
+
+  Txakoli は作られたらすぐ飲むということがモットーのようで、ほとんどが1年で消化される。
+  今回購入したもののほとんどが 2018 なのはそのためだ。
+  近年では伝統的な製法の見直しと熟成への試みも行われている。
+  DO 認定を受けているため、熟年年数を示す Generico(Joven), Crianza, Reserva, Gran Reserva による分類がされる。
+  非熟成が主な Txakoliだが Essencia Wine にて 「Txakoli crianza はないか」と問うて、出てきたのが Aitaren 2017 である。
+  これはチーズ屋 Aitor Lasa にも置いてあり、この旅行で見かけた Txakoli では高価な方である。
+  Essencia Wine のバイト君曰く、「今飲むか、7年後に飲むか」とのことだった(ホントかよ)。
+  ちなみにそのバイト君は Doniene Gorrondona Doniene XX 2016 を3回以上勧めてきた。
+  押しに弱い典型的な日本人なので、仕方なく買ったが、Web での評価は低い。
+  しかし、公式サイトでは 132.60 EUR で販売されている。
+  日本では 5,500 JPY で売られていた(2017)。
+  ワインの値段はいつだって不明である。
+
+  HIKA Rose 2018 は世界最高峰ホテル Maria Christina に併設されたお土産屋さん Mimo San Sebastian で購入した。
+  ホテルに入ると宿泊者の身なりが整っており、場違い感があった。
+  つらい。
+  HIKA の blanco は Web 上に情報がたくさんあるが、Ojo de Gallo はあまり情報がない。
+  日本のデパートで行われたスペイン物産展 2017 に HIKA がもってきたようだから、日本でも手に入るかもしれない。
+  ちなみに、サンセバスチャンのスーパーはロゼが多く、街中でもロゼが沢山飲まれていた。
+  「スペインの北」というイメージで旅行していたが、よく考えると「フランスの南」である。
+  ロゼだらけのマルセイユと緯度は同じだ。
+  魚介類料理が多いことも似ている。
+  それに気づいた時、なんだか懐しくなった。
+
+  Txomin Etxaniz はどこでも売っているスタンダード。
+  ライナップの中で、「1本だけ買うなら、これが絶対間違いないから」と Vinos Ezeiza の店員、および、そこに居あわせた客に強く勧められた。
+  推しに弱い典型的な日本人(バージョン2)なので、ホテル飲み用に購入した。
+  しかし、去年と一昨年、パーカーが90点つけているためか、三つ星レストラン Arzak の最初の一杯に出てきてしまった。
+  確かに美味しかったので、そのまま持ち帰りとなった。
+  ちなみに、東京中心部の某スペインレストランでは 7,500 JPY (税抜き)で提供されている。
+  現地の価格と比較すると、極東人のつらさが倍増するであろう。
+
+  Txakoli は微発泡性といわれるが、現地では2回ほどしかシュワッと感を得られなかった。
+  バルで飲むものが古かったのか抜けやすいのかは分からない。
+  西新宿の某バー店主に愚痴ったところ「高いところから注ぐから抜けたんじゃね？」と一蹴されてしまった。
+  たしかに Arzak では普通に注がれ、発泡性を感じた。
+  ちなみに、高いところから注ぐのは酸の強い Getariko だけであり、その他のものはあのような注ぎ方はしない。
+  また、Biskaiko では、そもそも発泡性がない。
+  
+  今回の旅行ではチャコリに対し「スッキリとしたキレのあるビオ系の白ワイン」以外の感動を得られなかった。
+  チャコリ愛も薄れてしまった。
+  スペイン人の愛は循環性があるので、せっかく購入したこれらを楽しんで、新しい世界をみてみたいところだ。
+  
+* Footnotes
+
+[fn:total] 合計で 105.0 EUR (12,873 JPY)
+
+

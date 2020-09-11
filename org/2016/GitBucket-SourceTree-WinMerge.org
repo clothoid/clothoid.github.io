@@ -1,0 +1,131 @@
+#+SETUPFILE: ../0000/00org-web-template
+#+TITLE: Windows で GitBucket で Git サーバーを立て、SourceTree + WinMerge で利用する方法
+#+DESCRIPTION:
+#+KEYWORDS: git
+#+SUBTITLE:
+
+* 環境
+  - サーバー
+    - Windows 2012 R2
+    - Java 8.0.91-b15
+    - Tomcat 7.0
+    - GitBucket 4.1.0
+  - クライアント
+    - Windows 7
+    - Git 2.9.0.windows.1
+    - SourceTree 1.8.3.0
+    - WinMerge 2.14.0.0 - Japanese Unicode
+      - xdocdiff WinMerge Plugin 1.0.6d
+* Git サーバーの構築
+** Java 8 のダンロード
+   1. https://java.com/ja/download/manual.jsp にアクセス
+   2. [Windows オフライン (64 ビット)]をダンロード
+   3. 画面にしたがいインストール
+** Tomcat 7 のインストール
+   1. http://tomcat.apache.org/download-70.cgi にアクセス
+   2. 画面にしたがいインストール (ここでは F:/Program Files にインストール)
+   3. conf/server.xml を、下記の通り変更 (検索キーワード文字化け防止)
+      #+BEGIN_SRC sh
+      *** "/f/Program Files/Apache Software Foundation/Tomcat 7.0/conf/server.xml.orig"	2016-06-28 15:05:32.34805../0000 +0900
+      --- "/f/Program Files/Apache Software Foundation/Tomcat 7.0/conf/server.xml"	2016-06-28 15:06:25.659592300 +0900
+      ***************
+      *** 70,76 ****
+            -->
+            <Connector port="50001" protocol="HTTP/1.1"
+                       connectionTimeout="2../0000"
+      !                redirectPort="8443" />
+            <!-- A "Connector" using the shared thread pool-->
+            <!--
+            <Connector executor="tomcatThreadPool"
+      --- 70,78 ----
+            -->
+            <Connector port="50001" protocol="HTTP/1.1"
+                       connectionTimeout="2../0000"
+      !                redirectPort="8443"
+      !                URIEncoding="UTF-8"
+      !                useBodyEncodingForURI="true" />
+            <!-- A "Connector" using the shared thread pool-->
+            <!--
+            <Connector executor="tomcatThreadPool"
+      #+END_SRC
+** GitBucket のインストールと起動
+   1. https://github.com/takezoe/gitbucket/releases から gitbucket.war をダウンロード
+   2. システム環境変数に GITBUCKET _ HOME を設定（例：F:/GitBucket）
+   3. F:/Program Files/Apache Software Foundation/Tomcat 7.0/webapps に war ファイルを配置
+   4. F:/Program Files/Apache Software Foundation/Tomcat 7.0/bin/Tomcat7w.exe を起動
+   5. [Start] で実行
+   6. http://HostName:8080/gitbucket へ接続
+   7. root/root でログイン確認
+
+* Git クライアントのインストール
+  1. https://git-for-windows.github.io/ にアクセス
+  2. [Download]よりダウンロード
+  3. 画面に従いインストール
+
+* SourceTree のインストール
+  1. https://www.sourcetreeapp.com/ にアクセス
+  2. [Download Source Tree]よりダウンロード
+  3. 画面に従いインストール
+     - My Atlassian アカウントは作成しなければならなっぽい
+     - [Connect an Account] はスキップで OK
+     - [SSH キーを読み込みますか？]は No で OK
+
+* WinMerge のインストールと xdocdiff プラグインの設定
+** WinMerge 日本語版
+   1. http://www.geocities.co.jp/SiliconValley-SanJose/8165/winmerge.html にアクセス
+   2. WinMerge 日本語版 *32bit 版* をダウンロード (xdocdiff が 32bit でないと動かないため)
+   3. 画面に従いインストール
+** xdocdiff
+   1. http://freemind.s57.xrea.com/xdocdiffPlugin/ にアクセス
+   2. xdocdiffPlugin_1_0_6d.zip をダウンロード
+   3. xdoc2txt.exe、zlib.dll を WinMerge のインストールフォルダ（WinMerge.exe と同じフォルダ）にコピー
+   4. amb_xdocdiffPlugin.dll をインストールフォルダのサブフォルダ"MergePlugins"にコピー
+* SourceTree で WinMerge を設定
+  1. WinMerge を起動
+     1. [プラグイン]>[リスト]
+     2. [プラグインを有効にする]にチェック
+     3. [OK]
+     4. [プラグイン]>[自動展開]にチェック
+  2. SourceTree を起動
+     1. [ツール]>[オプション]
+     2. [Diff]タブ
+     3. [外部 Diff ツール]を[WinMerge]に設定
+     4. [OK]
+     5. WinMergeU.exe を選択
+* 動作確認
+** GitBucket で sample リポジトリの作成
+   1. http://HostName:8080/gitbucket へ接続
+   2. root/root でログイン
+   3. [+]>[New repository]
+   4. [Repository name] を [sample] に
+   5. [Create repository] を選択
+** SourceTree から接続
+*** クローン
+    1. [新規/クローンを作成する]を選択
+    2. [リポジトリをクローン]タブの[元のパス/URL]に [http://HostName:8080/gitbucket/git/root/sample.git] を入力
+    3. [保存先のパス]に適当なものを入力
+    4. [クローン]を選択
+*** コミット
+    1. [保存先のパス] で指定したフォルダに適当なエクセルファイルを追加
+    2. SourceTree の[作業ツリーのファイル]で作成したファイルにチェックを入れる
+    3. コミットメッセージ欄に適当にメッセージを入力
+    4. [コミット]を選択
+    5. エクセルファイルを編集
+    6. [操作]>[外部 Diff]で確認
+*** プッシュ
+    1. [プッシュ]を選択
+    2. [プッシュ先]を確認
+    3. [対象]にチェック
+    4. [OK]
+    5. [Authenticate]で、root/root を入力
+    6. [Login]
+** GitBucket で 確認
+   1. http://HostName:8080/gitbucket へ接続
+   2. root/root でログイン
+   3. Your repositories で [sample] を選択
+   4. 内容を確認
+* 参考
+  - [[https://github.com/gitbucket/gitbucket][GitHub - gitbucket/gitbucket: A Git platform powered by Scala with easy installation, high extensibility & github API compatibility]]
+  - [[http://qiita.com/yuann/items/5759a11a49dd0580d80b][Windows 環境で GitBucket - Qiita]]
+  - [[http://celtislab.net/archives/20140520/git-step1/][Git 入門（GitBucket と SourceTree の準備） – セルティスラボ]]
+  

@@ -1,0 +1,160 @@
+#+SETUPFILE: ../0000/00org-web-template
+#+TITLE: org で minted ハイライト表示した PDF 一発作成
+#+DESCRIPTION:
+#+KEYWORDS: git
+#+SUBTITLE:
+
+
+
+* 環境
+
+  - Debian GNU/Linux: 9.4 (stretch)
+  - GNU Emacs: 25.1.1
+  - Org mode version: 9.1.13
+  - texlive-full : 2016.20170123-5
+
+* texlive
+
+  #+BEGIN_SRC sh
+  ~$ sudo apt install texlive-full -y
+  #+END_SRC
+
+  だいたい一発では入らないので、以下を何度か実行することになる。
+
+  #+BEGIN_SRC sh
+  ~$ sudo apt update
+  ~$ apt-get update –fix-missing
+  ~$ sudo apt install texlive-full -y
+  #+END_SRC
+  
+* pygmentize
+
+    #+BEGIN_SRC sh
+    ~$ sudo apt install python-pygments -y
+    #+END_SRC
+  
+* emacs の設定
+
+  #+BEGIN_SRC elisp
+  ; -*- Mode: Emacs-Lisp ; Coding: utf-8 -*-
+  ;; babel を使用している中で tab を使うと、.tex で ^^I に変換されてしまうので、スペースを使う
+  (setq-default tab-width 4 indent-tabs-mode nil)
+
+  (require 'ox-latex)
+  (require 'ox-bibtex)
+
+  ;;; 勝手に入力さえられう \hypersetup{} は使わない
+  (setq org-latex-with-hyperref nil)
+
+  (setq org-latex-pdf-process
+        '("platex -shell-escape %f"
+          "platex -shell-escape %f"
+          "dvipdfmx %b.dvi"))
+
+  (add-to-list 'org-latex-packages-alist "\\hypersetup{setpagesize=false}" t)
+  (add-to-list 'org-latex-packages-alist "\\hypersetup{colorlinks=true}" t)
+  (add-to-list 'org-latex-packages-alist "\\hypersetup{linkcolor=blue}" t)
+
+  (setq org-export-latex-listings t)
+  (setq org-latex-listings 'minted)
+  ;; タイトルつける場合
+  ;; (setq org-latex-title-command "\\maketitle")
+  ;; 目次出力する場合
+  ;; (setq org-latex-toc-command
+  ;;       "\\tableofcontents\n")
+  (setq org-latex-toc-command nil)
+  (setq org-latex-text-markup-alist '((bold . "\\textbf{%s}")
+                  (code . verb)
+                  (italic . "\\it{%s}")
+                  (strike-through . "\\sout{%s}")
+                  (underline . "\\uline{%s}")
+                  (verbatim . protectedtexttt)))
+
+  (setq org-latex-minted-options
+        '(("frame" "lines")
+          ("framesep=2mm")
+          ("linenos=true")
+          ("baselinestretch=1.2")
+          ("fontsize=\\footnotesize")
+          ("breaklines")
+          ))
+
+
+  ;; インデントすると *.tex にそのまま入ってしまう
+  (add-to-list 'org-latex-classes
+               '("myjsarticle"
+                 "\\documentclass{jsarticle}
+  [NO-DEFAULT-PACKAGES]
+  \\usepackage{amsfonts}
+  \\usepackage{amsmath}
+  % \\usepackage{newtxtext,newtxmath}
+  \\usepackage[normalem]{ulem}
+  \\usepackage{textcomp}
+  \\usepackage{minted}
+  \\usemintedstyle{emacs}
+  \\usepackage[dvipdfmx]{graphicx}
+  \\usepackage[dvipdfmx]{color}
+  \\usepackage{booktabs}
+  \\usepackage{longtable}
+  \\usepackage{wrapfig}
+  \\usepackage[dvipdfmx]{hyperref}
+  \\usepackage{pxjahyper}
+  % \\hypersetup{pdfencoding=auto}"
+    ("\\section{%s}" . "\\section*{%s}")
+    ("\\subsection{%s}" . "\\subsection*{%s}")
+    ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+    ("\\paragraph{%s}" . "\\paragraph*{%s}")
+    ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+  #+END_SRC
+
+* org mode sample
+
+  M-x org-latex-export-to-pdf で PDF を生成
+
+  #+BEGIN_SRC org
+  ,#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
+  ,#+OPTIONS: author:t broken-links:nil c:nil creator:nil
+  ,#+OPTIONS: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:t
+  ,#+OPTIONS: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
+  ,#+OPTIONS: timestamp:t title:nil toc:3 todo:t |:t
+  ,#+LATEX_CLASS: myjsarticle
+  ,#+LATEX_CLASS_OPTIONS: [12pt,a4paper,titlepage]
+  ,#+LATEX_COMPILER: dvipdfmx
+
+  ,* Python
+
+    ,#+BEGIN_SRC python
+    # fizzbuzz sample
+    def main():
+        for x in xrange(1, 10):
+            div3 = x % 3 == 0
+            div5 = x % 5 == 0
+            if div3 and div5:
+                print 'FizzBuzz'
+            elif div3:
+                print 'Fizz'
+            elif div5:
+                print 'Buzz'
+            else:
+                print x
+
+    if __name__ == '__main__':
+        main()
+    ,#+END_SRC
+  #+END_SRC
+
+* 結果
+
+  file:../img/2018/2018-06-11-193501.jpg
+  
+* 参考
+
+  - http://yamam1.blogspot.jp/2014/10/tex.html
+  - https://www.sharelatex.com/learn/Code_Highlighting_with_minted
+  - https://orgmode.org/manual/Images-in-LaTeX-export.html
+  - http://akisute3.hatenablog.com/entry/2013/12/28/144918
+
+  
+
+
+

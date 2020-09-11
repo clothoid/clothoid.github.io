@@ -1,0 +1,83 @@
+#+SETUPFILE: ../0000/00org-web-template
+#+TITLE: Slack reminder の日付け書き方サンプル集
+#+DESCRIPTION: 
+#+KEYWORDS: slack bot reminder date auto schedule 
+#+SUBTITLE:
+#+OPTIONS: ^:{}
+
+* 具体例
+
+slack の標準機能である /reminder のフォーマット
+
+#+begin_src slack
+/remind [@someone or #channel or me] "[what]" [when]
+#+end_src
+
+の [when] の英語書き方リスト。
+
+| 意味                         | 書き方                              |
+|------------------------------+-------------------------------------|
+| 毎日 9:00に                  | everyday[fn:9am]                    |
+| 毎日 20:00に                 | at 8PM everyday                     |
+| 毎平日 9:20 に               | at 09:20AM every weekday            |
+| 毎週木曜日 16:00 に          | at 16:00 every Thursday             |
+| 毎月15日の 19:00 に          | at 19:00 on the 15th of every month |
+| 月初の 9:00 に [fn:endmmm]   | on the 1st of every month [fn:9am]  |
+| 次の 火曜日の 午前9時に      | at 9am on Tuesday                   |
+| 次の 3月1日の 21:55 分に     | at 9:55pm on March 1st              |
+| 次の 3月2日の 正午に         | at noon on March 2nd                |
+| 明日の 18時に                | at 6pm tomorrow                     |
+| 明後日の 9:00 に [fn:todays] | the day after tomorrow [fn:9am]     |
+| 45 分後に                    | in 45 minutes                       |
+
+
+* 背景
+
+slack の標準機能である /reminder のフォーマットは以下のとおりである。
+
+#+begin_src slack
+/remind [@someone or #channel or me] "[what]" [when]
+#+end_src
+
+したがって、例えば
+
+#+begin_src slack
+/remind me "coffee time" at 15:00 
+#+end_src
+
+とすると、15 時に coffee time とリマインダをしてくれる。
+ある程度日本語にも対応していて、例えば
+
+#+begin_src slack
+/remind 自分 "コーヒー休憩" at 15
+#+end_src
+
+とすると、15 時に コーヒー休憩とリマインダをしてくれる。
+ただし、完璧に日本語には対応しておらず、例えば、
+
+#+begin_src slack
+/remind 自分 "コーヒー休憩" 午後3時に
+#+end_src
+
+などはエラーで弾かれる(<Fri Mar 27 15:17:59 2020> 現在)。
+
+Slack の公式ヘルプにも
+
+#+begin_quote
+Slack を別の言語で使用している場合、自分の言語でリマインダーを作成できますが、日時の入力形式は英語のリマインダーの設定方法に従うことをお勧めします。
+#+end_quote
+
+と記載している[fn:slackattention]。
+
+したがって、[when] 部分のみは英語表記で書いた方が望ましく、かつ、英語の日付け表記は難しく、かつ、[[https://qiita.com/naoyama88/items/b215e673bd2f6fb331f9][slackのremind機能書き方まとめ]] が消えてしまった。
+
+
+* Footnotes
+
+[fn:endmmm] 月末の end of month や last day of month などは通じず [[https://github.com/sandst1/lastdayofmonth][こんなもの]]があったが、未確認 <Fri Mar 27 15:44:28 2020>
+
+[fn:9am] 時間を省略した場合は午前 9 時となる 
+
+[fn:todays] 明々後日の  two days after tomorrow は通じなかった <Fri Mar 27 15:33:49 2020>
+
+[fn:slackattention] [[https://slack.com/intl/ja-jp/help/articles/208423427-%E3%83%AA%E3%83%9E%E3%82%A4%E3%83%B3%E3%83%80%E3%83%BC%E3%82%92%E8%A8%AD%E5%AE%9A%E3%81%99%E3%82%8B][リマインダーを設定する]] の[気をつけてほしいこと] <Fri Mar 27 15:19:41 2020>

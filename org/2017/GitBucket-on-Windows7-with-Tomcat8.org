@@ -1,0 +1,66 @@
+#+SETUPFILE: ../0000/00org-web-template
+#+TITLE: GitBucket + Tomcat + Java on Windows 7
+#+DESCRIPTION:
+#+KEYWORDS: git
+#+SUBTITLE:
+
+* 環境
+  - サーバー
+    - Windows 7 Professional SP1
+    - Java version 8 Update 151
+    - Tomcat 8.5.24
+    - GitBucket 4.19.2
+
+* Git サーバーの構築
+
+** Java 8 のダンロード
+   1. https://java.com/ja/download/manual.jsp にアクセス
+   2. [Windows オフライン (64 ビット)]をダンロード
+   3. 画面にしたがいインストール
+
+** Tomcat 8 のインストール
+   1. http://tomcat.apache.org/download-80.cgi にアクセス
+   2. 32-bit/64-bit Windows Service Installer をダウンロード
+   3. 画面にしたがいインストール (ここでは F:/Program Files にインストール)
+   4. conf/server.xml を、下記の通り変更 (検索キーワード文字化け防止)
+      #+BEGIN_SRC html
+      *** "C:\Program Files\Apache Software Foundation\Tomcat 8.5\conf\server.xml.orig" 2017-12-05 18:29:45.385705900 +0900
+      --- "C:\Program Files\Apache Software Foundation\Tomcat 8.5\conf\server.xml" 2017-12-05 18:31:52.572705900 +0900
+      ***************
+      *** 68,74 ****
+            -->
+            <Connector port="8080" protocol="HTTP/1.1"
+                       connectionTimeout="2../0000"
+      !                redirectPort="8443" />
+            <!-- A "Connector" using the shared thread pool-->
+            <!--
+            <Connector executor="tomcatThreadPool"
+      --- 68,76 ----
+            -->
+            <Connector port="8080" protocol="HTTP/1.1"
+                       connectionTimeout="2../0000"
+      !                redirectPort="8443"
+      !                URIEncoding="UTF-8"
+      !                useBodyEncodingForURI="true" />
+            <!-- A "Connector" using the shared thread pool-->
+            <!--
+            <Connector executor="tomcatThreadPool"
+      #+END_SRC
+
+** GitBucket のインストールと起動
+   1. https://github.com/takezoe/gitbucket/releases から gitbucket.war をダウンロード
+   2. システム環境変数に以下の環境変数を設定
+      #+BEGIN_EXAMPLE
+      GITBUCKET_HOME=C:/GitBucket
+      #+END_EXAMPLE
+   3. C:/Program Files/Apache Software Foundation/Tomcat 8.5/webapps に war ファイルを配置
+   4. C:/Program Files/Apache Software Foundation/Tomcat 8.5/bin/Tomcat8w.exe を起動
+   5. [Start] で実行
+   6. http://HostName:8080/gitbucket へ接続
+   7. root/root でログイン確認
+
+* 参考
+  - [[https://github.com/gitbucket/gitbucket][GitHub - gitbucket/gitbucket: A Git platform powered by Scala with easy installation, high extensibility & github API compatibility]]
+  - [[http://qiita.com/yuann/items/5759a11a49dd0580d80b][Windows 環境で GitBucket - Qiita]]
+  - [[http://celtislab.net/archives/20140520/git-step1/][Git 入門（GitBucket と SourceTree の準備） – セルティスラボ]]
+  
