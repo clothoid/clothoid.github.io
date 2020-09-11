@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+<!-- 2020-09-12 Sat 07:36 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>emacs の org-mode と google calendar を連携させる org-gcal</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="clothoid" />
+<meta name="keywords" content="emacs google calendar ics org" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="https://clothoid.github.io/sitemap.html"> UP </a>
+ |
+ <a accesskey="H" href="https://clothoid.github.io/"> HOME </a>
+</div><div id="content">
+<h1 class="title">emacs の org-mode と google calendar を連携させる org-gcal</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#27425;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgaf5c041">1. 目的</a></li>
+<li><a href="#org0288005">2. 設定</a></li>
+<li><a href="#org6a248c8">3. 使い方</a></li>
+<li><a href="#org35b9035">4. やりたいけど、分からないこと</a></li>
+<li><a href="#orgf0d3d21">5. 参考</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgaf5c041" class="outline-2">
+<h2 id="orgaf5c041"><span class="section-number-2">1</span> 目的</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+google calendar の内容を org ファイルと同期連携させる
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0288005" class="outline-2">
+<h2 id="org0288005"><span class="section-number-2">2</span> 設定</h2>
+<div class="outline-text-2" id="text-2">
+<ol class="org-ol">
+<li>gogole calendar API の有効化
+<ol class="org-ol">
+<li><a href="https://console.developers.google.com/cloud-resource-manager">Google Developers Console</a> へアクセス</li>
+<li>[プロジェクトを作成] を選択</li>
+<li>[プロジェクト名] に [org-gcal] を入力</li>
+<li>[作成] を選択</li>
+<li>プロジェクトの選択より、[org-gcal] を選択</li>
+<li>バーガーメニューより、[API とサービス] &gt; [ライブラリ] を選択</li>
+<li>[google calendar] で検索</li>
+<li>[Google Calendar API] を選択 <sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup></li>
+<li>[有効にする] を選択</li>
+<li>[認証情報を作成] を選択</li>
+<li>[API を呼び出す場所] で [その他の UI (Windows、CL ツールなど)] を選択</li>
+<li>[アクセスするデータの種類] で [ユーザーデータ] を選択</li>
+<li>[必要な認証情報] を選択</li>
+<li>[OAuth 2.0 クライアント ID を作成する] にて、[org-gcal] を入力</li>
+<li>[OAuth クライアント ID を作成] ボタンを選択</li>
+<li>[OAuth 2.0 同意画面を設定する] で以下を設定
+<ul class="org-ul">
+<li>メールアドレス : (メールアドレスを選択)</li>
+<li>ユーザーに表示するサービス名 : (適当に org-gcal など)</li>
+</ul></li>
+<li>[次へ] を選択</li>
+<li>[認証情報をダウンロードする] で [ダウンロード] を選択</li>
+<li><p>
+ダウンロードされた [client_id.json] を開き、 client_id、client_secret の値を確認
+</p>
+<div class="org-src-container">
+<pre class="src src-json">{
+  <span style="color: #0000FF;">"installed"</span>: {
+    <span style="color: #0000FF;">"client_id"</span>: <span style="color: #008000;">"ThisIsClientID"</span>,
+    <span style="color: #0000FF;">"project_id"</span>: <span style="color: #008000;">"ThisIsProjectID"</span>,
+    <span style="color: #0000FF;">"auth_uri"</span>: <span style="color: #008000;">"ThisIsAuthURL"</span>,
+    <span style="color: #0000FF;">"token_uri"</span>: <span style="color: #008000;">"ThisIsTokenURL"</span>,
+    <span style="color: #0000FF;">"auth_provider_x509_cert_url"</span>: <span style="color: #008000;">"ThisIsCertURL"</span>,
+    <span style="color: #0000FF;">"client_secret"</span>: <span style="color: #008000;">"ThisIsClientSecret"</span>,
+    <span style="color: #0000FF;">"redirect_uris"</span>: [
+      <span style="color: #008000;">"ThisIsURN"</span>,
+      <span style="color: #008000;">"ThisIsHTTP"</span>
+    ]
+  }
+}
+</pre>
+</div></li>
+</ol></li>
+<li>[カレンダー ID] の取得
+<ol class="org-ol">
+<li><a href="https://calendar.google.com">Google Calendar</a> にアクセス</li>
+<li>[歯車マーク] &gt; [設定 を選択]</li>
+<li>[マイカレンダーの設定] の中から同期したいカレンダーを選択</li>
+<li>[カレンダー ID] の値をメモ (e.g. sample@foo.google.com)</li>
+</ol></li>
+<li>org-gcal.el のインストール (M-x package-install org-gcal)</li>
+<li><p>
+init.el を設定
+</p>
+<div class="org-src-container">
+<pre class="src src-elisp">(<span style="color: #0000FF;">require</span> '<span style="color: #D0372D;">org-gcal</span>)
+(<span style="color: #0000FF;">setq</span>
+ org-gcal-client-id
+ <span style="color: #008000;">"ThisIsClientID"</span>
+ org-gcal-client-secret <span style="color: #008000;">"ThisIsClientSecret"</span>
+ <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">ID &#12364; sample@foo.google.com &#12398;&#12459;&#12524;&#12531;&#12480;&#12540;&#12434; ~/calendar.org &#12434;&#21516;&#26399;</span>
+ org-gcal-file-alist '(
+                       (<span style="color: #008000;">"sample@foo.google.com"</span> .  <span style="color: #008000;">"~/calendar.org"</span>)
+                       <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">("sample2@foo.google.com" .  "~/calendar2.org")</span>
+                       ))
+<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">token &#12398;&#20445;&#23384;&#22580;&#25152;&#12434;&#22793;&#26356;</span>
+(<span style="color: #0000FF;">setq</span> org-gcal-dir <span style="color: #008000;">"~/Dropbox/.emacs.d/local-lisp/org-gcal"</span>)
+</pre>
+</div></li>
+<li>M-x org-gcal-fetch を実行</li>
+<li>ブラウザが開いて、token が表示されるので、コピーしてミニバッファに入力</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org6a248c8" class="outline-2">
+<h2 id="org6a248c8"><span class="section-number-2">3</span> 使い方</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li>M-x org-gcal-sync で同期</li>
+<li>M-x org-gcal-post-at-point でカーソル位置の内容をカレンダーに登録</li>
+<li>M-x org-gcal-delete-at-point で削除</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org35b9035" class="outline-2">
+<h2 id="org35b9035"><span class="section-number-2">4</span> やりたいけど、分からないこと</h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li>Time Zone の設定</li>
+<li>Proxy 下での利用方法</li>
+<li>M-x org-gcal-fetch/sync の定期実行方法</li>
+<li>M-x org-set-tags-command との連携方法</li>
+<li>M-x org-schedule との連携方法</li>
+<li>階層のつけ方</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgf0d3d21" class="outline-2">
+<h2 id="orgf0d3d21"><span class="section-number-2">5</span> 参考</h2>
+<div class="outline-text-2" id="text-5">
+<ul class="org-ul">
+<li><a href="https://github.com/myuhe/org-gcal.el">Org sync with Google Calendar </a></li>
+</ul>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">&#33050;&#27880;: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+同じアイコンの [calDAV] に注意
+</p></div></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="author">&#33879;&#32773;: clothoid</p>
+<p class="date">Created: 2020-09-12 Sat 07:36</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+<!-- 2020-09-12 Sat 07:36 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ditaa of cygwin with emacs org-mode</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="clothoid" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="https://clothoid.github.io/sitemap.html"> UP </a>
+ |
+ <a accesskey="H" href="https://clothoid.github.io/"> HOME </a>
+</div><div id="content">
+<h1 class="title">ditaa of cygwin with emacs org-mode</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#27425;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org7f5ee9a">1. 問題</a></li>
+<li><a href="#orgb81efab">2. 環境</a></li>
+<li><a href="#org55b850c">3. 対処方法</a></li>
+<li><a href="#org44f8c6e">4. 理由</a></li>
+<li><a href="#org34430c4">5. 結果</a></li>
+<li><a href="#orga096bf8">6. 参考</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org7f5ee9a" class="outline-2">
+<h2 id="org7f5ee9a"><span class="section-number-2">1</span> 問題</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>gnupack (Cygwin) の環境で、Windows の java を使い org-babel-execute-src-block を使いたい</li>
+<li>ditaa を実行すると、UNIX パスと Windows パスが異なるため、正常に動作してくれない</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgb81efab" class="outline-2">
+<h2 id="orgb81efab"><span class="section-number-2">2</span> 環境</h2>
+<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li>Windows 7 64bit</li>
+<li>gnupack _ devel-13.06-2015.11.08 
+<ul class="org-ul">
+<li>GNU Emacs 24.5.1 (i686-pc-cygwin) of 2015-11-08 on gnupack</li>
+</ul></li>
+<li>Org-mode version 8.2.10</li>
+<li>Windows java version "1.8.0 _ 66"
+<ul class="org-ul">
+<li>Java(TM) SE Runtime Environment (build 1.8.0<sub>66</sub>-b18)</li>
+<li>Java HotSpot(TM) 64-Bit Server VM (build 25.66-b18, mixed mode)</li>
+</ul></li>
+<li>ditaa 0.9</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org55b850c" class="outline-2">
+<h2 id="org55b850c"><span class="section-number-2">3</span> 対処方法</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+ob-ditaa.el を以下のように修正する。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #CC0000; background-color: #FFFF88;">*** /home/clothoid/Dropbox/.emacs.d/local-lisp/org-8.2.10/lisp/ob-ditaa.el.orig</span><span style="color: #CC0000; background-color: #FFFF88;"> </span><span style="color: #CC0000; background-color: #FFFF88;">2014-12-09 23:42:18.../0000../00000 +0900</span>
+<span style="color: #CC0000; background-color: #FFFF88;">--- /home/clothoid/Dropbox/.emacs.d/local-lisp/org-8.2.10/lisp/ob-ditaa.el</span><span style="color: #CC0000; background-color: #FFFF88;">  </span><span style="color: #CC0000; background-color: #FFFF88;">2015-12-09 15:52:55.../0000../00000 +0900</span>
+***************
+*** 90,103 ****
+       (java (cdr (assoc <span style="color: #006FE0;">:java</span> params)))
+       (in-file (org-babel-temp-file <span style="color: #008000;">"ditaa-"</span>))
+       (eps (cdr (assoc <span style="color: #006FE0;">:eps</span> params)))
+       (cmd (concat org-babel-ditaa-java-cmd
+                <span style="color: #008000;">" "</span> java <span style="color: #008000;">" "</span> org-ditaa-jar-option <span style="color: #008000;">" "</span>
+!               (shell-quote-argument
+!                (expand-file-name
+!             (<span style="color: #0000FF;">if</span> eps org-ditaa-eps-jar-path org-ditaa-jar-path)))
+                <span style="color: #008000;">" "</span> cmdline
+!               <span style="color: #008000;">" "</span> (org-babel-process-file-name in-file)
+!               <span style="color: #008000;">" "</span> (org-babel-process-file-name out-file)))
+       (pdf-cmd (<span style="color: #0000FF;">when</span> (<span style="color: #0000FF;">and</span> (<span style="color: #0000FF;">or</span> (string= (file-name-extension out-file) <span style="color: #008000;">"pdf"</span>)
+                       (cdr (assoc <span style="color: #006FE0;">:pdf</span> params))))
+              (concat
+--- 90,124 ----
+       (java (cdr (assoc <span style="color: #006FE0;">:java</span> params)))
+       (in-file (org-babel-temp-file <span style="color: #008000;">"ditaa-"</span>))
+       (eps (cdr (assoc <span style="color: #006FE0;">:eps</span> params)))
++      (jar-file-name (shell-quote-argument
++              (expand-file-name
++               (<span style="color: #0000FF;">if</span> eps org-ditaa-eps-jar-path org-ditaa-jar-path))))
++      (emacs-p (string-match <span style="color: #008000;">"cygwin"</span> (emacs-version)))
++      (jar-file-name-wrapped
++       (<span style="color: #0000FF;">if</span> emacs-p
++           <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">Cygwin doesn't have Jave, have to use Windows native Java.</span>
++           <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">So Cygwin paths must be converted to Windows paths.</span>
++           (format <span style="color: #008000;">"`cygpath -w %s`"</span> jar-file-name)
++         jar-file-name))
++      (in-file-wrapped
++       (<span style="color: #0000FF;">if</span> emacs-p
++           (format <span style="color: #008000;">"`cygpath -w %s`"</span> (org-babel-process-file-name in-file))
++         (org-babel-process-file-name in-file)))
++      (out-file-wrapped
++       (<span style="color: #0000FF;">if</span> emacs-p
++           (format <span style="color: #008000;">"`cygpath -w %s`"</span> (org-babel-process-file-name out-file))
++         (org-babel-process-file-name out-file)))
+       (cmd (concat org-babel-ditaa-java-cmd
+                <span style="color: #008000;">" "</span> java <span style="color: #008000;">" "</span> org-ditaa-jar-option <span style="color: #008000;">" "</span>
+!               <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">(shell-quote-argument</span>
+!               <span style="color: #8D8D84;">;;  </span><span style="color: #8D8D84; font-style: italic;">(expand-file-name</span>
+!               <span style="color: #8D8D84;">;;     </span><span style="color: #8D8D84; font-style: italic;">(if eps org-ditaa-eps-jar-path org-ditaa-jar-path)))</span>
+!               jar-file-name-wrapped
+                <span style="color: #008000;">" "</span> cmdline
+!               <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">" " (org-babel-process-file-name in-file)</span>
+!               <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">" " (org-babel-process-file-name out-file)))</span>
+!               <span style="color: #008000;">" "</span> in-file-wrapped
+!               <span style="color: #008000;">" "</span> out-file-wrapped))
+       (pdf-cmd (<span style="color: #0000FF;">when</span> (<span style="color: #0000FF;">and</span> (<span style="color: #0000FF;">or</span> (string= (file-name-extension out-file) <span style="color: #008000;">"pdf"</span>)
+                       (cdr (assoc <span style="color: #006FE0;">:pdf</span> params))))
+              (concat
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org44f8c6e" class="outline-2">
+<h2 id="org44f8c6e"><span class="section-number-2">4</span> 理由</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+ob-ditta.el は cygwin のパスまで解釈してくれる分けではない。例えば、以下のように書いて、C-c C-c を実行すると
+</p>
+
+<pre class="example">
+#+begin_src ditaa :file 2015-12-16-182508-ditaa_example1.png
+  /-----------------\
+  | Summer Triangle |
+  | o Vega          |
+  | o Deneb         |
+  | o Altair        |
+  \-----------------/
+#+end_src
+</pre>
+
+<p>
+ob-ditaa.el では
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span class="linenr">1: </span>$ java -Dfile.encoding=UTF-8 -jar /home/clothoid/bin/ditaa.jar  /c/temp/gnupack/babel-7616WAi/ditaa-7616CMn /home/clothoid/junk/2015-12-16-182508-ditaa_example1.png
+</pre>
+</div>
+
+<p>
+が実行されてしまい、以下のように <b>Message</b> に出力されるように、エラーとなってしまう。
+</p>
+
+<pre class="example">
+executing Ditaa code block...
+java -Dfile.encoding=UTF-8 -jar /home/clothoid/bin/ditaa.jar  /c/temp/gnupack/babel-7616WAi/ditaa-7616CMn /home/clothoid/junk/2015-12-16-182508-ditaa_example1.png
+
+ditaa version 0.9, Copyright (C) 2004--2009  Efstathios (Stathis) Sideris
+
+Running with options:
+Reading file: /c/temp/gnupack/babel-8596kk9/ditaa-8596oeR
+Error: File /c/temp/gnupack/babel-8596kk9/ditaa-8596oeR does not exist
+Code block evaluation complete.
+</pre>
+
+<p>
+自分の環境だと、本当に実行したいのは以下になる。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span class="linenr">1: </span>$ java -Dfile.encoding=UTF-8 -jar E:\home\clothoid\bin\ditaa.jar C:\temp\gnupack\babel-7616WAi/ditaa-7616CMn E:\home\clothoid\junk\2015-12-16-182508-ditaa_example1.pngs
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org34430c4" class="outline-2">
+<h2 id="org34430c4"><span class="section-number-2">5</span> 結果</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+<b>Message</b> バッファは以下のとおり。
+</p>
+
+<pre class="example">
+executing Ditaa code block...
+java -Dfile.encoding=UTF-8 -jar `cygpath -w /home/clothoid/bin/ditaa.jar`  `cygpath -w /c/temp/gnupack/babel-6976x_8/ditaa-69761AF` `cygpath -w /home/clothoid/junk/2015-12-16-182508-ditaa_example1.png`
+
+ditaa version 0.9, Copyright (C) 2004--2009  Efstathios (Stathis) Sideris
+
+Running with options:
+Reading file: C:\temp\gnupack\babel-6976x_8\ditaa-69761AF
+Locale: ja_JP
+Dialog.bold
+Rendering to file: E:\home\clothoid\junk\2015-12-16-182508-ditaa_example1.png
+Done in 0sec
+Code block evaluation complete.
+</pre>
+
+<p>
+出力された画像は以下のとおり。
+</p>
+
+
+<div class="figure">
+<p><img src="../img/2015/2015-12-16-182508-ditaa_example1.png" alt="2015-12-16-182508-ditaa_example1.png" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga096bf8" class="outline-2">
+<h2 id="orga096bf8"><span class="section-number-2">6</span> 参考</h2>
+<div class="outline-text-2" id="text-6">
+<ul class="org-ul">
+<li><a href="https://lists.gnu.org/archive/html/emacs-orgmode/2013-07/msg00669.html">Re: ob-ditaa.el for Cygwin </a></li>
+<li><a href="http://takuya-1st.hatenablog.jp/entry/20110910/1315644196">cygpath の便利なオプション </a></li>
+<li><a href="http://tinyurl.com/oucwnpj">ditaa で遊ぶ </a></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#33879;&#32773;: clothoid</p>
+<p class="date">Created: 2020-09-12 Sat 07:36</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
