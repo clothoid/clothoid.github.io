@@ -1,0 +1,355 @@
+#+SETUPFILE: ../0000/00org-web-template
+#+TITLE: ascii to image with ditaa
+
+* samples
+
+** boxes
+
+   #+begin_src ditaa :file ../img/2015/2015-12-16-180323-circbox.png
+   /--+
+   |  |
+   +--/
+   #+END_SRC
+
+   #+RESULTS:
+   [[file:../img/2015/2015-12-16-180323-circbox.png]]
+
+   #+BEGIN_SRC ditaa :file ../img/2015/2015-12-16-180312-hello-world.png
+   +--------------+
+   |              |
+   | Hello World! |
+   |              |
+   +--------------+
+   #+END_SRC
+
+   #+RESULTS:
+   [[file:../img/2015/2015-12-16-180312-hello-world.png]]
+  
+   #+BEGIN_SRC ditaa :file ../img/2015/2015-12-16-180318-hello-world-round.png :cmdline -r
+   +--------------+
+   |              |
+   | Hello World! |
+   |              |
+   +--------------+
+   #+END_SRC
+
+   #+RESULTS:
+   [[file:../img/2015/2015-12-16-180318-hello-world-round.png]]
+
+   #+begin_src ditaa :file ../img/2015/2015-12-16-182508-ditaa_example1.png
+    /-----------------\
+    | Summer Triangle |
+    | o Vega          |
+    | o Deneb         |
+    | o Altair        |
+    \-----------------/
+   #+end_src
+
+   #+RESULTS:
+   [[file:../img/2015/2015-12-16-182508-ditaa_example1.png]]
+
+   #+begin_src ditaa :file ../img/2015/2015-12-16-180345-boxes.png
+   +-----+   +-----+   +-----+
+   |{d}  |   |{s}  |   |{io} |
+   |     |   |     |   |     |
+   |     |   |     |   |     |
+   +-----+   +-----+   +-----+
+   #+end_src
+
+   #+RESULTS:
+   [[file:../img/2015/2015-12-16-180345-boxes.png]]
+  
+   #+begin_src ditaa :file ../img/2015/2015-12-16-175716-ditaa-simpleboxes.png
+   +---------+
+   |         |
+   | Foo     |
+   |         |
+   +----+----+---+
+   |Bar |Baz     |
+   |    |        |
+   +----+--------+
+   #+end_src
+
+   #+RESULTS:
+   [[file:../img/2015/2015-12-16-175716-ditaa-simpleboxes.png]]
+
+   #+begin_src ditaa :file ../img/2015/2015-12-16-175723-ditaa-simpleboxes-unsep.png :cmdline -E
+   +---------+
+   |         |
+   | Foo     |
+   |         |
+   +----+----+---+
+   |Bar |Baz     |
+   |    |        |
+   +----+--------+
+   #+end_src
+
+   #+RESULTS:
+   [[file:../img/2015/2015-12-16-175723-ditaa-simpleboxes-unsep.png]]
+
+** color boxes   
+ 
+   #+begin_src ditaa :file ../img/2015/2015-12-16-180328-colorbox.png
+   /----\ /----\
+   |c33F| |cC02|
+   |    | |    |
+   \----/ \----/
+ 
+   /----\ /----\
+   |c1FF| |c1AB|
+   |    | |    |
+   \----/ \----/
+   #+end_src
+
+   #+RESULTS:
+   [[file:../img/2015/2015-12-16-180328-colorbox.png]]
+ 
+   #+begin_src ditaa :file ../img/2015/2015-12-16-180338-colormap.png
+   /-------------+-------------\
+   |cRED RED     |cBLU BLU     |
+   +-------------+-------------+
+   |cGRE GRE     |cPNK PNK     |
+   +-------------+-------------+
+   |cBLK BLK     |cYEL YEL     |
+   \-------------+-------------/
+   #+end_src
+
+   #+RESULTS:
+   [[file:../img/2015/2015-12-16-180338-colormap.png]]
+
+   #+begin_src ditaa :file ../img/2015/2015-12-16-180254-color-boxes.png
+   +---+-----+   +----------+
+   | cBLU    |   | {io}     |
+   | Ext-Foo |   |  S-ATA   |
+   |   +-----+   |   cFEA   | 
+   |   |cPNK |   +----------+
+   |   | Foo |   
+   +---+-----+
+   #+END_SRC
+
+   #+RESULTS:
+   [[file:../img/2015/2015-12-16-180254-color-boxes.png]]
+
+   #+begin_src ditaa :file ../img/2015/2015-12-16-180405-things-to-do.png
+   /-----------------\
+   | Things to do    |
+   | cGRE            |
+   | o Cut the grass |
+   | o Buy jam       |
+   | o Fix car       |
+   | o Make website  |
+   \-----------------/
+   #+end_src
+
+   #+RESULTS:
+   [[file:../img/2015/2015-12-16-180405-things-to-do.png]]
+
+   #+begin_src ditaa :file ../img/2015/2015-12-16-180300-colors.png
+   /-------------+-------------\
+   |cRED RED     |cBLU BLU     |
+   +-------------+-------------+
+   |cGRE GRE     |cPNK PNK     |
+   +-------------+-------------+
+   |cAAA               AAA     |
+   +-------------+-------------+
+   |cCCC               CCC     |
+   +-------------+-------------+
+   |cBLK BLK     |cYEL YEL     |
+   \-------------+-------------/  
+   #+END_SRC
+
+   #+RESULTS:
+   [[file:../img/2015/2015-12-16-180300-colors.png]]
+
+** line and boxes
+
+   #+begin_src ditaa :file ../img/2015/2015-12-16-180400-box-and-line.png
+   *----*
+   |    |      /--*
+   *    *      |
+   |    |  -*--+
+   *----*
+   #+end_src
+
+   #+RESULTS:
+   [[file:../img/2015/2015-12-16-180400-box-and-line.png]]
+
+   #+begin_src ditaa :file ../img/2015/2015-12-16-180350-line-box-strage.png
+   ----+  /----\  +----+
+       :  |    |  :    |
+       |  |    |  |{s} |
+       v  \-=--+  +----+
+   #+end_src
+
+   #+RESULTS:
+   [[file:../img/2015/2015-12-16-180350-line-box-strage.png]]
+
+   #+begin_src ditaa :file ../img/2015/2015-12-16-180247-strage-line-box.png
+   /--------\   +-------+
+   |cAAA    +---+Version|
+   |  Data  |   |   V3  |
+   |  Base  |   |cRED{d}|
+   |     {s}|   +-------+
+   \---+----/
+   #+END_SRC
+
+   #+RESULTS:
+   [[file:../img/2015/2015-12-16-180247-strage-line-box.png]]
+
+   #+begin_src ditaa :file ../img/2015/2015-12-16-182620-ditaa_example2.png :cmdline -E
+     +--------+---------+
+     | AAA    |  111    |
+     +--------+---------+
+     | BBB    |  222    |-----------\
+     +--------+---------+           |
+                                    |
+                                    v
+				+-------+
+				|       |
+				+-------+
+   #+end_src
+
+   #+RESULTS:
+   [[file:../img/2015/2015-12-16-182620-ditaa_example2.png]]
+
+   #+begin_src ditaa :file ../img/2015/2015-10-13-151252-line-and-nodes.png
+   /--------------\     /--------------\
+   | Title 1 cGRE |     | Title 2 cPNK |
+   | o Item 1     |     | o Item 1     |
+   | o Item 2     |     | o Item 2     |
+   \------+-------/     \------+-------/
+          |                    |
+   -------+--------------------+------------- Line
+   #+end_src
+
+   #+RESULTS:
+   [[file:../img/2015/2015-10-13-151252-line-and-nodes.png]]
+  
+   #+begin_src ditaa :file ../img/2015/2015-12-16-175737-ditaa-seqboxes.png
+   +------+   +-----+   +-----+   +-----+
+   |{io}  |   |{d}  |   |{s}  |   |cBLU |
+   | Foo  +---+ Bar +---+ Baz +---+ Moo |
+   |      |   |     |   |     |   |     |
+   +------+   +-----+   +--+--+   +-----+
+                           |
+              /-----\      |      +------+
+              |     |      |      | c1AB |
+              | Goo +------+---=--+ Shoo |
+              \-----/             |      |
+                                  +------+
+   #+end_src
+
+   #+RESULTS:
+   [[file:../img/2015/2015-12-16-175737-ditaa-seqboxes.png]]
+  
+   #+begin_src ditaa :file ../img/2015/2015-12-16-175747-ditaa-seqboxes.png
+       +--------+   +-------+    +-------+
+       |        | --+ ditaa +--> |       |
+       |  Text  |   +-------+    |diagram|
+       |Document|   |!magic!|    |       |
+       |     {d}|   |       |    |       |
+       +---+----+   +-------+    +-------+
+           :                         ^
+           |       Lots of work      |
+           +-------------------------+
+   #+end_src
+
+   #+RESULTS:
+   [[file:../img/2015/2015-12-16-175747-ditaa-seqboxes.png]]
+
+** other 
+ 
+   #+begin_src ditaa :file ../img/2015/2015-12-16-180409-memory.png
+      +--------+
+   0  |        |  <- start
+      +--------+
+   1  |        |  <- q  scans from start to end
+      +--------+
+      : .....  |
+      +--------+
+      |        |  <- end
+      +--------+  <-+
+      |        |    |
+      +--------+    | rest of the
+      : .....  |    | allocated memory
+      +--------+    |
+   n  |        |    |
+      +--------+  <-+
+   #+end_src
+
+   #+RESULTS:
+   [[file:../img/2015/2015-12-16-180409-memory.png]]
+ 
+   #+begin_src ditaa :file ../img/2015/2015-12-16-180420-memory.png
+    0               n
+   +---+-----+--+--+--+
+   |   | ... |  |  |\0|
+   +---+-----+--+--+--+
+     ^        ^
+     |        |
+     |        +-- q moves from the
+     |            end to the start
+     p moves from
+       start to the end
+   #+end_src
+
+   #+RESULTS:
+   [[file:../img/2015/2015-12-16-180420-memory.png]]
+ 
+   #+begin_src ditaa :file ../img/2015/2015-12-16-180425-registry.png
+   +------+----+----+----+----+----+----+
+   | xxxx | yy | zz | 00 | tt | 11 | ss |
+   +------+----+----+----+----+----+----+
+    ^      ^    ^    ^    ^    ^    ^ 
+    |      |    |    |    |    |    |
+    |      |    |    |    |    |    +--- storage registry
+    |      |    |    |    |    +-------- always set to 1
+    |      |    |    |    +------------- temp value
+    |      |    |    +------------------ always zeroed 
+    |      |    +----------------------- zero flag value
+    |      +---------------------------- y register
+    +----------------------------------- x address   
+   #+end_src
+
+   #+RESULTS:
+   [[file:../img/2015/2015-12-16-180425-registry.png]]
+
+   #+begin_src ditaa :file ../img/2015/2015-12-16-175705-color-ieee-zigbee.png
+   /----+-----------\
+   |cBLK|cRED APP   |
+   |ZDO +-----------+
+   |    |cPNK APS   |   ZigBee
+   |    +-----------+
+   |    |cGRE NWK   |
+   +----+-----------+
+   -------------------------------------
+   +----------------+
+   |cYEL MAC        |
+   +----------------+   IEEE 802.15.4
+   |cBLU PHY        |
+   \----------------/
+   #+end_src
+
+   #+RESULTS:
+   [[file:../img/2015/2015-12-16-175705-color-ieee-zigbee.png]]
+
+* PC environment
+  - Windows 7 64bit
+  - gnupack_devel-13.06-2015.11.08 
+    - GNU Emacs 24.5.1 (i686-pc-cygwin) of 2015-11-08 on gnupack
+  - Org-mode version 8.2.10
+  - Windows java version "1.8.0_66"
+    - Java(TM) SE Runtime Environment (build 1.8.0_66-b18)
+    - Java HotSpot(TM) 64-Bit Server VM (build 25.66-b18, mixed mode)
+  - ditaa 0.9
+
+    
+* Refs
+  - [[http://ditaa.sourceforge.net/][ditaa]]
+  - [[http://shuzo-kino.hateblo.jp/entry/2014/01/21/233229][ditaa を使うとアスキーアートから画像が生成できる！]]
+  - [[http://home.fnal.gov/~neilsen/notebook/orgExamples/org-examples.html][Emacs org-mode examples and cookbook]]
+  - [[https://avono-support.atlassian.net/wiki/pages/viewpage.action?pageId=9699377][DITAA avono Plugin Support Wiki]]
+  - [[http://orgmode.org/worg/org-contrib/babel/languages/ob-doc-ditaa.html][Ditaa Source Code Blocks in Org Mode]]
+  - [[http://bl.ocks.org/nicerobot/8379371][ditaa: DIagrams Through Ascii Art]]
+  - [[http://misohena.jp/article/emacs_org_textfigures/ditaa.html][org-mode で ditaa を使う]]
+
