@@ -10,6 +10,7 @@
   - [[file:2015/merry-xmas-equation.org][Merry Xmas Equation]]
   - [[file:2015/S-username-must-have-mode-700.org][S-username must have mode 700.]]
   - [[file:2015/gnupack-cygwin-cron-rsync.org][Windows で cron + rsync でフルバックアップ]]
+  - [[file:2015/ascii-to-image-with-ditaa.org][ascii to image with ditaa]]
   - [[file:2015/ditaa-of-cygwin-with-emacs.org][ditaa of cygwin with emacs org-mode]]
   - [[file:2015/delete-a-part-of-PATH.org][コマンドプロンプトで PATH の一部だけ削除]]
   - [[file:2015/japanase-kanji-hiragana-number-convert.org][漢字と平仮名、算用数字と漢数字]]
