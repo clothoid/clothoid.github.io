@@ -1,0 +1,25 @@
+# -*- Mode: org ; Coding: utf-8-unix -*-
+#+SETUPFILE: ../0000/00org-web-template
+#+TITLE: VERR _ ACCESS _ DENIED for virtualbox
+#+DESCRIPTION: 
+#+KEYWORDS: 
+#+SUBTITLE: 
+#+OPTIONS: ^:{}
+
+* 環境
+  - Windows 7 64bit
+  - Windows 2012 R2 on Oracle VM VirtualBox 5.0.16r105871
+* エラー
+  #+begin_example
+  仮想マシン"machine name"のセッションを開けませんでした。
+  Cannot open host device 'E:' for readonly access. Check the permissions of that device (VERR_ACCESS_DENIED).
+  AHCI: Failed to attach drive to Port1 (VERR_ACCESS_DENIED).
+  終了コード : E_FAIL (0x80004005)
+  コンポーネント: ConsoleWrap
+  インターフェース: IConsole {872da645-4a9b-1727-bee2-5585105b9eed}
+  #+end_example
+* 対処方法
+  RDP をやめる (リモートデスクトップで繋いでいると DVD/CD ドライブの割り当てができない)。
+* 参考
+  - [[http://vboxmania.net/node/563][ストレージにホストドライブ(DVD ドライブ)を追加できない | VirtualBox Mania]]
+

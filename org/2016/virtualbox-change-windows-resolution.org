@@ -1,0 +1,18 @@
+# -*- Mode: org ; Coding: utf-8-unix -*-
+#+SETUPFILE: ../0000/00org-web-template
+#+TITLE: VirtualBox で Windows の解像度を変化させる
+#+DESCRIPTION: 
+#+KEYWORDS: 
+#+SUBTITLE: 
+#+OPTIONS: ^:{}
+
+* 環境
+  - Windows 7 64bit
+  - Windows 2012 R2 on Oracle VM VirtualBox 5.0.16r105871
+* 解像度を動的に変化させる方法
+  VirtualBox にインストールしたゲスト OS の解像度はデフォルトで 640 × 480 だから、見にくい。 以下の手順で、動的に変化させることができる。
+  1. ゲスト OS を起動
+  2. [デバイス]>[Guest Addition CD イメージの挿入]
+  3. CD ドライブにマウントされるので、開く
+  4. [VboxWindowsAdditons-amd64.exe]を管理者権限で実行
+  5. 画面に従ってインストール

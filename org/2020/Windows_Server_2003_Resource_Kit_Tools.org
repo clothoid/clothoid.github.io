@@ -1,0 +1,266 @@
+# -*- Mode: org ; Coding: utf-8-unix -*-
+#+SETUPFILE: ../0000/00org-web-template
+#+TITLE: Windows Server 2003 Resource Kit Tools から中身だけを取り出す
+#+DESCRIPTION: 
+#+KEYWORDS: 
+#+SUBTITLE: 
+#+OPTIONS: ^:{}
+
+* 背景
+
+  Windows Server 2003 Resource Kit Tools には以下のような純正の便利なツールが入っており、有用だったが、Microsft のサイトから削除されてしまった。
+  
+  - remapkey.exe - キーボードの割り当てを変更
+  - empty.exe - メモリ開放
+
+  他のサイトからの入手方法と合わせて、インストールせずに exe を取り出す方法をまとめておく。
+
+* msi を展開できるツールを取得
+
+  すでに持っている場合は不要
+
+  1. 7zip を利用
+     - https://sevenzip.osdn.jp/
+  2. コマンドライン版 7za920.zip をダウンロードして展開
+     - https://sevenzip.osdn.jp/download.html
+
+* Resource Kit Tools の展開
+  
+  1. 以下からダウンロード[fn:noms]
+     https://web.archive.org/web/20200722120645/http://www.microsoft.com/en-us/download/details.aspx?displaylang=en&id=17657
+  2. 以下のコマンドにより展開
+     #+begin_example
+     c:\tmp>rktools.exe /C
+
+     c:\tmp>dir
+      ドライブ C のボリューム ラベルは OS です
+      ボリューム シリアル番号は EC87-0D61 です
+
+      c:\tmp のディレクトリ
+
+     2020/09/12  13:16    <DIR>          .
+     2020/09/12  13:16    <DIR>          ..
+     2020/09/12  13:07    <DIR>          7za920
+     2020/09/12  13:06           384,846 7za920.zip
+     2020/09/12  13:13    <DIR>          expand
+     2020/09/12  13:01        12,337,752 rktools.exe
+     2003/04/24  15:49        10,012,672 rktools.msi
+     2003/04/18  17:55         1,254,367 rktools_p.cab
+     2003/04/18  17:55         1,259,505 rktools_s.cab
+                    5 個のファイル          25,249,142 バイト
+                    4 個のディレクトリ  188,578,136,064 バイトの空き領域
+     #+end_example
+  3. msiファイルを展開
+     #+begin_example
+     c:\tmp>7za.exe x rktools.msi
+
+     7-Zip (A) 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
+
+     Processing archive: rktools.msi
+
+     Extracting  atmarp.exe
+     Extracting  atmlane.exe
+     Extracting  cdburn.exe
+     Extracting  cepsetup.exe
+     Extracting  chklnks.exe
+     Extracting  checkrepl.vbs
+     Extracting  clearmem.exe
+     Extracting  clusdiag.msi
+     Extracting  clusterrecovery.chm
+     Extracting  clusterrecovery.exe
+     Extracting  confdisk.exe
+     Extracting  creatfil.exe
+     Extracting  crutredir.dll
+     Extracting  delprof.exe
+     Extracting  deploy.cab
+     Extracting  dh.exe
+     Extracting  dumpfsmos.cmd
+     Extracting  dvdburn.exe
+     Extracting  eventcombmt.chm
+     Extracting  eventcombmt.exe
+     Extracting  fcsetup.exe
+     Extracting  samplereasons.reg
+     Extracting  inetesc.adm
+     Extracting  ifilttst.exe
+     Extracting  srvmgr.cnt
+     Extracting  gpmonitor.exe
+     Extracting  iviewers.dll
+     Extracting  kerbtray.exe
+     Extracting  klist.exe
+     Extracting  krt.exe
+     Extracting  lbridge.cmd
+     Extracting  linkd.exe
+     Extracting  linkspeed.exe
+     Extracting  logtime.exe
+     Extracting  lsreport.exe
+     Extracting  lsview.exe
+     Extracting  mcast.exe
+     Extracting  mibcc.exe
+     Extracting  moveuser.exe
+     Extracting  mstlsapi.dll
+     Extracting  now.exe
+     Extracting  kernrate.doc
+     Extracting  ntrights.exe
+     Extracting  oh.exe
+     Extracting  oleview.exe
+     Extracting  pooltag.txt
+     Extracting  pfmon.exe
+     Extracting  pkiview.dll
+     Extracting  pkiview.msc
+     Extracting  qgrep.exe
+     Extracting  queryad.vbs
+     Extracting  remapkey.exe
+     Extracting  robocopy.exe
+     Extracting  robocopy.doc
+     Extracting  rpcdump.exe
+     Extracting  rsmconfg.exe
+     Extracting  rsm_dbic.exe
+     Extracting  rsm_dbutil.exe
+     Extracting  showperf.exe
+     Extracting  showpriv.exe
+     Extracting  sleep.exe
+     Extracting  subinacl.exe
+     Extracting  tail.exe
+     Extracting  timezone.exe
+     Extracting  clusfileport_win2000.inf
+     Extracting  vadump.exe
+     Extracting  vfi.exe
+     Extracting  adlb.exe
+     Extracting  autoexnt.exe
+     Extracting  cmdhere.inf
+     Extracting  cmgetcer.dll
+     Extracting  cmgetcer.txt
+     Extracting  consume.exe
+     Extracting  csccmd.exe
+     Extracting  list.exe
+     Extracting  ntimer.exe
+     Extracting  pathman.exe
+     Extracting  usrmgr.cnt
+     Extracting  perms.exe
+     Extracting  pmon.exe
+     Extracting  regini.exe
+     Extracting  srvany.exe
+     Extracting  tcmon.exe
+     Extracting  wins.dll
+     Extracting  winscl.exe
+     Extracting  permcopy.exe
+     Extracting  srvinfo.exe
+     Extracting  getcm.exe
+     Extracting  getcm.txt
+     Extracting  instcm.exe
+     Extracting  instcm.txt
+     Extracting  rqs.exe
+     Extracting  rqc.exe
+     Extracting  rqsmsg.dll
+     Extracting  winpolicies.chm
+     Extracting  frsflags.vbs
+     Extracting  rpings.exe
+     Extracting  rpingc.exe
+     Extracting  showacls.exe
+     Extracting  rpccfg.exe
+     Extracting  qtcp.exe
+     Extracting  rassrvmon.exe
+     Extracting  wlbs_hb.dll
+     Extracting  diskuse.exe
+     Extracting  mqcast.exe
+     Extracting  mqcatch.exe
+     Extracting  mqcast.doc
+     Extracting  diskraid.exe
+     Extracting  empty.exe
+     Extracting  ifmember.exe
+     Extracting  kernrate.exe
+     Extracting  winexit.scr
+     Extracting  rcontrolad.exe
+     Extracting  regview.exe
+     Extracting  vrfydsk.exe
+     Extracting  uddiconfig.exe
+     Extracting  uddicatschemeeditor.exe
+     Extracting  tsctst.exe
+     Extracting  ssdformat.exe
+     Extracting  splinfo.exe
+     Extracting  setprinter.exe
+     Extracting  memmonitor.exe
+     Extracting  srvmgr.hlp
+     Extracting  rpcping.exe
+     Extracting  sonar.exe
+     Extracting  tcmon.lnk
+     Extracting  winhttpcertcfg.exe
+     Extracting  winhttptracecfg.exe
+     Extracting  prnadmin.dll
+     Extracting  uddidataexport.exe
+     Extracting  iniman.exe
+     Extracting  volrest.exe
+     Extracting  volperf.dll
+     Extracting  volperf.exe
+     Extracting  NlsInfo.exe
+     Extracting  LockoutStatus.exe
+     Extracting  acctinfo.dll
+     Extracting  admx.msi
+     Extracting  chknic.exe
+     Extracting  cleanspl.exe
+     Extracting  gpotool.exe
+     Extracting  winexit.hlp
+     Extracting  compress.exe
+     Extracting  clusfileport.dll
+     Extracting  ClusFilePort.inf
+     Extracting  printdriverinfo.exe
+     Extracting  instexnt.exe
+     Extracting  servmess.dll
+     Extracting  instsrv.exe
+     Extracting  clean.vbs
+     Extracting  clone.vbs
+     Extracting  conall.vbs
+     Extracting  defprn.vbs
+     Extracting  dnsdiag.exe
+     Extracting  drvmgr.vbs
+     Extracting  forms.vbs
+     Extracting  persist.vbs
+     Extracting  portconv.vbs
+     Extracting  portmgr.vbs
+     Extracting  prncfg.vbs
+     Extracting  prnctrl.vbs
+     Extracting  prndata.vbs
+     Extracting  prnmgr.vbs
+     Extracting  prnadmin.doc
+     Extracting  timeit.exe
+     Extracting  wlbs_rc.dll
+     Extracting  msvbvm60.dll
+     Extracting  comctl32.ocx
+     Extracting  tccom.exe
+     Extracting  tcmon.inf
+     Extracting  tcmon.bat
+     Extracting  rqs_setup.bat
+     Extracting  tsscalling.exe
+     Extracting  srvcheck.exe
+     Extracting  hlscan.exe
+     Extracting  custreasonedit.exe
+     Extracting  srvmgr.exe
+     Extracting  usrmgr.exe
+     Extracting  intfiltr.exe
+     Extracting  intfiltr.reg
+     Extracting  intfiltr.sys
+     Extracting  memtriage.exe
+     Extracting  msdis130.dll
+     Extracting  msvcp70.dll
+     Extracting  msvcr70.dll
+     Extracting  memtriage.ini
+     Extracting  winpolicies.exe
+     Extracting  readme.htm
+     Extracting  reportgen.exe
+     Extracting  uddicatschemeeditor.exe.config
+     Extracting  uddiconfig.exe.config
+     Extracting  uddidataexport.exe.config
+     Extracting  usrmgr.hlp
+     Extracting  sss_1.1.xsl
+
+     Everything is Ok
+
+     Files: 194
+     Size:       19853853
+     Compressed: 10012672
+
+     #+end_example
+
+* Footnotes
+
+[fn:noms] マイクロソフトからは削除されてしまった 
