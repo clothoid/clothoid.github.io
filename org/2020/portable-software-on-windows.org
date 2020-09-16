@@ -1,8 +1,8 @@
 # -*- Mode: org ; Coding: utf-8-unix -*-
 #+SETUPFILE: ../0000/00org-web-template
 #+TITLE: Windows の開発環境を Portable 版で整える
-#+DESCRIPTION:
-#+KEYWORDS: windows portable ソフトウェア 開発
+#+DESCRIPTION: 
+#+KEYWORDS: windows portable ソフトウェア 開発 exe zip non-installer 
 #+SUBTITLE: Windows バイナリを公式配布しているソフトのリンク
 #+OPTIONS: ^:{}
 
