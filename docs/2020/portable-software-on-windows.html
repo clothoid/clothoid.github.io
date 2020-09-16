@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+<!-- 2020-09-16 Wed 13:27 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Windows の開発環境を Portable 版で整える</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="clothoid" />
+<meta name="keywords" content="windows portable ソフトウェア 開発" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="https://clothoid.github.io/sitemap.html"> UP </a>
+ |
+ <a accesskey="H" href="https://clothoid.github.io/"> HOME </a>
+</div><div id="content">
+<h1 class="title">Windows の開発環境を Portable 版で整える
+<br />
+<span class="subtitle">Windows バイナリを公式配布しているソフトのリンク</span>
+</h1>
+<ul class="org-ul">
+<li>7-Zip - 圧縮・解凍ソフト
+<ul class="org-ul">
+<li>HP: <a href="https://sevenzip.osdn.jp/">https://sevenzip.osdn.jp/</a></li>
+<li>DL: <a href="https://sevenzip.osdn.jp/download.html">https://sevenzip.osdn.jp/download.html</a></li>
+</ul></li>
+<li>emacs - エディタ
+<ul class="org-ul">
+<li>27.1: <a href="http://cha.la.coocan.jp/doc/NTEmacs.html">http://cha.la.coocan.jp/doc/NTEmacs.html</a></li>
+<li>26.3: <a href="https://github.com/mhatta/emacs-26-x86_64-win-ime">https://github.com/mhatta/emacs-26-x86_64-win-ime</a></li>
+</ul></li>
+<li>Sakura Editor - エディタ
+<ul class="org-ul">
+<li>HP: <a href="https://sakura-editor.github.io/">https://sakura-editor.github.io/</a></li>
+<li>DL: <a href="https://github.com/sakura-editor/sakura/releases">https://github.com/sakura-editor/sakura/releases</a></li>
+</ul></li>
+<li>Vim - エディタ
+<ul class="org-ul">
+<li>HP: <a href="https://www.kaoriya.net/">https://www.kaoriya.net/</a></li>
+<li>DL: <a href="https://www.kaoriya.net/software/vim/">https://www.kaoriya.net/software/vim/</a></li>
+</ul></li>
+<li>Giga Text Viewer - 巨大サイズのテキストファイルを瞬時に開いて閲覧
+<ul class="org-ul">
+<li>HP: <a href="http://kansai.me/yanda/">http://kansai.me/yanda/</a></li>
+<li>DL: <a href="http://kansai.me/yanda/FreeSoftware.htm">http://kansai.me/yanda/FreeSoftware.htm</a></li>
+</ul></li>
+<li>ripgrep - ファイル検索
+<ul class="org-ul">
+<li>HP: <a href="https://github.com/BurntSushi/ripgrep/">https://github.com/BurntSushi/ripgrep/</a></li>
+<li>DL: <a href="https://github.com/BurntSushi/ripgrep/releases">https://github.com/BurntSushi/ripgrep/releases</a></li>
+</ul></li>
+<li>the platinum searcher - ファイル検索
+<ul class="org-ul">
+<li>HP: <a href="https://github.com/monochromegane/the_platinum_searcher">https://github.com/monochromegane/the_platinum_searcher</a></li>
+<li>DL: <a href="https://github.com/monochromegane/the_platinum_searcher/releases">https://github.com/monochromegane/the_platinum_searcher/releases</a></li>
+</ul></li>
+<li>everything - ファイル検索
+<ul class="org-ul">
+<li>HP: <a href="https://www.voidtools.com/">https://www.voidtools.com/</a></li>
+<li>DL: <a href="https://www.voidtools.com/downloads/">https://www.voidtools.com/downloads/</a>
+<ul class="org-ul">
+<li>zip version</li>
+<li>Language Pack</li>
+<li>Command-line Interface</li>
+</ul></li>
+</ul></li>
+<li>pandoc - 文書作成
+<ul class="org-ul">
+<li>HP: <a href="https://pandoc.org/">https://pandoc.org/</a></li>
+<li>DL: <a href="https://github.com/jgm/pandoc/releases/tag/2.10.1">https://github.com/jgm/pandoc/releases/tag/2.10.1</a></li>
+</ul></li>
+<li>cmigemo - 日本語インクリメンタル検
+<ul class="org-ul">
+<li>DL: <a href="https://www.kaoriya.net/software/cmigemo/">https://www.kaoriya.net/software/cmigemo/</a></li>
+</ul></li>
+<li>Git Extension - Git クライアント
+<ul class="org-ul">
+<li>HP: <a href="http://gitextensions.github.io/">http://gitextensions.github.io/</a></li>
+<li>DL: <a href="https://github.com/gitextensions/gitextensions/releases">https://github.com/gitextensions/gitextensions/releases</a></li>
+</ul></li>
+<li>Tomcat - Webコンテナ
+<ul class="org-ul">
+<li>HP: <a href="http://tomcat.apache.org/">http://tomcat.apache.org/</a></li>
+<li>DL: <a href="https://tomcat.apache.org/download-90.cgi">https://tomcat.apache.org/download-90.cgi</a></li>
+</ul></li>
+<li>git - 分散型バージョン管理
+<ul class="org-ul">
+<li>HP: <a href="https://git-scm.com/">https://git-scm.com/</a></li>
+<li>DL: <a href="https://git-scm.com/download/win">https://git-scm.com/download/win</a></li>
+</ul></li>
+<li>vlc - ディアプレーヤー
+<ul class="org-ul">
+<li>HP: <a href="https://www.videolan.org/">https://www.videolan.org/</a></li>
+<li>DL: <a href="https://www.videolan.org/vlc/download-windows.html">https://www.videolan.org/vlc/download-windows.html</a></li>
+</ul></li>
+<li>draw.io - ダイアグラム作図
+<ul class="org-ul">
+<li>HP: <a href="https://app.diagrams.net/">https://app.diagrams.net/</a></li>
+<li>DL: <a href="https://github.com/jgraph/drawio-desktop/releases">https://github.com/jgraph/drawio-desktop/releases</a></li>
+</ul></li>
+<li>BgInfo - システム情報をデスクトップ壁紙へ
+<ul class="org-ul">
+<li>HP: <a href="https://docs.microsoft.com/en-us/sysinternals/downloads/bginfo">https://docs.microsoft.com/en-us/sysinternals/downloads/bginfo</a></li>
+<li>DL: <a href="https://docs.microsoft.com/en-us/sysinternals/downloads/bginfo">https://docs.microsoft.com/en-us/sysinternals/downloads/bginfo</a></li>
+</ul></li>
+<li>Color Picker - スクリーンからのスポイトカラーピックツール
+<ul class="org-ul">
+<li>HP: <a href="http://www.winsystem.jp/">http://www.winsystem.jp/</a></li>
+<li>DL: <a href="https://www.vector.co.jp/soft/win95/art/se350616.html">https://www.vector.co.jp/soft/win95/art/se350616.html</a></li>
+</ul></li>
+<li>FreeCAD - 3D CAD 
+<ul class="org-ul">
+<li>HP: <a href="https://www.freecadweb.org/">https://www.freecadweb.org/</a></li>
+<li>DL: <a href="https://github.com/FreeCAD/FreeCAD/releases/tag/0.19_pre">https://github.com/FreeCAD/FreeCAD/releases/tag/0.19_pre</a></li>
+</ul></li>
+<li>IrfanView - 画像ビューア
+<ul class="org-ul">
+<li>HP: <a href="https://www.irfanview.com/">https://www.irfanview.com/</a></li>
+<li>DL: <a href="https://www.irfanview.com/64bit.htm">https://www.irfanview.com/64bit.htm</a></li>
+</ul></li>
+<li>マウスふるふる - 一定時間おきにマウスを小さく左右に揺らす
+<ul class="org-ul">
+<li>HP: <a href="https://www.inasoft.org/">https://www.inasoft.org/</a></li>
+<li>DL: <a href="https://www.inasoft.org/icountt.html">https://www.inasoft.org/icountt.html</a></li>
+</ul></li>
+<li>AdoptOpenJDK(Java) - Java プログラム
+<ul class="org-ul">
+<li>HP: <a href="https://adoptopenjdk.net/">https://adoptopenjdk.net/</a></li>
+<li>DL: <a href="https://adoptopenjdk.net/releases.html">https://adoptopenjdk.net/releases.html</a></li>
+</ul></li>
+<li>Rapid Environment Editor - 環境変数を編集支援
+<ul class="org-ul">
+<li>HP: <a href="https://www.rapidee.com/">https://www.rapidee.com/</a></li>
+<li>DL: <a href="https://www.rapidee.com/en/download">https://www.rapidee.com/en/download</a></li>
+</ul></li>
+<li>cmder - コンソールエミュレーター
+<ul class="org-ul">
+<li>HP: <a href="https://cmder.net/">https://cmder.net/</a></li>
+<li>DL: <a href="https://github.com/cmderdev/cmder/releases">https://github.com/cmderdev/cmder/releases</a></li>
+</ul></li>
+<li>rlogin - ターミナルソフト 
+<ul class="org-ul">
+<li>HP: <a href="http://nanno.dip.jp/">http://nanno.dip.jp/</a></li>
+<li>DL: <a href="http://nanno.dip.jp/softlib/man/rlogin/">http://nanno.dip.jp/softlib/man/rlogin/</a></li>
+</ul></li>
+<li>Tera Term - ターミナルエミュレーター
+<ul class="org-ul">
+<li>HP: <a href="https://ttssh2.osdn.jp/">https://ttssh2.osdn.jp/</a></li>
+<li>DL: <a href="https://ja.osdn.net/projects/ttssh2/releases/">https://ja.osdn.net/projects/ttssh2/releases/</a></li>
+</ul></li>
+<li>Real Sync - フォルダ間同期、バックアップ
+<ul class="org-ul">
+<li>HP: <a href="http://www.takenet.or.jp/~ryuuji/">http://www.takenet.or.jp/~ryuuji/</a></li>
+<li>DL: <a href="http://www.takenet.or.jp/~ryuuji/realsync/">http://www.takenet.or.jp/~ryuuji/realsync/</a></li>
+</ul></li>
+<li>Sizer - ウィンドウを指定サイズ
+<ul class="org-ul">
+<li>HP: <a href="http://www.brianapps.net/">http://www.brianapps.net/</a></li>
+<li>DL: <a href="http://www.brianapps.net/sizer/">http://www.brianapps.net/sizer/</a> (Zip package)</li>
+</ul></li>
+<li>Sumatra PDF - PDF閲覧
+<ul class="org-ul">
+<li>HP: <a href="https://www.sumatrapdfreader.org/free-pdf-reader.html">https://www.sumatrapdfreader.org/free-pdf-reader.html</a></li>
+<li>DL: <a href="https://www.sumatrapdfreader.org/download-free-pdf-viewer.html">https://www.sumatrapdfreader.org/download-free-pdf-viewer.html</a></li>
+</ul></li>
+<li>WinMerge - 差分比較
+<ul class="org-ul">
+<li><a href="https://winmergejp.bitbucket.io/">https://winmergejp.bitbucket.io/</a></li>
+</ul></li>
+<li>WinSCP- SCP/SFTP/FTPS対応クライアント
+<ul class="org-ul">
+<li>HP: <a href="https://winscp.net/">https://winscp.net/</a></li>
+<li>DL: <a href="https://winscp.net/eng/downloads.php">https://winscp.net/eng/downloads.php</a> (Portable executables)</li>
+</ul></li>
+<li>WinPython - Python プログラム
+<ul class="org-ul">
+<li>HP: <a href="https://winpython.github.io/">https://winpython.github.io/</a></li>
+<li>DL: <a href="https://github.com/winpython/winpython/releases">https://github.com/winpython/winpython/releases</a></li>
+</ul></li>
+<li>ZoomIt - デスクトップ拡大表示
+<ul class="org-ul">
+<li>HP: <a href="https://docs.microsoft.com/en-us/sysinternals/downloads/zoomit">https://docs.microsoft.com/en-us/sysinternals/downloads/zoomit</a></li>
+<li>DL: <a href="https://live.sysinternals.com/">https://live.sysinternals.com/</a></li>
+</ul></li>
+<li>Inkscape - ベクトル画像編集
+<ul class="org-ul">
+<li>HP: <a href="https://inkscape.org/">https://inkscape.org/</a></li>
+<li>DL: <a href="https://inkscape.org/release/1.0.1/windows/64-bit/">https://inkscape.org/release/1.0.1/windows/64-bit/</a></li>
+</ul></li>
+<li>Hunspell - スペルチェッカーおよび形態学的アナライザー
+<ul class="org-ul">
+<li>HP: <a href="http://hunspell.github.io/">http://hunspell.github.io/</a></li>
+<li>DL: <a href="https://github.com/gromnitsky/hunspell-windows/releases">https://github.com/gromnitsky/hunspell-windows/releases</a></li>
+</ul></li>
+</ul>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#33879;&#32773;: clothoid</p>
+<p class="date">Created: 2020-09-16 Wed 13:27</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

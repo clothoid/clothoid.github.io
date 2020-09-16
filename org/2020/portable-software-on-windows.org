@@ -1,0 +1,112 @@
+# -*- Mode: org ; Coding: utf-8-unix -*-
+#+SETUPFILE: ../0000/00org-web-template
+#+TITLE: Windows の開発環境を Portable 版で整える
+#+DESCRIPTION:
+#+KEYWORDS: windows portable ソフトウェア 開発
+#+SUBTITLE: Windows バイナリを公式配布しているソフトのリンク
+#+OPTIONS: ^:{}
+
+- 7-Zip - 圧縮・解凍ソフト
+  - HP: https://sevenzip.osdn.jp/
+  - DL: https://sevenzip.osdn.jp/download.html
+- emacs - エディタ
+  - 27.1: http://cha.la.coocan.jp/doc/NTEmacs.html
+  - 26.3: https://github.com/mhatta/emacs-26-x86_64-win-ime
+- Sakura Editor - エディタ
+  - HP: https://sakura-editor.github.io/
+  - DL: https://github.com/sakura-editor/sakura/releases
+- Vim - エディタ
+  - HP: https://www.kaoriya.net/
+  - DL: https://www.kaoriya.net/software/vim/
+- Giga Text Viewer - 巨大サイズのテキストファイルを瞬時に開いて閲覧
+  - HP: http://kansai.me/yanda/
+  - DL: http://kansai.me/yanda/FreeSoftware.htm
+- ripgrep - ファイル検索
+  - HP: https://github.com/BurntSushi/ripgrep/
+  - DL: https://github.com/BurntSushi/ripgrep/releases
+- the platinum searcher - ファイル検索
+  - HP: https://github.com/monochromegane/the_platinum_searcher
+  - DL: https://github.com/monochromegane/the_platinum_searcher/releases
+- everything - ファイル検索
+  - HP: https://www.voidtools.com/
+  - DL: https://www.voidtools.com/downloads/
+    - zip version
+    - Language Pack
+    - Command-line Interface
+- pandoc - 文書作成
+  - HP: https://pandoc.org/
+  - DL: https://github.com/jgm/pandoc/releases/tag/2.10.1
+- cmigemo - 日本語インクリメンタル検
+  - DL: https://www.kaoriya.net/software/cmigemo/
+- Git Extension - Git クライアント
+  - HP: http://gitextensions.github.io/
+  - DL: https://github.com/gitextensions/gitextensions/releases
+- Tomcat - Webコンテナ
+  - HP: http://tomcat.apache.org/
+  - DL: https://tomcat.apache.org/download-90.cgi
+- git - 分散型バージョン管理
+  - HP: https://git-scm.com/
+  - DL: https://git-scm.com/download/win
+- vlc - ディアプレーヤー
+  - HP: https://www.videolan.org/
+  - DL: https://www.videolan.org/vlc/download-windows.html
+- draw.io - ダイアグラム作図
+  - HP: https://app.diagrams.net/
+  - DL: https://github.com/jgraph/drawio-desktop/releases
+- BgInfo - システム情報をデスクトップ壁紙へ
+  - HP: https://docs.microsoft.com/en-us/sysinternals/downloads/bginfo
+  - DL: https://docs.microsoft.com/en-us/sysinternals/downloads/bginfo
+- Color Picker - スクリーンからのスポイトカラーピックツール
+  - HP: http://www.winsystem.jp/
+  - DL: https://www.vector.co.jp/soft/win95/art/se350616.html
+- FreeCAD - 3D CAD 
+  - HP: https://www.freecadweb.org/
+  - DL: https://github.com/FreeCAD/FreeCAD/releases/tag/0.19_pre
+- IrfanView - 画像ビューア
+  - HP: https://www.irfanview.com/
+  - DL: https://www.irfanview.com/64bit.htm
+- マウスふるふる - 一定時間おきにマウスを小さく左右に揺らす
+  - HP: https://www.inasoft.org/
+  - DL: https://www.inasoft.org/icountt.html
+- AdoptOpenJDK(Java) - Java プログラム
+  - HP: https://adoptopenjdk.net/
+  - DL: https://adoptopenjdk.net/releases.html
+- Rapid Environment Editor - 環境変数を編集支援
+  - HP: https://www.rapidee.com/
+  - DL: https://www.rapidee.com/en/download
+- cmder - コンソールエミュレーター
+  - HP: https://cmder.net/
+  - DL: https://github.com/cmderdev/cmder/releases
+- rlogin - ターミナルソフト 
+  - HP: http://nanno.dip.jp/
+  - DL: http://nanno.dip.jp/softlib/man/rlogin/
+- Tera Term - ターミナルエミュレーター
+  - HP: https://ttssh2.osdn.jp/
+  - DL: https://ja.osdn.net/projects/ttssh2/releases/
+- Real Sync - フォルダ間同期、バックアップ
+  - HP: http://www.takenet.or.jp/~ryuuji/
+  - DL: http://www.takenet.or.jp/~ryuuji/realsync/
+- Sizer - ウィンドウを指定サイズ
+  - HP: http://www.brianapps.net/
+  - DL: http://www.brianapps.net/sizer/ (Zip package)
+- Sumatra PDF - PDF閲覧
+  - HP: https://www.sumatrapdfreader.org/free-pdf-reader.html
+  - DL: https://www.sumatrapdfreader.org/download-free-pdf-viewer.html
+- WinMerge - 差分比較
+  - https://winmergejp.bitbucket.io/
+- WinSCP- SCP/SFTP/FTPS対応クライアント
+  - HP: https://winscp.net/
+  - DL: https://winscp.net/eng/downloads.php (Portable executables)
+- WinPython - Python プログラム
+  - HP: https://winpython.github.io/
+  - DL: https://github.com/winpython/winpython/releases
+- ZoomIt - デスクトップ拡大表示
+  - HP: https://docs.microsoft.com/en-us/sysinternals/downloads/zoomit
+  - DL: https://live.sysinternals.com/
+- Inkscape - ベクトル画像編集
+  - HP: https://inkscape.org/
+  - DL: https://inkscape.org/release/1.0.1/windows/64-bit/
+- Hunspell - スペルチェッカーおよび形態学的アナライザー
+  - HP: http://hunspell.github.io/
+  - DL: https://github.com/gromnitsky/hunspell-windows/releases
+
