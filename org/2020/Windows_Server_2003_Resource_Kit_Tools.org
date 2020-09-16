@@ -27,7 +27,7 @@
 * Resource Kit Tools の展開
   
   1. 以下からダウンロード[fn:noms]
-     https://web.archive.org/web/20200722120645/http://www.microsoft.com/en-us/download/details.aspx?displaylang=en&id=17657
+     - https://web.archive.org/web/20200722120645/http://www.microsoft.com/en-us/download/details.aspx?displaylang=en&id=17657
   2. 以下のコマンドにより展開
      #+begin_example
      c:\tmp>rktools.exe /C
