@@ -15,10 +15,11 @@
   - [[https://peing.net/en/clothoid][Question Box]]
   # - [[https://marshmallow-qa.com/clothoid][Marshmallow]]
 
-* Article - Japanese
+* Japanese Articles 
 ** 2020    
    
-   
+   + [[file:2020/Windows_Server_2003_Resource_Kit_Tools.org][Windows Server 2003 Resource Kit Tools から中身だけを取り出す]]
+   + [[file:2020/portable-software-on-windows.org][Windows の開発環境を Portable 版で整える]]
    + [[file:2020/slack-reminder-format.org][Slack reminder の日付け書き方サンプル集]]
    + [[file:2020/install-mecab-on-ubuntu-20.04.1LTS.org][/bin/sh: 1: mecab-config: not found]]
    + [[file:2020/debian-linux-add-hdd.org][Debian HDD 増設時の設定手順]]
@@ -54,35 +55,8 @@
    + [[file:2016/five-Chateau-wine-labels.org][List for 1st-3rd labels of 5 chateaus]]
    + [[file:2016/pc-changer-mouse-emulation-off.org][PC自動切替器とトラックボールマウスの相性]]
    + [[file:2016/powershell-timestamp-file-name.org][PowerShell でファイル名に作成時刻をつける]]
-   # + [[file:2016/virtualbox-VERR_ACCESS_DENIED.org][VERR _ ACCESS _ DENIED for virtualbox]]
-   # VERR _ ACCESS _ DENIED for virtualbox
-   # 1 環境
-   #     Windows 7 64bit
-   #     Windows 2012 R2 on Oracle VM VirtualBox 5.0.16r105871
-   # 2 エラー
-   # 仮想マシン"machine name"のセッションを開けませんでした。
-   # Cannot open host device 'E:' for readonly access. Check the permissions of that device (VERR_ACCESS_DENIED).
-   # AHCI: Failed to attach drive to Port1 (VERR_ACCESS_DENIED).
-   # 終了コード : E_FAIL (0x80004005)
-   # コンポーネント: ConsoleWrap
-   # インターフェース: IConsole {872da645-4a9b-1727-bee2-5585105b9eed}
-   # 3 対処方法
-   #     RDP をやめる (リモートデスクトップで繋いでいると DVD/CD ドライブの割り当てができない)。
-   # 4 参考
-   #     ストレージにホストドライブ(DVD ドライブ)を追加できない | VirtualBox Mania
-   #     http://vboxmania.net/node/563
-   # + [[file:2016/virtualbox-change-windows-resolution.org][VirtualBox で Windows の解像度を変化させる]]
-   # VirtualBox で Windows の解像度を変化させる
-   # 1 環境
-   #     Windows 7 64bit
-   #     Windows 2012 R2 on Oracle VM VirtualBox 5.0.16r105871
-   # 2 解像度を動的に変化させる方法
-   # VirtualBox にインストールしたゲスト OS の解像度はデフォルトで 640 × 480 だから、見にくい。 以下の手順で、動的に変化させることができる。
-   #     ゲスト OS を起動
-   #     [デバイス]>[Guest Addition CD イメージの挿入]
-   #     CD ドライブにマウントされるので、開く
-   #     [VboxWindowsAdditons-amd64.exe]を管理者権限で実行
-   #     画面に従ってインストール
+   + [[file:2016/virtualbox-VERR_ACCESS_DENIED.org][VERR _ ACCESS _ DENIED for virtualbox]]
+   + [[file:2016/virtualbox-change-windows-resolution.org][VirtualBox で Windows の解像度を変化させる]]
    + [[file:2016/GitBucket-SourceTree-WinMerge.org][Windows で GitBucket で Git サーバーを立て、SourceTree + WinMerge で利用する方法]]
    + [[file:2016/emacs-python-gnupack-setting.org][emacs 24 で Python の環境を作る]]
    + [[file:2016/emacs-web-development-environment.org][emacs 24 で Web 開発の環境を作る]]
