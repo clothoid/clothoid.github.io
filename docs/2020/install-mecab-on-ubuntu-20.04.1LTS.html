@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
 <head>
-<!-- 2020-09-12 Sat 07:36 -->
+<!-- 2020-09-17 Thu 12:20 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>/bin/sh: 1: mecab-config: not found と RuntimeError</title>
@@ -252,17 +252,17 @@ for the JavaScript code in this tag.
 <h2>&#30446;&#27425;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org9ba77f2">1. 環境</a></li>
-<li><a href="#org5f182c4">2. 手順</a></li>
-<li><a href="#org0f24e39">3. 確認</a></li>
-<li><a href="#org20f6ad3">4. 経緯</a></li>
-<li><a href="#org6b8c509">5. 試行錯誤の手順</a></li>
+<li><a href="#orgffc4a10">1. 環境</a></li>
+<li><a href="#org7e0100c">2. 手順</a></li>
+<li><a href="#org32e735a">3. 確認</a></li>
+<li><a href="#org3a50a30">4. 経緯</a></li>
+<li><a href="#org798e617">5. 試行錯誤の手順</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org9ba77f2" class="outline-2">
-<h2 id="org9ba77f2"><span class="section-number-2">1</span> 環境</h2>
+<div id="outline-container-orgffc4a10" class="outline-2">
+<h2 id="orgffc4a10"><span class="section-number-2">1</span> 環境</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>Ubuntu 20.04.1 LTS</li>
@@ -277,8 +277,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org5f182c4" class="outline-2">
-<h2 id="org5f182c4"><span class="section-number-2">2</span> 手順</h2>
+<div id="outline-container-org7e0100c" class="outline-2">
+<h2 id="org7e0100c"><span class="section-number-2">2</span> 手順</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
 <pre class="src src-sh">sudo apt update
@@ -289,8 +289,8 @@ sudo pip3 install mecab
 </div>
 </div>
 
-<div id="outline-container-org0f24e39" class="outline-2">
-<h2 id="org0f24e39"><span class="section-number-2">3</span> 確認</h2>
+<div id="outline-container-org32e735a" class="outline-2">
+<h2 id="org32e735a"><span class="section-number-2">3</span> 確認</h2>
 <div class="outline-text-2" id="text-3">
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #8D8D84;">#</span><span style="color: #8D8D84; font-style: italic;">!/usr/bin/env python3</span>
@@ -347,8 +347,8 @@ sudo pip3 install mecab
 </div>
 </div>
 
-<div id="outline-container-org20f6ad3" class="outline-2">
-<h2 id="org20f6ad3"><span class="section-number-2">4</span> 経緯</h2>
+<div id="outline-container-org3a50a30" class="outline-2">
+<h2 id="org3a50a30"><span class="section-number-2">4</span> 経緯</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 python で mecab を利用しようと思い、pipしたら以下のエラーが発生。
@@ -383,8 +383,8 @@ mecab がインストールされていない。
 </div>
 </div>
 
-<div id="outline-container-org6b8c509" class="outline-2">
-<h2 id="org6b8c509"><span class="section-number-2">5</span> 試行錯誤の手順</h2>
+<div id="outline-container-org798e617" class="outline-2">
+<h2 id="org798e617"><span class="section-number-2">5</span> 試行錯誤の手順</h2>
 <div class="outline-text-2" id="text-5">
 <pre class="example">
 clothoid@silverstone:~$ sudo apt install mecab
@@ -552,7 +552,7 @@ sudo apt install mecab-ipadic mecab-ipadic-utf8
 </div>
 <div id="postamble" class="status">
 <p class="author">&#33879;&#32773;: clothoid</p>
-<p class="date">Created: 2020-09-12 Sat 07:36</p>
+<p class="date">Created: 2020-09-17 Thu 12:20</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

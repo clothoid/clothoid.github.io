@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
 <head>
-<!-- 2020-09-12 Sat 07:36 -->
+<!-- 2020-09-17 Thu 12:20 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Windows で GitBucket で Git サーバーを立て、SourceTree + WinMerge で利用する方法</title>
@@ -252,43 +252,43 @@ for the JavaScript code in this tag.
 <h2>&#30446;&#27425;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org9194947">1. 環境</a></li>
-<li><a href="#orgdcd23e1">2. Git サーバーの構築</a>
+<li><a href="#org4ca75f1">1. 環境</a></li>
+<li><a href="#orgf5fdfa1">2. Git サーバーの構築</a>
 <ul>
-<li><a href="#org155ab5c">2.1. Java 8 のダンロード</a></li>
-<li><a href="#orgcd83128">2.2. Tomcat 7 のインストール</a></li>
-<li><a href="#org218bf19">2.3. GitBucket のインストールと起動</a></li>
+<li><a href="#org66a25e7">2.1. Java 8 のダンロード</a></li>
+<li><a href="#org8484be3">2.2. Tomcat 7 のインストール</a></li>
+<li><a href="#org47e6159">2.3. GitBucket のインストールと起動</a></li>
 </ul>
 </li>
-<li><a href="#orgc0ab2b1">3. Git クライアントのインストール</a></li>
-<li><a href="#org1e1d742">4. SourceTree のインストール</a></li>
-<li><a href="#org1e529c3">5. WinMerge のインストールと xdocdiff プラグインの設定</a>
+<li><a href="#org450c366">3. Git クライアントのインストール</a></li>
+<li><a href="#org101c816">4. SourceTree のインストール</a></li>
+<li><a href="#org1477d12">5. WinMerge のインストールと xdocdiff プラグインの設定</a>
 <ul>
-<li><a href="#org1d1dc82">5.1. WinMerge 日本語版</a></li>
-<li><a href="#org1dd0de6">5.2. xdocdiff</a></li>
+<li><a href="#orgde5c228">5.1. WinMerge 日本語版</a></li>
+<li><a href="#orge0d5a71">5.2. xdocdiff</a></li>
 </ul>
 </li>
-<li><a href="#org28b30c7">6. SourceTree で WinMerge を設定</a></li>
-<li><a href="#org8b213cc">7. 動作確認</a>
+<li><a href="#org55adfcc">6. SourceTree で WinMerge を設定</a></li>
+<li><a href="#orgf22b287">7. 動作確認</a>
 <ul>
-<li><a href="#org7a71bbc">7.1. GitBucket で sample リポジトリの作成</a></li>
-<li><a href="#orgc93eac4">7.2. SourceTree から接続</a>
+<li><a href="#org2603223">7.1. GitBucket で sample リポジトリの作成</a></li>
+<li><a href="#org3e494fa">7.2. SourceTree から接続</a>
 <ul>
-<li><a href="#org3a3efe3">7.2.1. クローン</a></li>
-<li><a href="#orgb5efcb4">7.2.2. コミット</a></li>
-<li><a href="#orgb213496">7.2.3. プッシュ</a></li>
+<li><a href="#org5e27920">7.2.1. クローン</a></li>
+<li><a href="#orga88c256">7.2.2. コミット</a></li>
+<li><a href="#org182fcc9">7.2.3. プッシュ</a></li>
 </ul>
 </li>
-<li><a href="#org2187979">7.3. GitBucket で 確認</a></li>
+<li><a href="#org17dee82">7.3. GitBucket で 確認</a></li>
 </ul>
 </li>
-<li><a href="#orgf41d013">8. 参考</a></li>
+<li><a href="#org5939c4a">8. 参考</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org9194947" class="outline-2">
-<h2 id="org9194947"><span class="section-number-2">1</span> 環境</h2>
+<div id="outline-container-org4ca75f1" class="outline-2">
+<h2 id="org4ca75f1"><span class="section-number-2">1</span> 環境</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>サーバー
@@ -311,12 +311,12 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgdcd23e1" class="outline-2">
-<h2 id="orgdcd23e1"><span class="section-number-2">2</span> Git サーバーの構築</h2>
+<div id="outline-container-orgf5fdfa1" class="outline-2">
+<h2 id="orgf5fdfa1"><span class="section-number-2">2</span> Git サーバーの構築</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org155ab5c" class="outline-3">
-<h3 id="org155ab5c"><span class="section-number-3">2.1</span> Java 8 のダンロード</h3>
+<div id="outline-container-org66a25e7" class="outline-3">
+<h3 id="org66a25e7"><span class="section-number-3">2.1</span> Java 8 のダンロード</h3>
 <div class="outline-text-3" id="text-2-1">
 <ol class="org-ol">
 <li><a href="https://java.com/ja/download/manual.jsp">https://java.com/ja/download/manual.jsp</a> にアクセス</li>
@@ -325,8 +325,8 @@ for the JavaScript code in this tag.
 </ol>
 </div>
 </div>
-<div id="outline-container-orgcd83128" class="outline-3">
-<h3 id="orgcd83128"><span class="section-number-3">2.2</span> Tomcat 7 のインストール</h3>
+<div id="outline-container-org8484be3" class="outline-3">
+<h3 id="org8484be3"><span class="section-number-3">2.2</span> Tomcat 7 のインストール</h3>
 <div class="outline-text-3" id="text-2-2">
 <ol class="org-ol">
 <li><a href="http://tomcat.apache.org/download-70.cgi">http://tomcat.apache.org/download-70.cgi</a> にアクセス</li>
@@ -361,8 +361,8 @@ conf/server.xml を、下記の通り変更 (検索キーワード文字化け�
 </ol>
 </div>
 </div>
-<div id="outline-container-org218bf19" class="outline-3">
-<h3 id="org218bf19"><span class="section-number-3">2.3</span> GitBucket のインストールと起動</h3>
+<div id="outline-container-org47e6159" class="outline-3">
+<h3 id="org47e6159"><span class="section-number-3">2.3</span> GitBucket のインストールと起動</h3>
 <div class="outline-text-3" id="text-2-3">
 <ol class="org-ol">
 <li><a href="https://github.com/takezoe/gitbucket/releases">https://github.com/takezoe/gitbucket/releases</a> から gitbucket.war をダウンロード</li>
@@ -377,8 +377,8 @@ conf/server.xml を、下記の通り変更 (検索キーワード文字化け�
 </div>
 </div>
 
-<div id="outline-container-orgc0ab2b1" class="outline-2">
-<h2 id="orgc0ab2b1"><span class="section-number-2">3</span> Git クライアントのインストール</h2>
+<div id="outline-container-org450c366" class="outline-2">
+<h2 id="org450c366"><span class="section-number-2">3</span> Git クライアントのインストール</h2>
 <div class="outline-text-2" id="text-3">
 <ol class="org-ol">
 <li><a href="https://git-for-windows.github.io/">https://git-for-windows.github.io/</a> にアクセス</li>
@@ -388,8 +388,8 @@ conf/server.xml を、下記の通り変更 (検索キーワード文字化け�
 </div>
 </div>
 
-<div id="outline-container-org1e1d742" class="outline-2">
-<h2 id="org1e1d742"><span class="section-number-2">4</span> SourceTree のインストール</h2>
+<div id="outline-container-org101c816" class="outline-2">
+<h2 id="org101c816"><span class="section-number-2">4</span> SourceTree のインストール</h2>
 <div class="outline-text-2" id="text-4">
 <ol class="org-ol">
 <li><a href="https://www.sourcetreeapp.com/">https://www.sourcetreeapp.com/</a> にアクセス</li>
@@ -404,12 +404,12 @@ conf/server.xml を、下記の通り変更 (検索キーワード文字化け�
 </div>
 </div>
 
-<div id="outline-container-org1e529c3" class="outline-2">
-<h2 id="org1e529c3"><span class="section-number-2">5</span> WinMerge のインストールと xdocdiff プラグインの設定</h2>
+<div id="outline-container-org1477d12" class="outline-2">
+<h2 id="org1477d12"><span class="section-number-2">5</span> WinMerge のインストールと xdocdiff プラグインの設定</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-org1d1dc82" class="outline-3">
-<h3 id="org1d1dc82"><span class="section-number-3">5.1</span> WinMerge 日本語版</h3>
+<div id="outline-container-orgde5c228" class="outline-3">
+<h3 id="orgde5c228"><span class="section-number-3">5.1</span> WinMerge 日本語版</h3>
 <div class="outline-text-3" id="text-5-1">
 <ol class="org-ol">
 <li><a href="http://www.geocities.co.jp/SiliconValley-SanJose/8165/winmerge.html">http://www.geocities.co.jp/SiliconValley-SanJose/8165/winmerge.html</a> にアクセス</li>
@@ -418,8 +418,8 @@ conf/server.xml を、下記の通り変更 (検索キーワード文字化け�
 </ol>
 </div>
 </div>
-<div id="outline-container-org1dd0de6" class="outline-3">
-<h3 id="org1dd0de6"><span class="section-number-3">5.2</span> xdocdiff</h3>
+<div id="outline-container-orge0d5a71" class="outline-3">
+<h3 id="orge0d5a71"><span class="section-number-3">5.2</span> xdocdiff</h3>
 <div class="outline-text-3" id="text-5-2">
 <ol class="org-ol">
 <li><a href="http://freemind.s57.xrea.com/xdocdiffPlugin/">http://freemind.s57.xrea.com/xdocdiffPlugin/</a> にアクセス</li>
@@ -430,8 +430,8 @@ conf/server.xml を、下記の通り変更 (検索キーワード文字化け�
 </div>
 </div>
 </div>
-<div id="outline-container-org28b30c7" class="outline-2">
-<h2 id="org28b30c7"><span class="section-number-2">6</span> SourceTree で WinMerge を設定</h2>
+<div id="outline-container-org55adfcc" class="outline-2">
+<h2 id="org55adfcc"><span class="section-number-2">6</span> SourceTree で WinMerge を設定</h2>
 <div class="outline-text-2" id="text-6">
 <ol class="org-ol">
 <li>WinMerge を起動
@@ -452,12 +452,12 @@ conf/server.xml を、下記の通り変更 (検索キーワード文字化け�
 </ol>
 </div>
 </div>
-<div id="outline-container-org8b213cc" class="outline-2">
-<h2 id="org8b213cc"><span class="section-number-2">7</span> 動作確認</h2>
+<div id="outline-container-orgf22b287" class="outline-2">
+<h2 id="orgf22b287"><span class="section-number-2">7</span> 動作確認</h2>
 <div class="outline-text-2" id="text-7">
 </div>
-<div id="outline-container-org7a71bbc" class="outline-3">
-<h3 id="org7a71bbc"><span class="section-number-3">7.1</span> GitBucket で sample リポジトリの作成</h3>
+<div id="outline-container-org2603223" class="outline-3">
+<h3 id="org2603223"><span class="section-number-3">7.1</span> GitBucket で sample リポジトリの作成</h3>
 <div class="outline-text-3" id="text-7-1">
 <ol class="org-ol">
 <li><a href="http://hostname:8080/gitbucket">http://hostname:8080/gitbucket</a> へ接続</li>
@@ -468,12 +468,12 @@ conf/server.xml を、下記の通り変更 (検索キーワード文字化け�
 </ol>
 </div>
 </div>
-<div id="outline-container-orgc93eac4" class="outline-3">
-<h3 id="orgc93eac4"><span class="section-number-3">7.2</span> SourceTree から接続</h3>
+<div id="outline-container-org3e494fa" class="outline-3">
+<h3 id="org3e494fa"><span class="section-number-3">7.2</span> SourceTree から接続</h3>
 <div class="outline-text-3" id="text-7-2">
 </div>
-<div id="outline-container-org3a3efe3" class="outline-4">
-<h4 id="org3a3efe3"><span class="section-number-4">7.2.1</span> クローン</h4>
+<div id="outline-container-org5e27920" class="outline-4">
+<h4 id="org5e27920"><span class="section-number-4">7.2.1</span> クローン</h4>
 <div class="outline-text-4" id="text-7-2-1">
 <ol class="org-ol">
 <li>[新規/クローンを作成する]を選択</li>
@@ -483,8 +483,8 @@ conf/server.xml を、下記の通り変更 (検索キーワード文字化け�
 </ol>
 </div>
 </div>
-<div id="outline-container-orgb5efcb4" class="outline-4">
-<h4 id="orgb5efcb4"><span class="section-number-4">7.2.2</span> コミット</h4>
+<div id="outline-container-orga88c256" class="outline-4">
+<h4 id="orga88c256"><span class="section-number-4">7.2.2</span> コミット</h4>
 <div class="outline-text-4" id="text-7-2-2">
 <ol class="org-ol">
 <li>[保存先のパス] で指定したフォルダに適当なエクセルファイルを追加</li>
@@ -496,8 +496,8 @@ conf/server.xml を、下記の通り変更 (検索キーワード文字化け�
 </ol>
 </div>
 </div>
-<div id="outline-container-orgb213496" class="outline-4">
-<h4 id="orgb213496"><span class="section-number-4">7.2.3</span> プッシュ</h4>
+<div id="outline-container-org182fcc9" class="outline-4">
+<h4 id="org182fcc9"><span class="section-number-4">7.2.3</span> プッシュ</h4>
 <div class="outline-text-4" id="text-7-2-3">
 <ol class="org-ol">
 <li>[プッシュ]を選択</li>
@@ -510,8 +510,8 @@ conf/server.xml を、下記の通り変更 (検索キーワード文字化け�
 </div>
 </div>
 </div>
-<div id="outline-container-org2187979" class="outline-3">
-<h3 id="org2187979"><span class="section-number-3">7.3</span> GitBucket で 確認</h3>
+<div id="outline-container-org17dee82" class="outline-3">
+<h3 id="org17dee82"><span class="section-number-3">7.3</span> GitBucket で 確認</h3>
 <div class="outline-text-3" id="text-7-3">
 <ol class="org-ol">
 <li><a href="http://hostname:8080/gitbucket">http://hostname:8080/gitbucket</a> へ接続</li>
@@ -522,8 +522,8 @@ conf/server.xml を、下記の通り変更 (検索キーワード文字化け�
 </div>
 </div>
 </div>
-<div id="outline-container-orgf41d013" class="outline-2">
-<h2 id="orgf41d013"><span class="section-number-2">8</span> 参考</h2>
+<div id="outline-container-org5939c4a" class="outline-2">
+<h2 id="org5939c4a"><span class="section-number-2">8</span> 参考</h2>
 <div class="outline-text-2" id="text-8">
 <ul class="org-ul">
 <li><a href="https://github.com/gitbucket/gitbucket">GitHub - gitbucket/gitbucket: A Git platform powered by Scala with easy installation, high extensibility &amp; github API compatibility</a></li>
@@ -535,7 +535,7 @@ conf/server.xml を、下記の通り変更 (検索キーワード文字化け�
 </div>
 <div id="postamble" class="status">
 <p class="author">&#33879;&#32773;: clothoid</p>
-<p class="date">Created: 2020-09-12 Sat 07:36</p>
+<p class="date">Created: 2020-09-17 Thu 12:20</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

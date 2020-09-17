@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
 <head>
-<!-- 2020-09-12 Sat 07:36 -->
+<!-- 2020-09-17 Thu 12:20 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>emacs の org-beamer-export-to-pdf 設定手順</title>
@@ -274,25 +274,25 @@ for the JavaScript code in this tag.
 <h2>&#30446;&#27425;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org6df5f3c">1. 目的</a></li>
-<li><a href="#org06413ad">2. 設定手順</a>
+<li><a href="#orgf0c543b">1. 目的</a></li>
+<li><a href="#org3b9124c">2. 設定手順</a>
 <ul>
-<li><a href="#org8dfb9b6">2.1. 環境</a></li>
-<li><a href="#orgfa0cf7a">2.2. TeX Live 2018 のインストール</a></li>
-<li><a href="#org6390842">2.3. Python のインストール</a></li>
-<li><a href="#orgfe05cd4">2.4. emacs のインストール</a></li>
-<li><a href="#orgfd6ad6a">2.5. init.el の設定</a></li>
+<li><a href="#org103c867">2.1. 環境</a></li>
+<li><a href="#org00de21a">2.2. TeX Live 2018 のインストール</a></li>
+<li><a href="#orgd151521">2.3. Python のインストール</a></li>
+<li><a href="#orgd3fe344">2.4. emacs のインストール</a></li>
+<li><a href="#orga8b6899">2.5. init.el の設定</a></li>
 </ul>
 </li>
-<li><a href="#org2e81a96">3. サンプル</a></li>
-<li><a href="#org3508e26">4. おまけ</a></li>
-<li><a href="#org6f123bb">5. 参考</a></li>
+<li><a href="#org2c4ccf6">3. サンプル</a></li>
+<li><a href="#orgfd8f119">4. おまけ</a></li>
+<li><a href="#org1c68f6d">5. 参考</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org6df5f3c" class="outline-2">
-<h2 id="org6df5f3c"><span class="section-number-2">1</span> 目的</h2>
+<div id="outline-container-orgf0c543b" class="outline-2">
+<h2 id="orgf0c543b"><span class="section-number-2">1</span> 目的</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 emacs のテキスト編集モードの一つである org-mode で M-x org-beamer-export-to-pdf (C-c C-e l P) コマンド一発により、以下のようなスライドを簡単に生成できるように構築する。
@@ -306,12 +306,12 @@ emacs のテキスト編集モードの一つである org-mode で M-x org-beam
 </div>
 </div>
 
-<div id="outline-container-org06413ad" class="outline-2">
-<h2 id="org06413ad"><span class="section-number-2">2</span> 設定手順</h2>
+<div id="outline-container-org3b9124c" class="outline-2">
+<h2 id="org3b9124c"><span class="section-number-2">2</span> 設定手順</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org8dfb9b6" class="outline-3">
-<h3 id="org8dfb9b6"><span class="section-number-3">2.1</span> 環境</h3>
+<div id="outline-container-org103c867" class="outline-3">
+<h3 id="org103c867"><span class="section-number-3">2.1</span> 環境</h3>
 <div class="outline-text-3" id="text-2-1">
 <ul class="org-ul">
 <li>Windows: 10 Pro</li>
@@ -329,8 +329,8 @@ emacs のテキスト編集モードの一つである org-mode で M-x org-beam
 </div>
 </div>
 
-<div id="outline-container-orgfa0cf7a" class="outline-3">
-<h3 id="orgfa0cf7a"><span class="section-number-3">2.2</span> TeX Live 2018 のインストール</h3>
+<div id="outline-container-org00de21a" class="outline-3">
+<h3 id="org00de21a"><span class="section-number-3">2.2</span> TeX Live 2018 のインストール</h3>
 <div class="outline-text-3" id="text-2-2">
 <ol class="org-ol">
 <li><a href="https://www.tug.org/texlive/acquire-netinstall.html">ここ</a>から install-tl-windows.exe をダウンロードして実行</li>
@@ -355,8 +355,8 @@ use_proxy=on
 </div>
 </div>
 
-<div id="outline-container-org6390842" class="outline-3">
-<h3 id="org6390842"><span class="section-number-3">2.3</span> Python のインストール</h3>
+<div id="outline-container-orgd151521" class="outline-3">
+<h3 id="orgd151521"><span class="section-number-3">2.3</span> Python のインストール</h3>
 <div class="outline-text-3" id="text-2-3">
 <ol class="org-ol">
 <li><a href="https://www.python.org/downloads/release/python-372/">ここ</a>から、[Windows x86-64 executable installer] をダウンロード</li>
@@ -373,8 +373,8 @@ use_proxy=on
 </div>
 </div>
 
-<div id="outline-container-orgfe05cd4" class="outline-3">
-<h3 id="orgfe05cd4"><span class="section-number-3">2.4</span> emacs のインストール</h3>
+<div id="outline-container-orgd3fe344" class="outline-3">
+<h3 id="orgd3fe344"><span class="section-number-3">2.4</span> emacs のインストール</h3>
 <div class="outline-text-3" id="text-2-4">
 <ol class="org-ol">
 <li><a href="https://github.com/mhatta/emacs-26-x86_64-win-ime">ここ</a>以下から [emacs-26.1-x86_64-win-ime-20180619.zip] をダウンロード</li>
@@ -384,8 +384,8 @@ use_proxy=on
 </div>
 </div>
 
-<div id="outline-container-orgfd6ad6a" class="outline-3">
-<h3 id="orgfd6ad6a"><span class="section-number-3">2.5</span> init.el の設定</h3>
+<div id="outline-container-orga8b6899" class="outline-3">
+<h3 id="orga8b6899"><span class="section-number-3">2.5</span> init.el の設定</h3>
 <div class="outline-text-3" id="text-2-5">
 <div class="org-src-container">
 <pre class="src src-elisp"><span style="color: #8D8D84;">; </span><span style="color: #8D8D84; font-style: italic;">-*- Mode: Emacs-Lisp ; Coding: utf-8 -*-</span>
@@ -427,8 +427,8 @@ PATH&#12434;&#36861;&#21152;&#12377;&#12427;
 </div>
 
 
-<div id="outline-container-org2e81a96" class="outline-2">
-<h2 id="org2e81a96"><span class="section-number-2">3</span> サンプル</h2>
+<div id="outline-container-org2c4ccf6" class="outline-2">
+<h2 id="org2c4ccf6"><span class="section-number-2">3</span> サンプル</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 たとえば、以下のようなテキストファイルを作成して、C-c C-e l P とすると冒頭の PDF が一発で作成できる(<b>emacs.png はどこから拾っておくこと</b>)<sup><a id="fnr.5" class="footref" href="#fn.5">5</a></sup>。
@@ -543,7 +543,7 @@ PATH&#12434;&#36861;&#21152;&#12377;&#12427;
 <span style="color: #000088; background-color: #FFFFE0;">        </span><span style="color: #D0372D; background-color: #FFFFE0;">std</span><span style="color: #000088; background-color: #FFFFE0;">::cout &lt;&lt; </span><span style="color: #008000; background-color: #FFFFE0;">"Hello, world."</span><span style="color: #000088; background-color: #FFFFE0;"> &lt;&lt; </span><span style="color: #D0372D; background-color: #FFFFE0;">std</span><span style="color: #000088; background-color: #FFFFE0;">::endl;</span>
 <span style="color: #000088; background-color: #FFFFE0;">        </span><span style="color: #0000FF; background-color: #FFFFE0;">return</span><span style="color: #000088; background-color: #FFFFE0;"> 0;</span>
 <span style="color: #000088; background-color: #FFFFE0;">    }</span>
-<span style="color: #555555; background-color: #E2E1D5; text-decoration: overline;">   #+END_SRC</span>
+   #+END_SRC
 
 <span style="color: #123555; background-color: #E5F4FB; font-weight: bold; text-decoration: overline;">** &#30011;&#20687;</span>
 
@@ -576,8 +576,8 @@ PATH&#12434;&#36861;&#21152;&#12377;&#12427;
 </div>
 </div>
 
-<div id="outline-container-org3508e26" class="outline-2">
-<h2 id="org3508e26"><span class="section-number-2">4</span> おまけ</h2>
+<div id="outline-container-orgfd8f119" class="outline-2">
+<h2 id="orgfd8f119"><span class="section-number-2">4</span> おまけ</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 metropolis の色などを変えたい時には setbeamercolor を利用すればよいが、\usetheme の後ろに記載しないと上書きされてしまう。
@@ -634,8 +634,8 @@ metropolis の色などを変えたい時には setbeamercolor を利用すれ�
 </div>
 </div>
 
-<div id="outline-container-org6f123bb" class="outline-2">
-<h2 id="org6f123bb"><span class="section-number-2">5</span> 参考</h2>
+<div id="outline-container-org1c68f6d" class="outline-2">
+<h2 id="org1c68f6d"><span class="section-number-2">5</span> 参考</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li><a href="https://orgmode.org/manual/Beamer-export.html">12.8 Beamer export</a></li>
@@ -688,7 +688,7 @@ Package beamerthememetropolis Warning: You need to compile with XeLaTeX or LuaLa
 </div></div>
 <div id="postamble" class="status">
 <p class="author">&#33879;&#32773;: clothoid</p>
-<p class="date">Created: 2020-09-12 Sat 07:36</p>
+<p class="date">Created: 2020-09-17 Thu 12:20</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -1,6 +1,6 @@
 #+TITLE: Sitemap
 
-- [[file:index.org][Contents]]
+- [[file:index.org][@clothoid's Home Page]]
 - 2015
   - [[file:2015/good-things-2015.org][2015 年版、買って良かったもの]]
   - [[file:2015/visited-japanse-good-restaurant-list.org][2015 美味しかったレストラン 8 選]]
@@ -63,4 +63,5 @@
   - [[file:2020/slack-reminder-format.org][Slack reminder の日付け書き方サンプル集]]
   - [[file:2020/Windows_Server_2003_Resource_Kit_Tools.org][Windows Server 2003 Resource Kit Tools から中身だけを取り出す]]
   - [[file:2020/portable-software-on-windows.org][Windows の開発環境を Portable 版で整える]]
+  - [[file:2020/emacs-leaf.org][emacs の leaf.el を入門したい]]
   - [[file:2020/rsync-backup-hdd.org][rsync によるディスクのフルバックアップ]]
