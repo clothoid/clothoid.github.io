@@ -18,7 +18,6 @@
 * Japanese Articles 
 ** 2020    
    
-   + [[file:2020/emacs-leaf.org][emacs の leaf.el を入門したい]]
    + [[file:2020/Windows_Server_2003_Resource_Kit_Tools.org][Windows Server 2003 Resource Kit Tools から中身だけを取り出す]]
    + [[file:2020/portable-software-on-windows.org][Windows の開発環境を Portable 版で整える]]
    + [[file:2020/slack-reminder-format.org][Slack reminder の日付け書き方サンプル集]]
