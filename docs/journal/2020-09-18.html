@@ -1,0 +1,564 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2020-09-18 Fri 15:03 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="clothoid" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org7bfa792">1. 2020-09-18</a>
+<ul>
+<li><a href="#orga211b61">1.1. emacs の leaf.el を入門したい</a>
+<ul>
+<li><a href="#org4a49a27">1.1.1. 背景</a></li>
+<li><a href="#org01d9b3e">1.1.2. 分からない</a>
+<ul>
+<li><a href="#org7909f19">1.1.2.1. cus-edit.c の説明</a></li>
+<li><a href="#org67391f8">1.1.2.2. cus-start.c</a></li>
+<li><a href="#orga54b207">1.1.2.3. autorevert</a></li>
+<li><a href="#org4427929">1.1.2.4. cc-mode,</a></li>
+<li><a href="#org3a0eafc">1.1.2.5. paren</a></li>
+<li><a href="#orgeb118c8">1.1.2.6. simple</a></li>
+<li><a href="#orga4613ff">1.1.2.7. 以下省略</a></li>
+</ul>
+</li>
+<li><a href="#org46bad75">1.1.3. 分かったこと</a>
+<ul>
+<li><a href="#org603df40">1.1.3.1. customが勝手に設定を追記</a></li>
+<li><a href="#org8d20ba3">1.1.3.2. 書き方について</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org7bfa792" class="outline-2">
+<h2 id="org7bfa792"><span class="section-number-2">1</span> 2020-09-18</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+日記を続けられない。
+githubにHPを移動した。
+</p>
+</div>
+
+<div id="outline-container-orga211b61" class="outline-3">
+<h3 id="orga211b61"><span class="section-number-3">1.1</span> emacs の leaf.el を入門したい</h3>
+<div class="outline-text-3" id="text-1-1">
+</div>
+<div id="outline-container-org4a49a27" class="outline-4">
+<h4 id="org4a49a27"><span class="section-number-4">1.1.1</span> 背景</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<p>
+emacs では leaf.el で init.el を書くのが流行りらしいとの記事をいくつかみたが、
+非エンジニアにとって設定方法などがサッパリ分からないというtweetをしたところ、
+作者の方から初心者用の記事を書きますね、的なことを言っていただいたので、期待していた。
+</p>
+
+<ul class="org-ul">
+<li><a href="https://qiita.com/conao3/items/347d7e472afd0c58fbd7">Emacs入門から始めるleaf.el入門</a></li>
+</ul>
+
+<p>
+しかし、debian strech の emacs は 25.1 のまま上ってなかったし、
+buster でも 26.1 だったので、以下の部分で、そっ閉じした(また、読んでもよくわからなかった)。
+</p>
+
+<pre class="example">
+まずEmacs-26.3をどうにかしてインストールします。もしEmacs-22とかいう化石を使っている場合はすぐEmacs-26.3に移行してください。(自戒)
+
+leaf.elは24.4から動きますが、とても便利なleaf-convert.elはEmacs-26.1を要求します。
+
+Emacs-26.1とEmacs-26.2はELPAからのダウンロードに問題があります。結局Emacs-26.3を使うしか選択肢がありません。
+</pre>
+
+<p>
+時は流れ、strech から buster へのupgrade移行を行うも失敗。
+debian/linux 疲れも感じていたので、この際だからと ubuntu 20.04.1 LTS へ移行した。
+emacs のバージョンは26.3。
+</p>
+
+<p>
+ちょうどその時に、追加で以下の記事が出る。
+</p>
+
+<ul class="org-ul">
+<li><a href="https://emacs-jp.github.io/tips/emacs-in-2020">2020年代のEmacs入門</a></li>
+</ul>
+
+<p>
+C-x C-s とかから書いてあるので、これならいけるだろう、とタカをくくり leaf の設定方法を勉強したいと思った。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org01d9b3e" class="outline-4">
+<h4 id="org01d9b3e"><span class="section-number-4">1.1.2</span> 分からない</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<p>
+しかし、しかし、<a href="https://emacs-jp.github.io/tips/emacs-in-2020">2020年代のEmacs入門</a> を見てもleafのことがサッパリ分からない。
+本当に自分の頭の悪さに悲しくなる。
+とりあえず、何が分からないか、を記載しておく。
+もしかしたら、万が一、奇跡的に、後から自分が頭がよくなるかもしれない。
+天変地位感あるけど。
+</p>
+
+<p>
+とりあえず、以下の文まではオマジナイだと思った(init.elは分からない)
+</p>
+
+<pre class="example">
+leafによる設定は ;; ここにいっぱい設定を書く の場所に書き、Emacsを再起動することで反映で
+きます。
+</pre>
+</div>
+
+<div id="outline-container-org7909f19" class="outline-5">
+<h5 id="org7909f19"><span class="section-number-5">1.1.2.1</span> cus-edit.c の説明</h5>
+<div class="outline-text-5" id="text-1-1-2-1">
+<pre class="example">
+leafの :custom で設定するとinit.elにcustomが勝手に設定を追記します。 この状況になると、
+変数の二重管理になってしまうので、customがinit.elに追記しないように設定します。
+</pre>
+
+<ul class="org-ul">
+<li>":custom" というのは何か</li>
+<li>":custom で設定する"というのは何を設定するのか</li>
+<li>"customが勝手に設定を追記"のcustomとは何か</li>
+<li>"customが勝手に設定を追記"の"勝手に"というのはどういう時か&#x2026;勝手に動くの?AI?</li>
+<li>"変数の二重管理になってしまう"難の変数か</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org67391f8" class="outline-5">
+<h5 id="org67391f8"><span class="section-number-5">1.1.2.2</span> cus-start.c</h5>
+<div class="outline-text-5" id="text-1-1-2-2">
+<pre class="example">
+EmacsのC言語部分で定義されている変数をcustomで扱えるようにまとめているファイルです。 私
+の設定を書いておくので、取捨選択して頂ければと思います。変数の説明は F1 v で確認できま
+す。 無効にしているGUI要素についてはコメントアウトしておきました。
+</pre>
+
+<ul class="org-ul">
+<li>"EmacsのC言語部分で定義されている"って何&#x2026;何か内部のコード的なもの?(Emacsの一部はCで作られていると聞いたことがある)</li>
+<li>"C言語部分で定義されている変数をcustomで扱えるようにまとめ"ている理由は何か</li>
+<li>"user-mail-address"とかって登録するんだ&#x2026;怖い</li>
+<li>"tool-bar-mode" "truncate-lines"とか見たこと/使ったことあるけど、これがC言語の部分で登録されている? elispで設定するんじゃないの?</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orga54b207" class="outline-5">
+<h5 id="orga54b207"><span class="section-number-5">1.1.2.3</span> autorevert</h5>
+<div class="outline-text-5" id="text-1-1-2-3">
+<pre class="example">
+(leaf autorevert
+  :doc "revert buffers when files on disk change"
+  :tag "builtin"
+  :custom ((auto-revert-interval . 0.3)
+           (auto-revert-check-vc-info . t))
+  :global-minor-mode global-auto-revert-mode)
+
+Emacsの外でファイルが書き変わったときに自動的に読み直すマイナーモードです。 もちろん、
+Emacsで編集している場合は外の変更で上書きされることはありません。
+</pre>
+
+<ul class="org-ul">
+<li>これはよく使うけど、:doc、:tag とかなんなの&#x2026;</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org4427929" class="outline-5">
+<h5 id="org4427929"><span class="section-number-5">1.1.2.4</span> cc-mode,</h5>
+<div class="outline-text-5" id="text-1-1-2-4">
+<ul class="org-ul">
+<li>なんかたくさん設定方法が書いてあるけど、それぞれの意味が分からない。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org3a0eafc" class="outline-5">
+<h5 id="org3a0eafc"><span class="section-number-5">1.1.2.5</span> paren</h5>
+<div class="outline-text-5" id="text-1-1-2-5">
+<ul class="org-ul">
+<li>(show-paren-delay . 0.1) って何</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgeb118c8" class="outline-5">
+<h5 id="orgeb118c8"><span class="section-number-5">1.1.2.6</span> simple</h5>
+<div class="outline-text-5" id="text-1-1-2-6">
+<pre class="example">
+kill-ringの数を制御したり、kill-lineの挙動を変更したりします。
+</pre>
+
+<ul class="org-ul">
+<li>何がどうなるの&#x2026;kill-ringはクリップボードみたいなやつだから制限あるのかな。</li>
+<li>kill-lineは何</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orga4613ff" class="outline-5">
+<h5 id="orga4613ff"><span class="section-number-5">1.1.2.7</span> 以下省略</h5>
+<div class="outline-text-5" id="text-1-1-2-7">
+<p>
+もう、ここでプシュー、パンク&#x2026;読むのをやめた。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org46bad75" class="outline-4">
+<h4 id="org46bad75"><span class="section-number-4">1.1.3</span> 分かったこと</h4>
+<div class="outline-text-4" id="text-1-1-3">
+</div>
+<div id="outline-container-org603df40" class="outline-5">
+<h5 id="org603df40"><span class="section-number-5">1.1.3.1</span> customが勝手に設定を追記</h5>
+<div class="outline-text-5" id="text-1-1-3-1">
+<p>
+cus-edit.c の分からないことは以下に書いてありそうだった。
+</p>
+
+<ul class="org-ul">
+<li><a href="https://qiita.com/conao3/items/347d7e472afd0c58fbd7">Emacs入門から始めるleaf.el入門</a></li>
+</ul>
+
+<pre class="example">
+問題はcustomがinit.elに次のようなダンプを出力する点です。このダンプにより、leafの
+:custom で管理している場合、2箇所を修正する必要が生じます。
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ag-highligh-search t t)
+ '(ag-reuse-buffers t t)
+ '(ag-reuse-window t t)
+ ;;...
+ )
+</pre>
+
+<p>
+"ダンプ"というのがよく分からないが、これはなんか、guiか何かで"設定保存"的なものをおこなったら出てきた気がする。
+自分のものにはこんなの書いてある。
+</p>
+
+<pre class="example">
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(eshell-prompt-function
+   (lambda nil
+     (concat "[ "
+         (format-time-string "%Y/%m/%d %H:%M")
+         " | "
+         (user-login-name)
+         "@"
+         (system-name)
+         " ]
+" "["
+         (abbreviate-file-name
+          (eshell/pwd))
+         "]
+"
+         (if
+         (=
+          (user-uid)
+          0)
+         "#" "$")
+         " ")) t)
+ '(eshell-prompt-regexp "^\\(\\[[^]
+]+\\]\\|[$#] \\)")
+ '(org-agenda-format-date "%Y/%m/%d (%a)")
+ '(package-selected-packages
+   (quote
+    (ace-isearch yasnippet viewer twittering-mode sticky smex smartrep smartparens smart-newline save-load-path redo+ recentf-ext real-auto-save quickrun python-pep8 python-mode powershell open-junk-file mykie migemo man-commands leuven-theme key-chord jedi ido-vertical-mode id-manager htmlize helm-swoop flymake-python-pyflakes flymake-cursor expand-region elscreen column-enforce-mode bind-key avy auto-install archive-region anything ace-jump-mode))))
+</pre>
+
+<p>
+これが、なんらかの理由でイケナイコトのようだ。
+とにかく以下がオマジナイという理解。
+</p>
+
+<pre class="example">
+(leaf cus-edit
+  :doc "tools for customizing Emacs and Lisp packages"
+  :tag "builtin" "faces" "help"
+  :custom `((custom-file . ,(locate-user-emacs-file "custom.el"))))
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org8d20ba3" class="outline-5">
+<h5 id="org8d20ba3"><span class="section-number-5">1.1.3.2</span> 書き方について</h5>
+<div class="outline-text-5" id="text-1-1-3-2">
+<p>
+use-package のようなものらしいとのことで、情報を漁っていたら、以下が非常に分かりやすかった。
+これをleafに読み換えることで、leafの書き方の10%ぐらいは理解できそう。
+</p>
+
+<ul class="org-ul">
+<li><a href="https://qiita.com/kai2nenobu/items/5dfae3767514584f5220">use-packageで可読性の高いinit.elを書く</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: clothoid</p>
+<p class="date">Created: 2020-09-18 Fri 15:03</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

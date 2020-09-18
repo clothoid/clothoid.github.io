@@ -1,0 +1,192 @@
+* 2020-09-18
+
+  日記を続けられない。
+  githubにHPを移動した。
+
+** emacs の leaf.el を入門したい
+
+*** 背景
+
+    emacs では leaf.el で init.el を書くのが流行りらしいとの記事をいくつかみたが、
+    非エンジニアにとって設定方法などがサッパリ分からないというtweetをしたところ、
+    作者の方から初心者用の記事を書きますね、的なことを言っていただいたので、期待していた。
+
+    - [[https://qiita.com/conao3/items/347d7e472afd0c58fbd7][Emacs入門から始めるleaf.el入門]]
+
+    しかし、debian strech の emacs は 25.1 のまま上ってなかったし、
+    buster でも 26.1 だったので、以下の部分で、そっ閉じした(また、読んでもよくわからなかった)。
+
+    #+begin_example
+    まずEmacs-26.3をどうにかしてインストールします。もしEmacs-22とかいう化石を使っている場合はすぐEmacs-26.3に移行してください。(自戒)
+
+    leaf.elは24.4から動きますが、とても便利なleaf-convert.elはEmacs-26.1を要求します。
+
+    Emacs-26.1とEmacs-26.2はELPAからのダウンロードに問題があります。結局Emacs-26.3を使うしか選択肢がありません。
+    #+end_example
+
+    時は流れ、strech から buster へのupgrade移行を行うも失敗。
+    debian/linux 疲れも感じていたので、この際だからと ubuntu 20.04.1 LTS へ移行した。
+    emacs のバージョンは26.3。
+
+    ちょうどその時に、追加で以下の記事が出る。
+
+    - [[https://emacs-jp.github.io/tips/emacs-in-2020][2020年代のEmacs入門]]
+
+    C-x C-s とかから書いてあるので、これならいけるだろう、とタカをくくり leaf の設定方法を勉強したいと思った。
+
+*** 分からない
+  
+    しかし、しかし、[[https://emacs-jp.github.io/tips/emacs-in-2020][2020年代のEmacs入門]] を見てもleafのことがサッパリ分からない。
+    本当に自分の頭の悪さに悲しくなる。
+    とりあえず、何が分からないか、を記載しておく。
+    もしかしたら、万が一、奇跡的に、後から自分が頭がよくなるかもしれない。
+    天変地位感あるけど。
+
+    とりあえず、以下の文まではオマジナイだと思った(init.elは分からない)
+
+    #+begin_example
+    leafによる設定は ;; ここにいっぱい設定を書く の場所に書き、Emacsを再起動することで反映で
+    きます。
+    #+end_example
+  
+**** cus-edit.c の説明
+
+     #+begin_example
+     leafの :custom で設定するとinit.elにcustomが勝手に設定を追記します。 この状況になると、
+     変数の二重管理になってしまうので、customがinit.elに追記しないように設定します。
+     #+end_example
+
+     - ":custom" というのは何か
+     - ":custom で設定する"というのは何を設定するのか
+     - "customが勝手に設定を追記"のcustomとは何か
+     - "customが勝手に設定を追記"の"勝手に"というのはどういう時か...勝手に動くの?AI?
+     - "変数の二重管理になってしまう"難の変数か
+
+**** cus-start.c
+
+     #+begin_example
+     EmacsのC言語部分で定義されている変数をcustomで扱えるようにまとめているファイルです。 私
+     の設定を書いておくので、取捨選択して頂ければと思います。変数の説明は F1 v で確認できま
+     す。 無効にしているGUI要素についてはコメントアウトしておきました。
+     #+end_example
+   
+     - "EmacsのC言語部分で定義されている"って何...何か内部のコード的なもの?(Emacsの一部はCで作られていると聞いたことがある)
+     - "C言語部分で定義されている変数をcustomで扱えるようにまとめ"ている理由は何か
+     - "user-mail-address"とかって登録するんだ...怖い
+     - "tool-bar-mode" "truncate-lines"とか見たこと/使ったことあるけど、これがC言語の部分で登録されている? elispで設定するんじゃないの?
+
+**** autorevert
+
+     #+begin_example
+     (leaf autorevert
+       :doc "revert buffers when files on disk change"
+       :tag "builtin"
+       :custom ((auto-revert-interval . 0.3)
+                (auto-revert-check-vc-info . t))
+       :global-minor-mode global-auto-revert-mode)
+
+     Emacsの外でファイルが書き変わったときに自動的に読み直すマイナーモードです。 もちろん、
+     Emacsで編集している場合は外の変更で上書きされることはありません。
+     #+end_example
+
+     - これはよく使うけど、:doc、:tag とかなんなの...
+
+**** cc-mode,
+
+     - なんかたくさん設定方法が書いてあるけど、それぞれの意味が分からない。
+     
+**** paren
+
+     - (show-paren-delay . 0.1) って何
+
+**** simple
+
+     #+begin_example
+     kill-ringの数を制御したり、kill-lineの挙動を変更したりします。
+     #+end_example
+
+     - 何がどうなるの...kill-ringはクリップボードみたいなやつだから制限あるのかな。
+     - kill-lineは何
+
+**** 以下省略
+
+     もう、ここでプシュー、パンク...読むのをやめた。
+     
+*** 分かったこと
+
+**** customが勝手に設定を追記
+  
+    cus-edit.c の分からないことは以下に書いてありそうだった。
+
+    - [[https://qiita.com/conao3/items/347d7e472afd0c58fbd7][Emacs入門から始めるleaf.el入門]]
+
+    #+begin_example
+    問題はcustomがinit.elに次のようなダンプを出力する点です。このダンプにより、leafの
+    :custom で管理している場合、2箇所を修正する必要が生じます。
+
+    (custom-set-variables
+     ;; custom-set-variables was added by Custom.
+     ;; If you edit it by hand, you could mess it up, so be careful.
+     ;; Your init file should contain only one such instance.
+     ;; If there is more than one, they won't work right.
+     '(ag-highligh-search t t)
+     '(ag-reuse-buffers t t)
+     '(ag-reuse-window t t)
+     ;;...
+     )
+    #+end_example
+
+    "ダンプ"というのがよく分からないが、これはなんか、guiか何かで"設定保存"的なものをおこなったら出てきた気がする。
+    自分のものにはこんなの書いてある。
+
+    #+begin_example
+    (custom-set-variables
+     ;; custom-set-variables was added by Custom.
+     ;; If you edit it by hand, you could mess it up, so be careful.
+     ;; Your init file should contain only one such instance.
+     ;; If there is more than one, they won't work right.
+     '(eshell-prompt-function
+       (lambda nil
+         (concat "[ "
+             (format-time-string "%Y/%m/%d %H:%M")
+             " | "
+             (user-login-name)
+             "@"
+             (system-name)
+             " ]
+    " "["
+             (abbreviate-file-name
+              (eshell/pwd))
+             "]
+    "
+             (if
+             (=
+              (user-uid)
+              0)
+             "#" "$")
+             " ")) t)
+     '(eshell-prompt-regexp "^\\(\\[[^]
+    ]+\\]\\|[$#] \\)")
+     '(org-agenda-format-date "%Y/%m/%d (%a)")
+     '(package-selected-packages
+       (quote
+        (ace-isearch yasnippet viewer twittering-mode sticky smex smartrep smartparens smart-newline save-load-path redo+ recentf-ext real-auto-save quickrun python-pep8 python-mode powershell open-junk-file mykie migemo man-commands leuven-theme key-chord jedi ido-vertical-mode id-manager htmlize helm-swoop flymake-python-pyflakes flymake-cursor expand-region elscreen column-enforce-mode bind-key avy auto-install archive-region anything ace-jump-mode))))
+    #+end_example
+  
+    これが、なんらかの理由でイケナイコトのようだ。
+    とにかく以下がオマジナイという理解。
+
+    #+begin_example
+    (leaf cus-edit
+      :doc "tools for customizing Emacs and Lisp packages"
+      :tag "builtin" "faces" "help"
+      :custom `((custom-file . ,(locate-user-emacs-file "custom.el"))))
+    #+end_example
+  
+**** 書き方について
+
+     use-package のようなものらしいとのことで、情報を漁っていたら、以下が非常に分かりやすかった。
+     これをleafに読み換えることで、leafの書き方の10%ぐらいは理解できそう。
+
+     - [[https://qiita.com/kai2nenobu/items/5dfae3767514584f5220][use-packageで可読性の高いinit.elを書く]]
+   
