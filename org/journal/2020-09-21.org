@@ -1,0 +1,67 @@
+* 2020-09-21
+** 06:41
+
+   M-x leaf-convert-insert-template ediff-wind で
+
+   #+begin_src elisp
+   (leaf ediff-wind
+     :doc "window manipulation utilities"
+     :tag "builtin"
+     :added "2020-09-21")   
+   #+end_src
+
+   ってなるんだけど、これを編集して、
+
+   #+begin_src elisp
+   (leaf ediff-wind
+     :doc "window manipulation utilities"
+     :tag "builtin"
+     :added "2020-09-21"
+     :custom ())
+     #+end_src
+
+   とか書くと、:added とかいうの認識できないっぽいエラーとなって意味不明だけど、なんか直ったかも。
+
+** 06:51
+
+   これ。これがでる。:add があって、:config とか、:custom とかすると。leafで。
+
+   #+begin_example
+   Debugger entered--Lisp error: (error "leaf: Unrecognized keyword :added")
+     signal(error ("leaf: Unrecognized keyword :added"))
+     leaf-sort-values-plist((:doc nil :tag nil :added ("2020-09-21") :config nil :leaf-autoload nil :leaf-defer nil :leaf-protect nil :leaf-defun nil :leaf-defvar nil))
+     #f(compiled-function (name &rest args) "Symplify your `.emacs' configuration for package NAME with ARGS." #<bytecode 0x12cbd61>)(avoid :doc "make mouse pointer stay out of the way of editing" :tag "builtin" :added "2020-09-21" :config (mouse-avoidance-mode (quote banish)))
+     macroexpand((leaf avoid :doc "make mouse pointer stay out of the way of editing" :tag "builtin" :added "2020-09-21" :config (mouse-avoidance-mode (quote banish))) nil)
+     macroexp-macroexpand((leaf avoid :doc "make mouse pointer stay out of the way of editing" :tag "builtin" :added "2020-09-21" :config (mouse-avoidance-mode (quote banish))) nil)
+     macroexp--expand-all((leaf avoid :doc "make mouse pointer stay out of the way of editing" :tag "builtin" :added "2020-09-21" :config (mouse-avoidance-mode (quote banish))))
+     macroexpand-all((leaf avoid :doc "make mouse pointer stay out of the way of editing" :tag "builtin" :added "2020-09-21" :config (mouse-avoidance-mode (quote banish))))
+     eval-sexp-add-defvars((leaf avoid :doc "make mouse pointer stay out of the way of editing" :tag "builtin" :added "2020-09-21" :config (mouse-avoidance-mode (quote banish))))
+     elisp--eval-last-sexp(nil)
+     eval-last-sexp(nil)
+     funcall-interactively(eval-last-sexp nil)
+     call-interactively(eval-last-sexp nil nil)
+     command-execute(eval-last-sexp)
+   #+end_example
+** 07:01
+
+   :emacs<, :emacs<=, :emacs=, :emacs>, :emacs>= keywords の使い方、全然分からない。
+** 07:35
+
+   わかった。:custom のあとには '() が必要で、 :config のあとには何もいらないのかな。
+** 14:46 
+** 14:47 leaf の config error
+
+   leaf の :config に入れると以下のエラー
+   #+begin_example
+   Warning (leaf): Error in `auto-install' block.  Error msg: Symbol’s function definition is void: auto-install-compatibility-setup
+   #+end_example
+** 15:01 Warning (leaf): Error in `calendar' block.  Error msg: Symbol’s value as variable is void: calendar-iso-date-display-form
+
+   以下でも leaf だとエラー。
+
+   #+begin_src elisp
+   ;; 年月日をそろえて表示
+   (setq calendar-date-display-form calendar-iso-date-display-form)
+   (setq calendar-month-header calendar-iso-month-header)
+   (setq diary-date-forms diary-iso-date-forms)
+   #+end_src

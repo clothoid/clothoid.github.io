@@ -1,0 +1,21 @@
+* 2020-09-19
+** 02:44
+
+   ubuntu 20.04 にして、mozc を普段利用しているけど、emacsに戻った時、そのまま日本語入力がONになっていて、イラッとした。
+   これはemacs側の問題ではないため、(deactivate-input-method) とかではなく、OS側で何か設定しないとなって思ったけど、とりあえず、emacs で IME を利用させないで起動するということにした。
+
+   #+begin_src sh
+   XMODIFIERS=none emacs -q -l ~/Dropbox/.emacs.d/init.el &
+   #+end_src
+   
+   変な時間に寝てしまった。
+   転職しようか考えている。
+** 13:35
+   orgstruct-modeなくなってた。
+   https://emacs.stackexchange.com/questions/47003/the-orgstruct-mode-seems-to-be-gone-from-the-org-plus-contrib
+   #+begin_example
+   OrgStruct is gone in org-mode 9.2. I guess this applies to the ELPA package version you mention as well.
+   #+end_example
+
+   orgalist.el を使えということらしい。
+   
