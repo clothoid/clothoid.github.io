@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-10-21 Wed 22:21 -->
+<!-- 2020-10-21 Wed 21:48 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>@clothoid's Home Page</title>
+<title>&lrm;</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="@clothoid" />
+<meta name="author" content="clothoid" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -241,50 +241,72 @@ for the JavaScript code in this tag.
 </script>
 </head>
 <body>
-<div id="org-div-home-and-up">
- <a accesskey="h" href="https://clothoid.github.io/sitemap.html"> UP </a>
- |
- <a accesskey="H" href="https://clothoid.github.io/"> HOME </a>
-</div><div id="content">
-<h1 class="title">@clothoid's Home Page
-<br />
-<span class="subtitle">Top Page</span>
-</h1>
+<div id="content">
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgc4acc36">1. Contents</a></li>
-<li><a href="#org360db9b">2. Contacts</a></li>
+<li><a href="#orgf520c9e">1. 2020-10-21</a>
+<ul>
+<li><a href="#org3b6e5a2">1.1. 09:49 org-export-directory</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
-
-<div id="outline-container-orgc4acc36" class="outline-2">
-<h2 id="orgc4acc36"><span class="section-number-2">1</span> Contents</h2>
+<div id="outline-container-orgf520c9e" class="outline-2">
+<h2 id="orgf520c9e"><span class="section-number-2">1</span> 2020-10-21</h2>
 <div class="outline-text-2" id="text-1">
-<ul class="org-ul">
-<li><a href="sitemap.html">Page List</a></li>
-</ul>
 </div>
+<div id="outline-container-org3b6e5a2" class="outline-3">
+<h3 id="org3b6e5a2"><span class="section-number-3">1.1</span> 09:49 org-export-directory</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+以下を設定しても、
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elisp"><span style="color: #8D8D84;">; </span><span style="color: #8D8D84; font-style: italic;">-*- Mode: Emacs-Lisp ; Coding: utf-8 -*-</span>
+
+<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">ox.el</span>
+<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">&#12496;&#12483;&#12463;&#12464;&#12521;&#12454;&#12531;&#12489;&#12391;&#22793;&#25563;&#12377;&#12427;</span>
+<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">http://d.hatena.ne.jp/rubikitch/20101107/org2html</span>
+<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">(setq org-export-run-in-background t)  ; =&gt; old version?</span>
+(<span style="color: #0000FF;">setq</span> org-export-in-background t)
+
+<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">org-mode&#12391;&#21029;&#12398;&#12487;&#12451;&#12524;&#12463;&#12488;&#12522;&#12395;HTML&#20182;&#12456;&#12463;&#12473;&#12509;&#12540;&#12488;&#12377;&#12427; | sshfs&#25903;&#25588;</span>
+<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">http://emacs.rubikitch.com/org-export-to-html-another-directory/</span>
+
+(<span style="color: #0000FF;">defvar</span> <span style="color: #BA36A5;">org-export-directory</span> nil)
+
+(<span style="color: #0000FF;">defun</span> <span style="color: #006699;">org-export-output-file-name--set-directory</span>
+    (orig-fn extension <span style="color: #6434A3;">&amp;optional</span> subtreep pub-dir)
+  (<span style="color: #0000FF;">setq</span> pub-dir (<span style="color: #0000FF;">or</span> pub-dir org-export-directory))
+  (funcall orig-fn extension subtreep pub-dir))
+
+(advice-add
+ 'org-export-output-file-name <span style="color: #006FE0;">:around</span>
+ 'org-export-output-file-name--set-directory)
+
+(<span style="color: #0000FF;">setq</span> org-export-directory nil)
+</pre>
 </div>
 
-<div id="outline-container-org360db9b" class="outline-2">
-<h2 id="org360db9b"><span class="section-number-2">2</span> Contacts</h2>
-<div class="outline-text-2" id="text-2">
-<ul class="org-ul">
-<li><a href="https://twitter.com/clothoid">Twitter</a></li>
-<li><a href="https://note.mu/clothoid">Note</a></li>
-<li><a href="https://qiita.com/clothoid">Qiita</a></li>
-<li><a href="https://github.com/clothoid">Github</a></li>
-<li><a href="https://peing.net/en/clothoid">Question Box</a></li>
-</ul>
+<p>
+以下のようなエラーが出るようになってしまった。
+</p>
+
+<pre class="example">
+Initializing asynchronous export process
+apply: Wrong type argument: stringp, nil
+</pre>
+</div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="author">Author: @clothoid</p>
-<p class="date">Created: 2020-10-21 Wed 22:21</p>
+<p class="author">Author: clothoid</p>
+<p class="date">Created: 2020-10-21 Wed 21:48</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
