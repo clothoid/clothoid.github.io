@@ -110,5 +110,8 @@
   - HP: http://hunspell.github.io/
   - DL: https://github.com/gromnitsky/hunspell-windows/releases
 - ImageMagick - 画像を操作、表示
-  - HP:
+  - HP: https://imagemagick.org
   - DL: https://imagemagick.org/script/download.php (ImageMagick-X.X.XX-XX-portable-XX-XXX.zip)
+- duf - Disk Usage/Free Utility (Linux, BSD, macOS & Windows)
+  - HP: https://github.com/muesli/duf
+  - DL: https://github.com/muesli/duf/releases
