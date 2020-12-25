@@ -1,5 +1,6 @@
 #+TITLE: site map
 
+- [[file:journal/2020-12-25.org][2020-12-25]]
 - [[file:journal/2020-10-21.org][2020-10-21]]
 - [[file:2020/portable-software-on-windows.org][Windows の開発環境を Portable 版で整える]]
 - [[file:journal/2020-09-21.org][2020-09-21]]
