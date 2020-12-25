@@ -34,3 +34,9 @@
    Initializing asynchronous export process
    apply: Wrong type argument: stringp, nil
    #+end_example
+** 22:27 org-publish-project-alist
+
+   以下の挙動おかしくない。。。なんか思ったとおりにソートされないんだけど。
+
+   - :sitemap-sort-folders last
+   - :sitemap-sort-files anti-chronologically

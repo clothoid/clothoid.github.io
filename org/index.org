@@ -7,9 +7,9 @@
 #+OPTIONS: ^:{}
 #+KEYWORDS:
 
-* Contents
+* Articles
 
-  + [[file:sitemap.org][Page List]]
+  + [[file:sitemap.org][Check site map]]
 
 * Contacts
 

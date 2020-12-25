@@ -1,0 +1,53 @@
+* 2020-12-25
+** 20:41 leaf 忘れた
+
+   ひさしぶりに、init.el の設定をしようと思ったけど、完全に leaf の設定の仕方、忘れたよね。。。
+** 20:49 leaf 化失敗
+
+   以下を設定するとM-xでエラー。もうほんとleaf嫌だ。。。元に戻そうかな。。
+   ivy-re-builders-alist みたいのどうやって書くんだろ。。。これが原因か分からんけど
+
+   #+begin_example
+   apply: Wrong type argument: listp, t
+   #+end_example
+
+   #+begin_src elisp
+   (leaf ivy
+     :doc "Incremental Vertical completYon"
+     :custom ((ivy-use-virtual-buffers . t)
+              (enable-recursive-minibuffers . t)
+              (ivy-height . 30)
+              (ivy-extra-directories . nil)
+              (ivy-re-builders-alist . '((t . ivy--regex-plus)))
+              (counsel-find-file-at-point . t)
+              (ivy-initial-inputs-alist . t)
+              )
+     :global-minor-mode t
+     :config)
+   #+end_src
+** 20:55 leaf 動かないよ
+
+   #+begin_src elisp
+   (require 'key-chord)
+   (setq key-chord-two-keys-delay 0.04)
+   (key-chord-mode 1)
+   (key-chord-define-global "jk" 'view-mode)
+   #+end_src
+
+   を M-x leaf-convert-region で変換したら
+
+   #+begin_src elisp
+   (leaf leaf-convert
+     :require key-chord
+     :chord (("jk" . view-mode))
+     :setq ((key-chord-two-keys-delay . 0.04))
+     :config
+     (key-chord-mode 1))
+   #+end_src
+
+   jk で view-mode できなくなった
+** 20:59 leaf つらい
+
+   なんとなくだけど、単純なやつ (require hogehoe) と (setq hogehoge)みたいなやつだけなら、leaf化できて、
+   それ以外の defconst とか defadvice とかがあるやつは失敗する感じ
+
