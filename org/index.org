@@ -9,7 +9,7 @@
 
 * Articles
 
-  + [[file:sitemap.org][Check site map]]
+  + [[file:sitemap.org][Check the site map]]
 
 * Contacts
 
