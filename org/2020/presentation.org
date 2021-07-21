@@ -1,0 +1,34 @@
+#+SETUPFILE: ../0000/00org-web-template
+#+TITLE: プレゼンを作成する際に参考にするサイト
+#+DESCRIPTION: 
+#+KEYWORDS: presentation powerpoint ppt
+#+SUBTITLE:
+#+OPTIONS: ^:{}
+
+* リンク
+
+  - さくらのアイコンセット/システム構成図
+    - https://knowledge.sakura.ad.jp/4724/
+  - Material design icons
+    - https://github.com/google/material-design-icons
+    - https://material.io/resources/icons/?style=baseline
+  - ICOOON MONO/アイコン素材
+    - http://icooon-mono.com/
+  - FrameDesign/フレーム素材
+    - http://frames-design.com
+  - HUMAN PICTOGRAM2.0/人型ピクトグラム素材
+    - http://pictogram2.com
+  - フキダシデザイン/吹き出し素材
+    - http://fukidesign.com
+  
+
+
+* Footnotes
+
+[fn:endmmm] 月末の end of month や last day of month などは通じず [[https://github.com/sandst1/lastdayofmonth][こんなもの]]があったが、未確認 <Fri Mar 27 15:44:28 2020>
+
+[fn:9am] 時間を省略した場合は午前 9 時となる 
+
+[fn:todays] 明々後日の  two days after tomorrow は通じなかった <Fri Mar 27 15:33:49 2020>
+
+[fn:slackattention] [[https://slack.com/intl/ja-jp/help/articles/208423427-%E3%83%AA%E3%83%9E%E3%82%A4%E3%83%B3%E3%83%80%E3%83%BC%E3%82%92%E8%A8%AD%E5%AE%9A%E3%81%99%E3%82%8B][リマインダーを設定する]] の[気をつけてほしいこと] <Fri Mar 27 15:19:41 2020>

@@ -1,5 +1,10 @@
 #+TITLE: site map
 
+- [[file:2021/wine-list.org][好きなワインのメモ]]
+- [[file:journal/2021-03-06.org][2021-03-06]]
+- [[file:journal/2021-03-03.org][2021-03-03]]
+- [[file:2020/pierre-oteiza.org][ピエール・オテイザ バスク豚 取扱レストラン]]
+- [[file:2020/presentation.org][プレゼンを作成する際に参考にするサイト]]
 - [[file:journal/2020-12-25.org][2020-12-25]]
 - [[file:journal/2020-10-21.org][2020-10-21]]
 - [[file:2020/portable-software-on-windows.org][Windows の開発環境を Portable 版で整える]]

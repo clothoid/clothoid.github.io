@@ -6,9 +6,9 @@
 <!-- 2021-07-22 Thu 07:23 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>@clothoid's Home Page</title>
+<title>&lrm;</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="@clothoid" />
+<meta name="author" content="clothoid" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -241,49 +241,117 @@ for the JavaScript code in this tag.
 </script>
 </head>
 <body>
-<div id="org-div-home-and-up">
- <a accesskey="h" href="https://clothoid.github.io/sitemap.html"> UP </a>
- |
- <a accesskey="H" href="https://clothoid.github.io/"> HOME </a>
-</div><div id="content">
-<h1 class="title">@clothoid's Home Page
-<br />
-<span class="subtitle">Top Page</span>
-</h1>
+<div id="content">
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org956a70e">1. Articles</a></li>
-<li><a href="#org360db9b">2. Contacts</a></li>
+<li><a href="#org8963011">1. 2021-03-03</a>
+<ul>
+<li><a href="#orge394c3a">1.1. 13:12 org agenda weekdays</a></li>
+<li><a href="#orge9e0a8a">1.2. 13:14 cmigemo</a></li>
+<li><a href="#org4d85bcf">1.3. 13:15 ddskk の sticky</a></li>
+<li><a href="#org8030949">1.4. 13:20 jornal</a></li>
+<li><a href="#org18faa1d">1.5. 22:33 転職3日目</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
-
-<div id="outline-container-org956a70e" class="outline-2">
-<h2 id="org956a70e"><span class="section-number-2">1</span> Articles</h2>
+<div id="outline-container-org8963011" class="outline-2">
+<h2 id="org8963011"><span class="section-number-2">1</span> 2021-03-03</h2>
 <div class="outline-text-2" id="text-1">
-<ul class="org-ul">
-<li><a href="sitemap.html">Check the site map</a></li>
-</ul>
 </div>
+<div id="outline-container-orge394c3a" class="outline-3">
+<h3 id="orge394c3a"><span class="section-number-3">1.1</span> 13:12 org agenda weekdays</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+org agenda で平日の繰り返し設定を探していたけど、
+</p>
+<ul class="org-ul">
+<li><a href="https://github.com/m-cat/org-recur">https://github.com/m-cat/org-recur</a></li>
+<li><a href="https://stackoverflow.com/questions/28369833/emacs-org-mode-repeat-tasks-m-f-but-not-weekends">https://stackoverflow.com/questions/28369833/emacs-org-mode-repeat-tasks-m-f-but-not-weekends</a></li>
+</ul>
+<p>
+この2つしかみつからなくて、なんか技巧的だし、やめてバラして、+1dで書いた。
+</p>
+</div>
+</div>
+<div id="outline-container-orge9e0a8a" class="outline-3">
+<h3 id="orge9e0a8a"><span class="section-number-3">1.2</span> 13:14 cmigemo</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+新しく設定した Windows で migemo がうごかないとおもってたら、
+普通に cond 文の真偽が逆に書いてあったダケだった。
+</p>
+</div>
+</div>
+<div id="outline-container-org4d85bcf" class="outline-3">
+<h3 id="org4d85bcf"><span class="section-number-3">1.3</span> 13:15 ddskk の sticky</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+ddskk の sticky の設定を失くしてしまった。
+[変換]キーを漢字モード?にしているんだけど、どう設定してもうごかない。
+しかたないので、以下の
+</p>
+
+<ul class="org-ul">
+<li><a href="https://ddskk.readthedocs.io/ja/latest/10_FAQ.html#id4">https://ddskk.readthedocs.io/ja/latest/10_FAQ.html#id4</a></li>
+</ul>
+
+<p>
+を代用した。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elisp">(<span style="color: #0000FF;">unless</span> (keymapp key-translation-map)
+  (<span style="color: #0000FF;">setq</span> key-translation-map (make-sparse-keymap)))
+(<span style="color: #0000FF;">let</span> ((i ?a))
+  (<span style="color: #0000FF;">while</span> (&lt;= i ?z)
+    (define-key key-translation-map
+                (vector 'henkan i) (vector (- i 32)))
+    (<span style="color: #0000FF;">setq</span> i (1+ i))))
+</pre>
 </div>
 
-<div id="outline-container-org360db9b" class="outline-2">
-<h2 id="org360db9b"><span class="section-number-2">2</span> Contacts</h2>
-<div class="outline-text-2" id="text-2">
-<ul class="org-ul">
-<li><a href="https://twitter.com/clothoid">Twitter</a></li>
-<li><a href="https://note.mu/clothoid">Note</a></li>
-<li><a href="https://qiita.com/clothoid">Qiita</a></li>
-<li><a href="https://github.com/clothoid">Github</a></li>
-<li><a href="https://peing.net/en/clothoid">Question Box</a></li>
-</ul>
+<p>
+なんかどのblogも   無変換 のような表示を伴わないキーの場合は
+</p>
+
+<pre class="example">
+(setq skk-sticky-key [muhenkan]) ;Microsoft Windows では [noconvert]
+</pre>
+
+<p>
+のようにそのキーを表わす vector を設定して下さい。
+と書いてあるけど、muhenkan だろうが henkan だろうがうまくいかない。
+</p>
+</div>
+</div>
+<div id="outline-container-org8030949" class="outline-3">
+<h3 id="org8030949"><span class="section-number-3">1.4</span> 13:20 jornal</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+どこに書くべきだろうか。。。
+会社のジャーナルとかと分けて書くべきだろうか。。。
+</p>
+</div>
+</div>
+<div id="outline-container-org18faa1d" class="outline-3">
+<h3 id="org18faa1d"><span class="section-number-3">1.5</span> 22:33 転職3日目</h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+とりあえず、転職してよかった。
+変なルールないし。
+でも仕事もない。
+大丈夫かな。。。不安だ。
+</p>
+</div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="author">Author: @clothoid</p>
+<p class="author">Author: clothoid</p>
 <p class="date">Created: 2021-07-22 Thu 07:23</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>

@@ -1,0 +1,1462 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+<!-- 2021-07-22 Thu 07:25 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>好きなワインのメモ</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="clothoid" />
+<meta name="keywords" content="Wine Vin" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="https://clothoid.github.io/sitemap.html"> UP </a>
+ |
+ <a accesskey="H" href="https://clothoid.github.io/"> HOME </a>
+</div><div id="content">
+<h1 class="title">好きなワインのメモ</h1>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Wine</th>
+<th scope="col" class="org-left">Region</th>
+<th scope="col" class="org-left">Name</th>
+<th scope="col" class="org-left">Brewery</th>
+<th scope="col" class="org-left">Grapes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Sparkling Wine(White)</td>
+<td class="org-left">Chile &gt; Central Valley</td>
+<td class="org-left">Valdivieso Extra Brut Cuvee Reserve</td>
+<td class="org-left">Valdivieso</td>
+<td class="org-left">Chardonnay/Pinot Noir</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">Sparkling Wine(White)</td>
+<td class="org-left">France &gt; Champagne</td>
+<td class="org-left">Champagne Jean Michel Cuvee Speciale</td>
+<td class="org-left">Champagne Jean Michel</td>
+<td class="org-left">Chardonnay/Pinot Meunier</td>
+</tr>
+
+<tr>
+<td class="org-left">Sparkling Wine(White)</td>
+<td class="org-left">France &gt; Champagne</td>
+<td class="org-left">Enjoleuse by Champagne Colin</td>
+<td class="org-left">Champagne Colin</td>
+<td class="org-left">Chardonnay</td>
+</tr>
+
+<tr>
+<td class="org-left">Sparkling Wine(White)</td>
+<td class="org-left">France &gt; Champagne</td>
+<td class="org-left">Jacques Selosse Brut Initial (Initiale)</td>
+<td class="org-left">Champagne Jacques Selosse</td>
+<td class="org-left">Chardonnay</td>
+</tr>
+
+<tr>
+<td class="org-left">Sparkling Wine(White)</td>
+<td class="org-left">France &gt; Champagne</td>
+<td class="org-left">Louis Roederer Brut Premier</td>
+<td class="org-left">Louis Roederer</td>
+<td class="org-left">Chardonnay/Pinot Noir/Pinot Meunier</td>
+</tr>
+
+<tr>
+<td class="org-left">Sparkling Wine(White)</td>
+<td class="org-left">France &gt; Champagne &gt; Cote des Blancs &gt; Cramant</td>
+<td class="org-left">Lancelot Pienne Table Ronde Brut</td>
+<td class="org-left">Champagne Lancelot Pienne</td>
+<td class="org-left">Chardonnay</td>
+</tr>
+
+<tr>
+<td class="org-left">Sparkling Wine(White)</td>
+<td class="org-left">France &gt; Champagne &gt; Montagne de Reims &gt; Bouzy</td>
+<td class="org-left">Gaston Collard Blanc de Noir</td>
+<td class="org-left">Champagne Gaston Collard</td>
+<td class="org-left">Pinot Noir</td>
+</tr>
+
+<tr>
+<td class="org-left">Sparkling Wine(White)</td>
+<td class="org-left">France &gt; Champagne &gt; Vallee de la Marne &gt; Ay</td>
+<td class="org-left">Gosset Brabant Reserve Grand Cru Brut</td>
+<td class="org-left">Champagne Gosset Brabant</td>
+<td class="org-left">Pinot Noir/Chardonnay</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">Sparkling Wine(White)</td>
+<td class="org-left">Italy &gt; Emilia Romagna</td>
+<td class="org-left">Lusenti Emiliana Malvasia Frizzante</td>
+<td class="org-left">Lusenti</td>
+<td class="org-left">Malvasia di Candia Aromatica</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">Austria</td>
+<td class="org-left">Huber Gruner Veltliner Berg Traisental Reserve</td>
+<td class="org-left">Huber (Weingut Markus Huber)</td>
+<td class="org-left">Gruner Veltliner</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">Austria</td>
+<td class="org-left">Laurenz V. Singing Gruner Veltliner</td>
+<td class="org-left">Laurenz</td>
+<td class="org-left">Gruner Veltliner</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">France &gt; Alsace</td>
+<td class="org-left">Ch. Wantz Grand Cru Kirchberg Gewurztraminer</td>
+<td class="org-left">Charles Wantz</td>
+<td class="org-left">Gewurztraminer</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">France &gt; Alsace</td>
+<td class="org-left">Geschickt Gewurztraminer Grand Cru Kaefferkopf</td>
+<td class="org-left">Frederic Geschickt</td>
+<td class="org-left">Gewurztraminer</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">France &gt; Alsace</td>
+<td class="org-left">Marc Tempe Alliance</td>
+<td class="org-left">Dom. Marc Tempe</td>
+<td class="org-left">Chasselas/Gewurztraminer/Pinot Blanc/Riesling/Sylvaner</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">France &gt; Alsace</td>
+<td class="org-left">Pierre Frick Pinot Blanc</td>
+<td class="org-left">Pierre Frick</td>
+<td class="org-left">Pinot Blanc</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">France &gt; Alsace</td>
+<td class="org-left">Ruhlmann Dirringer Riesling Grand Cru Frankstein</td>
+<td class="org-left">Ruhlmann Dirringer (Leo Dirringer)</td>
+<td class="org-left">Riesling</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">France &gt; Bordeaux &gt; Barsac</td>
+<td class="org-left">Ch. Climens</td>
+<td class="org-left">Ch. Climens</td>
+<td class="org-left">Semillon</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">France &gt; Bordeaux &gt; Sauternes</td>
+<td class="org-left">Ch. d'Yquem</td>
+<td class="org-left">Ch. d'Yquem</td>
+<td class="org-left">Semillon/Sauvignon Blanc</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">France &gt; Bourgogne &gt; Cote de Beaune &gt; Aloxe Corton</td>
+<td class="org-left">Dom. Parent Corton Grand Cru Blanc</td>
+<td class="org-left">Dom. Parent</td>
+<td class="org-left">Chardonnay</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">France &gt; Bourgogne &gt; Cote de Beaune &gt; Chassagne Montrachet</td>
+<td class="org-left">Dom. Roger Belland Chassagne Montrachet Morgeot Clos Pitois 1er Cru</td>
+<td class="org-left">Dom. Roger Belland</td>
+<td class="org-left">Chardonnay</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">France &gt; Bourgogne &gt; Cote de Beaune &gt; Chassagne Montrachet</td>
+<td class="org-left">Philippe Colin Chassagne Montrachet</td>
+<td class="org-left">Dom. Philippe Colin</td>
+<td class="org-left">Chardonnay</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">France &gt; Bourgogne &gt; Cote de Beaune &gt; Puligny Montrachet</td>
+<td class="org-left">Olivier Leflaive Puligny Montrachet 1er Cru Champ Gain</td>
+<td class="org-left">Olivier Leflaive</td>
+<td class="org-left">Chardonnay</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">France &gt; Bourgogne &gt; Cote de Beaune &gt; Puligny Montrachet</td>
+<td class="org-left">Paul Pernot et Ses Fils Puligny Montrachet 1er Cru Clos de la Garenne</td>
+<td class="org-left">Dom. Paul Pernot et Ses Fils</td>
+<td class="org-left">Chardonnay</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">France &gt; Bourgogne &gt; Maconnais &gt; Pouilly Fuisse</td>
+<td class="org-left">Dom. Thierry Drouin Pouilly Fuisse En Buland</td>
+<td class="org-left">Dom. Drouin (Corinne et Thierry)</td>
+<td class="org-left">Chardonnay</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">France &gt; Cotes du Rhone &gt; Septentrional &gt; Crozes Hermitage</td>
+<td class="org-left">Paul Jaboulet Aine Crozes Hermitage Les Jalets Blanc</td>
+<td class="org-left">Dom. Paul Jaboulet Aine</td>
+<td class="org-left">Marsanne</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">France &gt; Jura-Savoie &gt; Jura &gt; Arbois</td>
+<td class="org-left">Philippe Bornard Arbois Pupillin Vin Jaune</td>
+<td class="org-left">Dom. Philippe Bornard</td>
+<td class="org-left">Savagnin</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">France &gt; Languedoc-Roussillon</td>
+<td class="org-left">Dom. de Clovallon Les Aires</td>
+<td class="org-left">Dom. de Clovallon (Catherine Roque)</td>
+<td class="org-left">Viognier</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">France &gt; Languedoc-Roussillon &gt; Languedoc</td>
+<td class="org-left">Gerard Bertrand Cigalus Blanc</td>
+<td class="org-left">Gerard Bertrand</td>
+<td class="org-left">Chardonnay/Viognier/Sauvignon Blanc</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">France &gt; Languedoc-Roussillon &gt; Languedoc</td>
+<td class="org-left">Terrasses de Guilhem Sauvignon</td>
+<td class="org-left">Mas de Daumas Gassac (Moulin de Gassac)</td>
+<td class="org-left">Sauvignon Blanc</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">France &gt; Languedoc-Roussillon &gt; Languedoc</td>
+<td class="org-left">Terrasses de Guilhem Viognier</td>
+<td class="org-left">Mas de Daumas Gassac (Moulin de Gassac)</td>
+<td class="org-left">Viognier</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">France &gt; Languedoc-Roussillon &gt; Roussillon</td>
+<td class="org-left">La Passion Blanc</td>
+<td class="org-left">Maison Jean Pla</td>
+<td class="org-left">Grenache Blanc/Grenache Gris/Muscat</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">France &gt; Provence-Corse &gt; Provence</td>
+<td class="org-left">Miraval Blanc Varois</td>
+<td class="org-left">Miraval</td>
+<td class="org-left">Rolle/Grenache Blanc</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">France &gt; Sud Ouest &gt; Jurancon</td>
+<td class="org-left">Dom. Cauhape Geyser</td>
+<td class="org-left">Dom. Cauhape</td>
+<td class="org-left">Gros Manseng/Petit Manseng/Camaralet/Petie Courbu/Lauzet</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">France &gt; Sud Ouest &gt; Monbazillac</td>
+<td class="org-left">Cuvee Madame du Ch. Tirecul La Graviere</td>
+<td class="org-left">Ch. Tirecul La Graviere</td>
+<td class="org-left">Semillon/Muscadet</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">France &gt; Val de Loire &gt; Centre Nivernais &gt; Menetou Salon</td>
+<td class="org-left">Dom. Philippe Gilbert Menetou Salon Blanc</td>
+<td class="org-left">Dom. Philippe Gilbert</td>
+<td class="org-left">Sauvignon Blanc</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">France &gt; Val de Loire &gt; Pays Nantais &gt; Muscadet</td>
+<td class="org-left">Michel Ripoche Muscadet Sevre et Maine Sur Lie Les Sensonnieres</td>
+<td class="org-left">Michel Ripoche</td>
+<td class="org-left">Melon de Bourgogne</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">France &gt; Val de Loire &gt; Touraine &gt; Chinon</td>
+<td class="org-left">Couly Dutheil Les Chanteaux Chinon</td>
+<td class="org-left">Couly Dutheil</td>
+<td class="org-left">Chenin Blanc</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">France &gt; Val de Loire &gt; Touraine &gt; Vouvray</td>
+<td class="org-left">Marc Bredif Vouvray Classic</td>
+<td class="org-left">Marc Bredif</td>
+<td class="org-left">Chenin Blanc</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">Germany &gt; Baden</td>
+<td class="org-left">Staatsweinkeller Freiburg Blankenhornsberger Doktorgarten Grauburgunder GG</td>
+<td class="org-left">Staatsweinkeller Freiburg</td>
+<td class="org-left">Grauburgunder</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">Germany &gt; Baden &gt; Kaiserstuhl</td>
+<td class="org-left">Hofflin Caprice</td>
+<td class="org-left">Hofflin</td>
+<td class="org-left">Chardonnay/Gewurztraminer/Grauburgunder/Muller Thurgau/Muskateller/Weissburgunder</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">Germany &gt; Mosel</td>
+<td class="org-left">Vols Wiltinger Kupp Riesling Kabinett</td>
+<td class="org-left">Weingut Vols</td>
+<td class="org-left">Riesling</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">Germany &gt; Mosel &gt; Saar</td>
+<td class="org-left">Egon Muller Scharzhofberger Riesling Kabinett</td>
+<td class="org-left">Egon Muller</td>
+<td class="org-left">Riesling</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">Germany &gt; Pfalz</td>
+<td class="org-left">Messmer Grauburgunder Burrweiler Schlossgarten</td>
+<td class="org-left">Weingut Messmer (Herbert Messmer)</td>
+<td class="org-left">Grauburgunder</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">Germany &gt; Pfalz</td>
+<td class="org-left">Messmer Schawer GG</td>
+<td class="org-left">Weingut Messmer (Herbert Messmer)</td>
+<td class="org-left">Riesling</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">Italy</td>
+<td class="org-left">Quotidiano Vino Bianco</td>
+<td class="org-left">Quotidiano Wine</td>
+<td class="org-left">Blend</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">Italy &gt; Abruzzo</td>
+<td class="org-left">Marramiero Altare Trebbiano d'Abruzzo</td>
+<td class="org-left">Marramiero</td>
+<td class="org-left">Trebbiano</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">Italy &gt; Abruzzo</td>
+<td class="org-left">Marramiero Punta di Colle Chardonnay</td>
+<td class="org-left">Marramiero</td>
+<td class="org-left">Chardonnay</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">Italy &gt; Emilia Romagna</td>
+<td class="org-left">La Sabbiona Vip</td>
+<td class="org-left">La Sabbiona</td>
+<td class="org-left">Famoso</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">Italy &gt; Friuli-Venezia Giulia</td>
+<td class="org-left">Bortolusso Ribolla Gialla</td>
+<td class="org-left">Bortolusso</td>
+<td class="org-left">Ribolla Gialla</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">Italy &gt; Friuli-Venezia Giulia</td>
+<td class="org-left">Damijan Ribolla Gialla</td>
+<td class="org-left">Podversic Damijan</td>
+<td class="org-left">Ribolla Gialla</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">Italy &gt; Lombardia</td>
+<td class="org-left">Ca dei Frati Brolettino</td>
+<td class="org-left">Ca dei Frati</td>
+<td class="org-left">Turbiana</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">Italy &gt; Piemonte</td>
+<td class="org-left">Malvira Roero Arneis Renesio</td>
+<td class="org-left">Azienda Agricola Malvira</td>
+<td class="org-left">Arneis</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">Italy &gt; Toscana</td>
+<td class="org-left">Panizzi Vernaccia di San Gimignano</td>
+<td class="org-left">Panizzi</td>
+<td class="org-left">Vernaccia di San Gimignano</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">Italy &gt; Toscana</td>
+<td class="org-left">Panizzi Vernaccia di San Gimignano Riserva</td>
+<td class="org-left">Panizzi</td>
+<td class="org-left">Vernaccia di San Gimignano</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">Italy &gt; Trentino-Alto Adige</td>
+<td class="org-left">J. Hofstatter Pinot Grigio</td>
+<td class="org-left">Tenuta J. Hofstatter</td>
+<td class="org-left">Pinot Grigio</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">Italy &gt; Trentino-Alto Adige</td>
+<td class="org-left">Taschlerhof Gewurztraminer</td>
+<td class="org-left">Taschlerhof</td>
+<td class="org-left">Gewurztraminer</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">Italy &gt; Veneto</td>
+<td class="org-left">Inama Vigneti di Foscarino Soave Classico</td>
+<td class="org-left">Inama</td>
+<td class="org-left">Garganega</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">Italy &gt; Veneto</td>
+<td class="org-left">Inama Vigneto du Lot Soave Classico</td>
+<td class="org-left">Inama</td>
+<td class="org-left">Garganega</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">New Zealand</td>
+<td class="org-left">Kindeli La Zorra Chardonnay</td>
+<td class="org-left">Artesano Vintners (Don &amp; Kindeli)</td>
+<td class="org-left">Chardonnay</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">New Zealand &gt; South Island &gt; Central Otago</td>
+<td class="org-left">Sato Pinot Gris</td>
+<td class="org-left">Sato Wines</td>
+<td class="org-left">Pinot Gris</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">New Zealand &gt; South Island &gt; Marlborough</td>
+<td class="org-left">Rimapere Sauvignon Blanc</td>
+<td class="org-left">Compagnie Vinicole Baron Edmond de Rothschild</td>
+<td class="org-left">Sauvignon Blanc</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">New Zealand &gt; South Island &gt; Nelson</td>
+<td class="org-left">Atamai Sauvignon Blanc</td>
+<td class="org-left">Green Songs</td>
+<td class="org-left">Sauvignon Blanc</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">USA &gt; California</td>
+<td class="org-left">Au Bon Climat Estate Bottled White Table Wine Hildegard</td>
+<td class="org-left">Au Bon Climat</td>
+<td class="org-left">Pinot Blanc/Pinot Gris/Aligote</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">USA &gt; California</td>
+<td class="org-left">Panamera Chardonnay</td>
+<td class="org-left">Story Ridge Vineyards</td>
+<td class="org-left">Chardonnay</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">USA &gt; California</td>
+<td class="org-left">Panamera Chardonnay</td>
+<td class="org-left">Story Ridge Vineyards</td>
+<td class="org-left">Chardonnay</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">USA &gt; California &gt; Napa</td>
+<td class="org-left">Pine Ridge Chenin Blanc Viognier</td>
+<td class="org-left">Pine Ridge Vineyards</td>
+<td class="org-left">Chenin Blanc/Viognier</td>
+</tr>
+
+<tr>
+<td class="org-left">White Wine</td>
+<td class="org-left">USA &gt; California &gt; Sonoma</td>
+<td class="org-left">Kosta Browne One Sixteen Chardonnay</td>
+<td class="org-left">Kosta Browne</td>
+<td class="org-left">Chardonnay</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">Rose Wine</td>
+<td class="org-left">Japan &gt; Yamanashi</td>
+<td class="org-left">ASAHIYOUSHU Soleil rose</td>
+<td class="org-left">ASAHIYOUSHU</td>
+<td class="org-left">Pinot Noir/Koshu/Merlot/Sauvignon Blanc</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">Rose Wine</td>
+<td class="org-left">France &gt; Bourgogne</td>
+<td class="org-left">Dom. Bart Bourgogne Rose</td>
+<td class="org-left">Dom. Bart</td>
+<td class="org-left">Pinot Noir</td>
+</tr>
+
+<tr>
+<td class="org-left">Rose Wine</td>
+<td class="org-left">France &gt; Bourgogne &gt; Cote de Nuits &gt; Marsannay</td>
+<td class="org-left">Dom. Bruno Clair Marsannay Rose</td>
+<td class="org-left">Dom. Bruno Clair</td>
+<td class="org-left">Pinot Noir</td>
+</tr>
+
+<tr>
+<td class="org-left">Rose Wine</td>
+<td class="org-left">France &gt; Languedoc-Roussillon &gt; Languedoc</td>
+<td class="org-left">Dom. des Amiel a Baia</td>
+<td class="org-left">Dom. des Amiel</td>
+<td class="org-left">Merlot/Syrah</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">Rose Wine</td>
+<td class="org-left">Italy &gt; Veneto</td>
+<td class="org-left">Farnea All In</td>
+<td class="org-left">Farnea (Marco Buratti)</td>
+<td class="org-left">Cabernet Sauvignon/Merlot/Moscato Rosa/Moscato Giallo/Incrocio Manzoni/Malvasia</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">Rose Wine</td>
+<td class="org-left">Spain &gt; Inland Region &gt; Castilla y Leon &gt; Ribera del Duero</td>
+<td class="org-left">Roselito de Antidoto</td>
+<td class="org-left">Bodegas Antidoto (Bodega Hernando &amp; Sourdais)</td>
+<td class="org-left">Tempranillo</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">Chile &gt; Aconcagua &gt; Aconcagua Valley</td>
+<td class="org-left">Matetic Corralillo Winemaker's Blend</td>
+<td class="org-left">Matetic Vineyards</td>
+<td class="org-left">Cabernet Franc/Malbec/Syrah</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">Chile &gt; Central Valley &gt; Rapel Valley &gt; Cachapoal Valley</td>
+<td class="org-left">Camino Real L33 34 Cabernet Sauvignon</td>
+<td class="org-left">Vina Camino Real</td>
+<td class="org-left">Cabernet Sauvignon</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">France</td>
+<td class="org-left">Le Petit Clou des Vents Les Grenades</td>
+<td class="org-left">Le Petit Clou des Vents (Sylvain Jougla)</td>
+<td class="org-left">Merlot</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">France &gt; Bordeaux</td>
+<td class="org-left">Ch. Bel Air Perponcher Rouge Reserve</td>
+<td class="org-left">Vignobles Despagne</td>
+<td class="org-left">Merlot/Cabernet Sauvignon</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">France &gt; Bordeaux</td>
+<td class="org-left">Ch. d'Aiguilhe</td>
+<td class="org-left">Vignobles Comtes von Neipperg</td>
+<td class="org-left">Merlot/Cabernet Franc</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">France &gt; Bordeaux</td>
+<td class="org-left">Ch. Labatut Grand Reserve</td>
+<td class="org-left">Ch. Labatut</td>
+<td class="org-left">Cabernet Franc/Merlot/Cabernet Sauvignon</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">France &gt; Bordeaux &gt; Haut Medoc &gt; Pauillac</td>
+<td class="org-left">Ch. Latour</td>
+<td class="org-left">Ch. Latour</td>
+<td class="org-left">Cabernet Sauvignon/Merlot/Cabernet Franc/Petit Verdot</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">France &gt; Bordeaux &gt; Saint Emilion</td>
+<td class="org-left">Ch. Canon la Gaffeliere</td>
+<td class="org-left">Vignobles Comtes von Neipperg</td>
+<td class="org-left">Cabernet Sauvignon/Merlot</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">France &gt; Bordeaux &gt; Saint Emilion</td>
+<td class="org-left">Ch. des Laurets</td>
+<td class="org-left">Compagnie Vinicole Baron Edmond de Rothschild</td>
+<td class="org-left">Merlot/Cabernet Franc</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">France &gt; Bourgogne &gt; Beaujolais &gt; Morgon</td>
+<td class="org-left">Louis Jadot Ch. des Jacques Morgon Cote du Py</td>
+<td class="org-left">Maison Louis Jadot</td>
+<td class="org-left">Gamay</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">France &gt; Bourgogne &gt; Cote de Beaune &gt; Monthelie</td>
+<td class="org-left">Monthelie Douhairet Porcheret Monthelie Cuvee Miss Armande Rouge</td>
+<td class="org-left">Dom. Monthelie Douhairet Porcheret</td>
+<td class="org-left">Pinot Noir</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">France &gt; Bourgogne &gt; Cote de Beaune &gt; Saint Aubin</td>
+<td class="org-left">Francois Carillon Saint Aubin 1er Cru Les Pitangerets</td>
+<td class="org-left">Dom. Francois Carillon</td>
+<td class="org-left">Pinot Noir</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">France &gt; Bourgogne &gt; Cote de Beaune &gt; Volnay</td>
+<td class="org-left">Dom. Genot Boulanger Volnay Vieilles Vignes</td>
+<td class="org-left">Dom. Genot Boulanger</td>
+<td class="org-left">Pinot Noir</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">France &gt; Bourgogne &gt; Cote de Beaune &gt; Volnay</td>
+<td class="org-left">Dom. Lucien Boillot et Fils Volnay</td>
+<td class="org-left">Dom. Lucien Boillot et Fils</td>
+<td class="org-left">Pinot Noir</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">France &gt; Bourgogne &gt; Cote de Beaune &gt; Volnay</td>
+<td class="org-left">Jean Boillot &amp; Fils Volnay 1er Cru Les Caillerets</td>
+<td class="org-left">Dom. Jean Boillot &amp; Fils</td>
+<td class="org-left">Pinot Noir</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">France &gt; Bourgogne &gt; Cote de Nuits</td>
+<td class="org-left">Dom. Philippe Charlopin Parizot Cote de Nuits Villages</td>
+<td class="org-left">Dom. Philippe Charlopin Parizot</td>
+<td class="org-left">Pinot Noir</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">France &gt; Bourgogne &gt; Cote de Nuits &gt; Chambolle Musigny</td>
+<td class="org-left">Dom. Christian Confuron Chambolle Musigny</td>
+<td class="org-left">Dom. Christian Confuron et Fils</td>
+<td class="org-left">Pinot Noir</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">France &gt; Bourgogne &gt; Cote de Nuits &gt; Chambolle Musigny</td>
+<td class="org-left">Dom. Philippe Charlopin Parizot Chambolle Musigny</td>
+<td class="org-left">Dom. Philippe Charlopin Parizot</td>
+<td class="org-left">Pinot Noir</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">France &gt; Bourgogne &gt; Cote de Nuits &gt; Gevrey Chambertin</td>
+<td class="org-left">Dom. Henri Perrot Minot Mazoyeres Chambertin Grand Cru Vieilles Vignes</td>
+<td class="org-left">Dom. Henri Perrot Minot</td>
+<td class="org-left">Pinot Noir</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">France &gt; Bourgogne &gt; Cote de Nuits &gt; Gevrey Chambertin</td>
+<td class="org-left">Dom. Perrot Minot Gevrey Chambertin</td>
+<td class="org-left">Dom. Perrot Minot</td>
+<td class="org-left">Pinot Noir</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">France &gt; Bourgogne &gt; Cote de Nuits &gt; Vosne Romanee</td>
+<td class="org-left">Dom. de La Romanee Conti La Tache</td>
+<td class="org-left">Dom. de La Romanee Conti</td>
+<td class="org-left">Pinot Noir</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">France &gt; Bourgogne &gt; Cote de Nuits &gt; Vosne Romanee</td>
+<td class="org-left">Dom. de La Romanee Conti Romanee St Vivant</td>
+<td class="org-left">Dom. de La Romanee Conti</td>
+<td class="org-left">Pinot Noir</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">France &gt; Cotes du Rhone</td>
+<td class="org-left">Les Vignerons d'Estezargues Cuvee des Galets Non Filtre</td>
+<td class="org-left">Cave des Vignerons d'Estezargues</td>
+<td class="org-left">Carignan/Grenache/Syrah</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">France &gt; Cotes du Rhone</td>
+<td class="org-left">Lirac by Roger Sabon Rouge</td>
+<td class="org-left">Roger Sabon</td>
+<td class="org-left">Grenache/Syrah/Cinsault</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">France &gt; Cotes du Rhone &gt; Meridional &gt; Chateauneuf du Pape</td>
+<td class="org-left">Dom. de Marcoux Chateauneuf du Pape Rouge</td>
+<td class="org-left">Dom. de Marcoux</td>
+<td class="org-left">Grenache/Mourvedre/Syrah/Cinsault</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">France &gt; Cotes du Rhone &gt; Septentrional &gt; Crozes Hermitage</td>
+<td class="org-left">Les Lorennes Crozes Hermitage Rouge</td>
+<td class="org-left">Remy Vincent</td>
+<td class="org-left">Syrah</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">France &gt; Cotes du Rhone &gt; Septentrional &gt; Crozes Hermitage</td>
+<td class="org-left">Paul Jaboulet Aine Crozes Hermitage Dom. de Thalabert</td>
+<td class="org-left">Dom. Paul Jaboulet Aine</td>
+<td class="org-left">Syrah</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">France &gt; Cotes du Rhone &gt; Septentrional &gt; Crozes Hermitage</td>
+<td class="org-left">Yann Chave Crozes Hermitage Le Rouvre</td>
+<td class="org-left">Yann Chave</td>
+<td class="org-left">Syrah</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">France &gt; Cotes du Rhone &gt; Septentrional &gt; Hermitage</td>
+<td class="org-left">J.L. Chave Selection Hermitage Farconnet</td>
+<td class="org-left">Jean Louis Chave</td>
+<td class="org-left">Syrah</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">France &gt; Jura-Savoie &gt; Jura</td>
+<td class="org-left">Valentin Morel Les Pieds Sur Terre Poulsard Les Trouillots</td>
+<td class="org-left">Les Pieds sur Terre (Valentin Morel)</td>
+<td class="org-left">Poulsard</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">France &gt; Languedoc-Roussillon &gt; Languedoc</td>
+<td class="org-left">Dom. de Clovallon Les Pomaredes</td>
+<td class="org-left">Dom. de Clovallon (Catherine Roque)</td>
+<td class="org-left">Pinot Noir</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">France &gt; Languedoc-Roussillon &gt; Languedoc</td>
+<td class="org-left">Dom. de Clovallon Pinot Noir</td>
+<td class="org-left">Dom. de Clovallon (Catherine Roque)</td>
+<td class="org-left">Pinot Noir</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">France &gt; Languedoc-Roussillon &gt; Languedoc</td>
+<td class="org-left">Gerard Bertrand Cigalus Rouge</td>
+<td class="org-left">Gerard Bertrand</td>
+<td class="org-left">Cabernet Sauvignon/Merlot</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">France &gt; Languedoc-Roussillon &gt; Languedoc &gt; Corbieres</td>
+<td class="org-left">Montmija Syrah La Chapelle</td>
+<td class="org-left">Les Domaines Auriol</td>
+<td class="org-left">Syrah</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">France &gt; Languedoc-Roussillon &gt; Languedoc &gt; Faugeres</td>
+<td class="org-left">Dom. Leon Barral Faugeres Jadis</td>
+<td class="org-left">Dom. Leon Barral</td>
+<td class="org-left">Carignan/Syrah/Grenache</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">France &gt; Languedoc-Roussillon &gt; Languedoc &gt; Faugeres</td>
+<td class="org-left">Dom. Leon Barral Faugeres Tradition</td>
+<td class="org-left">Dom. Leon Barral</td>
+<td class="org-left">Carignan/Grenache Noir/Cinsault</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">France &gt; Languedoc-Roussillon &gt; Languedoc &gt; Minervois</td>
+<td class="org-left">Anne Gros &amp; Jean Paul Tollot Les Fontanilles</td>
+<td class="org-left">Dom. Anne Gros (et Jean Paul Tollot)</td>
+<td class="org-left">Grenache/Carignan/Syrah/Cinsault</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">France &gt; Languedoc-Roussillon &gt; Languedoc &gt; Minervois</td>
+<td class="org-left">Ch. Cesseras Minervois La Liviniere</td>
+<td class="org-left">Dom. Coudoulet</td>
+<td class="org-left">Syrah</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">France &gt; Sud Ouest</td>
+<td class="org-left">Dom. du Moncaut Heita Rouge</td>
+<td class="org-left">Dom. du Moncaut</td>
+<td class="org-left">Syrah/Tannat/Petit Verdot/Cabernet Sauvignon</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">France &gt; Sud Ouest</td>
+<td class="org-left">Patrimoine et Signature Saint Mont</td>
+<td class="org-left">Plaimont Producteurs</td>
+<td class="org-left">Tannat/Pinenc/Cabernet Sauvignon</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">France &gt; Sud Ouest &gt; Buzet</td>
+<td class="org-left">Dom. du Pech Buzet</td>
+<td class="org-left">Dom. du Pech (Magali Tissot &amp; Ludovic Bonnelle)</td>
+<td class="org-left">Bordeaux Blend Red</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">France &gt; Sud Ouest &gt; Cahors</td>
+<td class="org-left">Ch. Lagrezette</td>
+<td class="org-left">Ch. Lagrezette</td>
+<td class="org-left">Malbec/Merlot/Tannat</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">France &gt; Sud Ouest &gt; Madiran</td>
+<td class="org-left">Ch. de Fitere Madiran Vieilles Vignes</td>
+<td class="org-left">Ch. de Fitere</td>
+<td class="org-left">Tannat/Cabernet Sauvignon/Cabernet Franc/Fer Servadou</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">Germany &gt; Baden &gt; Kaiserstuhl</td>
+<td class="org-left">Hofflin Spatburgunder Barriqueausbau Trocken</td>
+<td class="org-left">Hofflin</td>
+<td class="org-left">Spatburgunder</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">Germany &gt; Pfalz</td>
+<td class="org-left">Messmer Sankt Laurent</td>
+<td class="org-left">Weingut Messmer (Herbert Messmer)</td>
+<td class="org-left">St. Laurent</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">Germany &gt; Wurttemberg</td>
+<td class="org-left">Staatsweingut Weinsberg Dornfelder trocken</td>
+<td class="org-left">Staatsweingut Weinsberg</td>
+<td class="org-left">Dornfelder</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">Italy &gt; Piemonte</td>
+<td class="org-left">Brezza Barolo Bricco Sarmassa</td>
+<td class="org-left">Azienda Agricola Brezza Giacomo e Figli</td>
+<td class="org-left">Nebbiolo</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">Italy &gt; Piemonte</td>
+<td class="org-left">Lo Zerbone Rosso</td>
+<td class="org-left">Lo Zerbone</td>
+<td class="org-left">Dolcetto</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">Italy &gt; Piemonte</td>
+<td class="org-left">Malvira Roero</td>
+<td class="org-left">Azienda Agricola Malvira</td>
+<td class="org-left">Nebbiolo</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">Italy &gt; Piemonte</td>
+<td class="org-left">Renato Ratti Barolo Rocche</td>
+<td class="org-left">Renato Ratti</td>
+<td class="org-left">Nebbiolo</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">Italy &gt; Piemonte</td>
+<td class="org-left">Roagna Barbaresco Montefico Vecchie Vigne</td>
+<td class="org-left">Roagna (Azienda Agricola i Paglieri)</td>
+<td class="org-left">Nebbiolo</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">Italy &gt; Puglia</td>
+<td class="org-left">Chunky Red Zinfandel</td>
+<td class="org-left">Mare Magnum</td>
+<td class="org-left">Zinfandel</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">Italy &gt; Puglia</td>
+<td class="org-left">Cosimo Taurino Patriglione Rosso Salento</td>
+<td class="org-left">Cosimo Taurino</td>
+<td class="org-left">Negro Amaro</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">Italy &gt; Puglia</td>
+<td class="org-left">San Marzano Talo Salice Salentino</td>
+<td class="org-left">Cantine San Marzano</td>
+<td class="org-left">Negro Amaro/Malvasia Nera</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">Italy &gt; Toscana</td>
+<td class="org-left">Campanaio</td>
+<td class="org-left">Podere Monastero</td>
+<td class="org-left">Cabernet Sauvignon/Merlot</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">Italy &gt; Toscana</td>
+<td class="org-left">Fattoria di Piazzano Ventoso</td>
+<td class="org-left">Fattoria di Piazzano</td>
+<td class="org-left">Sangiovese/Canaiolo Nero/Malvasia Nera</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">Italy &gt; Toscana</td>
+<td class="org-left">Sesti Grangiovese</td>
+<td class="org-left">Sesti Wine</td>
+<td class="org-left">Sangiovese</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">Italy &gt; Toscana</td>
+<td class="org-left">Terrabianca Croce Chianti Classico Riserva</td>
+<td class="org-left">Terrabianca Societa Agricola</td>
+<td class="org-left">Sangiovese/Canaiolo Nero</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">Italy &gt; Trentino-Alto Adige</td>
+<td class="org-left">Kurtatsch Sonntaler Grauvernatsch</td>
+<td class="org-left">Kellerei Kurtatsch (Cantina Cortaccia)</td>
+<td class="org-left">Grauvernatsch</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">Italy &gt; Veneto</td>
+<td class="org-left">Daniele Piccinin Rosso dei Muni</td>
+<td class="org-left">Daniele Piccinin</td>
+<td class="org-left">Cabernet Sauvignon/Merlot</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">Italy &gt; Veneto</td>
+<td class="org-left">Daniele Portinari Tai Rosso</td>
+<td class="org-left">Daniele Portinari</td>
+<td class="org-left">Tai Rosso</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">New Zealand &gt; South Island &gt; Canterbury &gt; Waipara Valley</td>
+<td class="org-left">Sherwood Estate Pinot Noir</td>
+<td class="org-left">Sherwood Estate</td>
+<td class="org-left">Pinot Noir</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">Spain &gt; Inland Region &gt; Castilla y Leon &gt; Ribera del Duero</td>
+<td class="org-left">De Bardos Ars Epica</td>
+<td class="org-left">De Bardos (Vintae)</td>
+<td class="org-left">Tinta del Paris</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">Spain &gt; Inland Region &gt; Castilla y Leon &gt; Toro</td>
+<td class="org-left">Alvarez y Diez Valmoro</td>
+<td class="org-left">Bodegas Alvarez y Diez</td>
+<td class="org-left">Tinta de Toro</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">Spain &gt; Inland Region &gt; Castilla-La Mancha &gt; La Mancha</td>
+<td class="org-left">Volver Single Vineyard</td>
+<td class="org-left">Bodegas Volver (Grupo Jorge Ordonez)</td>
+<td class="org-left">Tempranillo</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">Spain &gt; Inland Region &gt; Castilla-La Mancha &gt; Manchuela</td>
+<td class="org-left">CF de AltoLandon</td>
+<td class="org-left">AltoLandon</td>
+<td class="org-left">Cabernet Franc</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">USA &gt; California</td>
+<td class="org-left">Au Bon Climat Santa Barbara County Pinot Noir Tsubaki Label</td>
+<td class="org-left">Au Bon Climat</td>
+<td class="org-left">Pinot Noir</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">USA &gt; California</td>
+<td class="org-left">Opus One</td>
+<td class="org-left">Opus One Winery (Baron Philippe de Rothschild)</td>
+<td class="org-left">Cabernet Sauvignon/Merlot/Cabernet Franc/Petit Verdot/Malbec</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">USA &gt; California &gt; Napa</td>
+<td class="org-left">Napa Angel by Montes Cabernet Sauvignon</td>
+<td class="org-left">Montes Wines</td>
+<td class="org-left">Cabernet Sauvignon/Syrah</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">USA &gt; California &gt; Napa</td>
+<td class="org-left">Overture</td>
+<td class="org-left">Opus One Winery (Baron Philippe de Rothschild)</td>
+<td class="org-left">Cabernet Sauvignon/Merlot/Cabernet Franc/Malbec/Petit Verdot</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">USA &gt; California &gt; Napa</td>
+<td class="org-left">The Prisoner</td>
+<td class="org-left">The Prisoner Wine Company (TPWC)</td>
+<td class="org-left">Zinfandel/Cabernet Sauvignon/Syrah/Petite Sirah</td>
+</tr>
+
+<tr>
+<td class="org-left">Red Wine</td>
+<td class="org-left">USA &gt; California &gt; Sonoma</td>
+<td class="org-left">Dehlinger Cabernet Sauvignon</td>
+<td class="org-left">Dehlinger Winery</td>
+<td class="org-left">Cabernet Sauvignon</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#33879;&#32773;: clothoid</p>
+<p class="date">Created: 2021-07-22 Thu 07:25</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

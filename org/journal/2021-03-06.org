@@ -1,0 +1,25 @@
+* 2021-03-06
+** 08:54 remmina snap package
+
+   キーリングへのパスワードの保存やRDPプリンター共有といった重要な機能へのアクセスを有効にするには、ソフトウェアセンターを開いて Remmina に適切な権限を付与してください。また、次のコマンドを実行する必要もあります。
+
+   #+begin_src bash
+   sudo snap connect remmina:audio-record :audio-record # microphone
+   sudo snap connect remmina:avahi-observe :avahi-observe # servers discovery
+   sudo snap connect remmina:cups-control :cups-control # printing
+   sudo snap connect remmina:mount-observe :mount-observe # mount management
+   sudo snap connect remmina:password-manager-service :password-manager-service # password manager
+   sudo snap connect remmina:audio-playback :audio-playback # audio sharing
+   #+end_src   
+
+   #+ATTR_HTML: :width 800px
+   file:../img/2021/2021-03-06-085253-remmina.png
+   #+ATTR_HTML: :width 800px
+   file:../img/2021/2021-03-06-085317-remmina.png
+   #+ATTR_HTML: :width 800px
+   file:../img/2021/2021-03-06-085344-remmina.png
+** 10:00 emacs
+   
+   ベクタってこうかくの?
+   (define-key function-key-map [(capslock)] ‘event-apply-control-modifier)
+

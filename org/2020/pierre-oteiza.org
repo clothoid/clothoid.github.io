@@ -1,0 +1,168 @@
+#+SETUPFILE: ../0000/00org-web-template
+#+TITLE: ピエール・オテイザ バスク豚 取扱レストラン
+#+DESCRIPTION: 
+#+KEYWORDS: バスク 豚 キントア Basque KINTOA ハム レジオンドヌール勲章 フランス 絶滅
+#+SUBTITLE: 
+#+OPTIONS: ^:{}
+
+過去にバスク豚を取り扱ったことのあるレストランのリストです。
+今あるかどうかは分かりません。
+デリカッセンなどのリンクも最後に簡単に書いておきます。
+
+* リンク
+
+- Je ris -- ジュリ　温かいお料理とお酒を楽しんでもらうフレンチの小料理屋
+  -  https://www.conception-gp.com/jeris/index.html
+- UZAWA （ウザワ） - 守谷/フレンチ [食べログ]
+  -  https://www.tabelog.com/ibaraki/A0803/A080301/8002987/
+- ボン・グー （Bon Gout） - つくば/スペイン料理 [食べログ]
+  -  https://tabelog.com/ibaraki/A0802/A080201/8017566/
+- ラス タパス （Las Tapas） - 新静岡/スペイン料理 [食べログ]
+  -  https://tabelog.com/shizuoka/A2201/A220101/22003035/
+- ルマルタンペシュール 名古屋 吹上ワインと料理の工房 -- LE MARTIN PECHEUR
+  - http://www.lemartin.jp/
+- MAVO （マヴォ） - 祇園四条/フレンチ [食べログ]
+  - https://tabelog.com/kyoto/A2601/A260301/26024162/
+- Affinage -- 祇園白川
+  - https://www.affinage-kyoto.com/
+- cenci_チェンチ
+  - https://www.cenci-kyoto.com/
+- STEPHAN PANTEL
+  - http://stephanpantel.com/
+- レストラン シェ シノ （Restaurant Chez Shino） - 丸太町（京都市営）/フレンチ [食べログ]
+  - https://tabelog.com/kyoto/A2601/A260202/26027254/
+- 京都祇園 炭火割烹 いふき
+  - https://www.gion-ifuki.com/
+- 京都大学内 -- フレンチ・パーティー -- ラ・トゥール -- 円居(まどい)グループ 京都
+  - http://madoi-co.com/restaurant/la-tour/
+- 大阪・上本町でフランス料理を気軽に楽しく：アヴォロンテ
+  - http://avolonte.net/
+- スペインバスク料理 ETXOLA(エチョラ) / gastroteka bimendi(ガストロテカビメンディ) -- 大阪本町うつぼ公園
+  - http://etxola.com/
+- グシテ （gucite） - 天満橋/イタリアン [食べログ]
+  - https://www.tabelog.com/osaka/A2701/A270104/27093817/
+- ランジュ ヴァン （l'ange vin） - 北新地/ワインバー [食べログ]
+  - https://tabelog.com/osaka/A2701/A270101/27049687/
+- フランス料理 ラ・ベ -- レストラン&バー -- 【ザ・リッツ・カールトン大阪 ホテルオフィシャルサイト】 The Ritz-Carlton Osaka
+  - https://www.ritz-carlton.co.jp/restaurant/labaie/
+- レストランコーイン
+  - https://www.restaurant-koin.com
+- 宮もと - 新福島/フレンチ [食べログ]
+  - https://www.tabelog.com/osaka/A2701/A270108/27085045/
+- フランス料理 大西亭 大阪・福島
+  - http://www.onishitei.com/
+- Ca sento -- カセント
+  - https://www.casento.jp
+- ホテルピエナ神戸 -- ベストレート保証【公式】
+  - https://www.piena.co.jp
+- ル ビストロ - 元町（ＪＲ）/フレンチ [食べログ]
+  - https://tabelog.com/hyogo/A2801/A280102/28000552/
+- 久保アグリファーム -- 自然豊かな湯来町の広大な牧場
+  - http://www.kuboagrifarm.co.jp/
+- Bistro Babylon A Go Go(赤坂)バスク料理 -- ビストロ バビロン ア ゴー ゴー
+  - http://ym-c.com/babylon/
+- ABASQUE -- 渋谷、表参道のバスクの味を楽しめるお店で、ワインやコース料理を--HOME
+  - http://abasque.com/
+- アッピア アルタ 西麻布 （Appia alta） - 広尾/イタリアン [食べログ]
+  - https://www.tabelog.com/tokyo/A1307/A130703/13054090/
+- FRENCH BAR VAPEUR -- ヴァプール
+  - https://www.classic-inc.jp/vapeur
+- ブラッスリー・ヴィロン 渋谷店 （Brasserie VIRON） - 神泉/ビストロ [食べログ]
+  - https://www.tabelog.com/tokyo/A1303/A130301/13004627/
+- ブラッスリー・ヴィロン 丸の内店 （Brasserie VIRON ） - 東京/フレンチ [食べログ]
+  - https://www.tabelog.com/tokyo/A1302/A130201/13020161/
+- メグロ アンジュール （meguro unjour【旧店名】ヴェールヴォレアトーキョー） - 不動前/ビストロ [食べログ]
+  - https://tabelog.com/tokyo/A1316/A131601/13149205/
+- Cafe -- Sghr
+  - https://www.sghrcafe.com
+- エメ （Eme） - 武蔵小山/ビストロ [食べログ]
+  - https://tabelog.com/tokyo/A1317/A131710/13221736/
+- HOME -- ホテル予約　プリンスホテルズ＆リゾーツ
+  - https://www.princehotels.co.jp
+- オステリア イル オットブレ （Ostria il Ottobre） - 荒川車庫前/イタリアン [食べログ]
+  - https://tabelog.com/tokyo/A1323/A132303/13170507/
+- 【閉店】俺のフレンチ 銀座コリドー街 （【旧店名】俺のフレンチ Table Taku） - 新橋/フレンチ [食べログ]
+  - https://www.tabelog.com/tokyo/A1301/A130103/13146999/
+- Cafe Dining & Bar 104.5（イチマルヨンゴー）
+  - https://dining1045.jp/
+- cinq
+  - https://www.ginza-cinq.net
+- 自由が丘のバー、ガルフス
+  - https://www.gulfs.jp
+- レストラン カンテサンス Quintessence
+  - https://www.quintessence.jp
+- 料理メニュー : 【閉店】キッチャーノ （CHICCIANO） - 赤坂/イタリアン [食べログ]
+  - https://tabelog.com/tokyo/A1308/A130801/13124011/dtlmenu/
+- GinzaWineBar G5 - 全ての高級ワインをグラスで注文できる・銀座5丁目のオシャレな銀座ワイン　バー　
+  - https://ginzawinebar-g5.business.site/
+- 今彩 神楽坂 和食 フランス料理。デートディナー・ビジネス接待 人気隠れ家的酒膳料理店
+  - http://www.wortonstudio.com/
+- Operations Automation Default Page
+  - https://www.pachon.co.jp
+- バスク料理　サンジャン・ピエドポー　La Cuisine basquaise  Saint-Jean-Pied-de-Port
+  - http://home.s01.itscom.net/st-j-p-p/
+- 七條 （シチジョウ） - 小川町/洋食 [食べログ]
+  - https://tabelog.com/tokyo/A1310/A131002/13152996/
+- 春秋ユラリ -- 春秋
+  - https://www.shunju.com/yurari
+- Sept/Sette -- セット・セッテ -- 銀座 イタリアンフレンチ
+  - http://www.septsette.com/
+- とんかつ 栄ちゃん
+  - https://tabelog.com/chiba/A1202/A120201/12018839/
+- 浅草のフレンチレストランHOMMAGEオフィシャルサイト
+  - http://www.hommage-arai.com/
+- Bar9Dan
+  - http://bar9dan.daynight.jp/
+- ビストロオザミ
+  - https://auxamis.com/bistro
+- ビストロカンパーニュ 仏農家からの葡萄酒と田舎料理の店
+  - https://www.bistro-campagne.jp
+- サロン ブッチャー アンド ビア （SALON BUTCHER & BEER） - 新宿/ビストロ [食べログ]
+  - https://tabelog.com/tokyo/A1304/A130401/13194452/
+- ダイニング -- ザ・リッツ・カールトン東京
+  - https://www.ritz-carlton.jp/restaurant/azure
+- マルディ・グラ （Mardi Gras） - 新橋/フレンチ [食べログ]
+  - https://www.tabelog.com/tokyo/A1301/A130103/13004991/
+- RANSEN はなれ -- レストラン＆バー -- ホテルニューオータニ（東京）
+  - https://www.newotani.co.jp/tokyo/restaurant/ransen-hanare/
+- CAVO （カボ） - 恵比寿/ワインバー [食べログ]
+  - https://tabelog.com/tokyo/A1303/A130302/13112429/
+- Le cabaret ル・キャバレ
+  - http://restaurant-lecabaret.com/
+- ル ブルターニュ（LE BRETAGNE）
+  - https://www.le-bretagne.com
+- Operations Automation Default Page
+  - https://www.pachon.co.jp
+- resonance -- レゾナンス カフェ／ダイニング／バー 東京・丸の内
+  - http://www.resonance.ne.jp/
+- ボルドー ワインバー レピック （Bordeaux Wine Bar L'EPIQUE） - 神保町/ワインバー [食べログ]
+  - https://tabelog.com/tokyo/A1310/A131003/13202791/
+- Lady Blue（レディ・ブルー）-- 東京・大手町 カフェ/レストラン/バー
+  - https://www.ladyblue.jp
+- ブラッスリーオザミ ソラマチ店
+  - https://auxamis.com/skytree
+- BLUE NOTE TOKYO
+  - https://www.bluenote.co.jp
+
+* デリ/ブラッスリーなど    
+    
+- DEAN & DELUCA
+  - https://www.deandeluca.co.jp
+- 株式会社コダマ kodama-ltd
+  - https://www.kodama-ltd.co.jp/
+- ARTISAN BOULANGER CUPIDO
+  - http://www.cupido.jp/
+- SALUMERIA 69 [サルメリアロッキュー]
+  - https://www.salumeria-69.com
+- 紀ノ国屋の通販サイト e-shop KINOKUNIYA
+  - https://www.super-kinokuniya.jp
+- チーズディ （CHEESE DAY） - 本八戸/サンドイッチ [食べログ]
+  - https://tabelog.com/aomori/A0203/A020301/2010273/
+- ビーバー ブレッド （BEAVER BREAD） - 馬喰横山/パン [食べログ]
+  - https://tabelog.com/tokyo/A1302/A130204/13215647/
+- METZGEREI KUSUDA メツゲライクスダ
+  - https://www.metzgerei-kusuda.com/
+- マルシェエモンズ
+  - http://www.aimons-net.com/index.html
+- ピエール・オテイザ商品 取扱い店一覧
+  - http://www.torishin.jp/marchandise/europe_ingredients/ham_salami/ham_salami_sales.html

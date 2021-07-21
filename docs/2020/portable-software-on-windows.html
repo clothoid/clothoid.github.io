@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
 <head>
-<!-- 2020-10-21 Wed 21:48 -->
+<!-- 2021-07-22 Thu 07:23 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Windows の開発環境を Portable 版で整える</title>
@@ -252,40 +252,35 @@ for the JavaScript code in this tag.
 <span class="subtitle">Windows バイナリを公式配布しているソフトのリンク</span>
 </h1>
 <ul class="org-ul">
-<li>7-Zip - 圧縮・解凍ソフト
-<ul class="org-ul">
-<li>HP: <a href="https://sevenzip.osdn.jp/">https://sevenzip.osdn.jp/</a></li>
-<li>DL: <a href="https://sevenzip.osdn.jp/download.html">https://sevenzip.osdn.jp/download.html</a></li>
-</ul></li>
 <li>emacs - エディタ
 <ul class="org-ul">
 <li>27.1: <a href="http://cha.la.coocan.jp/doc/NTEmacs.html">http://cha.la.coocan.jp/doc/NTEmacs.html</a></li>
 <li>26.3: <a href="https://github.com/mhatta/emacs-26-x86_64-win-ime">https://github.com/mhatta/emacs-26-x86_64-win-ime</a></li>
+<li>License: GPL</li>
 </ul></li>
-<li>Sakura Editor - エディタ
+<li>Hunspell - スペルチェッカーおよび形態学的アナライザー
 <ul class="org-ul">
-<li>HP: <a href="https://sakura-editor.github.io/">https://sakura-editor.github.io/</a></li>
-<li>DL: <a href="https://github.com/sakura-editor/sakura/releases">https://github.com/sakura-editor/sakura/releases</a></li>
+<li>HP: <a href="http://hunspell.github.io/">http://hunspell.github.io/</a></li>
+<li>DL: <a href="https://github.com/gromnitsky/hunspell-windows/releases">https://github.com/gromnitsky/hunspell-windows/releases</a></li>
+<li>License: MIT</li>
 </ul></li>
-<li>Vim - エディタ
+<li>7-Zip - 圧縮・解凍ソフト
 <ul class="org-ul">
-<li>HP: <a href="https://www.kaoriya.net/">https://www.kaoriya.net/</a></li>
-<li>DL: <a href="https://www.kaoriya.net/software/vim/">https://www.kaoriya.net/software/vim/</a></li>
-</ul></li>
-<li>Giga Text Viewer - 巨大サイズのテキストファイルを瞬時に開いて閲覧
-<ul class="org-ul">
-<li>HP: <a href="http://kansai.me/yanda/">http://kansai.me/yanda/</a></li>
-<li>DL: <a href="http://kansai.me/yanda/FreeSoftware.htm">http://kansai.me/yanda/FreeSoftware.htm</a></li>
+<li>HP: <a href="https://sevenzip.osdn.jp/">https://sevenzip.osdn.jp/</a></li>
+<li>DL: <a href="https://sevenzip.osdn.jp/download.html">https://sevenzip.osdn.jp/download.html</a></li>
+<li>License: GNU LGPL/7-Zip license</li>
 </ul></li>
 <li>ripgrep - ファイル検索
 <ul class="org-ul">
 <li>HP: <a href="https://github.com/BurntSushi/ripgrep/">https://github.com/BurntSushi/ripgrep/</a></li>
 <li>DL: <a href="https://github.com/BurntSushi/ripgrep/releases">https://github.com/BurntSushi/ripgrep/releases</a></li>
+<li>License: MIT</li>
 </ul></li>
 <li>the platinum searcher - ファイル検索
 <ul class="org-ul">
 <li>HP: <a href="https://github.com/monochromegane/the_platinum_searcher">https://github.com/monochromegane/the_platinum_searcher</a></li>
 <li>DL: <a href="https://github.com/monochromegane/the_platinum_searcher/releases">https://github.com/monochromegane/the_platinum_searcher/releases</a></li>
+<li>License: MIT</li>
 </ul></li>
 <li>everything - ファイル検索
 <ul class="org-ul">
@@ -296,150 +291,198 @@ for the JavaScript code in this tag.
 <li>Language Pack</li>
 <li>Command-line Interface</li>
 </ul></li>
+<li>License: <a href="https://www.voidtools.com/License.txt">https://www.voidtools.com/License.txt</a></li>
 </ul></li>
 <li>pandoc - 文書作成
 <ul class="org-ul">
 <li>HP: <a href="https://pandoc.org/">https://pandoc.org/</a></li>
 <li>DL: <a href="https://github.com/jgm/pandoc/releases/tag/2.10.1">https://github.com/jgm/pandoc/releases/tag/2.10.1</a></li>
+<li>License: GPLv2</li>
 </ul></li>
 <li>cmigemo - 日本語インクリメンタル検
 <ul class="org-ul">
 <li>DL: <a href="https://www.kaoriya.net/software/cmigemo/">https://www.kaoriya.net/software/cmigemo/</a></li>
-</ul></li>
-<li>Git Extension - Git クライアント
-<ul class="org-ul">
-<li>HP: <a href="http://gitextensions.github.io/">http://gitextensions.github.io/</a></li>
-<li>DL: <a href="https://github.com/gitextensions/gitextensions/releases">https://github.com/gitextensions/gitextensions/releases</a></li>
-</ul></li>
-<li>Tomcat - Webコンテナ
-<ul class="org-ul">
-<li>HP: <a href="http://tomcat.apache.org/">http://tomcat.apache.org/</a></li>
-<li>DL: <a href="https://tomcat.apache.org/download-90.cgi">https://tomcat.apache.org/download-90.cgi</a></li>
+<li>License: MITライセンスと独自ライセンスのデュアルライセンス</li>
 </ul></li>
 <li>git - 分散型バージョン管理
 <ul class="org-ul">
 <li>HP: <a href="https://git-scm.com/">https://git-scm.com/</a></li>
 <li>DL: <a href="https://git-scm.com/download/win">https://git-scm.com/download/win</a></li>
+<li>License: GPL2</li>
 </ul></li>
-<li>vlc - ディアプレーヤー
+<li>Git Extension - Git クライアント
 <ul class="org-ul">
-<li>HP: <a href="https://www.videolan.org/">https://www.videolan.org/</a></li>
-<li>DL: <a href="https://www.videolan.org/vlc/download-windows.html">https://www.videolan.org/vlc/download-windows.html</a></li>
-</ul></li>
-<li>draw.io - ダイアグラム作図
-<ul class="org-ul">
-<li>HP: <a href="https://app.diagrams.net/">https://app.diagrams.net/</a></li>
-<li>DL: <a href="https://github.com/jgraph/drawio-desktop/releases">https://github.com/jgraph/drawio-desktop/releases</a></li>
-</ul></li>
-<li>BgInfo - システム情報をデスクトップ壁紙へ
-<ul class="org-ul">
-<li>HP: <a href="https://docs.microsoft.com/en-us/sysinternals/downloads/bginfo">https://docs.microsoft.com/en-us/sysinternals/downloads/bginfo</a></li>
-<li>DL: <a href="https://docs.microsoft.com/en-us/sysinternals/downloads/bginfo">https://docs.microsoft.com/en-us/sysinternals/downloads/bginfo</a></li>
-</ul></li>
-<li>Color Picker - スクリーンからのスポイトカラーピックツール
-<ul class="org-ul">
-<li>HP: <a href="http://www.winsystem.jp/">http://www.winsystem.jp/</a></li>
-<li>DL: <a href="https://www.vector.co.jp/soft/win95/art/se350616.html">https://www.vector.co.jp/soft/win95/art/se350616.html</a></li>
-</ul></li>
-<li>FreeCAD - 3D CAD 
-<ul class="org-ul">
-<li>HP: <a href="https://www.freecadweb.org/">https://www.freecadweb.org/</a></li>
-<li>DL: <a href="https://github.com/FreeCAD/FreeCAD/releases/tag/0.19_pre">https://github.com/FreeCAD/FreeCAD/releases/tag/0.19_pre</a></li>
-</ul></li>
-<li>IrfanView - 画像ビューア
-<ul class="org-ul">
-<li>HP: <a href="https://www.irfanview.com/">https://www.irfanview.com/</a></li>
-<li>DL: <a href="https://www.irfanview.com/64bit.htm">https://www.irfanview.com/64bit.htm</a></li>
-</ul></li>
-<li>マウスふるふる - 一定時間おきにマウスを小さく左右に揺らす
-<ul class="org-ul">
-<li>HP: <a href="https://www.inasoft.org/">https://www.inasoft.org/</a></li>
-<li>DL: <a href="https://www.inasoft.org/icountt.html">https://www.inasoft.org/icountt.html</a></li>
+<li>HP: <a href="http://gitextensions.github.io/">http://gitextensions.github.io/</a></li>
+<li>DL: <a href="https://github.com/gitextensions/gitextensions/releases">https://github.com/gitextensions/gitextensions/releases</a></li>
+<li>License: GPL</li>
 </ul></li>
 <li>AdoptOpenJDK(Java) - Java プログラム
 <ul class="org-ul">
 <li>HP: <a href="https://adoptopenjdk.net/">https://adoptopenjdk.net/</a></li>
 <li>DL: <a href="https://adoptopenjdk.net/releases.html">https://adoptopenjdk.net/releases.html</a></li>
-</ul></li>
-<li>Rapid Environment Editor - 環境変数を編集支援
-<ul class="org-ul">
-<li>HP: <a href="https://www.rapidee.com/">https://www.rapidee.com/</a></li>
-<li>DL: <a href="https://www.rapidee.com/en/download">https://www.rapidee.com/en/download</a></li>
-</ul></li>
-<li>cmder - コンソールエミュレーター
-<ul class="org-ul">
-<li>HP: <a href="https://cmder.net/">https://cmder.net/</a></li>
-<li>DL: <a href="https://github.com/cmderdev/cmder/releases">https://github.com/cmderdev/cmder/releases</a></li>
-</ul></li>
-<li>rlogin - ターミナルソフト 
-<ul class="org-ul">
-<li>HP: <a href="http://nanno.dip.jp/">http://nanno.dip.jp/</a></li>
-<li>DL: <a href="http://nanno.dip.jp/softlib/man/rlogin/">http://nanno.dip.jp/softlib/man/rlogin/</a></li>
-</ul></li>
-<li>Tera Term - ターミナルエミュレーター
-<ul class="org-ul">
-<li>HP: <a href="https://ttssh2.osdn.jp/">https://ttssh2.osdn.jp/</a></li>
-<li>DL: <a href="https://ja.osdn.net/projects/ttssh2/releases/">https://ja.osdn.net/projects/ttssh2/releases/</a></li>
-</ul></li>
-<li>Real Sync - フォルダ間同期、バックアップ
-<ul class="org-ul">
-<li>HP: <a href="http://www.takenet.or.jp/~ryuuji/">http://www.takenet.or.jp/~ryuuji/</a></li>
-<li>DL: <a href="http://www.takenet.or.jp/~ryuuji/realsync/">http://www.takenet.or.jp/~ryuuji/realsync/</a></li>
-</ul></li>
-<li>Sizer - ウィンドウを指定サイズ
-<ul class="org-ul">
-<li>HP: <a href="http://www.brianapps.net/">http://www.brianapps.net/</a></li>
-<li>DL: <a href="http://www.brianapps.net/sizer/">http://www.brianapps.net/sizer/</a> (Zip package)</li>
-</ul></li>
-<li>Sumatra PDF - PDF閲覧
-<ul class="org-ul">
-<li>HP: <a href="https://www.sumatrapdfreader.org/free-pdf-reader.html">https://www.sumatrapdfreader.org/free-pdf-reader.html</a></li>
-<li>DL: <a href="https://www.sumatrapdfreader.org/download-free-pdf-viewer.html">https://www.sumatrapdfreader.org/download-free-pdf-viewer.html</a></li>
-</ul></li>
-<li>WinMerge - 差分比較
-<ul class="org-ul">
-<li><a href="https://winmergejp.bitbucket.io/">https://winmergejp.bitbucket.io/</a></li>
-</ul></li>
-<li>WinSCP- SCP/SFTP/FTPS対応クライアント
-<ul class="org-ul">
-<li>HP: <a href="https://winscp.net/">https://winscp.net/</a></li>
-<li>DL: <a href="https://winscp.net/eng/downloads.php">https://winscp.net/eng/downloads.php</a> (Portable executables)</li>
+<li>License:  Apache License, Version 2.0 / GPLv2+CE</li>
 </ul></li>
 <li>WinPython - Python プログラム
 <ul class="org-ul">
 <li>HP: <a href="https://winpython.github.io/">https://winpython.github.io/</a></li>
 <li>DL: <a href="https://github.com/winpython/winpython/releases">https://github.com/winpython/winpython/releases</a></li>
+<li>License: MIT</li>
+</ul></li>
+<li>Tomcat - Webコンテナ
+<ul class="org-ul">
+<li>HP: <a href="http://tomcat.apache.org/">http://tomcat.apache.org/</a></li>
+<li>DL: <a href="https://tomcat.apache.org/download-90.cgi">https://tomcat.apache.org/download-90.cgi</a></li>
+<li>License: Apache License 2.0</li>
+</ul></li>
+<li>Graphviz
+<ul class="org-ul">
+<li>HP: <a href="https://graphviz.org/">https://graphviz.org/</a></li>
+<li>DL: <a href="https://graphviz.org/download/">https://graphviz.org/download/</a></li>
+<li>License: Common Public License</li>
+<li>memo: Windows 版を DL すると、Windows Defender によりトロイの木馬判定される</li>
+</ul></li>
+<li>Sakura Editor - エディタ
+<ul class="org-ul">
+<li>HP: <a href="https://sakura-editor.github.io/">https://sakura-editor.github.io/</a></li>
+<li>DL: <a href="https://github.com/sakura-editor/sakura/releases">https://github.com/sakura-editor/sakura/releases</a></li>
+<li>License: 商用・非商用を問わず無償で利用できますが，ソースコードの著作権は各箇所を記述した人が留保</li>
+</ul></li>
+<li>Vim kaoriya 版 - エディタ
+<ul class="org-ul">
+<li>HP: <a href="https://www.kaoriya.net/">https://www.kaoriya.net/</a></li>
+<li>DL: <a href="https://www.kaoriya.net/software/vim/">https://www.kaoriya.net/software/vim/</a></li>
+<li>License: オリジナルに従う/GPL互換チャリティウェア</li>
+</ul></li>
+<li>Giga Text Viewer - 巨大サイズのテキストファイルを瞬時に開いて閲覧
+<ul class="org-ul">
+<li>HP: <a href="http://kansai.me/yanda/">http://kansai.me/yanda/</a></li>
+<li>DL: <a href="http://kansai.me/yanda/FreeSoftware.htm">http://kansai.me/yanda/FreeSoftware.htm</a></li>
+<li>Lisense: 不明</li>
+</ul></li>
+<li>vlc - ディアプレーヤー
+<ul class="org-ul">
+<li>HP: <a href="https://www.videolan.org/">https://www.videolan.org/</a></li>
+<li>DL: <a href="https://www.videolan.org/vlc/download-windows.html">https://www.videolan.org/vlc/download-windows.html</a></li>
+<li>License: GPL</li>
+</ul></li>
+<li>draw.io - ダイアグラム作図
+<ul class="org-ul">
+<li>HP: <a href="https://app.diagrams.net/">https://app.diagrams.net/</a></li>
+<li>DL: <a href="https://github.com/jgraph/drawio-desktop/releases">https://github.com/jgraph/drawio-desktop/releases</a></li>
+<li>License: Apache License 2.0</li>
+</ul></li>
+<li>BgInfo - システム情報をデスクトップ壁紙へ
+<ul class="org-ul">
+<li>HP: <a href="https://docs.microsoft.com/en-us/sysinternals/downloads/bginfo">https://docs.microsoft.com/en-us/sysinternals/downloads/bginfo</a></li>
+<li>DL: <a href="https://docs.microsoft.com/en-us/sysinternals/downloads/bginfo">https://docs.microsoft.com/en-us/sysinternals/downloads/bginfo</a></li>
+<li>License: Sysinternals Software License</li>
+</ul></li>
+<li>Color Picker - スクリーンからのスポイトカラーピックツール
+<ul class="org-ul">
+<li>HP: <a href="http://www.winsystem.jp/">http://www.winsystem.jp/</a></li>
+<li>DL: <a href="https://www.vector.co.jp/soft/win95/art/se350616.html">https://www.vector.co.jp/soft/win95/art/se350616.html</a></li>
+<li>License: 不明</li>
+</ul></li>
+<li>FreeCAD - 3D CAD 
+<ul class="org-ul">
+<li>HP: <a href="https://www.freecadweb.org/">https://www.freecadweb.org/</a></li>
+<li>DL: <a href="https://github.com/FreeCAD/FreeCAD/releases/tag/0.19_pre">https://github.com/FreeCAD/FreeCAD/releases/tag/0.19_pre</a></li>
+<li>License: GPL2</li>
+</ul></li>
+<li>IrfanView - 画像ビューア
+<ul class="org-ul">
+<li>HP: <a href="https://www.irfanview.com/">https://www.irfanview.com/</a></li>
+<li>DL: <a href="https://www.irfanview.com/64bit.htm">https://www.irfanview.com/64bit.htm</a></li>
+<li>License: IrfanView Software License (商用利用不可)</li>
+</ul></li>
+<li>マウスふるふる - 一定時間おきにマウスを小さく左右に揺らす
+<ul class="org-ul">
+<li>HP: <a href="https://www.inasoft.org/">https://www.inasoft.org/</a></li>
+<li>DL: <a href="https://www.inasoft.org/icountt.html">https://www.inasoft.org/icountt.html</a></li>
+<li>License: 独自ライセンス <a href="https://www.inasoft.org/webhelp/mousefr/HLP000007.html">https://www.inasoft.org/webhelp/mousefr/HLP000007.html</a></li>
+</ul></li>
+<li>Rapid Environment Editor - 環境変数を編集支援
+<ul class="org-ul">
+<li>HP: <a href="https://www.rapidee.com/">https://www.rapidee.com/</a></li>
+<li>DL: <a href="https://www.rapidee.com/en/download">https://www.rapidee.com/en/download</a></li>
+<li>License: 独自ライセンス <a href="https://www.rapidee.com/en/license">https://www.rapidee.com/en/license</a></li>
+</ul></li>
+<li>cmder - コンソールエミュレーター
+<ul class="org-ul">
+<li>HP: <a href="https://cmder.net/">https://cmder.net/</a></li>
+<li>DL: <a href="https://github.com/cmderdev/cmder/releases">https://github.com/cmderdev/cmder/releases</a></li>
+<li>License: MIT</li>
+</ul></li>
+<li>rlogin - ターミナルソフト 
+<ul class="org-ul">
+<li>HP: <a href="http://nanno.dip.jp/">http://nanno.dip.jp/</a></li>
+<li>DL: <a href="http://nanno.dip.jp/softlib/man/rlogin/">http://nanno.dip.jp/softlib/man/rlogin/</a></li>
+<li>License: MIT</li>
+</ul></li>
+<li>Tera Term - ターミナルエミュレーター
+<ul class="org-ul">
+<li>HP: <a href="https://ttssh2.osdn.jp/">https://ttssh2.osdn.jp/</a></li>
+<li>DL: <a href="https://ja.osdn.net/projects/ttssh2/releases/">https://ja.osdn.net/projects/ttssh2/releases/</a></li>
+<li>License: 修正BSD</li>
+</ul></li>
+<li>Real Sync - フォルダ間同期、バックアップ
+<ul class="org-ul">
+<li>HP: <a href="http://www.takenet.or.jp/~ryuuji/">http://www.takenet.or.jp/~ryuuji/</a></li>
+<li>DL: <a href="http://www.takenet.or.jp/~ryuuji/realsync/">http://www.takenet.or.jp/~ryuuji/realsync/</a></li>
+<li>License: 独自ライセンス <a href="http://www.takenet.or.jp/~ryuuji/realsync/html/help027.htm">http://www.takenet.or.jp/~ryuuji/realsync/html/help027.htm</a></li>
+</ul></li>
+<li>Sizer - ウィンドウを指定サイズ
+<ul class="org-ul">
+<li>HP: <a href="http://www.brianapps.net/">http://www.brianapps.net/</a></li>
+<li>DL: <a href="http://www.brianapps.net/sizer/">http://www.brianapps.net/sizer/</a> (Zip package)</li>
+<li>License: 不明</li>
+</ul></li>
+<li>Sumatra PDF - PDF閲覧
+<ul class="org-ul">
+<li>HP: <a href="https://www.sumatrapdfreader.org/free-pdf-reader.html">https://www.sumatrapdfreader.org/free-pdf-reader.html</a></li>
+<li>DL: <a href="https://www.sumatrapdfreader.org/download-free-pdf-viewer.html">https://www.sumatrapdfreader.org/download-free-pdf-viewer.html</a></li>
+<li>License: AGPLv3</li>
+</ul></li>
+<li>WinMerge - 差分比較
+<ul class="org-ul">
+<li>HP: <a href="https://winmergejp.bitbucket.io/">https://winmergejp.bitbucket.io/</a></li>
+<li>License: GPL2</li>
+</ul></li>
+<li>WinSCP- SCP/SFTP/FTPS対応クライアント
+<ul class="org-ul">
+<li>HP: <a href="https://winscp.net/">https://winscp.net/</a></li>
+<li>DL: <a href="https://winscp.net/eng/downloads.php">https://winscp.net/eng/downloads.php</a> (Portable executables)</li>
+<li>License: GPL</li>
 </ul></li>
 <li>ZoomIt - デスクトップ拡大表示
 <ul class="org-ul">
 <li>HP: <a href="https://docs.microsoft.com/en-us/sysinternals/downloads/zoomit">https://docs.microsoft.com/en-us/sysinternals/downloads/zoomit</a></li>
 <li>DL: <a href="https://live.sysinternals.com/">https://live.sysinternals.com/</a></li>
-</ul></li>
-<li>Inkscape - ベクトル画像編集
-<ul class="org-ul">
-<li>HP: <a href="https://inkscape.org/">https://inkscape.org/</a></li>
-<li>DL: <a href="https://inkscape.org/release/1.0.1/windows/64-bit/">https://inkscape.org/release/1.0.1/windows/64-bit/</a></li>
-</ul></li>
-<li>Hunspell - スペルチェッカーおよび形態学的アナライザー
-<ul class="org-ul">
-<li>HP: <a href="http://hunspell.github.io/">http://hunspell.github.io/</a></li>
-<li>DL: <a href="https://github.com/gromnitsky/hunspell-windows/releases">https://github.com/gromnitsky/hunspell-windows/releases</a></li>
+<li>License: Sysinternals Software License</li>
 </ul></li>
 <li>ImageMagick - 画像を操作、表示
 <ul class="org-ul">
 <li>HP: <a href="https://imagemagick.org">https://imagemagick.org</a></li>
 <li>DL: <a href="https://imagemagick.org/script/download.php">https://imagemagick.org/script/download.php</a> (ImageMagick-X.X.XX-XX-portable-XX-XXX.zip)</li>
+<li>License: ImageMagick License</li>
 </ul></li>
 <li>duf - Disk Usage/Free Utility (Linux, BSD, macOS &amp; Windows)
 <ul class="org-ul">
 <li>HP: <a href="https://github.com/muesli/duf">https://github.com/muesli/duf</a></li>
 <li>DL: <a href="https://github.com/muesli/duf/releases">https://github.com/muesli/duf/releases</a></li>
+<li>License: MIT</li>
+</ul></li>
+<li>Inkscape - ベクトル画像編集
+<ul class="org-ul">
+<li>HP: <a href="https://inkscape.org/">https://inkscape.org/</a></li>
+<li>DL: <a href="https://inkscape.org/release/1.0.1/windows/64-bit/">https://inkscape.org/release/1.0.1/windows/64-bit/</a></li>
+<li>License: GPL</li>
 </ul></li>
 </ul>
 </div>
 <div id="postamble" class="status">
 <p class="author">&#33879;&#32773;: clothoid</p>
-<p class="date">Created: 2020-10-21 Wed 21:48</p>
+<p class="date">Created: 2021-07-22 Thu 07:23</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
