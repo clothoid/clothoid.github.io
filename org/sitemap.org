@@ -1,5 +1,6 @@
 #+TITLE: site map
 
+- [[file:2021/copy-writing-method.org][コピーライティングの法則まとめ]]
 - [[file:2021/wine-list.org][好きなワインのメモ]]
 - [[file:journal/2021-03-06.org][2021-03-06]]
 - [[file:journal/2021-03-03.org][2021-03-03]]

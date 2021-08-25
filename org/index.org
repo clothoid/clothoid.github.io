@@ -6,10 +6,12 @@
 #+DESCRIPTION:
 #+OPTIONS: ^:{}
 #+KEYWORDS:
+#+HTML_
+#+html_head: <script data-ad-client="ca-pub-6390292679676181" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
 * Articles
 
-  + [[file:sitemap.org][Check the site map]]
+  + [[file:sitemap.org][Go to the site map]]
 
 * Contacts
 
@@ -19,4 +21,9 @@
   - [[https://github.com/clothoid][Github]]
   - [[https://peing.net/en/clothoid][Question Box]]
   # - [[https://marshmallow-qa.com/clothoid][Marshmallow]]
+
+* Invitation
+
+  - [[https://bitflyer.com/invitation?id=g1otr0wj][Bitflyer]](Code: g1otr0wj)
+  - [[https://www.bitpoint.co.jp/lp/referral/?invitationCd=XMTNKPVRJK&afid=PaAKUxGd&argument=E4y65Xyx&dmai=a60e69a5d44eea][Bitpoint]](Code: XMTNKPVRJK)
 

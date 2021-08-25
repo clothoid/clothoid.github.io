@@ -1,0 +1,1279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+<!-- 2021-08-25 Wed 16:14 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>コピーライティングの法則まとめ</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="clothoid" />
+<meta name="keywords" content="Copywirting ライティング 文章 ルール 法則" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="https://clothoid.github.io/sitemap.html"> UP </a>
+ |
+ <a accesskey="H" href="https://clothoid.github.io/"> HOME </a>
+</div><div id="content">
+<h1 class="title">コピーライティングの法則まとめ</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#27425;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org9dcb3ed">1. 各法則のリスト</a>
+<ul>
+<li><a href="#org22a5dc2">1.1. AIDA(アイダ)の法則</a>
+<ul>
+<li><a href="#org9842b64">1.1.1. 順序</a></li>
+<li><a href="#org52104af">1.1.2. 例文</a></li>
+<li><a href="#org7c3b206">1.1.3. 特徴</a></li>
+<li><a href="#org8eb4653">1.1.4. AIDMA(アイドマ)の法則</a>
+<ul>
+<li><a href="#org0891a95">1.1.4.1. 順序</a></li>
+<li><a href="#org125af5d">1.1.4.2. 例文</a></li>
+<li><a href="#orga5261b6">1.1.4.3. 特徴</a></li>
+</ul>
+</li>
+<li><a href="#org6f7943c">1.1.5. AIDCA(アイドカ)の法則</a>
+<ul>
+<li><a href="#org3b4a674">1.1.5.1. 順序</a></li>
+<li><a href="#org2908822">1.1.5.2. 例文</a></li>
+<li><a href="#org3112e9c">1.1.5.3. 特徴</a></li>
+</ul>
+</li>
+<li><a href="#org429e04f">1.1.6. AIDCAS(アイドカス)の法則</a>
+<ul>
+<li><a href="#org49186db">1.1.6.1. 順序</a></li>
+<li><a href="#org44fa2ec">1.1.6.2. 例文</a></li>
+<li><a href="#org8af6972">1.1.6.3. 特徴</a></li>
+</ul>
+</li>
+<li><a href="#orge27dfd4">1.1.7. AISAS(アイサス)の法則</a>
+<ul>
+<li><a href="#org1a4b523">1.1.7.1. 順序</a></li>
+<li><a href="#orgdb902ab">1.1.7.2. 例文</a></li>
+<li><a href="#org2d508ee">1.1.7.3. 特徴</a></li>
+</ul>
+</li>
+<li><a href="#org3c69bb2">1.1.8. AISCEAS(アイセアス)の法則</a>
+<ul>
+<li><a href="#orgbc585a6">1.1.8.1. 順序</a></li>
+<li><a href="#org9f4dcc0">1.1.8.2. 例文</a></li>
+<li><a href="#orga32b59d">1.1.8.3. 特徴</a></li>
+</ul>
+</li>
+<li><a href="#orgd9dfab4">1.1.9. BEAF(ビーフ)の法則</a>
+<ul>
+<li><a href="#org0c3e527">1.1.9.1. 順序</a></li>
+<li><a href="#org5495297">1.1.9.2. 例文</a></li>
+<li><a href="#org34c8a61">1.1.9.3. 特徴</a></li>
+</ul>
+</li>
+<li><a href="#org197fb77">1.1.10. CREMA(クレマ)の法則</a>
+<ul>
+<li><a href="#org33850e5">1.1.10.1. 順序</a></li>
+<li><a href="#org3c06349">1.1.10.2. 例文</a></li>
+<li><a href="#org2e132d5">1.1.10.3. 特徴</a></li>
+</ul>
+</li>
+<li><a href="#org8539d85">1.1.11. DESC(デスク)の法則</a>
+<ul>
+<li><a href="#orgb371af0">1.1.11.1. 順序</a></li>
+<li><a href="#orgb8f3cf1">1.1.11.2. 例文</a></li>
+<li><a href="#orgd3e961d">1.1.11.3. 特徴</a></li>
+</ul>
+</li>
+<li><a href="#org83adf1d">1.1.12. FAB(ファブ)の法則</a>
+<ul>
+<li><a href="#orgb4b31c8">1.1.12.1. 順序</a></li>
+<li><a href="#org7a0cdc6">1.1.12.2. 例文</a></li>
+<li><a href="#org414c0ef">1.1.12.3. 特徴</a></li>
+</ul>
+</li>
+<li><a href="#org7017aa3">1.1.13. IREP(アイレップ)の法則</a>
+<ul>
+<li><a href="#org8165d8f">1.1.13.1. 順序</a></li>
+<li><a href="#org3e5fa6a">1.1.13.2. 例文</a></li>
+<li><a href="#org51cfa03">1.1.13.3. 特徴</a></li>
+</ul>
+</li>
+<li><a href="#org8f2444d">1.1.14. PASONA(パソナ)の法則</a>
+<ul>
+<li><a href="#org1f3d916">1.1.14.1. 順序</a></li>
+<li><a href="#org3f988bc">1.1.14.2. 例文</a></li>
+<li><a href="#orgda0950e">1.1.14.3. 特徴</a></li>
+</ul>
+</li>
+<li><a href="#org79228fe">1.1.15. 新PASONA(シンパソナ)の法則</a>
+<ul>
+<li><a href="#org673bd7f">1.1.15.1. 順序</a></li>
+<li><a href="#org95a0a10">1.1.15.2. 例文</a></li>
+<li><a href="#org723a43e">1.1.15.3. 特徴</a></li>
+</ul>
+</li>
+<li><a href="#org8ede6c2">1.1.16. PPC(ピーピーシー)の法則</a>
+<ul>
+<li><a href="#org284bcf2">1.1.16.1. 順序</a></li>
+<li><a href="#orga89613f">1.1.16.2. 例文</a></li>
+<li><a href="#orgc8d1a21">1.1.16.3. 特徴</a></li>
+</ul>
+</li>
+<li><a href="#org3569bc1">1.1.17. PREP(プレップ)の法則</a>
+<ul>
+<li><a href="#org9372d4b">1.1.17.1. 順序</a></li>
+<li><a href="#org14ee3de">1.1.17.2. 例文</a></li>
+<li><a href="#org79fc63b">1.1.17.3. 特徴</a></li>
+</ul>
+</li>
+<li><a href="#orgc6a4479">1.1.18. QUEST(クエスト)の法則</a>
+<ul>
+<li><a href="#org0a2f436">1.1.18.1. 順序</a></li>
+<li><a href="#org53ae7a1">1.1.18.2. 例文</a></li>
+<li><a href="#org99611b0">1.1.18.3. 特徴</a></li>
+</ul>
+</li>
+<li><a href="#orgb3d7a36">1.1.19. SDS(エスディーエス)の法則</a>
+<ul>
+<li><a href="#org6f39c2c">1.1.19.1. 順序</a></li>
+<li><a href="#org9c2bcc9">1.1.19.2. 例文</a></li>
+<li><a href="#org3537060">1.1.19.3. 特徴</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org7c463ab">2. まとめ</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org9dcb3ed" class="outline-2">
+<h2 id="org9dcb3ed"><span class="section-number-2">1</span> 各法則のリスト</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org22a5dc2" class="outline-3">
+<h3 id="org22a5dc2"><span class="section-number-3">1.1</span> AIDA(アイダ)の法則</h3>
+<div class="outline-text-3" id="text-1-1">
+</div>
+<div id="outline-container-org9842b64" class="outline-4">
+<h4 id="org9842b64"><span class="section-number-4">1.1.1</span> 順序</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<ol class="org-ol">
+<li>注意(Attention)</li>
+<li>興味(Interest)</li>
+<li>欲望(Desire)</li>
+<li>行動(Action)</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org52104af" class="outline-4">
+<h4 id="org52104af"><span class="section-number-4">1.1.2</span> 例文</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<p>
+文章力が劇的に向上する方法があります(注意)。
+AIDAの法則というフレームワークに沿って文章を書くだけで、文書の質があがります(興味)。
+AIDAの法則は誰でも簡単に身につける事ができます(欲望)。
+AIDAの法則に興味がありましたら、ご連絡下さい(行動)。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7c3b206" class="outline-4">
+<h4 id="org7c3b206"><span class="section-number-4">1.1.3</span> 特徴</h4>
+<div class="outline-text-4" id="text-1-1-3">
+<ul class="org-ul">
+<li>アメリカのセント・エルモ・ルイスが発案</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org8eb4653" class="outline-4">
+<h4 id="org8eb4653"><span class="section-number-4">1.1.4</span> AIDMA(アイドマ)の法則</h4>
+<div class="outline-text-4" id="text-1-1-4">
+</div>
+<div id="outline-container-org0891a95" class="outline-5">
+<h5 id="org0891a95"><span class="section-number-5">1.1.4.1</span> 順序</h5>
+<div class="outline-text-5" id="text-1-1-4-1">
+<ol class="org-ol">
+<li>注意(Attention)</li>
+<li>興味(Interest)</li>
+<li>欲望(Desire)</li>
+<li>実績(Memory)</li>
+<li>行動(Action)</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org125af5d" class="outline-5">
+<h5 id="org125af5d"><span class="section-number-5">1.1.4.2</span> 例文</h5>
+<div class="outline-text-5" id="text-1-1-4-2">
+<p>
+文章力が劇的に向上する方法があります(注意)。
+AIDMAの法則というフレームワークに沿って文章を書くだけで、文書の質があがります(興味)。
+文章の質があがれば、人生のあらゆることがうまくいきます(欲望)。
+これはアメリカのマーケティング理論からヒントを得て多くの広告に利用されています(実績)。
+AIDMAの法則に興味がありましたら、ご連絡下さい(行動)。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga5261b6" class="outline-5">
+<h5 id="orga5261b6"><span class="section-number-5">1.1.4.3</span> 特徴</h5>
+<div class="outline-text-5" id="text-1-1-4-3">
+<ul class="org-ul">
+<li>AIDAの発展形</li>
+<li>実績をアピールすることで、真実味が増す</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6f7943c" class="outline-4">
+<h4 id="org6f7943c"><span class="section-number-4">1.1.5</span> AIDCA(アイドカ)の法則</h4>
+<div class="outline-text-4" id="text-1-1-5">
+</div>
+<div id="outline-container-org3b4a674" class="outline-5">
+<h5 id="org3b4a674"><span class="section-number-5">1.1.5.1</span> 順序</h5>
+<div class="outline-text-5" id="text-1-1-5-1">
+<ol class="org-ol">
+<li>注意(Attention)</li>
+<li>興味(Interest)</li>
+<li>欲望(Desire)</li>
+<li>確信(Conviction)</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org2908822" class="outline-5">
+<h5 id="org2908822"><span class="section-number-5">1.1.5.2</span> 例文</h5>
+<div class="outline-text-5" id="text-1-1-5-2">
+<p>
+文章力が劇的に向上する方法があります(注意)。
+AIDCAの法則というフレームワークに沿って文章を書くだけで、文書の質があがります(興味)。
+文章の質があがれば、人生のあらゆることがうまくいきます(欲望)。
+AIDCAの法則は誰でも簡単に身につける事ができます(確信)。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3112e9c" class="outline-5">
+<h5 id="org3112e9c"><span class="section-number-5">1.1.5.3</span> 特徴</h5>
+<div class="outline-text-5" id="text-1-1-5-3">
+<ul class="org-ul">
+<li>AIDAの発展形</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org429e04f" class="outline-4">
+<h4 id="org429e04f"><span class="section-number-4">1.1.6</span> AIDCAS(アイドカス)の法則</h4>
+<div class="outline-text-4" id="text-1-1-6">
+</div>
+<div id="outline-container-org49186db" class="outline-5">
+<h5 id="org49186db"><span class="section-number-5">1.1.6.1</span> 順序</h5>
+<div class="outline-text-5" id="text-1-1-6-1">
+<ol class="org-ol">
+<li>注意(Attention)</li>
+<li>興味(Interest)</li>
+<li>欲望(Desire)</li>
+<li>確信(Conviction)</li>
+<li>行動(Action)</li>
+<li>満足(Satisfaction)</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org44fa2ec" class="outline-5">
+<h5 id="org44fa2ec"><span class="section-number-5">1.1.6.2</span> 例文</h5>
+<div class="outline-text-5" id="text-1-1-6-2">
+<p>
+文章力が劇的に向上する方法があります(注意)。
+フレームワークに沿って文章を書くだけで、文書の質があがります(興味)。
+文章の質があがれば、人生のあらゆることがうまくいきます(欲望)。
+AIDCASの法則は誰でも簡単に身につける事ができます(確信)。
+AIDCASの法則に興味がありましたら、ご連絡下さい(行動)。
+これはアメリカのマーケティング理論からヒントを得たものです(行動)。
+確実に見につくまで、サポートさせていただきます(満足)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8af6972" class="outline-5">
+<h5 id="org8af6972"><span class="section-number-5">1.1.6.3</span> 特徴</h5>
+<div class="outline-text-5" id="text-1-1-6-3">
+<ul class="org-ul">
+<li>AIDCAの発展形</li>
+<li>顧客満足までを保証するところまで書ききることで、説得力が増す</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge27dfd4" class="outline-4">
+<h4 id="orge27dfd4"><span class="section-number-4">1.1.7</span> AISAS(アイサス)の法則</h4>
+<div class="outline-text-4" id="text-1-1-7">
+</div>
+<div id="outline-container-org1a4b523" class="outline-5">
+<h5 id="org1a4b523"><span class="section-number-5">1.1.7.1</span> 順序</h5>
+<div class="outline-text-5" id="text-1-1-7-1">
+<ol class="org-ol">
+<li>注意(Attention)</li>
+<li>興味(Interest)</li>
+<li>検索(Search)</li>
+<li>行動(Action)</li>
+<li>共有(Share)</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orgdb902ab" class="outline-5">
+<h5 id="orgdb902ab"><span class="section-number-5">1.1.7.2</span> 例文</h5>
+<div class="outline-text-5" id="text-1-1-7-2">
+<p>
+文章力が劇的に向上する方法があります(注意)。
+フレームワークに沿って文章を書くだけで、文書の質があがるものです(興味)。
+AISASの法則というもので、アメリカのマーケティング理論からヒントを得た強力なものです(検索)。
+AISASの法則に興味がありましたら、勉強会へご参加ください(行動)。
+また、勉強会の感想を送って頂けた方は、代金の2割を返金いたします(共有)。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2d508ee" class="outline-5">
+<h5 id="org2d508ee"><span class="section-number-5">1.1.7.3</span> 特徴</h5>
+<div class="outline-text-5" id="text-1-1-7-3">
+<ul class="org-ul">
+<li>SNSの時代に合わせた形</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3c69bb2" class="outline-4">
+<h4 id="org3c69bb2"><span class="section-number-4">1.1.8</span> AISCEAS(アイセアス)の法則</h4>
+<div class="outline-text-4" id="text-1-1-8">
+</div>
+<div id="outline-container-orgbc585a6" class="outline-5">
+<h5 id="orgbc585a6"><span class="section-number-5">1.1.8.1</span> 順序</h5>
+<div class="outline-text-5" id="text-1-1-8-1">
+<ol class="org-ol">
+<li>注目(Attention)</li>
+<li>興味(Interest)</li>
+<li>検索(Search)</li>
+<li>比較(Comparison)</li>
+<li>検討(Examination)</li>
+<li>行動(Action)</li>
+<li>共有(Share)</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org9f4dcc0" class="outline-5">
+<h5 id="org9f4dcc0"><span class="section-number-5">1.1.8.2</span> 例文</h5>
+<div class="outline-text-5" id="text-1-1-8-2">
+<p>
+文章力が劇的に向上する方法があります(注目)。
+フレームワークに沿って文章を書くだけで、文書の質があがるものです(興味)。
+AISCEASの法則というものです(検索)。
+コピーライティングのフレームワークにはPREP法やBEAF法などがあります(比較)。
+しかし、AISCEAS法はアメリカのマーケティング理論からヒントを得た強力なものです(検討)。
+AISCEASの法則に興味がありましたら、ご勉強会へご参加ください(行動)。
+どれだけ文章力が向上するか感想を送って頂けましたら、代金の2割を返金いたします(共有)。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga32b59d" class="outline-5">
+<h5 id="orga32b59d"><span class="section-number-5">1.1.8.3</span> 特徴</h5>
+<div class="outline-text-5" id="text-1-1-8-3">
+<ul class="org-ul">
+<li>調査中</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd9dfab4" class="outline-4">
+<h4 id="orgd9dfab4"><span class="section-number-4">1.1.9</span> BEAF(ビーフ)の法則</h4>
+<div class="outline-text-4" id="text-1-1-9">
+</div>
+<div id="outline-container-org0c3e527" class="outline-5">
+<h5 id="org0c3e527"><span class="section-number-5">1.1.9.1</span> 順序</h5>
+<div class="outline-text-5" id="text-1-1-9-1">
+<ol class="org-ol">
+<li>利点(Benefit)</li>
+<li>証拠(Evicence)</li>
+<li>優位(Advantage)</li>
+<li>特徴(Feature)</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org5495297" class="outline-5">
+<h5 id="org5495297"><span class="section-number-5">1.1.9.2</span> 例文</h5>
+<div class="outline-text-5" id="text-1-1-9-2">
+<p>
+BEAFの法則を用いることで誰でも文章力を向上できます(利点)。
+なぜならば、10年以上も支持、利用されている有効な方法だからです(証拠)。
+BEAFの法則では他の方法よりも、話者の主張を際立たせることができます(優位)。
+自分の意見の良いところを上手に相手へ伝えられるのです(特徴)。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org34c8a61" class="outline-5">
+<h5 id="org34c8a61"><span class="section-number-5">1.1.9.3</span> 特徴</h5>
+<div class="outline-text-5" id="text-1-1-9-3">
+<ul class="org-ul">
+<li>与沢翼さんがRajuri社時代に考案?(2010年)</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org197fb77" class="outline-4">
+<h4 id="org197fb77"><span class="section-number-4">1.1.10</span> CREMA(クレマ)の法則</h4>
+<div class="outline-text-4" id="text-1-1-10">
+</div>
+<div id="outline-container-org33850e5" class="outline-5">
+<h5 id="org33850e5"><span class="section-number-5">1.1.10.1</span> 順序</h5>
+<div class="outline-text-5" id="text-1-1-10-1">
+<ol class="org-ol">
+<li>結論(Conclusion)</li>
+<li>理由(Reason)</li>
+<li>証拠(Evidence)</li>
+<li>手段(Method)</li>
+<li>行動(Action)</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org3c06349" class="outline-5">
+<h5 id="org3c06349"><span class="section-number-5">1.1.10.2</span> 例文</h5>
+<div class="outline-text-5" id="text-1-1-10-2">
+<p>
+文章を書くのであれば、CREMAの法則がおすすめです(結論)。
+CREMAの法則を使えば、端的で具体的な信頼感のある文章を書くことができるからです(理由)。
+この法則は経験学習理論の考案者デービッド コルブが提唱したもので、科学的裏付けがあります(証拠)。
+結論(Conclusion)、理由(Reason)、証拠(Evidence)、手段(Method)、行動(Action)の順序で書くというフレームワークです(手段)。
+CREMAの法則を使うだけで、みなさんも優れた文章力を手に入れましょう(行動)。
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org2e132d5" class="outline-5">
+<h5 id="org2e132d5"><span class="section-number-5">1.1.10.3</span> 特徴</h5>
+<div class="outline-text-5" id="text-1-1-10-3">
+<ul class="org-ul">
+<li>内容に具体性をもたせたいとき、信頼感をもたせたいとき、相手に変化を与えたいときに有効</li>
+<li>行動をすぐにおこしてもらいたいとき、少し長めの文章が合わないときには不適合</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8539d85" class="outline-4">
+<h4 id="org8539d85"><span class="section-number-4">1.1.11</span> DESC(デスク)の法則</h4>
+<div class="outline-text-4" id="text-1-1-11">
+</div>
+<div id="outline-container-orgb371af0" class="outline-5">
+<h5 id="orgb371af0"><span class="section-number-5">1.1.11.1</span> 順序</h5>
+<div class="outline-text-5" id="text-1-1-11-1">
+<ol class="org-ol">
+<li>描画(Describe)</li>
+<li>説明(Explain)</li>
+<li>提案(Specify)</li>
+<li>選択(Choose)</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orgb8f3cf1" class="outline-5">
+<h5 id="orgb8f3cf1"><span class="section-number-5">1.1.11.2</span> 例文</h5>
+<div class="outline-text-5" id="text-1-1-11-2">
+<p>
+文章を書かなければならず、困っている人は多くいるでしょう(描画)。
+良い文章をかけると、ビジネスやコミュニケーションの質につながります(説明)。
+そのような人はフレームワークを利用して文章を書いてみることをお勧めします(提案)。。
+DESCの法則でなくてもかまいませんので、文章フレームワークを一緒に勉強してみませんか(選択)。
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orgd3e961d" class="outline-5">
+<h5 id="orgd3e961d"><span class="section-number-5">1.1.11.3</span> 特徴</h5>
+<div class="outline-text-5" id="text-1-1-11-3">
+<ul class="org-ul">
+<li>調査中</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org83adf1d" class="outline-4">
+<h4 id="org83adf1d"><span class="section-number-4">1.1.12</span> FAB(ファブ)の法則</h4>
+<div class="outline-text-4" id="text-1-1-12">
+</div>
+<div id="outline-container-orgb4b31c8" class="outline-5">
+<h5 id="orgb4b31c8"><span class="section-number-5">1.1.12.1</span> 順序</h5>
+<div class="outline-text-5" id="text-1-1-12-1">
+<ol class="org-ol">
+<li>特徴(Feature)</li>
+<li>優位(Advantage)</li>
+<li>利点(Benefit)</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org7a0cdc6" class="outline-5">
+<h5 id="org7a0cdc6"><span class="section-number-5">1.1.12.2</span> 例文</h5>
+<div class="outline-text-5" id="text-1-1-12-2">
+<p>
+文章フレームワークであるFABの法則を使って文章を書くと、その主張が際立ちます(特徴)。
+何も考えずに書くよりも、読み手に伝わりやすくなります(優位)。
+結果として、読み手に強い興味を抱かせることができます(利点)。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org414c0ef" class="outline-5">
+<h5 id="org414c0ef"><span class="section-number-5">1.1.12.3</span> 特徴</h5>
+<div class="outline-text-5" id="text-1-1-12-3">
+<ul class="org-ul">
+<li>読み手を引き込ませたいときに有効</li>
+<li>2009年 FAB Formula Features, Advantages, and Benefits. (以下)にて発表された理論</li>
+<li><a href="https://michelfortin.com/2009/08/24/remember-these-5-copywriting-formulas/">https://michelfortin.com/2009/08/24/remember-these-5-copywriting-formulas/</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7017aa3" class="outline-4">
+<h4 id="org7017aa3"><span class="section-number-4">1.1.13</span> IREP(アイレップ)の法則</h4>
+<div class="outline-text-4" id="text-1-1-13">
+</div>
+<div id="outline-container-org8165d8f" class="outline-5">
+<h5 id="org8165d8f"><span class="section-number-5">1.1.13.1</span> 順序</h5>
+<div class="outline-text-5" id="text-1-1-13-1">
+<ol class="org-ol">
+<li>興味(Interest)</li>
+<li>理由(Reason)</li>
+<li>事例(Example)</li>
+<li>要点(Point)</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org3e5fa6a" class="outline-5">
+<h5 id="org3e5fa6a"><span class="section-number-5">1.1.13.2</span> 例文</h5>
+<div class="outline-text-5" id="text-1-1-13-2">
+<p>
+人生を豊にするためには、文章の質が大切です(興味)。
+文章力を向上させると、仕事や人間関係がうまくいくからです(理由)。
+わたしは文章力を向上させることでコミュニケーション力があがり、仕事でお客様に喜ばれることが増えました(事例)。
+文章力を向上させる方法として、文章フレームワークIREP法がおすすめです(要点)。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org51cfa03" class="outline-5">
+<h5 id="org51cfa03"><span class="section-number-5">1.1.13.3</span> 特徴</h5>
+<div class="outline-text-5" id="text-1-1-13-3">
+<ul class="org-ul">
+<li>調査中</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8f2444d" class="outline-4">
+<h4 id="org8f2444d"><span class="section-number-4">1.1.14</span> PASONA(パソナ)の法則</h4>
+<div class="outline-text-4" id="text-1-1-14">
+</div>
+<div id="outline-container-org1f3d916" class="outline-5">
+<h5 id="org1f3d916"><span class="section-number-5">1.1.14.1</span> 順序</h5>
+<div class="outline-text-5" id="text-1-1-14-1">
+<ol class="org-ol">
+<li>問題(Problem)</li>
+<li>扇動(Agitation)</li>
+<li>解決(Solution)</li>
+<li>絞込(Narrow down)</li>
+<li>行動(Action)</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org3f988bc" class="outline-5">
+<h5 id="org3f988bc"><span class="section-number-5">1.1.14.2</span> 例文</h5>
+<div class="outline-text-5" id="text-1-1-14-2">
+<p>
+文章力が上がらないと悩んでいませんか(問題)。
+文章力が低いままだとメールやチャットなど仕事内容に悪影響が出ます(扇動)。
+PASONAの法則を使えば、文章力を高めることができます(解決)。
+今回はその具体的な方法をあなただけに教えます(絞込)。
+もし気になるようでしたら、ご連絡ください(行動)。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgda0950e" class="outline-5">
+<h5 id="orgda0950e"><span class="section-number-5">1.1.14.3</span> 特徴</h5>
+<div class="outline-text-5" id="text-1-1-14-3">
+<ul class="org-ul">
+<li>有効シーン</li>
+<li>注意を向かせたい</li>
+<li>損したくない</li>
+<li>意欲を高めさせたい</li>
+<li>と思わせたいときに有効</li>
+<li>不適合シーン</li>
+<li>扇動内容が社会的問題を含むとき(差別など)</li>
+<li>大きなクレームへと発展する可能性が高いとき</li>
+<li>相手にとって問題がそれほど大きなものでないとき</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org79228fe" class="outline-4">
+<h4 id="org79228fe"><span class="section-number-4">1.1.15</span> 新PASONA(シンパソナ)の法則</h4>
+<div class="outline-text-4" id="text-1-1-15">
+</div>
+<div id="outline-container-org673bd7f" class="outline-5">
+<h5 id="org673bd7f"><span class="section-number-5">1.1.15.1</span> 順序</h5>
+<div class="outline-text-5" id="text-1-1-15-1">
+<ol class="org-ol">
+<li>問題(Problem)</li>
+<li>親近(Affinity)</li>
+<li>解決(Solution)</li>
+<li>提案(Offer)</li>
+<li>絞込(Narrowing down)</li>
+<li>行動(Action)</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org95a0a10" class="outline-5">
+<h5 id="org95a0a10"><span class="section-number-5">1.1.15.2</span> 例文</h5>
+<div class="outline-text-5" id="text-1-1-15-2">
+<p>
+文章力が上がらないと悩んでいませんか(問題)。
+私も若いころはなかなか上手に文章を書けずに悩んでいました(親近)。
+ですが、私は新PASONAの法則を知って、文章力が少しずつあがってきたのです(解決)。
+もしよろしければ、一緒に新PASONAの法則を学んでみませんか(提案)。
+今回は特別にその勉強会へご招待いたします(絞込)。
+もし気になるようでしたら、ご連絡ください(行動)。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org723a43e" class="outline-5">
+<h5 id="org723a43e"><span class="section-number-5">1.1.15.3</span> 特徴</h5>
+<div class="outline-text-5" id="text-1-1-15-3">
+<ul class="org-ul">
+<li>有効なシーン</li>
+<li>相手の感情に寄り沿いたいとき</li>
+<li>PASONAが古いと感じられるとき(見抜かれているとき)</li>
+<li>相手の重い腰をあげたいとき</li>
+<li>不適合シーン</li>
+<li>相手とあまり仲がよくないとき</li>
+<li>大きなクレームへと発展する可能性が高いとき</li>
+<li>相手にとって問題がそれほど大きなものでないとき</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8ede6c2" class="outline-4">
+<h4 id="org8ede6c2"><span class="section-number-4">1.1.16</span> PPC(ピーピーシー)の法則</h4>
+<div class="outline-text-4" id="text-1-1-16">
+</div>
+<div id="outline-container-org284bcf2" class="outline-5">
+<h5 id="org284bcf2"><span class="section-number-5">1.1.16.1</span> 順序</h5>
+<div class="outline-text-5" id="text-1-1-16-1">
+<ol class="org-ol">
+<li>約束(Promise)</li>
+<li>証拠(Proof)</li>
+<li>行動(Call to action)</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orga89613f" class="outline-5">
+<h5 id="orga89613f"><span class="section-number-5">1.1.16.2</span> 例文</h5>
+<div class="outline-text-5" id="text-1-1-16-2">
+<p>
+PPCの法則を用いて文章を書けば、かならず文章力を向上させることができます(約束)。
+実際に、PPCの法則を勉強して文章が上手になった人を多くみてきました(証拠)。
+あなたも是非PPCの法則を勉強してみませんか(行動)。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc8d1a21" class="outline-5">
+<h5 id="orgc8d1a21"><span class="section-number-5">1.1.16.3</span> 特徴</h5>
+<div class="outline-text-5" id="text-1-1-16-3">
+<ul class="org-ul">
+<li>調査中</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3569bc1" class="outline-4">
+<h4 id="org3569bc1"><span class="section-number-4">1.1.17</span> PREP(プレップ)の法則</h4>
+<div class="outline-text-4" id="text-1-1-17">
+</div>
+<div id="outline-container-org9372d4b" class="outline-5">
+<h5 id="org9372d4b"><span class="section-number-5">1.1.17.1</span> 順序</h5>
+<div class="outline-text-5" id="text-1-1-17-1">
+<ol class="org-ol">
+<li>要点(Point)</li>
+<li>理由(Reason)</li>
+<li>事例(Example)</li>
+<li>要点(Point)</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org14ee3de" class="outline-5">
+<h5 id="org14ee3de"><span class="section-number-5">1.1.17.2</span> 例文</h5>
+<div class="outline-text-5" id="text-1-1-17-2">
+<p>
+PREPの法則は文章力を向上させます(要点)。
+なぜならば、伝えたいことを最初に伝え、次に理由を話すことで、納得しやすくなるからです(理由)。
+実際に「人と話すときは結論から話すように」と人がいっているのを聞いたことがあるでしょう(事例)。
+PREPの法則で文章力を向上させましょう(要点)。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org79fc63b" class="outline-5">
+<h5 id="org79fc63b"><span class="section-number-5">1.1.17.3</span> 特徴</h5>
+<div class="outline-text-5" id="text-1-1-17-3">
+<ul class="org-ul">
+<li>有効なシーン</li>
+<li>説得力をもたせたいとき</li>
+<li>説明時間が少ないとき</li>
+<li>相手にストレスをかけたくないとき</li>
+<li>不要なやりとりを発生させたくないとき</li>
+<li>不適合シーン</li>
+<li>人を面白がせたいとき</li>
+<li>話にオチがあるとき</li>
+<li>強く主張したくないとき</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc6a4479" class="outline-4">
+<h4 id="orgc6a4479"><span class="section-number-4">1.1.18</span> QUEST(クエスト)の法則</h4>
+<div class="outline-text-4" id="text-1-1-18">
+</div>
+<div id="outline-container-org0a2f436" class="outline-5">
+<h5 id="org0a2f436"><span class="section-number-5">1.1.18.1</span> 順序</h5>
+<div class="outline-text-5" id="text-1-1-18-1">
+<ol class="org-ol">
+<li>絞込(Qualify)</li>
+<li>共感(Understand)</li>
+<li>教育(Educate)</li>
+<li>刺激(Stimulate)</li>
+<li>変化(Transition)</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org53ae7a1" class="outline-5">
+<h5 id="org53ae7a1"><span class="section-number-5">1.1.18.2</span> 例文</h5>
+<div class="outline-text-5" id="text-1-1-18-2">
+<p>
+文章力が上がらないと悩んでいる人はいませんか(絞込)。
+私も若いころはなかなか上手に文章を書けずに悩んでいました(共感)。
+QUESTの法則を用いれば、文章力を高めることができます(教育)。
+もし、QUESTの法則を使っても、よい文章が書けないようだったら、勉強会の参加費を返金致します(刺激)。
+QUESTの法則を勉強会への申し込みは残り1週間ですので、参加ご希望の方はご連絡ください(変化)。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org99611b0" class="outline-5">
+<h5 id="org99611b0"><span class="section-number-5">1.1.18.3</span> 特徴</h5>
+<div class="outline-text-5" id="text-1-1-18-3">
+<ul class="org-ul">
+<li>調査中</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb3d7a36" class="outline-4">
+<h4 id="orgb3d7a36"><span class="section-number-4">1.1.19</span> SDS(エスディーエス)の法則</h4>
+<div class="outline-text-4" id="text-1-1-19">
+</div>
+<div id="outline-container-org6f39c2c" class="outline-5">
+<h5 id="org6f39c2c"><span class="section-number-5">1.1.19.1</span> 順序</h5>
+<div class="outline-text-5" id="text-1-1-19-1">
+<ol class="org-ol">
+<li>概要(Summary)</li>
+<li>詳細(Details reason)</li>
+<li>要約(Summary)</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org9c2bcc9" class="outline-5">
+<h5 id="org9c2bcc9"><span class="section-number-5">1.1.19.2</span> 例文</h5>
+<div class="outline-text-5" id="text-1-1-19-2">
+<p>
+SDSの法則は文章を書くフレームワークです(概要)。
+概要、詳細、まとめの順序で書くことで、読み手に理解しやすい印象を与えることができます(詳細)。
+文章力の向上にSDSの法則を利用しましょう(要約)。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3537060" class="outline-5">
+<h5 id="org3537060"><span class="section-number-5">1.1.19.3</span> 特徴</h5>
+<div class="outline-text-5" id="text-1-1-19-3">
+<ul class="org-ul">
+<li>理解しやすく、記憶に残しやすいという特徴</li>
+<li>短文のメルマガをはじめ、テレビのニュース番組や情報番組等</li>
+<li>同じような内容をあらゆる角度から3度伝える文章の型</li>
+<li>相手に消費行動を促すというよりも、最後まで文章を読んでもらいたいとき</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7c463ab" class="outline-2">
+<h2 id="org7c463ab"><span class="section-number-2">2</span> まとめ</h2>
+<div class="outline-text-2" id="text-2">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">&#xa0;</th>
+<th scope="col" class="org-left">AIDA</th>
+<th scope="col" class="org-left">AIDMA</th>
+<th scope="col" class="org-left">AIDCA</th>
+<th scope="col" class="org-left">AIDCAS</th>
+<th scope="col" class="org-left">AISAS</th>
+<th scope="col" class="org-left">BEAF</th>
+<th scope="col" class="org-left">CREMA</th>
+<th scope="col" class="org-left">DESC</th>
+<th scope="col" class="org-left">FAB</th>
+<th scope="col" class="org-left">IREP</th>
+<th scope="col" class="org-left">PASONA</th>
+<th scope="col" class="org-left">新PASONA</th>
+<th scope="col" class="org-left">PPC</th>
+<th scope="col" class="org-left">PREP</th>
+<th scope="col" class="org-left">QUEST</th>
+<th scope="col" class="org-left">SDS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-left">注意</td>
+<td class="org-left">注意</td>
+<td class="org-left">注意</td>
+<td class="org-left">注意</td>
+<td class="org-left">注意</td>
+<td class="org-left">利点</td>
+<td class="org-left">結論</td>
+<td class="org-left">描画</td>
+<td class="org-left">特徴</td>
+<td class="org-left">興味</td>
+<td class="org-left">問題</td>
+<td class="org-left">問題</td>
+<td class="org-left">約束</td>
+<td class="org-left">要点</td>
+<td class="org-left">絞込</td>
+<td class="org-left">概要</td>
+</tr>
+
+<tr>
+<td class="org-right">2</td>
+<td class="org-left">興味</td>
+<td class="org-left">興味</td>
+<td class="org-left">興味</td>
+<td class="org-left">興味</td>
+<td class="org-left">興味</td>
+<td class="org-left">証拠</td>
+<td class="org-left">理由</td>
+<td class="org-left">説明</td>
+<td class="org-left">優位</td>
+<td class="org-left">理由</td>
+<td class="org-left">扇動</td>
+<td class="org-left">親近</td>
+<td class="org-left">証拠</td>
+<td class="org-left">理由</td>
+<td class="org-left">共感</td>
+<td class="org-left">詳細</td>
+</tr>
+
+<tr>
+<td class="org-right">3</td>
+<td class="org-left">欲望</td>
+<td class="org-left">欲望</td>
+<td class="org-left">欲望</td>
+<td class="org-left">欲望</td>
+<td class="org-left">検索</td>
+<td class="org-left">優位</td>
+<td class="org-left">証拠</td>
+<td class="org-left">提案</td>
+<td class="org-left">利点</td>
+<td class="org-left">事例</td>
+<td class="org-left">解決</td>
+<td class="org-left">解決</td>
+<td class="org-left">行動</td>
+<td class="org-left">事例</td>
+<td class="org-left">教育</td>
+<td class="org-left">要約</td>
+</tr>
+
+<tr>
+<td class="org-right">4</td>
+<td class="org-left">行動</td>
+<td class="org-left">実績</td>
+<td class="org-left">確信</td>
+<td class="org-left">確信</td>
+<td class="org-left">行動</td>
+<td class="org-left">特徴</td>
+<td class="org-left">手段</td>
+<td class="org-left">選択</td>
+<td class="org-left">-</td>
+<td class="org-left">要点</td>
+<td class="org-left">絞込</td>
+<td class="org-left">提案</td>
+<td class="org-left">-</td>
+<td class="org-left">要点</td>
+<td class="org-left">刺激</td>
+<td class="org-left">-</td>
+</tr>
+
+<tr>
+<td class="org-right">5</td>
+<td class="org-left">-</td>
+<td class="org-left">行動</td>
+<td class="org-left">-</td>
+<td class="org-left">行動</td>
+<td class="org-left">共有</td>
+<td class="org-left">-</td>
+<td class="org-left">行動</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">行動</td>
+<td class="org-left">絞込</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">変化</td>
+<td class="org-left">-</td>
+</tr>
+
+<tr>
+<td class="org-right">6</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">満足</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">行動</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#33879;&#32773;: clothoid</p>
+<p class="date">Created: 2021-08-25 Wed 16:14</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
