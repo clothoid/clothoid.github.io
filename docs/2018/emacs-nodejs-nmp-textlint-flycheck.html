@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
 <head>
-<!-- 2020-09-17 Thu 12:20 -->
+<!-- 2021-08-30 Mon 16:02 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>emacs の flycheck で textlint を利用し、日本語の自動校正を行う</title>
@@ -194,6 +194,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6390292679676181" crossorigin="anonymous"></script>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -274,31 +275,31 @@ for the JavaScript code in this tag.
 <h2>&#30446;&#27425;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgabde287">1. 目的</a></li>
-<li><a href="#org809542b">2. Windows</a>
+<li><a href="#orgcb077a9">1. 目的</a></li>
+<li><a href="#org30a8c91">2. Windows</a>
 <ul>
-<li><a href="#orgee132d5">2.1. 環境</a></li>
-<li><a href="#orgda93629">2.2. nodejs のインストールと設定</a></li>
-<li><a href="#org225de77">2.3. textlint のインストールと設定 </a></li>
-<li><a href="#orgfba3f90">2.4. emacs の設定</a></li>
+<li><a href="#org3e792cf">2.1. 環境</a></li>
+<li><a href="#orgaaa8f13">2.2. nodejs のインストールと設定</a></li>
+<li><a href="#orgc6db30b">2.3. textlint のインストールと設定 </a></li>
+<li><a href="#org2fea1b9">2.4. emacs の設定</a></li>
 </ul>
 </li>
-<li><a href="#orge10092b">3. Linux (Debian)</a>
+<li><a href="#orga59bd40">3. Linux (Debian)</a>
 <ul>
-<li><a href="#orgb562c8a">3.1. 環境</a></li>
-<li><a href="#org97e374d">3.2. nodejs のインストールと設定</a></li>
-<li><a href="#orgd3e9c64">3.3. textlint のインストールと設定 </a></li>
-<li><a href="#orgfdba60f">3.4. emacs の設定</a></li>
+<li><a href="#org634a7a8">3.1. 環境</a></li>
+<li><a href="#org9ea4cc1">3.2. nodejs のインストールと設定</a></li>
+<li><a href="#org66ce9f0">3.3. textlint のインストールと設定 </a></li>
+<li><a href="#org1b03838">3.4. emacs の設定</a></li>
 </ul>
 </li>
-<li><a href="#org0bbca3e">4. やりたいけど、分からないこと</a></li>
-<li><a href="#orgd78c5e8">5. 参考</a></li>
+<li><a href="#orgaf9097e">4. やりたいけど、分からないこと</a></li>
+<li><a href="#org4611f8b">5. 参考</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgabde287" class="outline-2">
-<h2 id="orgabde287"><span class="section-number-2">1</span> 目的</h2>
+<div id="outline-container-orgcb077a9" class="outline-2">
+<h2 id="orgcb077a9"><span class="section-number-2">1</span> 目的</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 textlint を emacs の flycheck で利用し、日本語の文章をチェックするよう設定する。
@@ -336,12 +337,12 @@ textlint を emacs の flycheck で利用し、日本語の文章をチェック
 </div>
 
 
-<div id="outline-container-org809542b" class="outline-2">
-<h2 id="org809542b"><span class="section-number-2">2</span> Windows</h2>
+<div id="outline-container-org30a8c91" class="outline-2">
+<h2 id="org30a8c91"><span class="section-number-2">2</span> Windows</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgee132d5" class="outline-3">
-<h3 id="orgee132d5"><span class="section-number-3">2.1</span> 環境</h3>
+<div id="outline-container-org3e792cf" class="outline-3">
+<h3 id="org3e792cf"><span class="section-number-3">2.1</span> 環境</h3>
 <div class="outline-text-3" id="text-2-1">
 <ul class="org-ul">
 <li>Windows 7/10 pro</li>
@@ -352,8 +353,8 @@ textlint を emacs の flycheck で利用し、日本語の文章をチェック
 </div>
 </div>
 
-<div id="outline-container-orgda93629" class="outline-3">
-<h3 id="orgda93629"><span class="section-number-3">2.2</span> nodejs のインストールと設定</h3>
+<div id="outline-container-orgaaa8f13" class="outline-3">
+<h3 id="orgaaa8f13"><span class="section-number-3">2.2</span> nodejs のインストールと設定</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 textlint は npm で提供されているため、nodejs をインストールする。
@@ -378,8 +379,8 @@ PS &gt; .\npm config set <span style="color: #006699;">https-proxy</span> https:
 </div>
 </div>
 
-<div id="outline-container-org225de77" class="outline-3">
-<h3 id="org225de77"><span class="section-number-3">2.3</span> textlint のインストールと設定 <sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup></h3>
+<div id="outline-container-orgc6db30b" class="outline-3">
+<h3 id="orgc6db30b"><span class="section-number-3">2.3</span> textlint のインストールと設定 <sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup></h3>
 <div class="outline-text-3" id="text-2-3">
 <ol class="org-ol">
 <li><p>
@@ -448,8 +449,8 @@ HOME\test.md
 </div>
 </div>
 
-<div id="outline-container-orgfba3f90" class="outline-3">
-<h3 id="orgfba3f90"><span class="section-number-3">2.4</span> emacs の設定</h3>
+<div id="outline-container-org2fea1b9" class="outline-3">
+<h3 id="org2fea1b9"><span class="section-number-3">2.4</span> emacs の設定</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 init.el を以下のように設定する。
@@ -486,12 +487,12 @@ init.el を以下のように設定する。
 </div>
 
 
-<div id="outline-container-orge10092b" class="outline-2">
-<h2 id="orge10092b"><span class="section-number-2">3</span> Linux (Debian)</h2>
+<div id="outline-container-orga59bd40" class="outline-2">
+<h2 id="orga59bd40"><span class="section-number-2">3</span> Linux (Debian)</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-orgb562c8a" class="outline-3">
-<h3 id="orgb562c8a"><span class="section-number-3">3.1</span> 環境</h3>
+<div id="outline-container-org634a7a8" class="outline-3">
+<h3 id="org634a7a8"><span class="section-number-3">3.1</span> 環境</h3>
 <div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
 <li>debian 9.4</li>
@@ -502,8 +503,8 @@ init.el を以下のように設定する。
 </div>
 </div>
 
-<div id="outline-container-org97e374d" class="outline-3">
-<h3 id="org97e374d"><span class="section-number-3">3.2</span> nodejs のインストールと設定</h3>
+<div id="outline-container-org9ea4cc1" class="outline-3">
+<h3 id="org9ea4cc1"><span class="section-number-3">3.2</span> nodejs のインストールと設定</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 textlint は npm で提供されているため、nodejs をインストールする。
@@ -529,8 +530,8 @@ $ ./node npm config set https-proxy https://proxy.example.com:8080
 </div>
 </div>
 
-<div id="outline-container-orgd3e9c64" class="outline-3">
-<h3 id="orgd3e9c64"><span class="section-number-3">3.3</span> textlint のインストールと設定 <sup><a id="fnr.2.100" class="footref" href="#fn.2">2</a></sup></h3>
+<div id="outline-container-org66ce9f0" class="outline-3">
+<h3 id="org66ce9f0"><span class="section-number-3">3.3</span> textlint のインストールと設定 <sup><a id="fnr.2.100" class="footref" href="#fn.2">2</a></sup></h3>
 <div class="outline-text-3" id="text-3-3">
 <ol class="org-ol">
 <li><p>
@@ -610,8 +611,8 @@ PATH の追加
 </div>
 </div>
 
-<div id="outline-container-orgfdba60f" class="outline-3">
-<h3 id="orgfdba60f"><span class="section-number-3">3.4</span> emacs の設定</h3>
+<div id="outline-container-org1b03838" class="outline-3">
+<h3 id="org1b03838"><span class="section-number-3">3.4</span> emacs の設定</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 init.el を以下のように設定する。
@@ -640,8 +641,8 @@ init.el を以下のように設定する。
 </div>
 </div>
 
-<div id="outline-container-org0bbca3e" class="outline-2">
-<h2 id="org0bbca3e"><span class="section-number-2">4</span> やりたいけど、分からないこと</h2>
+<div id="outline-container-orgaf9097e" class="outline-2">
+<h2 id="orgaf9097e"><span class="section-number-2">4</span> やりたいけど、分からないこと</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li>org-mode への対応<sup><a id="fnr.8" class="footref" href="#fn.8">8</a></sup></li>
@@ -652,8 +653,8 @@ init.el を以下のように設定する。
 </div>
 </div>
 
-<div id="outline-container-orgd78c5e8" class="outline-2">
-<h2 id="orgd78c5e8"><span class="section-number-2">5</span> 参考</h2>
+<div id="outline-container-org4611f8b" class="outline-2">
+<h2 id="org4611f8b"><span class="section-number-2">5</span> 参考</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li><a href="https://textlint.github.io/">textlint</a></li>
@@ -718,7 +719,7 @@ cp932 だと動かなかった
 </div></div>
 <div id="postamble" class="status">
 <p class="author">&#33879;&#32773;: clothoid</p>
-<p class="date">Created: 2020-09-17 Thu 12:20</p>
+<p class="date">Created: 2021-08-30 Mon 16:02</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
