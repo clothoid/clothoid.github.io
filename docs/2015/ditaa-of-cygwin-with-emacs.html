@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
 <head>
-<!-- 2021-08-30 Mon 16:02 -->
+<!-- 2021-08-31 Tue 11:36 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>ditaa of cygwin with emacs org-mode</title>
@@ -252,18 +252,18 @@ for the JavaScript code in this tag.
 <h2>&#30446;&#27425;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org625916f">1. 問題</a></li>
-<li><a href="#org26ef24d">2. 環境</a></li>
-<li><a href="#orge065562">3. 対処方法</a></li>
-<li><a href="#orgd46b2eb">4. 理由</a></li>
-<li><a href="#org41a14b9">5. 結果</a></li>
-<li><a href="#org43c994d">6. 参考</a></li>
+<li><a href="#org0aa7762">1. 問題</a></li>
+<li><a href="#orga2286d5">2. 環境</a></li>
+<li><a href="#org58821ea">3. 対処方法</a></li>
+<li><a href="#org61531f7">4. 理由</a></li>
+<li><a href="#org689304f">5. 結果</a></li>
+<li><a href="#org0858554">6. 参考</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org625916f" class="outline-2">
-<h2 id="org625916f"><span class="section-number-2">1</span> 問題</h2>
+<div id="outline-container-org0aa7762" class="outline-2">
+<h2 id="org0aa7762"><span class="section-number-2">1</span> 問題</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>gnupack (Cygwin) の環境で、Windows の java を使い org-babel-execute-src-block を使いたい</li>
@@ -272,8 +272,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org26ef24d" class="outline-2">
-<h2 id="org26ef24d"><span class="section-number-2">2</span> 環境</h2>
+<div id="outline-container-orga2286d5" class="outline-2">
+<h2 id="orga2286d5"><span class="section-number-2">2</span> 環境</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>Windows 7 64bit</li>
@@ -292,8 +292,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orge065562" class="outline-2">
-<h2 id="orge065562"><span class="section-number-2">3</span> 対処方法</h2>
+<div id="outline-container-org58821ea" class="outline-2">
+<h2 id="org58821ea"><span class="section-number-2">3</span> 対処方法</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 ob-ditaa.el を以下のように修正する。
@@ -360,8 +360,8 @@ ob-ditaa.el を以下のように修正する。
 </div>
 
 
-<div id="outline-container-orgd46b2eb" class="outline-2">
-<h2 id="orgd46b2eb"><span class="section-number-2">4</span> 理由</h2>
+<div id="outline-container-org61531f7" class="outline-2">
+<h2 id="org61531f7"><span class="section-number-2">4</span> 理由</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 ob-ditta.el は cygwin のパスまで解釈してくれる分けではない。例えば、以下のように書いて、C-c C-c を実行すると
@@ -414,8 +414,8 @@ Code block evaluation complete.
 </div>
 </div>
 
-<div id="outline-container-org41a14b9" class="outline-2">
-<h2 id="org41a14b9"><span class="section-number-2">5</span> 結果</h2>
+<div id="outline-container-org689304f" class="outline-2">
+<h2 id="org689304f"><span class="section-number-2">5</span> 結果</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 <b>Message</b> バッファは以下のとおり。
@@ -448,8 +448,8 @@ Code block evaluation complete.
 </div>
 </div>
 
-<div id="outline-container-org43c994d" class="outline-2">
-<h2 id="org43c994d"><span class="section-number-2">6</span> 参考</h2>
+<div id="outline-container-org0858554" class="outline-2">
+<h2 id="org0858554"><span class="section-number-2">6</span> 参考</h2>
 <div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li><a href="https://lists.gnu.org/archive/html/emacs-orgmode/2013-07/msg00669.html">Re: ob-ditaa.el for Cygwin </a></li>
@@ -461,7 +461,7 @@ Code block evaluation complete.
 </div>
 <div id="postamble" class="status">
 <p class="author">&#33879;&#32773;: clothoid</p>
-<p class="date">Created: 2021-08-30 Mon 16:02</p>
+<p class="date">Created: 2021-08-31 Tue 11:36</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

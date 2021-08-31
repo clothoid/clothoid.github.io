@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
 <head>
-<!-- 2021-08-30 Mon 16:02 -->
+<!-- 2021-08-31 Tue 11:37 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Install dropbox over proxy on RHEL7</title>
@@ -253,18 +253,18 @@ for the JavaScript code in this tag.
 <h2>&#30446;&#27425;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org7cca2bf">1. 環境</a></li>
-<li><a href="#org346e1d2">2. 環境変数 HTTP<sub>PROXY</sub> の設定</a></li>
-<li><a href="#org4f4de12">3. wgetrc の設定</a></li>
-<li><a href="#orgeb22e67">4. dropbox のインストール</a></li>
-<li><a href="#org216733d">5. yum の設定</a></li>
-<li><a href="#orgc568392">6. 参考</a></li>
+<li><a href="#org0c15a92">1. 環境</a></li>
+<li><a href="#org1924b74">2. 環境変数 HTTP<sub>PROXY</sub> の設定</a></li>
+<li><a href="#orgfa232c5">3. wgetrc の設定</a></li>
+<li><a href="#org33504ef">4. dropbox のインストール</a></li>
+<li><a href="#org2d8a308">5. yum の設定</a></li>
+<li><a href="#org82e24a0">6. 参考</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org7cca2bf" class="outline-2">
-<h2 id="org7cca2bf"><span class="section-number-2">1</span> 環境</h2>
+<div id="outline-container-org0c15a92" class="outline-2">
+<h2 id="org0c15a92"><span class="section-number-2">1</span> 環境</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>Red Hat Enterprise Linux Server release 7.2 (Maipo)</li>
@@ -272,8 +272,8 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-org346e1d2" class="outline-2">
-<h2 id="org346e1d2"><span class="section-number-2">2</span> 環境変数 HTTP<sub>PROXY</sub> の設定</h2>
+<div id="outline-container-org1924b74" class="outline-2">
+<h2 id="org1924b74"><span class="section-number-2">2</span> 環境変数 HTTP<sub>PROXY</sub> の設定</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
 <pre class="src src-sh"><span style="color: #006FE0;">export</span> http_proxy = <span style="color: #008000;">"http://proxy_adress:port/"</span>
@@ -283,8 +283,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
-<div id="outline-container-org4f4de12" class="outline-2">
-<h2 id="org4f4de12"><span class="section-number-2">3</span> wgetrc の設定</h2>
+<div id="outline-container-orgfa232c5" class="outline-2">
+<h2 id="orgfa232c5"><span class="section-number-2">3</span> wgetrc の設定</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 ~/.wgetrc に以下のように記載 <sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>
@@ -297,8 +297,8 @@ HTTPS_PROXY    = http://proxy_adress:port/
 </div>
 </div>
 </div>
-<div id="outline-container-orgeb22e67" class="outline-2">
-<h2 id="orgeb22e67"><span class="section-number-2">4</span> dropbox のインストール</h2>
+<div id="outline-container-org33504ef" class="outline-2">
+<h2 id="org33504ef"><span class="section-number-2">4</span> dropbox のインストール</h2>
 <div class="outline-text-2" id="text-4">
 <div class="org-src-container">
 <pre class="src src-sh">sudo yum install libgnome
@@ -309,8 +309,8 @@ dropbox start -i
 </div>
 </div>
 </div>
-<div id="outline-container-org216733d" class="outline-2">
-<h2 id="org216733d"><span class="section-number-2">5</span> yum の設定</h2>
+<div id="outline-container-org2d8a308" class="outline-2">
+<h2 id="org2d8a308"><span class="section-number-2">5</span> yum の設定</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 このままだと、yum った時に以下のようなエラーが出る。
@@ -349,8 +349,8 @@ sudo yum-config-manager --disablerepo=Dropbox
 </div>
 </div>
 
-<div id="outline-container-orgc568392" class="outline-2">
-<h2 id="orgc568392"><span class="section-number-2">6</span> 参考</h2>
+<div id="outline-container-org82e24a0" class="outline-2">
+<h2 id="org82e24a0"><span class="section-number-2">6</span> 参考</h2>
 <div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li><a href="http://www.techonia.com/790/install-dropbox-centos-7">How to install Dropbox on CentOS 7 – Techonia</a></li>
@@ -372,7 +372,7 @@ sudo yum-config-manager --disablerepo=Dropbox
 </div></div>
 <div id="postamble" class="status">
 <p class="author">&#33879;&#32773;: clothoid</p>
-<p class="date">Created: 2021-08-30 Mon 16:02</p>
+<p class="date">Created: 2021-08-31 Tue 11:37</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

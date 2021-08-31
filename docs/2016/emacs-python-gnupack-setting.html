@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
 <head>
-<!-- 2021-08-30 Mon 16:02 -->
+<!-- 2021-08-31 Tue 11:37 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>emacs 24 で Python の環境を作る</title>
@@ -252,20 +252,20 @@ for the JavaScript code in this tag.
 <h2>&#30446;&#27425;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org908a272">1. 環境</a></li>
-<li><a href="#org399ffb6">2. python</a></li>
-<li><a href="#orgd961938">3. easy<sub>install</sub></a></li>
-<li><a href="#orgc1bb41d">4. pip</a></li>
-<li><a href="#org07bca63">5. virtualenv</a></li>
-<li><a href="#org5335685">6. PEP8</a></li>
-<li><a href="#orgc45b075">7. pyflakes</a></li>
-<li><a href="#org6c2fe16">8. jedi</a></li>
-<li><a href="#org9a64516">9. 参考</a></li>
+<li><a href="#org0afa827">1. 環境</a></li>
+<li><a href="#orgb5cd00c">2. python</a></li>
+<li><a href="#orga4063b0">3. easy<sub>install</sub></a></li>
+<li><a href="#orgf3140dd">4. pip</a></li>
+<li><a href="#orgd175107">5. virtualenv</a></li>
+<li><a href="#orgbd5aae2">6. PEP8</a></li>
+<li><a href="#orgbaa40ac">7. pyflakes</a></li>
+<li><a href="#org811113f">8. jedi</a></li>
+<li><a href="#orgec954e2">9. 参考</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org908a272" class="outline-2">
-<h2 id="org908a272"><span class="section-number-2">1</span> 環境</h2>
+<div id="outline-container-org0afa827" class="outline-2">
+<h2 id="org0afa827"><span class="section-number-2">1</span> 環境</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>Windows 7 64bit</li>
@@ -305,8 +305,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org399ffb6" class="outline-2">
-<h2 id="org399ffb6"><span class="section-number-2">2</span> python</h2>
+<div id="outline-container-orgb5cd00c" class="outline-2">
+<h2 id="orgb5cd00c"><span class="section-number-2">2</span> python</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
 <pre class="src src-sh">$ apt-cyg install python
@@ -334,8 +334,8 @@ init.el の設定は以下のとおり。
 </div>
 </div>
 </div>
-<div id="outline-container-orgd961938" class="outline-2">
-<h2 id="orgd961938"><span class="section-number-2">3</span> easy<sub>install</sub></h2>
+<div id="outline-container-orga4063b0" class="outline-2">
+<h2 id="orga4063b0"><span class="section-number-2">3</span> easy<sub>install</sub></h2>
 <div class="outline-text-2" id="text-3">
 <p>
 python のパッケージ管理ツール。python-setuptools の中に入っている。
@@ -349,8 +349,8 @@ setuptools 15.2
 </div>
 </div>
 
-<div id="outline-container-orgc1bb41d" class="outline-2">
-<h2 id="orgc1bb41d"><span class="section-number-2">4</span> pip</h2>
+<div id="outline-container-orgf3140dd" class="outline-2">
+<h2 id="orgf3140dd"><span class="section-number-2">4</span> pip</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 easy<sub>install</sub> の強化版。
@@ -365,8 +365,8 @@ pip 8.1.1 from /usr/lib/python2.7/site-packages/pip-8.1.1-py2.7.egg (python 2.7)
 </div>
 </div>
 
-<div id="outline-container-org07bca63" class="outline-2">
-<h2 id="org07bca63"><span class="section-number-2">5</span> virtualenv</h2>
+<div id="outline-container-orgd175107" class="outline-2">
+<h2 id="orgd175107"><span class="section-number-2">5</span> virtualenv</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 プロジェクト毎に仮想環境を作れるツール。
@@ -397,8 +397,8 @@ $ rmvirtualenv myproject
 </div>
 </div>
 
-<div id="outline-container-org5335685" class="outline-2">
-<h2 id="org5335685"><span class="section-number-2">6</span> PEP8</h2>
+<div id="outline-container-orgbd5aae2" class="outline-2">
+<h2 id="orgbd5aae2"><span class="section-number-2">6</span> PEP8</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 Python のコーディング規約 PEP8 のチェックなどを簡単にするツール群。
@@ -492,8 +492,8 @@ PEP8 finished at Tue Mar 29 18:01:10
 </div>
 </div>
 
-<div id="outline-container-orgc45b075" class="outline-2">
-<h2 id="orgc45b075"><span class="section-number-2">7</span> pyflakes</h2>
+<div id="outline-container-orgbaa40ac" class="outline-2">
+<h2 id="orgbaa40ac"><span class="section-number-2">7</span> pyflakes</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 Python の文法エラーをチェックするもの。
@@ -566,8 +566,8 @@ invalid syntax
 </div>
 </div>
 
-<div id="outline-container-org6c2fe16" class="outline-2">
-<h2 id="org6c2fe16"><span class="section-number-2">8</span> jedi</h2>
+<div id="outline-container-org811113f" class="outline-2">
+<h2 id="org811113f"><span class="section-number-2">8</span> jedi</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 python でのかしこい補完機能<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>。
@@ -600,8 +600,8 @@ init.el は以下のとおり。
 </div>
 </div>
 
-<div id="outline-container-org9a64516" class="outline-2">
-<h2 id="org9a64516"><span class="section-number-2">9</span> 参考</h2>
+<div id="outline-container-orgec954e2" class="outline-2">
+<h2 id="orgec954e2"><span class="section-number-2">9</span> 参考</h2>
 <div class="outline-text-2" id="text-9">
 <ul class="org-ul">
 <li><a href="http://qiita.com/kunst1080/items/8349ad2d3bbe808651d1">Cygwin 環境に virtualenv を入れてみた - Qiita</a></li>
@@ -636,7 +636,7 @@ auto-complete と同時設定するとうまく効かなかった。
 </div></div>
 <div id="postamble" class="status">
 <p class="author">&#33879;&#32773;: clothoid</p>
-<p class="date">Created: 2021-08-30 Mon 16:02</p>
+<p class="date">Created: 2021-08-31 Tue 11:37</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

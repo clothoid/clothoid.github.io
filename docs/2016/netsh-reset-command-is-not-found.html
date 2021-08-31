@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
 <head>
-<!-- 2021-08-30 Mon 16:02 -->
+<!-- 2021-08-31 Tue 11:37 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>netsh -f で reset がみつからない</title>
@@ -275,16 +275,16 @@ for the JavaScript code in this tag.
 <h2>&#30446;&#27425;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org0f4c2ea">1. 現象</a></li>
-<li><a href="#org5043306">2. 結論</a></li>
-<li><a href="#org48c8fc8">3. 環境</a></li>
-<li><a href="#org8e80c7f">4. 参考</a></li>
+<li><a href="#org3779981">1. 現象</a></li>
+<li><a href="#orga4d9383">2. 結論</a></li>
+<li><a href="#org8aeb9a1">3. 環境</a></li>
+<li><a href="#orgf1b285b">4. 参考</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org0f4c2ea" class="outline-2">
-<h2 id="org0f4c2ea"><span class="section-number-2">1</span> 現象</h2>
+<div id="outline-container-org3779981" class="outline-2">
+<h2 id="org3779981"><span class="section-number-2">1</span> 現象</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 TCP/IP の設定を切り変える方法として、古いものには以下のように書いてある。
@@ -340,8 +340,8 @@ PS C:\&gt; netsh -f .\conf.nsh
 </div>
 </div>
 
-<div id="outline-container-org5043306" class="outline-2">
-<h2 id="org5043306"><span class="section-number-2">2</span> 結論</h2>
+<div id="outline-container-orga4d9383" class="outline-2">
+<h2 id="orga4d9383"><span class="section-number-2">2</span> 結論</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 netsh を手で直接打つか、例えば batch ファイルを作成した方が良さそう。
@@ -373,8 +373,8 @@ REM netsh interface ip set dns "ローカル エリア接続" dhcp
 </div>
 </div>
 
-<div id="outline-container-org48c8fc8" class="outline-2">
-<h2 id="org48c8fc8"><span class="section-number-2">3</span> 環境</h2>
+<div id="outline-container-org8aeb9a1" class="outline-2">
+<h2 id="org8aeb9a1"><span class="section-number-2">3</span> 環境</h2>
 <div class="outline-text-2" id="text-3">
 <pre class="example">
 C:\Users\clothoid&gt; $PSVersionTable
@@ -392,8 +392,8 @@ PSRemotingProtocolVersion      2.1
 </div>
 </div>
 
-<div id="outline-container-org8e80c7f" class="outline-2">
-<h2 id="org8e80c7f"><span class="section-number-2">4</span> 参考</h2>
+<div id="outline-container-orgf1b285b" class="outline-2">
+<h2 id="orgf1b285b"><span class="section-number-2">4</span> 参考</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li><a href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa368046">Copy a Unicode File to an ANSI File (Windows)</a></li>
@@ -409,7 +409,7 @@ PSRemotingProtocolVersion      2.1
 </div>
 <div id="postamble" class="status">
 <p class="author">&#33879;&#32773;: clothoid</p>
-<p class="date">Created: 2021-08-30 Mon 16:02</p>
+<p class="date">Created: 2021-08-31 Tue 11:37</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
