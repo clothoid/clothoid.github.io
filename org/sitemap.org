@@ -1,5 +1,13 @@
 #+TITLE: site map
 
+- [[file:journal/2021-10-02.org][2021-10-02]]
+- [[file:journal/2021-09-14.org][2021-09-14]]
+- [[file:journal/2021-09-13.org][2021-09-13]]
+- [[file:journal/2021-09-12.org][2021-09-12]]
+- [[file:journal/2021-09-11.org][2021-09-11]]
+- [[file:journal/2021-08-30.org][2021-08-30]]
+- [[file:journal/2021-08-31.org][2021-08-31]]
+- [[file:journal/2021-08-29.org][2021-08-29]]
 - [[file:2021/wine-list.org][好きなワインのメモ]]
 - [[file:index.org][@clothoid's Home Page]]
 - [[file:2021/copy-writing-method.org][コピーライティングの法則まとめ]]
