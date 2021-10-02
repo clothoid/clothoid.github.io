@@ -1,5 +1,6 @@
 #+TITLE: site map
 
+- [[file:2021/good-things-and-events.org][自分の身におきてよかったことをメモる]]
 - [[file:journal/2021-10-02.org][2021-10-02]]
 - [[file:journal/2021-09-14.org][2021-09-14]]
 - [[file:journal/2021-09-13.org][2021-09-13]]
