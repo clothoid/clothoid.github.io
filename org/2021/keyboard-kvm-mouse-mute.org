@@ -1,0 +1,41 @@
+x#+SETUPFILE: ../0000/00org-web-template
+#+TITLE: PC自動切替器のマウスミュートとキーボード
+#+DESCRIPTION:
+#+KEYWORDS:
+#+SUBTITLE:
+
+
+*  環境
+
+  リンクはAmazonのアフィです。
+
+  - Windows 10 20H2
+  - Windows 10 21H1
+  - Ubuntux 20.0.4.1 LTS
+  - [[http://amzn.to/1SnrjNu][SANWA SUPPLY デュアルリンク DVI 対応 パソコン自動切替器 SW-KVM4HDCN]]
+  - [[https://amzn.to/3alLKfD][Logicool M235R]]
+  - [[https://amzn.to/3alLVaN][東プレ Realforce R2SA-JP3-BK-SHK]]
+
+* 問題
+
+  1. SW-KVM2HDCN に以下のを指すとマウスが動作しない
+     - Logicool M235R のレシーバーユニット
+     - 東プレ Realforce R2SA-JP3-BK-SHK [fn:guaranteed]
+  2. SW-KVM2HDCN にマウスのみ指すとマウスは動作する
+  3. SW-KVM2HDCN にキーボードのみを指すとキーボードは動作する
+  4. SW-KVM2HDCNのUSBソケットにキーボードを指すとマウスとキーボードの両方が動作するがSW-KVM2HDCNをキーボードから操作できない(仕様なので当然)
+
+* 対処方法
+
+  - マウスエミュレーション機能を ON にする [fn:emuon]
+    1. [NumLock] を押しながら、[-]を押して、[-]だけ離してから、[NumLock]を離す(ピッ)
+    2. [m] を押す(ピッピッ)
+  
+
+* Footnotes
+
+x[fn:guaranteed] RealforceはPC自動切り替え器の動作保証外  
+
+[fn:emuon] デフォルトではONだが前に[[file:~/mysite/clothoid.github.io/org/2016/pc-changer-mouse-emulation-off.org][こんな記事]]の問題でOFFにしていた
+
+

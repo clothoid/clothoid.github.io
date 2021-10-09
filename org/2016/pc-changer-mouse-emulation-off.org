@@ -12,7 +12,8 @@
   SW-KVM2HDCN のマウスコンソールに M-XT4DR のレシーバーユニットを刺して、HID 準拠マウスとして認識させても、マウスが正常に動作しない。
 * 対処方法
   - マウスエミュレーション機能を OFF にする [fn:emuoff]
-    - [Num Lock]+[-] => [M]
+    1. [NumLock] を押しながら、[-]を押して、[-]だけ離してから、[NumLock]を離す(ピッ)
+    2. [m] を押す(ピッピッ)
   - SW-KVM2HDCN の USB2.0 ハブポートに M-XT4DR のレシーバーユニットを接続する
   - [[http://adventcomputers.co.uk/node/1589][Advent M312 Wireless Optical Mouse]] (正常動作確認済み)など別マウスを使用する
   - 子マシンに直刺しする

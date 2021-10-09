@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
 <head>
-<!-- 2021-08-31 Tue 11:37 -->
+<!-- 2021-10-09 Sat 11:11 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>org-latex-export-to-pdf の設定手順</title>
@@ -275,25 +275,25 @@ for the JavaScript code in this tag.
 <h2>&#30446;&#27425;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org43c12f7">1. 目的</a></li>
-<li><a href="#orge10e3c3">2. 設定手順</a>
+<li><a href="#org92bc2d1">1. 目的</a></li>
+<li><a href="#orgc8fb106">2. 設定手順</a>
 <ul>
-<li><a href="#org935502d">2.1. 環境</a></li>
-<li><a href="#org05e961a">2.2. TeX Live 2018 のインストール</a></li>
-<li><a href="#org959a22d">2.3. Python のインストール</a></li>
-<li><a href="#orga17debe">2.4. emacs のインストール</a></li>
-<li><a href="#org5afc741">2.5. init.el の設定</a></li>
+<li><a href="#org1b38de3">2.1. 環境</a></li>
+<li><a href="#orgcfaf591">2.2. TeX Live 2018 のインストール</a></li>
+<li><a href="#org79a5fa6">2.3. Python のインストール</a></li>
+<li><a href="#orgd247c3e">2.4. emacs のインストール</a></li>
+<li><a href="#org3b1518b">2.5. init.el の設定</a></li>
 </ul>
 </li>
-<li><a href="#org20b1a8d">3. サンプル</a></li>
-<li><a href="#org0c8bbfe">4. おまけ</a></li>
-<li><a href="#orga48d1b3">5. 参考</a></li>
+<li><a href="#org1700785">3. サンプル</a></li>
+<li><a href="#org4537636">4. おまけ</a></li>
+<li><a href="#org5396773">5. 参考</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org43c12f7" class="outline-2">
-<h2 id="org43c12f7"><span class="section-number-2">1</span> 目的</h2>
+<div id="outline-container-org92bc2d1" class="outline-2">
+<h2 id="org92bc2d1"><span class="section-number-2">1</span> 目的</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 emacs の org-mode で M-x org-latex-export-to-pdf (C-c C-e l p) 一発で以下のような PDF を生成できるように構築する。
@@ -325,12 +325,12 @@ emacs の org-mode で M-x org-latex-export-to-pdf (C-c C-e l p) 一発で以下
 </div>
 </div>
 
-<div id="outline-container-orge10e3c3" class="outline-2">
-<h2 id="orge10e3c3"><span class="section-number-2">2</span> 設定手順</h2>
+<div id="outline-container-orgc8fb106" class="outline-2">
+<h2 id="orgc8fb106"><span class="section-number-2">2</span> 設定手順</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org935502d" class="outline-3">
-<h3 id="org935502d"><span class="section-number-3">2.1</span> 環境</h3>
+<div id="outline-container-org1b38de3" class="outline-3">
+<h3 id="org1b38de3"><span class="section-number-3">2.1</span> 環境</h3>
 <div class="outline-text-3" id="text-2-1">
 <ul class="org-ul">
 <li>Windows: 10 Pro</li>
@@ -348,8 +348,8 @@ emacs の org-mode で M-x org-latex-export-to-pdf (C-c C-e l p) 一発で以下
 </div>
 </div>
 
-<div id="outline-container-org05e961a" class="outline-3">
-<h3 id="org05e961a"><span class="section-number-3">2.2</span> TeX Live 2018 のインストール</h3>
+<div id="outline-container-orgcfaf591" class="outline-3">
+<h3 id="orgcfaf591"><span class="section-number-3">2.2</span> TeX Live 2018 のインストール</h3>
 <div class="outline-text-3" id="text-2-2">
 <ol class="org-ol">
 <li>以下から install-tl-windows.exe をダウンロードして実行
@@ -384,8 +384,8 @@ use_proxy=on
 </div>
 </div>
 
-<div id="outline-container-org959a22d" class="outline-3">
-<h3 id="org959a22d"><span class="section-number-3">2.3</span> Python のインストール</h3>
+<div id="outline-container-org79a5fa6" class="outline-3">
+<h3 id="org79a5fa6"><span class="section-number-3">2.3</span> Python のインストール</h3>
 <div class="outline-text-3" id="text-2-3">
 <ol class="org-ol">
 <li>以下から、[Windows x86-64 executable installer] をダウンロード
@@ -408,8 +408,8 @@ use_proxy=on
 </div>
 </div>
 
-<div id="outline-container-orga17debe" class="outline-3">
-<h3 id="orga17debe"><span class="section-number-3">2.4</span> emacs のインストール</h3>
+<div id="outline-container-orgd247c3e" class="outline-3">
+<h3 id="orgd247c3e"><span class="section-number-3">2.4</span> emacs のインストール</h3>
 <div class="outline-text-3" id="text-2-4">
 <ol class="org-ol">
 <li>以下から [emacs-26.1-x86_64-win-ime-20180619.zip] をダウンロード
@@ -422,8 +422,8 @@ use_proxy=on
 </div>
 </div>
 
-<div id="outline-container-org5afc741" class="outline-3">
-<h3 id="org5afc741"><span class="section-number-3">2.5</span> init.el の設定</h3>
+<div id="outline-container-org3b1518b" class="outline-3">
+<h3 id="org3b1518b"><span class="section-number-3">2.5</span> init.el の設定</h3>
 <div class="outline-text-3" id="text-2-5">
 <div class="org-src-container">
 <pre class="src src-elisp"><span style="color: #8D8D84;">; </span><span style="color: #8D8D84; font-style: italic;">-*- Mode: Emacs-Lisp ; Coding: utf-8 -*-</span>
@@ -497,8 +497,8 @@ use_proxy=on
 </div>
 </div>
 
-<div id="outline-container-org20b1a8d" class="outline-2">
-<h2 id="org20b1a8d"><span class="section-number-2">3</span> サンプル</h2>
+<div id="outline-container-org1700785" class="outline-2">
+<h2 id="org1700785"><span class="section-number-2">3</span> サンプル</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 たとえば、以下のようなテキストファイルを作成して、C-c C-e l p とすると冒頭の PDF が一発で作成できる(<b>emacs.png はどこから拾っておくこと</b>)。
@@ -622,8 +622,8 @@ use_proxy=on
 </div>
 </div>
 
-<div id="outline-container-org0c8bbfe" class="outline-2">
-<h2 id="org0c8bbfe"><span class="section-number-2">4</span> おまけ</h2>
+<div id="outline-container-org4537636" class="outline-2">
+<h2 id="org4537636"><span class="section-number-2">4</span> おまけ</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Python が不要な <a href="https://ctan.org/pkg/listings">listings</a> を利用した場合の init.el の参考例(lualatex を利用に注意)。
@@ -687,8 +687,8 @@ Python が不要な <a href="https://ctan.org/pkg/listings">listings</a> を利�
 </div>
 </div>
 
-<div id="outline-container-orga48d1b3" class="outline-2">
-<h2 id="orga48d1b3"><span class="section-number-2">5</span> 参考</h2>
+<div id="outline-container-org5396773" class="outline-2">
+<h2 id="org5396773"><span class="section-number-2">5</span> 参考</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li><a href="https://ichiro-maruta.blogspot.com/2012/04/windows-tex-live.html">プロキシ環境下で Windowsマシンに TeX Live を入れる際のメモ</a></li>
@@ -716,7 +716,7 @@ pip.exe は C:/Users/Administrator/AppData/Local/Programs/Python/Python37/Script
 </div></div>
 <div id="postamble" class="status">
 <p class="author">&#33879;&#32773;: clothoid</p>
-<p class="date">Created: 2021-08-31 Tue 11:37</p>
+<p class="date">Created: 2021-10-09 Sat 11:11</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

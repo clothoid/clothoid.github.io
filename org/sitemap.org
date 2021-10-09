@@ -1,5 +1,7 @@
 #+TITLE: site map
 
+- [[file:2016/pc-changer-mouse-emulation-off.org][PC自動切替器とトラックボールマウスの相性]]
+- [[file:2021/keyboard-kvm-mouse-mute.org][PC自動切替器のマウスミュートとキーボード]]
 - [[file:2021/good-things-and-events.org][自分の身におきてよかったことをメモる]]
 - [[file:journal/2021-10-02.org][2021-10-02]]
 - [[file:journal/2021-09-14.org][2021-09-14]]
@@ -9,8 +11,8 @@
 - [[file:journal/2021-08-30.org][2021-08-30]]
 - [[file:journal/2021-08-31.org][2021-08-31]]
 - [[file:journal/2021-08-29.org][2021-08-29]]
-- [[file:2021/wine-list.org][好きなワインのメモ]]
 - [[file:index.org][@clothoid's Home Page]]
+- [[file:2021/wine-list.org][好きなワインのメモ]]
 - [[file:2021/copy-writing-method.org][コピーライティングの法則まとめ]]
 - [[file:journal/2021-03-06.org][2021-03-06]]
 - [[file:journal/2021-03-03.org][2021-03-03]]
@@ -39,7 +41,6 @@
 - [[file:2016/five-Chateau-wine-labels.org][List for 1st-3rd labels of 5 chateaus]]
 - [[file:2016/iijmio-au-docomo-dmm-fee.org][IIJmio で携帯料金を節約]]
 - [[file:2016/yum-versioin-fix-subscription-manager.org][yum でバージョン固定を subscription-manager で]]
-- [[file:2016/pc-changer-mouse-emulation-off.org][PC自動切替器とトラックボールマウスの相性]]
 - [[file:2016/netsh-reset-command-is-not-found.org][netsh -f で reset がみつからない]]
 - [[file:2016/dry-bath-towel-ranking.org][速乾性バスタオルランキング]]
 - [[file:2018/emacs-nodejs-nmp-textlint-flycheck.org][emacs の flycheck で textlint を利用し、日本語の自動校正を行う]]
