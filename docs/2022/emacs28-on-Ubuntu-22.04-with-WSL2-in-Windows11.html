@@ -3,13 +3,14 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
 <head>
-<!-- 2022-08-27 Sat 17:03 -->
+<!-- 2022-08-27 Sat 17:04 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>rsync によるディスクのフルバックアップ</title>
+<title>emacs28 on Ubuntu 22.04 with WSL2 in Windows 11</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="clothoid" />
-<meta name="keywords" content="rsynk cron crontab" />
+<meta name="description" content="How to Install emacs 28 on Ubuntu 22.04 with Windows Subsystem for Linux 2 in Windows 11 Professional"
+ />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -248,69 +249,205 @@ for the JavaScript code in this tag.
  |
  <a accesskey="H" href="https://clothoid.github.io/"> HOME </a>
 </div><div id="content">
-<h1 class="title">rsync によるディスクのフルバックアップ</h1>
+<h1 class="title">emacs28 on Ubuntu 22.04 with WSL2 in Windows 11</h1>
 <div id="table-of-contents">
 <h2>&#30446;&#27425;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgc73fd8f">1. スクリプトの作成</a></li>
-<li><a href="#org256dac2">2. クーロンの設置</a></li>
+<li><a href="#org4f9083c">1. 環境</a></li>
+<li><a href="#org3c3fc4c">2. 手順</a></li>
+<li><a href="#org33d8b92">3. 参考</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgc73fd8f" class="outline-2">
-<h2 id="orgc73fd8f"><span class="section-number-2">1</span> スクリプトの作成</h2>
+<div class="figure">
+<p><img src="../img/2022/emacs28-on-Ubuntu-22.04-with-WSL2-in-Windows11.png" alt="emacs28-on-Ubuntu-22.04-with-WSL2-in-Windows11.png" />
+</p>
+</div>
+
+<div id="outline-container-org4f9083c" class="outline-2">
+<h2 id="org4f9083c"><span class="section-number-2">1</span> 環境</h2>
 <div class="outline-text-2" id="text-1">
-<p>
-[/usr/local/sbin/daily-backup]
-</p>
-<div class="org-src-container">
-<pre class="src src-sh">rsync -xa --delete --exclude={<span style="color: #008000;">'/500g/'</span>,<span style="color: #008000;">'/2000g/'</span>} / /500g/backup-125g 
-rsync -xa --delete /500g /2000g/backup-500g
-</pre>
-</div>
-
-<p>
-実行権限の付与
-</p>
-<div class="org-src-container">
-<pre class="src src-sh">chmod a+x /usr/local/sbin/daily-backup
-</pre>
-</div>
+<ul class="org-ul">
+<li>Windows 11 Pro: 21H2 22000.856</li>
+<li>VcXsrv: 64.1.20.14.0</li>
+<li>Ubuntu: 22.04 LTS</li>
+<li>emacs: 28.1</li>
+</ul>
 </div>
 </div>
 
-<div id="outline-container-org256dac2" class="outline-2">
-<h2 id="org256dac2"><span class="section-number-2">2</span> クーロンの設置</h2>
+<div id="outline-container-org3c3fc4c" class="outline-2">
+<h2 id="org3c3fc4c"><span class="section-number-2">2</span> 手順</h2>
 <div class="outline-text-2" id="text-2">
-<p>
-[/etc/crontab]
+<ol class="org-ol">
+<li>VcXsrv のインストール
+<ul class="org-ul">
+<li><a href="https://sourceforge.net/projects/vcxsrv/">https://sourceforge.net/projects/vcxsrv/</a></li>
+<li>vcxsrv-64.1.20.14.0.installer.exe</li>
+</ul></li>
+<li>WSL2の準備(手動インストール)
+<ol class="org-ol">
+<li>管理者権限でPowerShellを起動</li>
+<li><p>
+[Linux用Windowsサブシステム]有効化のため、以下を実行
 </p>
-<pre class="example">
-# /etc/crontab: system-wide crontab
-# Unlike any other crontab you don't have to run the `crontab'
-# command to install the new version when you edit this file
-# and files in /etc/cron.d. These files also have username fields,
-# that none of the other crontabs do.
-
-SHELL=/bin/sh
-PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-
-# m h dom mon dow user	command
-17 *	* * *	root    cd / &amp;&amp; run-parts --report /etc/cron.hourly
-25 6	* * *	root	test -x /usr/sbin/anacron || ( cd / &amp;&amp; run-parts --report /etc/cron.daily )
-47 6	* * 7	root	test -x /usr/sbin/anacron || ( cd / &amp;&amp; run-parts --report /etc/cron.weekly )
-52 6	1 * *	root	test -x /usr/sbin/anacron || ( cd / &amp;&amp; run-parts --report /etc/cron.monthly )
-0 4 * * * root /usr/local/sbin/daily-backup
-#
+<blockquote>
+<p>
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+</p>
+</blockquote></li>
+<li><p>
+Virtual Machine Platform の有効化のため、以下を実行
+</p>
+<blockquote>
+<p>
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+</p>
+</blockquote></li>
+<li>Linux カーネル更新プログラム パッケージのインストール
+<ul class="org-ul">
+<li><a href="https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi">https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi</a> (x64用)</li>
+<li><a href="https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_arm64.msi">https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_arm64.msi</a> (arm64用)</li>
+</ul></li>
+<li><p>
+WSL 2 を既定のバージョンとして設定
+</p>
+<blockquote>
+<p>
+wsl &#x2013;set-default-version 2
+</p>
+</blockquote></li>
+</ol></li>
+<li>Ubuntu のインストール
+<ol class="org-ol">
+<li>Microsoft Store から、Ubuntu 22.04 を入手
+<ul class="org-ul">
+<li><a href="https://www.microsoft.com/store/apps/9PN20MSR04DW">https://www.microsoft.com/store/apps/9PN20MSR04DW</a></li>
+</ul></li>
+<li>Ubuntuコンソールを起動</li>
+<li>言語の選択(デフォルトのまま)</li>
+<li>ユーザー名とパスワードの設定</li>
+<li>マウント場所の設定(デフォルトのまま)</li>
+<li>[Setup Complete]の文字をしばらく眺めて、[Reboot Now]を選択</li>
+</ol></li>
+<li>Ubuntuのアップデートと設定
+<ol class="org-ol">
+<li><p>
+最新化
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">sudo -E apt update
+sudo -E apt upgrade
 </pre>
+</div></li>
+<li><p>
+localeや日本語まわり
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">sudo -E apt install language-pack-ja language-pack-gnome-ja
+sudo update-locale <span style="color: #BA36A5;">LANG</span>=ja_JP.UTF-8
+sudo -E apt install manpages-ja manpages-ja-dev
+sudo dpkg-reconfigure tzdata
+</pre>
+</div></li>
+</ol></li>
+<li><p>
+emacsのインストール
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">sudo -E apt remove --autoremove emacs emacs-common
+sudo -E add-apt-repository ppa:kelleyk/emacs
+sudo -E apt update
+sudo -E apt install emacs28 emacs28-el
+sudo -E apt install cmigemo
+</pre>
+</div></li>
+<li><p>
+おまじない
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">sudo -E apt install gconf2
+sudo dbus-uuidgen --ensure
+</pre>
+</div></li>
+<li>ssh ポートフォワード接続無効化
+<ol class="org-ol">
+<li>コマンドプロンプトから wf.msc を起動</li>
+<li>[受信の規則]をクリック</li>
+<li>[VcXsrv windows xserver]の行がないことを確認</li>
+<li>VcXsrv を起動
+<ol class="org-ol">
+<li>基本的に[Next]で設定</li>
+<li>[Additional parameter for VcxSrv] の欄に [-ac -nowgl]を入力</li>
+<li>[Set Configure]をクリックし、適当な場所に設定ファイルを保存しておくと次回からそれをクリックで可能(VcXsrvConfig)</li>
+</ol></li>
+<li>[ファイアウォールの通信許可設定ダイアログ画面] にて [パブリックネットワーク] のチェックを確認</li>
+<li>通信を許可</li>
+</ol></li>
+<li><p>
+~/.bash_profile の設定
+</p>
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #0000FF;">if</span> which tasklist.exe &gt; /dev/null &amp;&amp; ! tasklist.exe | grep -F -q <span style="color: #008000;">'vcxsrv.exe'</span>; <span style="color: #0000FF;">then</span>
+    (
+        <span style="color: #006FE0;">cd</span> <span style="color: #008000;">'/mnt/c/Program Files/VcXsrv'</span>
+        ./vcxsrv.exe :0 -multiwindow -clipboard -noprimary -wgl &gt; /dev/null 2&gt;&amp;1 &amp;
+    )
+<span style="color: #0000FF;">fi</span>
+<span style="color: #0000FF;">if</span> [ <span style="color: #008000;">"$INSIDE_EMACS"</span> ]; <span style="color: #0000FF;">then</span>
+    <span style="color: #BA36A5;">TERM</span>=eterm-color
+<span style="color: #0000FF;">fi</span>
+
+<span style="color: #006FE0;">umask</span> 022
+
+<span style="color: #0000FF;">if</span> [ -z <span style="color: #008000;">"$DISPLAY"</span> ]; <span style="color: #0000FF;">then</span>
+    <span style="color: #0000FF;">if</span> uname -v | grep -q <span style="color: #008000;">'Microsoft'</span>; <span style="color: #0000FF;">then</span>
+        <span style="color: #006FE0;">export</span> <span style="color: #BA36A5;">DISPLAY</span>=:0
+    <span style="color: #0000FF;">else</span>
+        <span style="color: #0000FF;">if</span> ss -lt4 | grep -q <span style="color: #008000;">'127.0.0.1:6020'</span>; <span style="color: #0000FF;">then</span>
+            <span style="color: #006FE0;">export</span> <span style="color: #BA36A5;">DISPLAY</span>=:20
+        <span style="color: #0000FF;">else</span>
+            <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">export DISPLAY=$(</span><span style="color: #FF1493;">awk</span><span style="color: #8D8D84; font-style: italic;"> '/^nameserver/ {print $2; exit}' /etc/resolv.conf):0.0</span>
+            <span style="color: #006FE0;">export</span> <span style="color: #BA36A5;">DISPLAY</span>=$(<span style="color: #FF1493;">ip</span> route | awk <span style="color: #008000;">'/^default/ {print $3; exit}'</span>):0.0
+        <span style="color: #0000FF;">fi</span>
+    <span style="color: #0000FF;">fi</span>
+<span style="color: #0000FF;">fi</span>
+
+<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">Emacs &#12398;&#36215;&#21205;&#26178;&#12395;&#12300;WARNING **: Couldn't connect to accessibility bus: ...&#12301;&#12392;&#12356;&#12358;&#12527;&#12540;&#12491;&#12531;&#12464;&#12364;&#20986;&#21147;&#12373;&#12428;&#12427;&#22580;&#21512;&#12395;&#35373;&#23450;</span>
+<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">export NO_AT_BRIDGE=1</span>
+
+<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">Emacs &#12398;&#36215;&#21205;&#26178;&#12395;&#12300;libGL error: No matching fbConfigs or visuals found / libGL error: failed to load driver: swrast&#12301;&#12392;&#12356;&#12358;&#12456;&#12521;&#12540;&#12364;&#20986;&#21147;&#12373;&#12428;&#12427;&#22580;&#21512;&#12395;&#35373;&#23450;</span>
+<span style="color: #006FE0;">export</span> <span style="color: #BA36A5;">LIBGL_ALWAYS_INDIRECT</span>=1
+
+<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">Emacs &#12398;&#36215;&#21205;&#26178;&#12395; gigacage &#12395;&#38306;&#12377;&#12427;&#12456;&#12521;&#12540;&#12364;&#30330;&#29983;&#12377;&#12427;&#22580;&#21512;&#12395;&#35373;&#23450;</span>
+<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">export GIGACAGE_ENABLED=no</span>
+</pre>
+</div></li>
+<li>マシンの再起動</li>
+<li>VcXsrvConfigを起動</li>
+<li>Ubuntuを起動</li>
+<li>emacs を起動</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org33d8b92" class="outline-2">
+<h2 id="org33d8b92"><span class="section-number-2">3</span> 参考</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li><a href="https://docs.microsoft.com/ja-jp/windows/wsl/install-manual">以前のバージョンの WSL の手動インストール手順</a></li>
+<li><a href="https://w.atwiki.jp/ntemacs/pages/69.html">Windows Subsystem for Linux で Emacs を使うための設定</a></li>
+<li><a href="https://www.aise.ics.saitama-u.ac.jp/~gotoh/EmacsUbuntu2004onWSL2.html">WSL2上のUbuntu20.04でのEmacs</a></li>
+<li><a href="https://ubuntuhandbook.org/index.php/2022/06/install-gnu-emacs-28-1-ubuntu-22-04-20-04/">How to Install GNU Emacs 28.1 in Ubuntu 22.04 | 20.04</a></li>
+</ul>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">&#33879;&#32773;: clothoid</p>
-<p class="date">Created: 2022-08-27 Sat 17:03</p>
+<p class="date">Created: 2022-08-27 Sat 17:04</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

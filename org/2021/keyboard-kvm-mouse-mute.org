@@ -1,4 +1,4 @@
-x#+SETUPFILE: ../0000/00org-web-template
+#+SETUPFILE: ../0000/00org-web-template
 #+TITLE: PC自動切替器のマウスミュートとキーボード
 #+DESCRIPTION:
 #+KEYWORDS:
@@ -34,7 +34,7 @@ x#+SETUPFILE: ../0000/00org-web-template
 
 * Footnotes
 
-x[fn:guaranteed] RealforceはPC自動切り替え器の動作保証外  
+[fn:guaranteed] RealforceはPC自動切り替え器の動作保証外  
 
 [fn:emuon] デフォルトではONだが前に[[file:~/mysite/clothoid.github.io/org/2016/pc-changer-mouse-emulation-off.org][こんな記事]]の問題でOFFにしていた
 

@@ -1,0 +1,130 @@
+#+SETUPFILE: ../0000/00org-web-template
+#+TITLE: emacs28 on Ubuntu 22.04 with WSL2 in Windows 11 
+#+DESCRIPTION: How to Install emacs 28 on Ubuntu 22.04 with Windows Subsystem for Linux 2 in Windows 11 Professional
+#+KEYWORDS: 
+#+SUBTITLE:
+#+OPTIONS: ^:{}
+
+  file:../img/2022/emacs28-on-Ubuntu-22.04-with-WSL2-in-Windows11.png
+
+* 環境
+  
+     - Windows 11 Pro: 21H2 22000.856
+     - VcXsrv: 64.1.20.14.0
+     - Ubuntu: 22.04 LTS
+     - emacs: 28.1
+       
+* 手順
+
+  1. VcXsrv のインストール
+     - https://sourceforge.net/projects/vcxsrv/
+     - vcxsrv-64.1.20.14.0.installer.exe
+  2. WSL2の準備(手動インストール)
+     1. 管理者権限でPowerShellを起動
+     2. [Linux用Windowsサブシステム]有効化のため、以下を実行
+        #+begin_quote
+        dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+        #+end_quote
+     3. Virtual Machine Platform の有効化のため、以下を実行
+        #+begin_quote
+        dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+        #+end_quote
+     4. Linux カーネル更新プログラム パッケージのインストール
+        - https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi (x64用)
+        - https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_arm64.msi (arm64用)
+     5. WSL 2 を既定のバージョンとして設定
+        #+begin_quote
+        wsl --set-default-version 2
+        #+end_quote
+  3. Ubuntu のインストール
+     1. Microsoft Store から、Ubuntu 22.04 を入手
+        - https://www.microsoft.com/store/apps/9PN20MSR04DW
+     2. Ubuntuコンソールを起動
+     3. 言語の選択(デフォルトのまま)
+     4. ユーザー名とパスワードの設定
+     5. マウント場所の設定(デフォルトのまま)
+     6. [Setup Complete]の文字をしばらく眺めて、[Reboot Now]を選択
+  4. Ubuntuのアップデートと設定
+     1. 最新化
+        #+begin_src shell
+        sudo -E apt update
+        sudo -E apt upgrade
+        #+end_src
+     2. localeや日本語まわり
+        #+begin_src shell
+        sudo -E apt install language-pack-ja language-pack-gnome-ja
+        sudo update-locale LANG=ja_JP.UTF-8
+        sudo -E apt install manpages-ja manpages-ja-dev
+        sudo dpkg-reconfigure tzdata
+        #+end_src
+  5. emacsのインストール
+     #+begin_src shell
+     sudo -E apt remove --autoremove emacs emacs-common
+     sudo -E add-apt-repository ppa:kelleyk/emacs
+     sudo -E apt update
+     sudo -E apt install emacs28 emacs28-el
+     sudo -E apt install cmigemo
+     #+end_src
+  6. おまじない
+     #+begin_src shell
+     sudo -E apt install gconf2
+     sudo dbus-uuidgen --ensure
+     #+end_src
+  7. ssh ポートフォワード接続無効化
+     1. コマンドプロンプトから wf.msc を起動
+     2. [受信の規則]をクリック
+     3. [VcXsrv windows xserver]の行がないことを確認
+     4. VcXsrv を起動
+        1. 基本的に[Next]で設定
+        2. [Additional parameter for VcxSrv] の欄に [-ac -nowgl]を入力
+        3. [Set Configure]をクリックし、適当な場所に設定ファイルを保存しておくと次回からそれをクリックで可能(VcXsrvConfig)
+     5. [ファイアウォールの通信許可設定ダイアログ画面] にて [パブリックネットワーク] のチェックを確認
+     6. 通信を許可
+  8. ~/.bash_profile の設定
+     #+begin_src shell
+     if which tasklist.exe > /dev/null && ! tasklist.exe | grep -F -q 'vcxsrv.exe'; then
+         (
+             cd '/mnt/c/Program Files/VcXsrv'
+             ./vcxsrv.exe :0 -multiwindow -clipboard -noprimary -wgl > /dev/null 2>&1 &
+         )
+     fi
+     if [ "$INSIDE_EMACS" ]; then
+         TERM=eterm-color
+     fi
+
+     umask 022
+
+     if [ -z "$DISPLAY" ]; then
+         if uname -v | grep -q 'Microsoft'; then
+             export DISPLAY=:0
+         else
+             if ss -lt4 | grep -q '127.0.0.1:6020'; then
+                 export DISPLAY=:20
+             else
+                 # export DISPLAY=$(awk '/^nameserver/ {print $2; exit}' /etc/resolv.conf):0.0
+                 export DISPLAY=$(ip route | awk '/^default/ {print $3; exit}'):0.0
+             fi
+         fi
+     fi
+
+     # Emacs の起動時に「WARNING **: Couldn't connect to accessibility bus: ...」というワーニングが出力される場合に設定
+     # export NO_AT_BRIDGE=1
+
+     # Emacs の起動時に「libGL error: No matching fbConfigs or visuals found / libGL error: failed to load driver: swrast」というエラーが出力される場合に設定
+     export LIBGL_ALWAYS_INDIRECT=1
+
+     # Emacs の起動時に gigacage に関するエラーが発生する場合に設定
+     # export GIGACAGE_ENABLED=no
+     #+end_src
+  9. マシンの再起動
+  10. VcXsrvConfigを起動
+  11. Ubuntuを起動
+  12. emacs を起動
+
+* 参考
+
+  - [[https://docs.microsoft.com/ja-jp/windows/wsl/install-manual][以前のバージョンの WSL の手動インストール手順]]
+  - [[https://w.atwiki.jp/ntemacs/pages/69.html][Windows Subsystem for Linux で Emacs を使うための設定]]
+  - [[https://www.aise.ics.saitama-u.ac.jp/~gotoh/EmacsUbuntu2004onWSL2.html][WSL2上のUbuntu20.04でのEmacs]]
+  - [[https://ubuntuhandbook.org/index.php/2022/06/install-gnu-emacs-28-1-ubuntu-22-04-20-04/][How to Install GNU Emacs 28.1 in Ubuntu 22.04 | 20.04]]
+

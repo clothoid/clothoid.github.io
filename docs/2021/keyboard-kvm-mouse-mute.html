@@ -6,10 +6,9 @@
 <!-- 2022-08-27 Sat 17:03 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>rsync によるディスクのフルバックアップ</title>
+<title>PC自動切替器のマウスミュートとキーボード</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="clothoid" />
-<meta name="keywords" content="rsynk cron crontab" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -248,66 +247,80 @@ for the JavaScript code in this tag.
  |
  <a accesskey="H" href="https://clothoid.github.io/"> HOME </a>
 </div><div id="content">
-<h1 class="title">rsync によるディスクのフルバックアップ</h1>
+<h1 class="title">PC自動切替器のマウスミュートとキーボード</h1>
 <div id="table-of-contents">
 <h2>&#30446;&#27425;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgc73fd8f">1. スクリプトの作成</a></li>
-<li><a href="#org256dac2">2. クーロンの設置</a></li>
+<li><a href="#org5d14f08">1. 環境</a></li>
+<li><a href="#orgefe54d8">2. 問題</a></li>
+<li><a href="#orgbb732f3">3. 対処方法</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgc73fd8f" class="outline-2">
-<h2 id="orgc73fd8f"><span class="section-number-2">1</span> スクリプトの作成</h2>
+
+<div id="outline-container-org5d14f08" class="outline-2">
+<h2 id="org5d14f08"><span class="section-number-2">1</span> 環境</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-[/usr/local/sbin/daily-backup]
+リンクはAmazonのアフィです。
 </p>
-<div class="org-src-container">
-<pre class="src src-sh">rsync -xa --delete --exclude={<span style="color: #008000;">'/500g/'</span>,<span style="color: #008000;">'/2000g/'</span>} / /500g/backup-125g 
-rsync -xa --delete /500g /2000g/backup-500g
-</pre>
-</div>
 
-<p>
-実行権限の付与
-</p>
-<div class="org-src-container">
-<pre class="src src-sh">chmod a+x /usr/local/sbin/daily-backup
-</pre>
-</div>
+<ul class="org-ul">
+<li>Windows 10 20H2</li>
+<li>Windows 10 21H1</li>
+<li>Ubuntux 20.0.4.1 LTS</li>
+<li><a href="http://amzn.to/1SnrjNu">SANWA SUPPLY デュアルリンク DVI 対応 パソコン自動切替器 SW-KVM4HDCN</a></li>
+<li><a href="https://amzn.to/3alLKfD">Logicool M235R</a></li>
+<li><a href="https://amzn.to/3alLVaN">東プレ Realforce R2SA-JP3-BK-SHK</a></li>
+</ul>
 </div>
 </div>
 
-<div id="outline-container-org256dac2" class="outline-2">
-<h2 id="org256dac2"><span class="section-number-2">2</span> クーロンの設置</h2>
+<div id="outline-container-orgefe54d8" class="outline-2">
+<h2 id="orgefe54d8"><span class="section-number-2">2</span> 問題</h2>
 <div class="outline-text-2" id="text-2">
-<p>
-[/etc/crontab]
-</p>
-<pre class="example">
-# /etc/crontab: system-wide crontab
-# Unlike any other crontab you don't have to run the `crontab'
-# command to install the new version when you edit this file
-# and files in /etc/cron.d. These files also have username fields,
-# that none of the other crontabs do.
+<ol class="org-ol">
+<li>SW-KVM2HDCN に以下のを指すとマウスが動作しない
+<ul class="org-ul">
+<li>Logicool M235R のレシーバーユニット</li>
+<li>東プレ Realforce R2SA-JP3-BK-SHK <sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup></li>
+</ul></li>
+<li>SW-KVM2HDCN にマウスのみ指すとマウスは動作する</li>
+<li>SW-KVM2HDCN にキーボードのみを指すとキーボードは動作する</li>
+<li>SW-KVM2HDCNのUSBソケットにキーボードを指すとマウスとキーボードの両方が動作するがSW-KVM2HDCNをキーボードから操作できない(仕様なので当然)</li>
+</ol>
+</div>
+</div>
 
-SHELL=/bin/sh
-PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+<div id="outline-container-orgbb732f3" class="outline-2">
+<h2 id="orgbb732f3"><span class="section-number-2">3</span> 対処方法</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li>マウスエミュレーション機能を ON にする <sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>
+<ol class="org-ol">
+<li>[NumLock] を押しながら、[-]を押して、[-]だけ離してから、[NumLock]を離す(ピッ)</li>
+<li>[m] を押す(ピッピッ)</li>
+</ol></li>
+</ul>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">&#33050;&#27880;: </h2>
+<div id="text-footnotes">
 
-# m h dom mon dow user	command
-17 *	* * *	root    cd / &amp;&amp; run-parts --report /etc/cron.hourly
-25 6	* * *	root	test -x /usr/sbin/anacron || ( cd / &amp;&amp; run-parts --report /etc/cron.daily )
-47 6	* * 7	root	test -x /usr/sbin/anacron || ( cd / &amp;&amp; run-parts --report /etc/cron.weekly )
-52 6	1 * *	root	test -x /usr/sbin/anacron || ( cd / &amp;&amp; run-parts --report /etc/cron.monthly )
-0 4 * * * root /usr/local/sbin/daily-backup
-#
-</pre>
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+RealforceはPC自動切り替え器の動作保証外  
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+デフォルトではONだが前に<a href="2016/pc-changer-mouse-emulation-off.html">こんな記事</a>の問題でOFFにしていた
+</p></div></div>
+
+
 </div>
-</div>
-</div>
+</div></div>
 <div id="postamble" class="status">
 <p class="author">&#33879;&#32773;: clothoid</p>
 <p class="date">Created: 2022-08-27 Sat 17:03</p>

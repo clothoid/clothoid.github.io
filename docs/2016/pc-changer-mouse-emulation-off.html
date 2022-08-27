@@ -6,10 +6,9 @@
 <!-- 2022-08-27 Sat 17:03 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>rsync によるディスクのフルバックアップ</title>
+<title>PC自動切替器とトラックボールマウスの相性</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="clothoid" />
-<meta name="keywords" content="rsynk cron crontab" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -248,66 +247,62 @@ for the JavaScript code in this tag.
  |
  <a accesskey="H" href="https://clothoid.github.io/"> HOME </a>
 </div><div id="content">
-<h1 class="title">rsync によるディスクのフルバックアップ</h1>
+<h1 class="title">PC自動切替器とトラックボールマウスの相性</h1>
 <div id="table-of-contents">
 <h2>&#30446;&#27425;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgc73fd8f">1. スクリプトの作成</a></li>
-<li><a href="#org256dac2">2. クーロンの設置</a></li>
+<li><a href="#org7a9ad9c">1. 環境</a></li>
+<li><a href="#org14475e2">2. 問題</a></li>
+<li><a href="#orga4f23da">3. 対処方法</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgc73fd8f" class="outline-2">
-<h2 id="orgc73fd8f"><span class="section-number-2">1</span> スクリプトの作成</h2>
+<div id="outline-container-org7a9ad9c" class="outline-2">
+<h2 id="org7a9ad9c"><span class="section-number-2">1</span> 環境</h2>
 <div class="outline-text-2" id="text-1">
-<p>
-[/usr/local/sbin/daily-backup]
-</p>
-<div class="org-src-container">
-<pre class="src src-sh">rsync -xa --delete --exclude={<span style="color: #008000;">'/500g/'</span>,<span style="color: #008000;">'/2000g/'</span>} / /500g/backup-125g 
-rsync -xa --delete /500g /2000g/backup-500g
-</pre>
-</div>
-
-<p>
-実行権限の付与
-</p>
-<div class="org-src-container">
-<pre class="src src-sh">chmod a+x /usr/local/sbin/daily-backup
-</pre>
+<ul class="org-ul">
+<li>Windows 7 64bit</li>
+<li><a href="http://amzn.to/1SnrjNu">SANWA SUPPLY デュアルリンク DVI 対応 パソコン自動切替器 SW-KVM4HDCN</a></li>
+<li><a href="http://amzn.to/23MNyXO">ELECOM EX-G ワイヤレス トラックボール M-XT4DR シリーズ</a></li>
+</ul>
 </div>
 </div>
-</div>
-
-<div id="outline-container-org256dac2" class="outline-2">
-<h2 id="org256dac2"><span class="section-number-2">2</span> クーロンの設置</h2>
+<div id="outline-container-org14475e2" class="outline-2">
+<h2 id="org14475e2"><span class="section-number-2">2</span> 問題</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-[/etc/crontab]
+SW-KVM2HDCN のマウスコンソールに M-XT4DR のレシーバーユニットを刺して、HID 準拠マウスとして認識させても、マウスが正常に動作しない。
 </p>
-<pre class="example">
-# /etc/crontab: system-wide crontab
-# Unlike any other crontab you don't have to run the `crontab'
-# command to install the new version when you edit this file
-# and files in /etc/cron.d. These files also have username fields,
-# that none of the other crontabs do.
+</div>
+</div>
+<div id="outline-container-orga4f23da" class="outline-2">
+<h2 id="orga4f23da"><span class="section-number-2">3</span> 対処方法</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li>マウスエミュレーション機能を OFF にする <sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>
+<ol class="org-ol">
+<li>[NumLock] を押しながら、[-]を押して、[-]だけ離してから、[NumLock]を離す(ピッ)</li>
+<li>[m] を押す(ピッピッ)</li>
+</ol></li>
+<li>SW-KVM2HDCN の USB2.0 ハブポートに M-XT4DR のレシーバーユニットを接続する</li>
+<li><a href="http://adventcomputers.co.uk/node/1589">Advent M312 Wireless Optical Mouse</a> (正常動作確認済み)など別マウスを使用する</li>
+<li>子マシンに直刺しする</li>
+</ul>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">&#33050;&#27880;: </h2>
+<div id="text-footnotes">
 
-SHELL=/bin/sh
-PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+取扱説明書にも書いてあるとおり、これを OFF にすると画面切り替え時のマウス認識が少し遅くなる
+</p></div></div>
 
-# m h dom mon dow user	command
-17 *	* * *	root    cd / &amp;&amp; run-parts --report /etc/cron.hourly
-25 6	* * *	root	test -x /usr/sbin/anacron || ( cd / &amp;&amp; run-parts --report /etc/cron.daily )
-47 6	* * 7	root	test -x /usr/sbin/anacron || ( cd / &amp;&amp; run-parts --report /etc/cron.weekly )
-52 6	1 * *	root	test -x /usr/sbin/anacron || ( cd / &amp;&amp; run-parts --report /etc/cron.monthly )
-0 4 * * * root /usr/local/sbin/daily-backup
-#
-</pre>
+
 </div>
-</div>
-</div>
+</div></div>
 <div id="postamble" class="status">
 <p class="author">&#33879;&#32773;: clothoid</p>
 <p class="date">Created: 2022-08-27 Sat 17:03</p>

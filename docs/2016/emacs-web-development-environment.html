@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
 <head>
-<!-- 2021-08-31 Tue 11:37 -->
+<!-- 2022-08-27 Sat 17:03 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>emacs 24 で Web 開発の環境を作る</title>
@@ -252,21 +252,21 @@ for the JavaScript code in this tag.
 <h2>&#30446;&#27425;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org5ef5935">1. 環境</a></li>
-<li><a href="#org8ad60c4">2. emmet-mode</a></li>
-<li><a href="#orgab654fa">3. web-mode</a></li>
-<li><a href="#org43bcc62">4. js2-mode</a></li>
-<li><a href="#org0ada93e">5. MozRepl + moz.el</a></li>
-<li><a href="#org1b86b0a">6. flycheck</a></li>
-<li><a href="#orgfc1b371">7. nxml-mode</a></li>
-<li><a href="#org794d679">8. json-mode</a></li>
-<li><a href="#org7e43263">9. 参考</a></li>
+<li><a href="#orgdcfdcf0">1. 環境</a></li>
+<li><a href="#org83ec40a">2. emmet-mode</a></li>
+<li><a href="#orgd227df8">3. web-mode</a></li>
+<li><a href="#org18c404b">4. js2-mode</a></li>
+<li><a href="#org0297a71">5. MozRepl + moz.el</a></li>
+<li><a href="#org174ba38">6. flycheck</a></li>
+<li><a href="#orga344414">7. nxml-mode</a></li>
+<li><a href="#org4f0cc11">8. json-mode</a></li>
+<li><a href="#org605b474">9. 参考</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org5ef5935" class="outline-2">
-<h2 id="org5ef5935"><span class="section-number-2">1</span> 環境</h2>
+<div id="outline-container-orgdcfdcf0" class="outline-2">
+<h2 id="orgdcfdcf0"><span class="section-number-2">1</span> 環境</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>Windows 7 64bit</li>
@@ -287,8 +287,8 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-org8ad60c4" class="outline-2">
-<h2 id="org8ad60c4"><span class="section-number-2">2</span> emmet-mode</h2>
+<div id="outline-container-org83ec40a" class="outline-2">
+<h2 id="org83ec40a"><span class="section-number-2">2</span> emmet-mode</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 HTML や CSS を簡単に記述できる emmet 記法を emacs 上で使用するもの <sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>。
@@ -329,8 +329,8 @@ init.el は以下のような感じ。
 </div>
 </div>
 
-<div id="outline-container-orgab654fa" class="outline-2">
-<h2 id="orgab654fa"><span class="section-number-2">3</span> web-mode</h2>
+<div id="outline-container-orgd227df8" class="outline-2">
+<h2 id="orgd227df8"><span class="section-number-2">3</span> web-mode</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 HTML、JavaScript、CSS、PHP、JSP、Twig、Jinja2、ASPX、ERB、FreeMarker 包括的にサポートする環境。
@@ -378,8 +378,8 @@ init.el は以下のように。
 </p>
 </div>
 </div>
-<div id="outline-container-org43bcc62" class="outline-2">
-<h2 id="org43bcc62"><span class="section-number-2">4</span> js2-mode</h2>
+<div id="outline-container-org18c404b" class="outline-2">
+<h2 id="org18c404b"><span class="section-number-2">4</span> js2-mode</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 超強力な JavaScript のモード。
@@ -401,8 +401,8 @@ init.el は以下のような感じ。
 </p>
 </div>
 </div>
-<div id="outline-container-org0ada93e" class="outline-2">
-<h2 id="org0ada93e"><span class="section-number-2">5</span> MozRepl + moz.el</h2>
+<div id="outline-container-org0297a71" class="outline-2">
+<h2 id="org0297a71"><span class="section-number-2">5</span> MozRepl + moz.el</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 MozRepl は telnet 経由で Mozilla ベースのブラウザ(firefox や waterfox など)を操作するアドオン。
@@ -465,8 +465,8 @@ Hello, World! の文字列を適当に変えた後、M-x reload-firefox-if-local
 </div>
 </div>
 
-<div id="outline-container-org1b86b0a" class="outline-2">
-<h2 id="org1b86b0a"><span class="section-number-2">6</span> flycheck</h2>
+<div id="outline-container-org174ba38" class="outline-2">
+<h2 id="org174ba38"><span class="section-number-2">6</span> flycheck</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 構文チェックツール。
@@ -476,8 +476,8 @@ M-x package-install flycheck
 </pre>
 </div>
 </div>
-<div id="outline-container-orgfc1b371" class="outline-2">
-<h2 id="orgfc1b371"><span class="section-number-2">7</span> nxml-mode</h2>
+<div id="outline-container-orga344414" class="outline-2">
+<h2 id="orga344414"><span class="section-number-2">7</span> nxml-mode</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 nxml-mode はデフォルトで入っている。構文チェックツールとして cygwin の xmllint を使う。
@@ -508,8 +508,8 @@ init.el は以下のような感じ。smartrep は web-mode と同じ感じに�
 </div>
 </div>
 </div>
-<div id="outline-container-org794d679" class="outline-2">
-<h2 id="org794d679"><span class="section-number-2">8</span> json-mode</h2>
+<div id="outline-container-org4f0cc11" class="outline-2">
+<h2 id="org4f0cc11"><span class="section-number-2">8</span> json-mode</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 json-mode を入れる。
@@ -558,8 +558,8 @@ Expecting <span style="color: #008000;">'EOF'</span>, <span style="color: #00800
 </div>
 </div>
 
-<div id="outline-container-org7e43263" class="outline-2">
-<h2 id="org7e43263"><span class="section-number-2">9</span> 参考</h2>
+<div id="outline-container-org605b474" class="outline-2">
+<h2 id="org605b474"><span class="section-number-2">9</span> 参考</h2>
 <div class="outline-text-2" id="text-9">
 <ul class="org-ul">
 <li><a href="http://catcher-in-the-tech.net/55/">Emacs の便利な設定 - Catcher in the tech</a></li>
@@ -661,7 +661,7 @@ Error: ENOENT: no such file or directory, open 'E:\c\temp\gnupack\flycheck7352do
 </div></div>
 <div id="postamble" class="status">
 <p class="author">&#33879;&#32773;: clothoid</p>
-<p class="date">Created: 2021-08-31 Tue 11:37</p>
+<p class="date">Created: 2022-08-27 Sat 17:03</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

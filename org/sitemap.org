@@ -1,5 +1,6 @@
 #+TITLE: site map
 
+- [[file:2022/emacs28-on-Ubuntu-22.04-with-WSL2-in-Windows11.org][emacs28 on Ubuntu 22.04 with WSL2 in Windows 11]]
 - [[file:2016/pc-changer-mouse-emulation-off.org][PC自動切替器とトラックボールマウスの相性]]
 - [[file:2021/keyboard-kvm-mouse-mute.org][PC自動切替器のマウスミュートとキーボード]]
 - [[file:2021/good-things-and-events.org][自分の身におきてよかったことをメモる]]
