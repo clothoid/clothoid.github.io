@@ -5,6 +5,7 @@
 #+LANGUAGE: en
 #+DESCRIPTION:
 #+OPTIONS: ^:{}
+#+OPTIONS: toc:nil
 #+KEYWORDS:
 #+HTML_HEAD: <script data-ad-client="ca-pub-6390292679676181" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
