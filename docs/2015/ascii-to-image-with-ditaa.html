@@ -3,14 +3,14 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
 <head>
-<!-- 2021-10-09 Sat 11:11 -->
+<!-- 2025-01-19 日 16:28 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>ascii to image with ditaa</title>
-<meta name="generator" content="Org mode" />
 <meta name="author" content="clothoid" />
-<style type="text/css">
- <!--/*--><![CDATA[/*><!--*/
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
   .subtitle { text-align: center;
@@ -31,8 +31,9 @@
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
   pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
     padding: 8pt;
     font-family: monospace;
     overflow: auto;
@@ -40,22 +41,22 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
-    padding-top: 1.2em;
+    overflow: auto;
   }
   pre.src:before {
     display: none;
     position: absolute;
-    background-color: white;
-    top: -10px;
-    right: 10px;
+    top: -8px;
+    right: 12px;
     padding: 3px;
-    border: 1px solid black;
+    color: #555;
+    background-color: #f2f2f299;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -190,88 +191,41 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
-  /*]]>*/-->
+  .org-svg { }
 </style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6390292679676181" crossorigin="anonymous"></script>
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
-</script>
 </head>
 <body>
 <div id="org-div-home-and-up">
  <a accesskey="h" href="https://clothoid.github.io/sitemap.html"> UP </a>
  |
  <a accesskey="H" href="https://clothoid.github.io/"> HOME </a>
-</div><div id="content">
+</div><div id="content" class="content">
 <h1 class="title">ascii to image with ditaa</h1>
-<div id="table-of-contents">
+<div id="table-of-contents" role="doc-toc">
 <h2>&#30446;&#27425;</h2>
-<div id="text-table-of-contents">
+<div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgad52608">1. samples</a>
+<li><a href="#orgc9b976c">1. samples</a>
 <ul>
-<li><a href="#org29a07e0">1.1. boxes</a></li>
-<li><a href="#org9703de5">1.2. color boxes</a></li>
-<li><a href="#orgef1af47">1.3. line and boxes</a></li>
-<li><a href="#orgbbef5cf">1.4. other</a></li>
+<li><a href="#org1c05e48">1.1. boxes</a></li>
+<li><a href="#org3fd7018">1.2. color boxes</a></li>
+<li><a href="#org83bda27">1.3. line and boxes</a></li>
+<li><a href="#orgb65e3f5">1.4. other</a></li>
 </ul>
 </li>
-<li><a href="#org98da389">2. PC environment</a></li>
-<li><a href="#org5b6a797">3. Refs</a></li>
+<li><a href="#orgfc27fe3">2. PC environment</a></li>
+<li><a href="#orge9eaca7">3. Refs</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgad52608" class="outline-2">
-<h2 id="orgad52608"><span class="section-number-2">1</span> samples</h2>
+<div id="outline-container-orgc9b976c" class="outline-2">
+<h2 id="orgc9b976c"><span class="section-number-2">1.</span> samples</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org29a07e0" class="outline-3">
-<h3 id="org29a07e0"><span class="section-number-3">1.1</span> boxes</h3>
+<div id="outline-container-org1c05e48" class="outline-3">
+<h3 id="org1c05e48"><span class="section-number-3">1.1.</span> boxes</h3>
 <div class="outline-text-3" id="text-1-1">
 <div class="org-src-container">
 <pre class="src src-ditaa">/--+
@@ -281,7 +235,7 @@ for the JavaScript code in this tag.
 </div>
 
 
-<div class="figure">
+<div id="org6f71a68" class="figure">
 <p><img src="../img/2015/2015-12-16-180323-circbox.png" alt="2015-12-16-180323-circbox.png" />
 </p>
 </div>
@@ -296,7 +250,7 @@ for the JavaScript code in this tag.
 </div>
 
 
-<div class="figure">
+<div id="org3979e2d" class="figure">
 <p><img src="../img/2015/2015-12-16-180312-hello-world.png" alt="2015-12-16-180312-hello-world.png" />
 </p>
 </div>
@@ -311,7 +265,7 @@ for the JavaScript code in this tag.
 </div>
 
 
-<div class="figure">
+<div id="org1671700" class="figure">
 <p><img src="../img/2015/2015-12-16-180318-hello-world-round.png" alt="2015-12-16-180318-hello-world-round.png" />
 </p>
 </div>
@@ -327,7 +281,7 @@ for the JavaScript code in this tag.
 </div>
 
 
-<div class="figure">
+<div id="org456dbf2" class="figure">
 <p><img src="../img/2015/2015-12-16-182508-ditaa_example1.png" alt="2015-12-16-182508-ditaa_example1.png" />
 </p>
 </div>
@@ -342,7 +296,7 @@ for the JavaScript code in this tag.
 </div>
 
 
-<div class="figure">
+<div id="org6f56a67" class="figure">
 <p><img src="../img/2015/2015-12-16-180345-boxes.png" alt="2015-12-16-180345-boxes.png" />
 </p>
 </div>
@@ -360,7 +314,7 @@ for the JavaScript code in this tag.
 </div>
 
 
-<div class="figure">
+<div id="org23011a8" class="figure">
 <p><img src="../img/2015/2015-12-16-175716-ditaa-simpleboxes.png" alt="2015-12-16-175716-ditaa-simpleboxes.png" />
 </p>
 </div>
@@ -378,15 +332,15 @@ for the JavaScript code in this tag.
 </div>
 
 
-<div class="figure">
+<div id="org96fa97f" class="figure">
 <p><img src="../img/2015/2015-12-16-175723-ditaa-simpleboxes-unsep.png" alt="2015-12-16-175723-ditaa-simpleboxes-unsep.png" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org9703de5" class="outline-3">
-<h3 id="org9703de5"><span class="section-number-3">1.2</span> color boxes</h3>
+<div id="outline-container-org3fd7018" class="outline-3">
+<h3 id="org3fd7018"><span class="section-number-3">1.2.</span> color boxes</h3>
 <div class="outline-text-3" id="text-1-2">
 <div class="org-src-container">
 <pre class="src src-ditaa">/----\ /----\
@@ -402,7 +356,7 @@ for the JavaScript code in this tag.
 </div>
 
 
-<div class="figure">
+<div id="org1176057" class="figure">
 <p><img src="../img/2015/2015-12-16-180328-colorbox.png" alt="2015-12-16-180328-colorbox.png" />
 </p>
 </div>
@@ -419,7 +373,7 @@ for the JavaScript code in this tag.
 </div>
 
 
-<div class="figure">
+<div id="orgba067b0" class="figure">
 <p><img src="../img/2015/2015-12-16-180338-colormap.png" alt="2015-12-16-180338-colormap.png" />
 </p>
 </div>
@@ -436,7 +390,7 @@ for the JavaScript code in this tag.
 </div>
 
 
-<div class="figure">
+<div id="org4e450d6" class="figure">
 <p><img src="../img/2015/2015-12-16-180254-color-boxes.png" alt="2015-12-16-180254-color-boxes.png" />
 </p>
 </div>
@@ -454,7 +408,7 @@ for the JavaScript code in this tag.
 </div>
 
 
-<div class="figure">
+<div id="org4f6b48d" class="figure">
 <p><img src="../img/2015/2015-12-16-180405-things-to-do.png" alt="2015-12-16-180405-things-to-do.png" />
 </p>
 </div>
@@ -475,15 +429,15 @@ for the JavaScript code in this tag.
 </div>
 
 
-<div class="figure">
+<div id="orgf56a87e" class="figure">
 <p><img src="../img/2015/2015-12-16-180300-colors.png" alt="2015-12-16-180300-colors.png" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgef1af47" class="outline-3">
-<h3 id="orgef1af47"><span class="section-number-3">1.3</span> line and boxes</h3>
+<div id="outline-container-org83bda27" class="outline-3">
+<h3 id="org83bda27"><span class="section-number-3">1.3.</span> line and boxes</h3>
 <div class="outline-text-3" id="text-1-3">
 <div class="org-src-container">
 <pre class="src src-ditaa">*----*
@@ -495,7 +449,7 @@ for the JavaScript code in this tag.
 </div>
 
 
-<div class="figure">
+<div id="orgc110363" class="figure">
 <p><img src="../img/2015/2015-12-16-180400-box-and-line.png" alt="2015-12-16-180400-box-and-line.png" />
 </p>
 </div>
@@ -509,7 +463,7 @@ for the JavaScript code in this tag.
 </div>
 
 
-<div class="figure">
+<div id="org349b0a9" class="figure">
 <p><img src="../img/2015/2015-12-16-180350-line-box-strage.png" alt="2015-12-16-180350-line-box-strage.png" />
 </p>
 </div>
@@ -525,7 +479,7 @@ for the JavaScript code in this tag.
 </div>
 
 
-<div class="figure">
+<div id="orge9aeec6" class="figure">
 <p><img src="../img/2015/2015-12-16-180247-strage-line-box.png" alt="2015-12-16-180247-strage-line-box.png" />
 </p>
 </div>
@@ -538,14 +492,14 @@ for the JavaScript code in this tag.
 +--------+---------+           |
                                |
                                v
-           +-------+
-           |       |
-           +-------+
+			   +-------+
+			   |       |
+			   +-------+
 </pre>
 </div>
 
 
-<div class="figure">
+<div id="org538cfe5" class="figure">
 <p><img src="../img/2015/2015-12-16-182620-ditaa_example2.png" alt="2015-12-16-182620-ditaa_example2.png" />
 </p>
 </div>
@@ -562,7 +516,7 @@ for the JavaScript code in this tag.
 </div>
 
 
-<div class="figure">
+<div id="orgde15c01" class="figure">
 <p><img src="../img/2015/2015-10-13-151252-line-and-nodes.png" alt="2015-10-13-151252-line-and-nodes.png" />
 </p>
 </div>
@@ -583,7 +537,7 @@ for the JavaScript code in this tag.
 </div>
 
 
-<div class="figure">
+<div id="org44b7b6f" class="figure">
 <p><img src="../img/2015/2015-12-16-175737-ditaa-seqboxes.png" alt="2015-12-16-175737-ditaa-seqboxes.png" />
 </p>
 </div>
@@ -602,15 +556,15 @@ for the JavaScript code in this tag.
 </div>
 
 
-<div class="figure">
+<div id="org9b19707" class="figure">
 <p><img src="../img/2015/2015-12-16-175747-ditaa-seqboxes.png" alt="2015-12-16-175747-ditaa-seqboxes.png" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgbbef5cf" class="outline-3">
-<h3 id="orgbbef5cf"><span class="section-number-3">1.4</span> other</h3>
+<div id="outline-container-orgb65e3f5" class="outline-3">
+<h3 id="orgb65e3f5"><span class="section-number-3">1.4.</span> other</h3>
 <div class="outline-text-3" id="text-1-4">
 <div class="org-src-container">
 <pre class="src src-ditaa">   +--------+
@@ -632,7 +586,7 @@ n  |        |    |
 </div>
 
 
-<div class="figure">
+<div id="orgdd95f41" class="figure">
 <p><img src="../img/2015/2015-12-16-180409-memory.png" alt="2015-12-16-180409-memory.png" />
 </p>
 </div>
@@ -652,7 +606,7 @@ n  |        |    |
 </div>
 
 
-<div class="figure">
+<div id="orgd250156" class="figure">
 <p><img src="../img/2015/2015-12-16-180420-memory.png" alt="2015-12-16-180420-memory.png" />
 </p>
 </div>
@@ -674,7 +628,7 @@ n  |        |    |
 </div>
 
 
-<div class="figure">
+<div id="org549928d" class="figure">
 <p><img src="../img/2015/2015-12-16-180425-registry.png" alt="2015-12-16-180425-registry.png" />
 </p>
 </div>
@@ -697,7 +651,7 @@ n  |        |    |
 </div>
 
 
-<div class="figure">
+<div id="orgce661de" class="figure">
 <p><img src="../img/2015/2015-12-16-175705-color-ieee-zigbee.png" alt="2015-12-16-175705-color-ieee-zigbee.png" />
 </p>
 </div>
@@ -705,19 +659,19 @@ n  |        |    |
 </div>
 </div>
 
-<div id="outline-container-org98da389" class="outline-2">
-<h2 id="org98da389"><span class="section-number-2">2</span> PC environment</h2>
+<div id="outline-container-orgfc27fe3" class="outline-2">
+<h2 id="orgfc27fe3"><span class="section-number-2">2.</span> PC environment</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>Windows 7 64bit</li>
-<li>gnupack<sub>devel</sub>-13.06-2015.11.08 
+<li>gnupack_devel-13.06-2015.11.08 
 <ul class="org-ul">
 <li>GNU Emacs 24.5.1 (i686-pc-cygwin) of 2015-11-08 on gnupack</li>
 </ul></li>
 <li>Org-mode version 8.2.10</li>
-<li>Windows java version "1.8.0<sub>66</sub>"
+<li>Windows java version "1.8.0_66"
 <ul class="org-ul">
-<li>Java(TM) SE Runtime Environment (build 1.8.0<sub>66</sub>-b18)</li>
+<li>Java(TM) SE Runtime Environment (build 1.8.0_66-b18)</li>
 <li>Java HotSpot(TM) 64-Bit Server VM (build 25.66-b18, mixed mode)</li>
 </ul></li>
 <li>ditaa 0.9</li>
@@ -726,8 +680,8 @@ n  |        |    |
 </div>
 
 
-<div id="outline-container-org5b6a797" class="outline-2">
-<h2 id="org5b6a797"><span class="section-number-2">3</span> Refs</h2>
+<div id="outline-container-orge9eaca7" class="outline-2">
+<h2 id="orge9eaca7"><span class="section-number-2">3.</span> Refs</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li><a href="http://ditaa.sourceforge.net/">ditaa</a></li>
@@ -743,8 +697,8 @@ n  |        |    |
 </div>
 <div id="postamble" class="status">
 <p class="author">&#33879;&#32773;: clothoid</p>
-<p class="date">Created: 2021-10-09 Sat 11:11</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+<p class="date">Created: 2025-01-19 日 16:28</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
 </html>

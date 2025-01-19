@@ -3,15 +3,15 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
 <head>
-<!-- 2021-10-09 Sat 11:11 -->
+<!-- 2025-01-19 日 16:29 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>org-latex-export-to-pdf の設定手順</title>
-<meta name="generator" content="Org mode" />
 <meta name="author" content="clothoid" />
 <meta name="keywords" content="org latex emacs export pdf" />
-<style type="text/css">
- <!--/*--><![CDATA[/*><!--*/
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
   .subtitle { text-align: center;
@@ -32,8 +32,9 @@
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
   pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
     padding: 8pt;
     font-family: monospace;
     overflow: auto;
@@ -41,22 +42,22 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
-    padding-top: 1.2em;
+    overflow: auto;
   }
   pre.src:before {
     display: none;
     position: absolute;
-    background-color: white;
-    top: -10px;
-    right: 10px;
+    top: -8px;
+    right: 12px;
     padding: 3px;
-    border: 1px solid black;
+    color: #555;
+    background-color: #f2f2f299;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -191,146 +192,109 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
-  /*]]>*/-->
+  .org-svg { }
 </style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6390292679676181" crossorigin="anonymous"></script>
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
 </script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        displayAlign: "center",
-        displayIndent: "0em",
 
-        "HTML-CSS": { scale: 100,
-                        linebreaks: { automatic: "false" },
-                        webFont: "TeX"
-                       },
-        SVG: {scale: 100,
-              linebreaks: { automatic: "false" },
-              font: "TeX"},
-        NativeMML: {scale: 100},
-        TeX: { equationNumbers: {autoNumber: "AMS"},
-               MultLineWidth: "85%",
-               TagSide: "right",
-               TagIndent: ".8em"
-             }
-});
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
 </script>
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
 <div id="org-div-home-and-up">
  <a accesskey="h" href="https://clothoid.github.io/sitemap.html"> UP </a>
  |
  <a accesskey="H" href="https://clothoid.github.io/"> HOME </a>
-</div><div id="content">
+</div><div id="content" class="content">
 <h1 class="title">org-latex-export-to-pdf の設定手順</h1>
-<div id="table-of-contents">
+<div id="table-of-contents" role="doc-toc">
 <h2>&#30446;&#27425;</h2>
-<div id="text-table-of-contents">
+<div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org92bc2d1">1. 目的</a></li>
-<li><a href="#orgc8fb106">2. 設定手順</a>
+<li><a href="#org42fd0dc">1. 目的</a></li>
+<li><a href="#orgec95e47">2. 設定手順</a>
 <ul>
-<li><a href="#org1b38de3">2.1. 環境</a></li>
-<li><a href="#orgcfaf591">2.2. TeX Live 2018 のインストール</a></li>
-<li><a href="#org79a5fa6">2.3. Python のインストール</a></li>
-<li><a href="#orgd247c3e">2.4. emacs のインストール</a></li>
-<li><a href="#org3b1518b">2.5. init.el の設定</a></li>
+<li><a href="#org15aee58">2.1. 環境</a></li>
+<li><a href="#org3d67bbb">2.2. TeX Live 2018 のインストール</a></li>
+<li><a href="#org563ceb5">2.3. Python のインストール</a></li>
+<li><a href="#org9d4055a">2.4. emacs のインストール</a></li>
+<li><a href="#orgbb8235c">2.5. init.el の設定</a></li>
 </ul>
 </li>
-<li><a href="#org1700785">3. サンプル</a></li>
-<li><a href="#org4537636">4. おまけ</a></li>
-<li><a href="#org5396773">5. 参考</a></li>
+<li><a href="#orga48c843">3. サンプル</a></li>
+<li><a href="#org9266b98">4. おまけ</a></li>
+<li><a href="#org86b15c9">5. 参考</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org92bc2d1" class="outline-2">
-<h2 id="org92bc2d1"><span class="section-number-2">1</span> 目的</h2>
+<div id="outline-container-org42fd0dc" class="outline-2">
+<h2 id="org42fd0dc"><span class="section-number-2">1.</span> 目的</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 emacs の org-mode で M-x org-latex-export-to-pdf (C-c C-e l p) 一発で以下のような PDF を生成できるように構築する。
 </p>
 
 
-<div class="figure">
+<div id="org21503dc" class="figure">
 <p><img src="../img/2019/org-latex-export-to-pdf-0.png" alt="org-latex-export-to-pdf-0.png" width="800px" />
 </p>
 </div>
 
 
-<div class="figure">
+<div id="org41cc293" class="figure">
 <p><img src="../img/2019/org-latex-export-to-pdf-1.png" alt="org-latex-export-to-pdf-1.png" width="800px" />
 </p>
 </div>
 
 
-<div class="figure">
+<div id="org3529565" class="figure">
 <p><img src="../img/2019/org-latex-export-to-pdf-2.png" alt="org-latex-export-to-pdf-2.png" width="800px" />
 </p>
 </div>
 
 
-<div class="figure">
+<div id="org0ab3c99" class="figure">
 <p><img src="../img/2019/org-latex-export-to-pdf-3.png" alt="org-latex-export-to-pdf-3.png" width="800px" />   
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgc8fb106" class="outline-2">
-<h2 id="orgc8fb106"><span class="section-number-2">2</span> 設定手順</h2>
+<div id="outline-container-orgec95e47" class="outline-2">
+<h2 id="orgec95e47"><span class="section-number-2">2.</span> 設定手順</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org1b38de3" class="outline-3">
-<h3 id="org1b38de3"><span class="section-number-3">2.1</span> 環境</h3>
+<div id="outline-container-org15aee58" class="outline-3">
+<h3 id="org15aee58"><span class="section-number-3">2.1.</span> 環境</h3>
 <div class="outline-text-3" id="text-2-1">
 <ul class="org-ul">
 <li>Windows: 10 Pro</li>
@@ -348,8 +312,8 @@ emacs の org-mode で M-x org-latex-export-to-pdf (C-c C-e l p) 一発で以下
 </div>
 </div>
 
-<div id="outline-container-orgcfaf591" class="outline-3">
-<h3 id="orgcfaf591"><span class="section-number-3">2.2</span> TeX Live 2018 のインストール</h3>
+<div id="outline-container-org3d67bbb" class="outline-3">
+<h3 id="org3d67bbb"><span class="section-number-3">2.2.</span> TeX Live 2018 のインストール</h3>
 <div class="outline-text-3" id="text-2-2">
 <ol class="org-ol">
 <li>以下から install-tl-windows.exe をダウンロードして実行
@@ -370,13 +334,13 @@ emacs の org-mode で M-x org-latex-export-to-pdf (C-c C-e l p) 一発で以下
 <li><p>
 [.wgetrc] の中身は以下のとおり
 </p>
-<pre class="example">
+<pre class="example" id="org70c81a4">
 http_proxy=http://proxy.example.net:8080
 ftp_proxy=http://proxy.example.net:8080
 use_proxy=on
 </pre></li>
 
-<li>以下を実行<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>
+<li>以下を実行<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>
 <ul class="org-ul">
 <li>C:\texliveinstaller\install-tl-20190227\install-tl-windows.bat</li>
 </ul></li>
@@ -384,8 +348,8 @@ use_proxy=on
 </div>
 </div>
 
-<div id="outline-container-org79a5fa6" class="outline-3">
-<h3 id="org79a5fa6"><span class="section-number-3">2.3</span> Python のインストール</h3>
+<div id="outline-container-org563ceb5" class="outline-3">
+<h3 id="org563ceb5"><span class="section-number-3">2.3.</span> Python のインストール</h3>
 <div class="outline-text-3" id="text-2-3">
 <ol class="org-ol">
 <li>以下から、[Windows x86-64 executable installer] をダウンロード
@@ -398,7 +362,7 @@ use_proxy=on
 <li>C:/Users/Administrator/AppData/Local/Programs/Python/Python37/</li>
 </ul></li>
 <li><p>
-以下を実行<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>
+以下を実行<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup>
 </p>
 <div class="org-src-container">
 <pre class="src src-powershell">PS &gt; .\pip.exe install pygments --proxy=user@proxy.hoge.jp:port
@@ -408,8 +372,8 @@ use_proxy=on
 </div>
 </div>
 
-<div id="outline-container-orgd247c3e" class="outline-3">
-<h3 id="orgd247c3e"><span class="section-number-3">2.4</span> emacs のインストール</h3>
+<div id="outline-container-org9d4055a" class="outline-3">
+<h3 id="org9d4055a"><span class="section-number-3">2.4.</span> emacs のインストール</h3>
 <div class="outline-text-3" id="text-2-4">
 <ol class="org-ol">
 <li>以下から [emacs-26.1-x86_64-win-ime-20180619.zip] をダウンロード
@@ -417,278 +381,278 @@ use_proxy=on
 <li><a href="https://github.com/mhatta/emacs-26-x86_64-win-ime">https://github.com/mhatta/emacs-26-x86_64-win-ime</a></li>
 </ul></li>
 <li>[C:\emacs-26.1] に展開</li>
-<li>[C:\emacs-26.1\bin\runemacs.exe] を実行<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup></li>
+<li>[C:\emacs-26.1\bin\runemacs.exe] を実行<sup><a id="fnr.3" class="footref" href="#fn.3" role="doc-backlink">3</a></sup></li>
 </ol>
 </div>
 </div>
 
-<div id="outline-container-org3b1518b" class="outline-3">
-<h3 id="org3b1518b"><span class="section-number-3">2.5</span> init.el の設定</h3>
+<div id="outline-container-orgbb8235c" class="outline-3">
+<h3 id="orgbb8235c"><span class="section-number-3">2.5.</span> init.el の設定</h3>
 <div class="outline-text-3" id="text-2-5">
 <div class="org-src-container">
-<pre class="src src-elisp"><span style="color: #8D8D84;">; </span><span style="color: #8D8D84; font-style: italic;">-*- Mode: Emacs-Lisp ; Coding: utf-8 -*-</span>
+<pre class="src src-elisp">; -*- Mode: Emacs-Lisp ; Coding: utf-8 -*-
 
-<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">PATH&#12434;&#36861;&#21152;</span>
-(setenv <span style="color: #008000;">"PATH"</span>
+;; PATHを追加
+(setenv "PATH"
   (concat
-   <span style="color: #008000;">"C:/texlive/2018/bin/win32;"</span>
-   <span style="color: #008000;">"C:/Users/Administrator/AppData/Local/Programs/Python/Python37/Scripts;"</span>
-   (getenv <span style="color: #008000;">"PATH"</span>)))
-(<span style="color: #0000FF;">setq</span> exec-path (parse-colon-path (getenv <span style="color: #008000;">"PATH"</span>)))
+   "C:/texlive/2018/bin/win32;"
+   "C:/Users/Administrator/AppData/Local/Programs/Python/Python37/Scripts;"
+   (getenv "PATH")))
+(setq exec-path (parse-colon-path (getenv "PATH")))
 
-<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">babel &#12398;&#20013;&#12391; tab &#12364; ^^I &#12395;&#22793;&#25563;&#12373;&#12428;&#12390;&#12375;&#12414;&#12358;&#12398;&#12391;&#12289;&#12473;&#12506;&#12540;&#12473;&#12395;&#12377;&#12427;</span>
-(<span style="color: #0000FF;">setq-default</span> tab-width 4 indent-tabs-mode nil)
+;; babel の中で tab が ^^I に変換されてしまうので、スペースにする
+(setq-default tab-width 4 indent-tabs-mode nil)
 
-(<span style="color: #0000FF;">require</span> '<span style="color: #D0372D;">ox-latex</span>)
+(require 'ox-latex)
 
-<span style="color: #8D8D84;">;;; </span><span style="color: #8D8D84; font-style: italic;">&#21213;&#25163;&#12395;&#20837;&#21147;&#12373;&#12428;&#12427; \hypersetup{} &#12399;&#20351;&#12431;&#12394;&#12356;(usepackage &#12398;&#38918;&#24207;&#20381;&#23384;&#12395;&#37197;&#24942;)</span>
-(<span style="color: #0000FF;">setq</span> org-latex-with-hyperref nil)
-(add-to-list 'org-latex-packages-alist <span style="color: #008000;">"\\hypersetup{setpagesize=false}"</span> t)
-(add-to-list 'org-latex-packages-alist <span style="color: #008000;">"\\hypersetup{colorlinks=true}"</span> t)
-(add-to-list 'org-latex-packages-alist <span style="color: #008000;">"\\hypersetup{linkcolor=blue}"</span> t)
+;;; 勝手に入力される \hypersetup{} は使わない(usepackage の順序依存に配慮)
+(setq org-latex-with-hyperref nil)
+(add-to-list 'org-latex-packages-alist "\\hypersetup{setpagesize=false}" t)
+(add-to-list 'org-latex-packages-alist "\\hypersetup{colorlinks=true}" t)
+(add-to-list 'org-latex-packages-alist "\\hypersetup{linkcolor=blue}" t)
 
-(<span style="color: #0000FF;">setq</span> org-latex-pdf-process
-      '(<span style="color: #008000;">"platex -shell-escape %f"</span>
-        <span style="color: #008000;">"platex -shell-escape %f"</span>
-        <span style="color: #008000;">"pbibtex %b"</span>
-        <span style="color: #008000;">"platex -shell-escape %f"</span>
-        <span style="color: #008000;">"platex -shell-escape %f"</span>
-        <span style="color: #008000;">"dvipdfmx %b.dvi"</span>))
+(setq org-latex-pdf-process
+      '("platex -shell-escape %f"
+        "platex -shell-escape %f"
+        "pbibtex %b"
+        "platex -shell-escape %f"
+        "platex -shell-escape %f"
+        "dvipdfmx %b.dvi"))
 
-(<span style="color: #0000FF;">setq</span> org-latex-title-command <span style="color: #008000;">"\\maketitle"</span>)
-(<span style="color: #0000FF;">setq</span> org-latex-toc-command
-      <span style="color: #008000;">"\\tableofcontents\n"</span>)
-(<span style="color: #0000FF;">setq</span> org-latex-text-markup-alist '((bold . <span style="color: #008000;">"\\textbf{%s}"</span>)
+(setq org-latex-title-command "\\maketitle")
+(setq org-latex-toc-command
+      "\\tableofcontents\n")
+(setq org-latex-text-markup-alist '((bold . "\\textbf{%s}")
                 (code . verb)
-                (italic . <span style="color: #008000;">"\\it{%s}"</span>)
-                (strike-through . <span style="color: #008000;">"\\sout{%s}"</span>)
-                (underline . <span style="color: #008000;">"\\uline{%s}"</span>)
+                (italic . "\\it{%s}")
+                (strike-through . "\\sout{%s}")
+                (underline . "\\uline{%s}")
                 (verbatim . protectedtexttt)))
-(<span style="color: #0000FF;">setq</span> org-export-latex-listings t)
-(<span style="color: #0000FF;">setq</span> org-latex-listings 'minted)
-(<span style="color: #0000FF;">setq</span> org-latex-minted-options
-      '((<span style="color: #008000;">"frame"</span> <span style="color: #008000;">"lines"</span>)
-        (<span style="color: #008000;">"framesep=2mm"</span>)
-        (<span style="color: #008000;">"linenos=true"</span>)
-        (<span style="color: #008000;">"baselinestretch=1.2"</span>)
-        (<span style="color: #008000;">"fontsize=\\footnotesize"</span>)
-        (<span style="color: #008000;">"breaklines"</span>)
+(setq org-export-latex-listings t)
+(setq org-latex-listings 'minted)
+(setq org-latex-minted-options
+      '(("frame" "lines")
+        ("framesep=2mm")
+        ("linenos=true")
+        ("baselinestretch=1.2")
+        ("fontsize=\\footnotesize")
+        ("breaklines")
         ))
 
-<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">class &#12399;&#33258;&#20998;&#12391;&#20877;&#23450;&#32681;</span>
-<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">NO-DEFAULT-PACKAGES &#12391;&#21213;&#25163;&#12395;&#20837;&#12427; package &#12434;&#25233;&#21046;</span>
-<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">(&#19978;&#35352;&#12398;&#12424;&#12358;&#12395; org-latex-packages-alist &#12391;&#23450;&#32681;&#12377;&#12409;&#12365;&#12363;&#12418;?)</span>
+;; class は自分で再定義
+;; NO-DEFAULT-PACKAGES で勝手に入る package を抑制
+;; (上記のように org-latex-packages-alist で定義すべきかも?)
 (add-to-list 'org-latex-classes
-             '(<span style="color: #008000;">"myjsarticle"</span>
-               <span style="color: #008000;">"\\documentclass{jsarticle}</span>
-<span style="color: #008000;">[NO-DEFAULT-PACKAGES]</span>
-<span style="color: #008000;">\\usepackage[dvipdfmx]{graphicx}</span>
-<span style="color: #008000;">\\usepackage[dvipdfmx]{color}</span>
-<span style="color: #008000;">\\usepackage[dvipdfmx]{hyperref}</span>
-<span style="color: #008000;">\\usepackage{pxjahyper}"</span>
-  (<span style="color: #008000;">"\\section{%s}"</span> . <span style="color: #008000;">"\\section*{%s}"</span>)
-  (<span style="color: #008000;">"\\subsection{%s}"</span> . <span style="color: #008000;">"\\subsection*{%s}"</span>)
-  (<span style="color: #008000;">"\\subsubsection{%s}"</span> . <span style="color: #008000;">"\\subsubsection*{%s}"</span>)
-  (<span style="color: #008000;">"\\paragraph{%s}"</span> . <span style="color: #008000;">"\\paragraph*{%s}"</span>)
-  (<span style="color: #008000;">"\\subparagraph{%s}"</span> . <span style="color: #008000;">"\\subparagraph*{%s}"</span>)))
+             '("myjsarticle"
+               "\\documentclass{jsarticle}
+[NO-DEFAULT-PACKAGES]
+\\usepackage[dvipdfmx]{graphicx}
+\\usepackage[dvipdfmx]{color}
+\\usepackage[dvipdfmx]{hyperref}
+\\usepackage{pxjahyper}"
+  ("\\section{%s}" . "\\section*{%s}")
+  ("\\subsection{%s}" . "\\subsection*{%s}")
+  ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+  ("\\paragraph{%s}" . "\\paragraph*{%s}")
+  ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 </pre>
 </div>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org1700785" class="outline-2">
-<h2 id="org1700785"><span class="section-number-2">3</span> サンプル</h2>
+<div id="outline-container-orga48c843" class="outline-2">
+<h2 id="orga48c843"><span class="section-number-2">3.</span> サンプル</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 たとえば、以下のようなテキストファイルを作成して、C-c C-e l p とすると冒頭の PDF が一発で作成できる(<b>emacs.png はどこから拾っておくこと</b>)。
 </p>
 
 <div class="org-src-container">
-<pre class="src src-org"><span style="color: #008ED1; background-color: #EAEAFF;">#+OPTIONS: ':nil *:t -:t ::t &lt;:t H:3 \n:nil ^:t arch:headline</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+OPTIONS: author:t broken-links:nil c:nil creator:nil</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+OPTIONS: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:t</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+OPTIONS: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+OPTIONS: timestamp:t title:t toc:t todo:t |:t</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+TITLE:</span> <span style="color: #000000; font-size: 180%; font-weight: bold;">org-emacs-latex-template</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+DATE:</span> <span style="color: #484848;">\today</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+AUTHOR:</span> <span style="color: #484848;">clothoid</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+EMAIL:</span> <span style="color: #484848;">clothoid@silverstone</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+LANGUAGE: ja</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+SELECT_TAGS: export</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+EXCLUDE_TAGS: noexport</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+CREATOR: Emacs 26.1 (Org mode 9.1.9)</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+LATEX_CLASS: myjsarticle</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+LATEX_CLASS_OPTIONS: [12pt,a4paper,notitlepage]</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+LATEX_HEADER: \usepackage{amsfonts}</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+LATEX_HEADER: \usepackage{amsmath}</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+LATEX_HEADER: \usepackage[normalem]{ulem}</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+LATEX_HEADER: \usepackage{textcomp}</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+LATEX_HEADER: \usepackage{minted}</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+LATEX_HEADER: \usemintedstyle{emacs}</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+LATEX_HEADER: \usepackage{booktabs}</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+LATEX_HEADER: \usepackage{longtable}</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+LATEX_HEADER: \usepackage{wrapfig}</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+LATEX_HEADER_EXTRA:</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+DESCRIPTION: org template for exporting pdf with latex</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+KEYWORDS: org latex platex </span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+SUBTITLE: This is sub title</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+LATEX_COMPILER: dvipdfmx</span>
+<pre class="src src-org">#+OPTIONS: ':nil *:t -:t ::t &lt;:t H:3 \n:nil ^:t arch:headline
+#+OPTIONS: author:t broken-links:nil c:nil creator:nil
+#+OPTIONS: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:t
+#+OPTIONS: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
+#+OPTIONS: timestamp:t title:t toc:t todo:t |:t
+#+TITLE: org-emacs-latex-template
+#+DATE: \today
+#+AUTHOR: clothoid
+#+EMAIL: clothoid@silverstone
+#+LANGUAGE: ja
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport
+#+CREATOR: Emacs 26.1 (Org mode 9.1.9)
+#+LATEX_CLASS: myjsarticle
+#+LATEX_CLASS_OPTIONS: [12pt,a4paper,notitlepage]
+#+LATEX_HEADER: \usepackage{amsfonts}
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \usepackage[normalem]{ulem}
+#+LATEX_HEADER: \usepackage{textcomp}
+#+LATEX_HEADER: \usepackage{minted}
+#+LATEX_HEADER: \usemintedstyle{emacs}
+#+LATEX_HEADER: \usepackage{booktabs}
+#+LATEX_HEADER: \usepackage{longtable}
+#+LATEX_HEADER: \usepackage{wrapfig}
+#+LATEX_HEADER_EXTRA:
+#+DESCRIPTION: org template for exporting pdf with latex
+#+KEYWORDS: org latex platex 
+#+SUBTITLE: This is sub title
+#+LATEX_COMPILER: dvipdfmx
 
-<span style="color: #3C3C3C; background-color: #F0F0F0; font-size: 130%; font-weight: bold; text-decoration: overline;">* &#12399;&#12376;&#12417;&#12395;</span>
-  &#36817;&#24180;&#12289;&#9675;&#9675;&#12364;&#27880;&#30446;&#12434;&#38598;&#12417;&#12390;&#12356;&#12427;&#12290;
+* はじめに
+  近年、○○が注目を集めている。
 
-<span style="color: #3C3C3C; background-color: #F0F0F0; font-size: 130%; font-weight: bold; text-decoration: overline;">* &#25991;&#23383;&#12398;&#35013;&#39166;</span>
+* 文字の装飾
 
-  &#25991;&#23383;&#12434;&#35013;&#39166;&#12377;&#12427;&#35352;&#27861;&#12418;&#12356;&#12367;&#12388;&#12363;&#29992;&#24847;&#12373;&#12428;&#12390;&#12356;&#12414;&#12377;&#12290;
+  文字を装飾する記法もいくつか用意されています。
 
-  - <span style="color: #000000; font-weight: bold;">*&#22826;&#23383; abc*</span>
-  - <span style="color: #1A1A1A; font-style: italic;">/&#26012;&#20307; abc/</span>
-  - <span style="text-decoration: underline;">_&#19979;&#32218;&#20184;&#12365; abc_</span>
-  - <span style="text-decoration: line-through;">+&#21462;&#28040;&#32218;&#20184;&#12365; acb+</span>
-  - <span style="color: #0066CC; background-color: #F7FDFF;">=&#12467;&#12540;&#12489; abc=</span>
-  - <span style="color: #006400; background-color: #FDFFF7;">~&#31561;&#24133; abc~</span>
+  - *太字 abc*
+  - /斜体 abc/
+  - _下線付き abc_
+  - +取消線付き acb+
+  - =コード abc=
+  - ~等幅 abc~
 
-<span style="color: #3C3C3C; background-color: #F0F0F0; font-size: 130%; font-weight: bold; text-decoration: overline;">* &#12522;&#12473;&#12488;</span>
+* リスト
 
   1. January
-     - &#20803;&#26086;
-     - &#25104;&#20154;&#12398;&#26085;
+     - 元旦
+     - 成人の日
   2. Feburuary
-     - &#24314;&#22269;&#35352;&#24565;&#12398;&#26085;
+     - 建国記念の日
 
-<span style="color: #3C3C3C; background-color: #F0F0F0; font-size: 130%; font-weight: bold; text-decoration: overline;">* &#24341;&#29992;</span>
+* 引用
 
-  &#20197;&#19979;&#12399;&#24341;&#29992;&#12391;&#12377;&#12290;
+  以下は引用です。
 
-<span style="color: #555555; background-color: #E2E1D5; text-decoration: underline;">  #+BEGIN_QUOTE</span>
-  &#12377;&#12409;&#12390;&#12434;&#12391;&#12365;&#12427;&#38480;&#12426;&#12471;&#12531;&#12503;&#12523;&#12395;&#12379;&#12424;&#65294;
-  &#12383;&#12384;&#12375;&#12381;&#12428;&#20197;&#19978;&#12399;&#12471;&#12531;&#12503;&#12523;&#12395;&#12377;&#12427;&#12394;&#65294; -- &#12450;&#12452;&#12531;&#12471;&#12517;&#12479;&#12452;&#12531;
-<span style="color: #555555; background-color: #E2E1D5; text-decoration: overline;">  #+END_QUOTE  </span>
+  #+BEGIN_QUOTE
+  すべてをできる限りシンプルにせよ．
+  ただしそれ以上はシンプルにするな． -- アインシュタイン
+  #+END_QUOTE  
 
-<span style="color: #3C3C3C; background-color: #F0F0F0; font-size: 130%; font-weight: bold; text-decoration: overline;">* &#12486;&#12540;&#12502;&#12523;</span>
+* テーブル
 
-<span style="color: #008ED1; background-color: #EAEAFF;">  #+ATTR_LaTeX: align=|l|r|r|r|r|r|</span>
-  <span style="color: #006400; background-color: #EAFFEA;">|----------+----+----+----+----+------|</span>
-  <span style="color: #006400; background-color: #EAFFEA;">|          | Q1 | Q2 | Q3 | Q4 | &#21512;&#35336; |</span>
-  <span style="color: #006400; background-color: #EAFFEA;">|----------+----+----+----+----+------|</span>
-  <span style="color: #006400; background-color: #EAFFEA;">| &#12497;&#12477;&#12467;&#12531; | 30 |  0 | 50 |  0 |   80 |</span>
-  <span style="color: #006400; background-color: #EAFFEA;">| &#12477;&#12501;&#12488;   |  5 | 15 | 20 |  3 |   43 |</span>
-  <span style="color: #006400; background-color: #EAFFEA;">| &#36890;&#20449;     |  2 |  2 |  2 |  2 |    8 |</span>
-  <span style="color: #006400; background-color: #EAFFEA;">|----------+----+----+----+----+------|</span>
-  <span style="color: #006400; background-color: #EAFFEA;">| &#21512;&#35336;     | 37 | 17 | 72 |  5 |  131 |</span>
-  <span style="color: #006400; background-color: #EAFFEA;">|----------+----+----+----+----+------|</span>
+  #+ATTR_LaTeX: align=|l|r|r|r|r|r|
+  |----------+----+----+----+----+------|
+  |          | Q1 | Q2 | Q3 | Q4 | 合計 |
+  |----------+----+----+----+----+------|
+  | パソコン | 30 |  0 | 50 |  0 |   80 |
+  | ソフト   |  5 | 15 | 20 |  3 |   43 |
+  | 通信     |  2 |  2 |  2 |  2 |    8 |
+  |----------+----+----+----+----+------|
+  | 合計     | 37 | 17 | 72 |  5 |  131 |
+  |----------+----+----+----+----+------|
 
-<span style="color: #3C3C3C; background-color: #F0F0F0; font-size: 130%; font-weight: bold; text-decoration: overline;">* &#25968;&#24335;</span>
+* 数式
 
-<span style="color: #123555; background-color: #E5F4FB; font-weight: bold; text-decoration: overline;">** &#25991;&#20013;</span>
+** 文中
 
-    $\sum_{i=1}^n a_i x_i \ge b$ &#12398;&#26178;
+    $\sum_{i=1}^n a_i x_i \ge b$ の時
 
-<span style="color: #123555; background-color: #E5F4FB; font-weight: bold; text-decoration: overline;">** &#12502;&#12525;&#12483;&#12463;  </span>
+** ブロック  
 
     \begin{eqnarray*}
     x &amp; = &amp; \sqrt{\frac{a}{b}}
     \end{eqnarray*}
 
-<span style="color: #3C3C3C; background-color: #F0F0F0; font-size: 130%; font-weight: bold; text-decoration: overline;">* &#12503;&#12525;&#12464;&#12521;&#12512;&#12477;&#12540;&#12473;</span>
+* プログラムソース
 
-<span style="color: #555555; background-color: #E2E1D5; text-decoration: underline;">  #+BEGIN_SRC c++</span>
-<span style="color: #808080; background-color: #FFFFE0;">   #include</span><span style="color: #000088; background-color: #FFFFE0;"> </span><span style="color: #008000; background-color: #FFFFE0;">&lt;iostream&gt;</span>
+  #+BEGIN_SRC c++
+   #include &lt;iostream&gt;
 
-<span style="color: #000088; background-color: #FFFFE0;">   </span><span style="color: #6434A3; background-color: #FFFFE0;">int</span><span style="color: #000088; background-color: #FFFFE0;"> </span><span style="color: #006699; background-color: #FFFFE0;">main</span><span style="color: #000088; background-color: #FFFFE0;">(</span><span style="color: #6434A3; background-color: #FFFFE0;">int</span><span style="color: #000088; background-color: #FFFFE0;"> </span><span style="color: #BA36A5; background-color: #FFFFE0;">argc</span><span style="color: #000088; background-color: #FFFFE0;">, </span><span style="color: #6434A3; background-color: #FFFFE0;">char</span><span style="color: #000088; background-color: #FFFFE0;">** </span><span style="color: #BA36A5; background-color: #FFFFE0;">argv</span><span style="color: #000088; background-color: #FFFFE0;">)</span>
-<span style="color: #000088; background-color: #FFFFE0;">   {</span>
-<span style="color: #000088; background-color: #FFFFE0;">       </span><span style="color: #D0372D; background-color: #FFFFE0;">std</span><span style="color: #000088; background-color: #FFFFE0;">::cout &lt;&lt; </span><span style="color: #008000; background-color: #FFFFE0;">"Hello, world."</span><span style="color: #000088; background-color: #FFFFE0;"> &lt;&lt; </span><span style="color: #D0372D; background-color: #FFFFE0;">std</span><span style="color: #000088; background-color: #FFFFE0;">::endl;</span>
-<span style="color: #000088; background-color: #FFFFE0;">       </span><span style="color: #0000FF; background-color: #FFFFE0;">return</span><span style="color: #000088; background-color: #FFFFE0;"> 0;</span>
-<span style="color: #000088; background-color: #FFFFE0;">   }</span>
-<span style="color: #555555; background-color: #E2E1D5; text-decoration: overline;">  #+END_SRC</span>
+   int main(int argc, char** argv)
+   {
+       std::cout &lt;&lt; "Hello, world." &lt;&lt; std::endl;
+       return 0;
+   }
+  #+END_SRC
 
-<span style="color: #3C3C3C; background-color: #F0F0F0; font-size: 130%; font-weight: bold; text-decoration: overline;">* &#30011;&#20687;</span>
+* 画像
 
-<span style="color: #008ED1; background-color: #EAEAFF;">  #+ATTR_LATEX: :float wrap :width 0.16\textwidth :placement :options angle=90</span>
-  <span style="color: #006DAF; text-decoration: underline;"><a href="file:emacs.png">file:emacs.png</a></span>
+  #+ATTR_LATEX: :float wrap :width 0.16\textwidth :placement :options angle=90
+  file:emacs.png
 
   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.  
 
-<span style="color: #3C3C3C; background-color: #F0F0F0; font-size: 130%; font-weight: bold; text-decoration: overline;">* &#33050;&#27880;</span>
+* 脚注
 
-  &#12371;&#12428;&#12399;&#33050;&#27880;&#12391;&#12377;<span style="color: #008ED1; text-decoration: underline;">[fn:fntest]</span>
+  これは脚注です[fn:fntest]
 
-<span style="color: #3C3C3C; background-color: #F0F0F0; font-size: 130%; font-weight: bold; text-decoration: overline;">* Footnotes</span>
+* Footnotes
 
-<span style="color: #008ED1; text-decoration: underline;">[fn:fntest]</span> &#12371;&#12428;&#12399;&#33050;&#27880;&#12391;&#12377;
+[fn:fntest] これは脚注です
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org4537636" class="outline-2">
-<h2 id="org4537636"><span class="section-number-2">4</span> おまけ</h2>
+<div id="outline-container-org9266b98" class="outline-2">
+<h2 id="org9266b98"><span class="section-number-2">4.</span> おまけ</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Python が不要な <a href="https://ctan.org/pkg/listings">listings</a> を利用した場合の init.el の参考例(lualatex を利用に注意)。
 </p>
 
 <div class="org-src-container">
-<pre class="src src-elisp"><span style="color: #8D8D84;">; </span><span style="color: #8D8D84; font-style: italic;">-*- Mode: Emacs-Lisp ; Coding: utf-8 -*-</span>
-(<span style="color: #0000FF;">require</span> '<span style="color: #D0372D;">ox-latex</span>)
+<pre class="src src-elisp">; -*- Mode: Emacs-Lisp ; Coding: utf-8 -*-
+(require 'ox-latex)
 
-<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">PATH&#12434;&#36861;&#21152;</span>
-(setenv <span style="color: #008000;">"PATH"</span>
+;; PATHを追加
+(setenv "PATH"
   (concat
-   <span style="color: #008000;">"C:/texlive/2018/bin/win32;"</span>
-   (getenv <span style="color: #008000;">"PATH"</span>)))
-(<span style="color: #0000FF;">setq</span> exec-path (parse-colon-path (getenv <span style="color: #008000;">"PATH"</span>)))
+   "C:/texlive/2018/bin/win32;"
+   (getenv "PATH")))
+(setq exec-path (parse-colon-path (getenv "PATH")))
 
-(<span style="color: #0000FF;">setq</span> org-latex-listings 'listings)
-(<span style="color: #0000FF;">setq</span> org-latex-listings-options
+(setq org-latex-listings 'listings)
+(setq org-latex-listings-options
       '(
-        (<span style="color: #008000;">"frame"</span> <span style="color: #008000;">"single"</span>)
-        (<span style="color: #008000;">"breaklines"</span> <span style="color: #008000;">"true"</span>)
-        (<span style="color: #008000;">"basicstyle"</span> <span style="color: #008000;">"\\footnotesize"</span>)
-        (<span style="color: #008000;">"numbers"</span> <span style="color: #008000;">"left"</span>)
-        (<span style="color: #008000;">"numberstyle"</span> <span style="color: #008000;">"\\tiny"</span>)
+        ("frame" "single")
+        ("breaklines" "true")
+        ("basicstyle" "\\footnotesize")
+        ("numbers" "left")
+        ("numberstyle" "\\tiny")
         ))
 
-(<span style="color: #0000FF;">setq</span> org-latex-pdf-process
-      '(<span style="color: #008000;">"lualatex --draftmode %f"</span>
-        <span style="color: #008000;">"lualatex %f"</span>))
+(setq org-latex-pdf-process
+      '("lualatex --draftmode %f"
+        "lualatex %f"))
 
 (add-to-list 'org-latex-classes
-             '(<span style="color: #008000;">"myjsarticle"</span>
-               <span style="color: #008000;">"</span>
-<span style="color: #008000;">\\documentclass[10pt,a4paper, oneside, openany]{ltjsarticle}</span>
-<span style="color: #008000;">\\usepackage{luatexja-fontspec}</span>
-<span style="color: #008000;">\\setmainfont{IPAexMincho}</span>
-<span style="color: #008000;">\\setsansfont{IPAexGothic}</span>
-<span style="color: #008000;">\\setmainjfont[BoldFont=IPAexGothic]{IPAexMincho}</span>
-<span style="color: #008000;">\\setsansjfont{IPAexGothic}</span>
-<span style="color: #008000;">\\newjfontfamily\\jisninety[CJKShape=JIS1990]{IPAexMincho}</span>
-<span style="color: #008000;">[NO-DEFAULT-PACKAGES]</span>
-<span style="color: #008000;">\\usepackage{graphicx}</span>
-<span style="color: #008000;">\\usepackage{booktabs}</span>
-<span style="color: #008000;">\\usepackage{longtable}</span>
-<span style="color: #008000;">\\usepackage{wrapfig}</span>
-<span style="color: #008000;">\\usepackage{hyperref}</span>
-<span style="color: #008000;">\\urlstyle{sf}</span>
-<span style="color: #008000;">\\usepackage{enumitem}</span>
-<span style="color: #008000;">\\setlist[itemize]{font={\\bfseries\\jisninety}}</span>
-<span style="color: #008000;">\\setlist[itemize,2]{font={\\bfseries\\jisninety}}</span>
-<span style="color: #008000;">\\makeatletter</span>
-<span style="color: #008000;">\\makeatother</span>
-<span style="color: #008000;">\\hypersetup{pdfencoding=auto}"</span>
-  (<span style="color: #008000;">"\\section{%s}"</span> . <span style="color: #008000;">"\\section*{%s}"</span>)
-  (<span style="color: #008000;">"\\subsection{%s}"</span> . <span style="color: #008000;">"\\subsection*{%s}"</span>)
-  (<span style="color: #008000;">"\\subsubsection{%s}"</span> . <span style="color: #008000;">"\\subsubsection*{%s}"</span>)
-  (<span style="color: #008000;">"\\paragraph{%s}"</span> . <span style="color: #008000;">"\\paragraph*{%s}"</span>)
-  (<span style="color: #008000;">"\\subparagraph{%s}"</span> . <span style="color: #008000;">"\\subparagraph*{%s}"</span>)))
+             '("myjsarticle"
+               "
+\\documentclass[10pt,a4paper, oneside, openany]{ltjsarticle}
+\\usepackage{luatexja-fontspec}
+\\setmainfont{IPAexMincho}
+\\setsansfont{IPAexGothic}
+\\setmainjfont[BoldFont=IPAexGothic]{IPAexMincho}
+\\setsansjfont{IPAexGothic}
+\\newjfontfamily\\jisninety[CJKShape=JIS1990]{IPAexMincho}
+[NO-DEFAULT-PACKAGES]
+\\usepackage{graphicx}
+\\usepackage{booktabs}
+\\usepackage{longtable}
+\\usepackage{wrapfig}
+\\usepackage{hyperref}
+\\urlstyle{sf}
+\\usepackage{enumitem}
+\\setlist[itemize]{font={\\bfseries\\jisninety}}
+\\setlist[itemize,2]{font={\\bfseries\\jisninety}}
+\\makeatletter
+\\makeatother
+\\hypersetup{pdfencoding=auto}"
+  ("\\section{%s}" . "\\section*{%s}")
+  ("\\subsection{%s}" . "\\subsection*{%s}")
+  ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+  ("\\paragraph{%s}" . "\\paragraph*{%s}")
+  ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org5396773" class="outline-2">
-<h2 id="org5396773"><span class="section-number-2">5</span> 参考</h2>
+<div id="outline-container-org86b15c9" class="outline-2">
+<h2 id="org86b15c9"><span class="section-number-2">5.</span> 参考</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li><a href="https://ichiro-maruta.blogspot.com/2012/04/windows-tex-live.html">プロキシ環境下で Windowsマシンに TeX Live を入れる際のメモ</a></li>
@@ -699,15 +663,15 @@ Python が不要な <a href="https://ctan.org/pkg/listings">listings</a> を利�
 <h2 class="footnotes">&#33050;&#27880;: </h2>
 <div id="text-footnotes">
 
-<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 コマンドラインオプションで &#x2013;no-persistent-downloads をつけると早くなるらしい(未確認)
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2" role="doc-backlink">2</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 pip.exe は C:/Users/Administrator/AppData/Local/Programs/Python/Python37/Scripts にある
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3" role="doc-backlink">3</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 手元の環境では<a href="https://github.com/chuntaro/NTEmacs64/issues/3#issuecomment-386591920">このバグ</a>が発生した
 </p></div></div>
 
@@ -716,8 +680,8 @@ pip.exe は C:/Users/Administrator/AppData/Local/Programs/Python/Python37/Script
 </div></div>
 <div id="postamble" class="status">
 <p class="author">&#33879;&#32773;: clothoid</p>
-<p class="date">Created: 2021-10-09 Sat 11:11</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+<p class="date">Created: 2025-01-19 日 16:29</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
 </html>

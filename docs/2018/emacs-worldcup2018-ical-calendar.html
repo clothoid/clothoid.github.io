@@ -3,15 +3,15 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
 <head>
-<!-- 2022-08-27 Sat 17:03 -->
+<!-- 2025-01-19 日 16:29 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>emacs でワールドカップの日程をサクッと表示する</title>
-<meta name="generator" content="Org mode" />
 <meta name="author" content="clothoid" />
 <meta name="keywords" content="git" />
-<style type="text/css">
- <!--/*--><![CDATA[/*><!--*/
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
   .subtitle { text-align: center;
@@ -32,8 +32,9 @@
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
   pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
     padding: 8pt;
     font-family: monospace;
     overflow: auto;
@@ -41,22 +42,22 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
-    padding-top: 1.2em;
+    overflow: auto;
   }
   pre.src:before {
     display: none;
     position: absolute;
-    background-color: white;
-    top: -10px;
-    right: 10px;
+    top: -8px;
+    right: 12px;
     padding: 3px;
-    border: 1px solid black;
+    color: #555;
+    background-color: #f2f2f299;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -191,78 +192,31 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
-  /*]]>*/-->
+  .org-svg { }
 </style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6390292679676181" crossorigin="anonymous"></script>
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
-</script>
 </head>
 <body>
 <div id="org-div-home-and-up">
  <a accesskey="h" href="https://clothoid.github.io/sitemap.html"> UP </a>
  |
  <a accesskey="H" href="https://clothoid.github.io/"> HOME </a>
-</div><div id="content">
+</div><div id="content" class="content">
 <h1 class="title">emacs でワールドカップの日程をサクッと表示する</h1>
-<div id="table-of-contents">
+<div id="table-of-contents" role="doc-toc">
 <h2>&#30446;&#27425;</h2>
-<div id="text-table-of-contents">
+<div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org66ef904">1. 目的</a></li>
-<li><a href="#org0ceefb2">2. 設定</a></li>
-<li><a href="#org9591d0f">3. 結果</a></li>
-<li><a href="#org273e513">4. おまけ</a></li>
+<li><a href="#org97209ab">1. 目的</a></li>
+<li><a href="#org0154a2f">2. 設定</a></li>
+<li><a href="#org11efef5">3. 結果</a></li>
+<li><a href="#org9ef5681">4. おまけ</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org66ef904" class="outline-2">
-<h2 id="org66ef904"><span class="section-number-2">1</span> 目的</h2>
+<div id="outline-container-org97209ab" class="outline-2">
+<h2 id="org97209ab"><span class="section-number-2">1.</span> 目的</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 calfw.el、calfw-ical.el を使用して、Worldcup 2018 の日程をワンコマンドで表示します。
@@ -275,8 +229,8 @@ calfw.el、calfw-ical.el を使用して、Worldcup 2018 の日程をワンコ�
 </div>
 </div>
 
-<div id="outline-container-org0ceefb2" class="outline-2">
-<h2 id="org0ceefb2"><span class="section-number-2">2</span> 設定</h2>
+<div id="outline-container-org0154a2f" class="outline-2">
+<h2 id="org0154a2f"><span class="section-number-2">2.</span> 設定</h2>
 <div class="outline-text-2" id="text-2">
 <ol class="org-ol">
 <li>calfw.el のインストール (M-x package-install calfw)</li>
@@ -285,14 +239,14 @@ calfw.el、calfw-ical.el を使用して、Worldcup 2018 の日程をワンコ�
 init.el に以下を追加
 </p>
 <div class="org-src-container">
-<pre class="src src-elisp">(<span style="color: #0000FF;">require</span> '<span style="color: #D0372D;">calfw</span>)
+<pre class="src src-elisp">(require 'calfw)
 
-(<span style="color: #0000FF;">require</span> '<span style="color: #D0372D;">calfw-ical</span>)
-(<span style="color: #0000FF;">setq</span> worldcup2018-calendar-url
-  <span style="color: #008000;">"http://www.skysports.com/calendars/football/fixtures/competitions/world-cup"</span>)
+(require 'calfw-ical)
+(setq worldcup2018-calendar-url
+      "http://www.skysports.com/calendars/football/fixtures/competitions/world-cup")
 
-(<span style="color: #0000FF;">defun</span> <span style="color: #006699;">worldcup2018-calendar</span> ()
-  (<span style="color: #0000FF;">interactive</span>)
+(defun worldcup2018-calendar ()
+  (interactive)
   (cfw:open-ical-calendar worldcup2018-calendar-url))
 </pre>
 </div></li>
@@ -300,15 +254,15 @@ init.el に以下を追加
 </div>
 </div>
 
-<div id="outline-container-org9591d0f" class="outline-2">
-<h2 id="org9591d0f"><span class="section-number-2">3</span> 結果</h2>
+<div id="outline-container-org11efef5" class="outline-2">
+<h2 id="org11efef5"><span class="section-number-2">3.</span> 結果</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 M-x worldcup2018-calendar
 </p>
 
 
-<div class="figure">
+<div id="orgd5984c1" class="figure">
 <p><img src="../img/2018/Screenshot_2018-06-13_19-47-53.png" alt="Screenshot_2018-06-13_19-47-53.png" width="800px" />
 </p>
 </div>
@@ -319,30 +273,30 @@ M	で月表示、W	で 1週間表示、T で 2 週間表示、D で日表示、f
 </div>
 </div>
 
-<div id="outline-container-org273e513" class="outline-2">
-<h2 id="org273e513"><span class="section-number-2">4</span> おまけ</h2>
+<div id="outline-container-org9ef5681" class="outline-2">
+<h2 id="org9ef5681"><span class="section-number-2">4.</span> おまけ</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 J リーグの予定も同時に表示させたければ
 </p>
 
 <div class="org-src-container">
-<pre class="src src-elisp">(<span style="color: #0000FF;">require</span> '<span style="color: #D0372D;">calfw</span>)
+<pre class="src src-elisp">(require 'calfw)
 
-(<span style="color: #0000FF;">require</span> '<span style="color: #D0372D;">calfw-ical</span>)
-(<span style="color: #0000FF;">setq</span> worldcup2018-calendar-url
-<span style="color: #CC0000; background-color: #FFFF88;">      </span><span style="color: #CC0000; background-color: #FFFF88;">"http://www.skysports.com/calendars/football/fixtures/competitions/world-cup"</span><span style="color: #CC0000; background-color: #FFFF88;">)</span>
-(<span style="color: #0000FF;">setq</span> J-calendar-url
-      <span style="color: #008000;">"http://web-japp.datastadium.net/J/icals/download3/0/0/0/ical.ics"</span>)
+(require 'calfw-ical)
+(setq worldcup2018-calendar-url
+      "http://www.skysports.com/calendars/football/fixtures/competitions/world-cup")
+(setq J-calendar-url
+      "http://web-japp.datastadium.net/J/icals/download3/0/0/0/ical.ics")
 
-(<span style="color: #0000FF;">defun</span> <span style="color: #006699;">football-calendar</span> ()
-  (<span style="color: #0000FF;">interactive</span>)
+(defun football-calendar ()
+  (interactive)
   (cfw:open-calendar-buffer
-   <span style="color: #006FE0;">:view</span> 'month
-   <span style="color: #006FE0;">:contents-sources</span>
+   :view 'month
+   :contents-sources
    (list
-    (cfw:ical-create-source <span style="color: #008000;">"J-league"</span> J-calendar-url <span style="color: #008000;">"#b7193f"</span>)
-    (cfw:ical-create-source <span style="color: #008000;">"WC2018"</span> worldcup2018-calendar-url <span style="color: #008000;">"DarkOrange"</span>)
+    (cfw:ical-create-source "J-league" J-calendar-url "#b7193f")
+    (cfw:ical-create-source "WC2018" worldcup2018-calendar-url "DarkOrange")
     )))
 </pre>
 </div>
@@ -352,7 +306,7 @@ M-x football-calendar
 </p>
 
 
-<div class="figure">
+<div id="orgf6bcd03" class="figure">
 <p><img src="../img/2018/Screenshot_2018-06-13_20-01-30.png" alt="Screenshot_2018-06-13_20-01-30.png" width="800px" />
 </p>
 </div>
@@ -361,8 +315,8 @@ M-x football-calendar
 </div>
 <div id="postamble" class="status">
 <p class="author">&#33879;&#32773;: clothoid</p>
-<p class="date">Created: 2022-08-27 Sat 17:03</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+<p class="date">Created: 2025-01-19 日 16:29</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
 </html>

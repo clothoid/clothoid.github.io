@@ -3,14 +3,14 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-10-09 Sat 11:11 -->
+<!-- 2025-01-19 日 16:28 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lrm;</title>
-<meta name="generator" content="Org mode" />
 <meta name="author" content="clothoid" />
-<style type="text/css">
- <!--/*--><![CDATA[/*><!--*/
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
   .subtitle { text-align: center;
@@ -31,8 +31,9 @@
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
   pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
     padding: 8pt;
     font-family: monospace;
     overflow: auto;
@@ -40,22 +41,22 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
-    padding-top: 1.2em;
+    overflow: auto;
   }
   pre.src:before {
     display: none;
     position: absolute;
-    background-color: white;
-    top: -10px;
-    right: 10px;
+    top: -8px;
+    right: 12px;
     padding: 3px;
-    border: 1px solid black;
+    color: #555;
+    background-color: #f2f2f299;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -190,101 +191,54 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
-  /*]]>*/-->
+  .org-svg { }
 </style>
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
-</script>
 </head>
 <body>
-<div id="content">
-<div id="table-of-contents">
+<div id="content" class="content">
+<div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
-<div id="text-table-of-contents">
+<div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org447096d">1. 2020-12-25</a>
+<li><a href="#orgc8b7ab2">1. 2020-12-25</a>
 <ul>
-<li><a href="#org84bf799">1.1. 20:41 leaf 忘れた</a></li>
-<li><a href="#orgc0566df">1.2. 20:49 leaf 化失敗</a></li>
-<li><a href="#orgb86fc3c">1.3. 20:55 leaf 動かないよ</a></li>
-<li><a href="#orgf4fb34d">1.4. 20:59 leaf つらい</a></li>
+<li><a href="#org75bc46a">1.1. 20:41 leaf 忘れた</a></li>
+<li><a href="#org9a889c5">1.2. 20:49 leaf 化失敗</a></li>
+<li><a href="#orgdba8a9e">1.3. 20:55 leaf 動かないよ</a></li>
+<li><a href="#orgd619a23">1.4. 20:59 leaf つらい</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org447096d" class="outline-2">
-<h2 id="org447096d"><span class="section-number-2">1</span> 2020-12-25</h2>
+<div id="outline-container-orgc8b7ab2" class="outline-2">
+<h2 id="orgc8b7ab2"><span class="section-number-2">1.</span> 2020-12-25</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org84bf799" class="outline-3">
-<h3 id="org84bf799"><span class="section-number-3">1.1</span> 20:41 leaf 忘れた</h3>
+<div id="outline-container-org75bc46a" class="outline-3">
+<h3 id="org75bc46a"><span class="section-number-3">1.1.</span> 20:41 leaf 忘れた</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 ひさしぶりに、init.el の設定をしようと思ったけど、完全に leaf の設定の仕方、忘れたよね。。。
 </p>
 </div>
 </div>
-<div id="outline-container-orgc0566df" class="outline-3">
-<h3 id="orgc0566df"><span class="section-number-3">1.2</span> 20:49 leaf 化失敗</h3>
+<div id="outline-container-org9a889c5" class="outline-3">
+<h3 id="org9a889c5"><span class="section-number-3">1.2.</span> 20:49 leaf 化失敗</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 以下を設定するとM-xでエラー。もうほんとleaf嫌だ。。。元に戻そうかな。。
 ivy-re-builders-alist みたいのどうやって書くんだろ。。。これが原因か分からんけど
 </p>
 
-<pre class="example">
+<pre class="example" id="org3c69947">
 apply: Wrong type argument: listp, t
 </pre>
 
 <div class="org-src-container">
-<pre class="src src-elisp">(<span style="color: #0000FF;">leaf</span> ivy
-  <span style="color: #006FE0;">:doc</span> <span style="color: #008000;">"Incremental Vertical completYon"</span>
-  <span style="color: #006FE0;">:custom</span> ((ivy-use-virtual-buffers . t)
+<pre class="src src-elisp">(leaf ivy
+  :doc "Incremental Vertical completYon"
+  :custom ((ivy-use-virtual-buffers . t)
            (enable-recursive-minibuffers . t)
            (ivy-height . 30)
            (ivy-extra-directories . nil)
@@ -292,20 +246,20 @@ apply: Wrong type argument: listp, t
            (counsel-find-file-at-point . t)
            (ivy-initial-inputs-alist . t)
            )
-  <span style="color: #006FE0;">:global-minor-mode</span> t
-  <span style="color: #006FE0;">:config</span>)
+  :global-minor-mode t
+  :config)
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgb86fc3c" class="outline-3">
-<h3 id="orgb86fc3c"><span class="section-number-3">1.3</span> 20:55 leaf 動かないよ</h3>
+<div id="outline-container-orgdba8a9e" class="outline-3">
+<h3 id="orgdba8a9e"><span class="section-number-3">1.3.</span> 20:55 leaf 動かないよ</h3>
 <div class="outline-text-3" id="text-1-3">
 <div class="org-src-container">
-<pre class="src src-elisp">(<span style="color: #0000FF;">require</span> '<span style="color: #D0372D;">key-chord</span>)
-(<span style="color: #0000FF;">setq</span> key-chord-two-keys-delay 0.04)
+<pre class="src src-elisp">(require 'key-chord)
+(setq key-chord-two-keys-delay 0.04)
 (key-chord-mode 1)
-(key-chord-define-global <span style="color: #008000;">"jk"</span> 'view-mode)
+(key-chord-define-global "jk" 'view-mode)
 </pre>
 </div>
 
@@ -314,11 +268,11 @@ apply: Wrong type argument: listp, t
 </p>
 
 <div class="org-src-container">
-<pre class="src src-elisp">(<span style="color: #0000FF;">leaf</span> leaf-convert
-  <span style="color: #006FE0;">:require</span> key-chord
-  <span style="color: #006FE0;">:chord</span> ((<span style="color: #008000;">"jk"</span> . view-mode))
-  <span style="color: #006FE0;">:setq</span> ((key-chord-two-keys-delay . 0.04))
-  <span style="color: #006FE0;">:config</span>
+<pre class="src src-elisp">(leaf leaf-convert
+  :require key-chord
+  :chord (("jk" . view-mode))
+  :setq ((key-chord-two-keys-delay . 0.04))
+  :config
   (key-chord-mode 1))
 </pre>
 </div>
@@ -328,8 +282,8 @@ jk で view-mode できなくなった
 </p>
 </div>
 </div>
-<div id="outline-container-orgf4fb34d" class="outline-3">
-<h3 id="orgf4fb34d"><span class="section-number-3">1.4</span> 20:59 leaf つらい</h3>
+<div id="outline-container-orgd619a23" class="outline-3">
+<h3 id="orgd619a23"><span class="section-number-3">1.4.</span> 20:59 leaf つらい</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 なんとなくだけど、単純なやつ (require hogehoe) と (setq hogehoge)みたいなやつだけなら、leaf化できて、
@@ -341,8 +295,8 @@ jk で view-mode できなくなった
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: clothoid</p>
-<p class="date">Created: 2021-10-09 Sat 11:11</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+<p class="date">Created: 2025-01-19 日 16:28</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
 </html>

@@ -3,15 +3,15 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
 <head>
-<!-- 2022-08-27 Sat 17:03 -->
+<!-- 2025-01-19 日 16:28 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Windows で GitBucket で Git サーバーを立て、SourceTree + WinMerge で利用する方法</title>
-<meta name="generator" content="Org mode" />
 <meta name="author" content="clothoid" />
 <meta name="keywords" content="git" />
-<style type="text/css">
- <!--/*--><![CDATA[/*><!--*/
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
   .subtitle { text-align: center;
@@ -32,8 +32,9 @@
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
   pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
     padding: 8pt;
     font-family: monospace;
     overflow: auto;
@@ -41,22 +42,22 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
-    padding-top: 1.2em;
+    overflow: auto;
   }
   pre.src:before {
     display: none;
     position: absolute;
-    background-color: white;
-    top: -10px;
-    right: 10px;
+    top: -8px;
+    right: 12px;
     padding: 3px;
-    border: 1px solid black;
+    color: #555;
+    background-color: #f2f2f299;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -191,105 +192,58 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
-  /*]]>*/-->
+  .org-svg { }
 </style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6390292679676181" crossorigin="anonymous"></script>
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
-</script>
 </head>
 <body>
 <div id="org-div-home-and-up">
  <a accesskey="h" href="https://clothoid.github.io/sitemap.html"> UP </a>
  |
  <a accesskey="H" href="https://clothoid.github.io/"> HOME </a>
-</div><div id="content">
+</div><div id="content" class="content">
 <h1 class="title">Windows で GitBucket で Git サーバーを立て、SourceTree + WinMerge で利用する方法</h1>
-<div id="table-of-contents">
+<div id="table-of-contents" role="doc-toc">
 <h2>&#30446;&#27425;</h2>
-<div id="text-table-of-contents">
+<div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org3615e6b">1. 環境</a></li>
-<li><a href="#orgeffb07f">2. Git サーバーの構築</a>
+<li><a href="#org71ae660">1. 環境</a></li>
+<li><a href="#orgc197244">2. Git サーバーの構築</a>
 <ul>
-<li><a href="#org513272d">2.1. Java 8 のダンロード</a></li>
-<li><a href="#org824478f">2.2. Tomcat 7 のインストール</a></li>
-<li><a href="#org56dcad3">2.3. GitBucket のインストールと起動</a></li>
+<li><a href="#org669345c">2.1. Java 8 のダンロード</a></li>
+<li><a href="#orgcf567cf">2.2. Tomcat 7 のインストール</a></li>
+<li><a href="#orga8395ec">2.3. GitBucket のインストールと起動</a></li>
 </ul>
 </li>
-<li><a href="#org2cae6c4">3. Git クライアントのインストール</a></li>
-<li><a href="#orgfe8432e">4. SourceTree のインストール</a></li>
-<li><a href="#orgfff124a">5. WinMerge のインストールと xdocdiff プラグインの設定</a>
+<li><a href="#orge725f20">3. Git クライアントのインストール</a></li>
+<li><a href="#org00294a2">4. SourceTree のインストール</a></li>
+<li><a href="#org06bd74a">5. WinMerge のインストールと xdocdiff プラグインの設定</a>
 <ul>
-<li><a href="#orgd09b5d3">5.1. WinMerge 日本語版</a></li>
-<li><a href="#org0b58787">5.2. xdocdiff</a></li>
+<li><a href="#org842645a">5.1. WinMerge 日本語版</a></li>
+<li><a href="#orgab93fc5">5.2. xdocdiff</a></li>
 </ul>
 </li>
-<li><a href="#orgbbac598">6. SourceTree で WinMerge を設定</a></li>
-<li><a href="#org2cabec4">7. 動作確認</a>
+<li><a href="#org1922b1e">6. SourceTree で WinMerge を設定</a></li>
+<li><a href="#org6790f85">7. 動作確認</a>
 <ul>
-<li><a href="#org8ec022b">7.1. GitBucket で sample リポジトリの作成</a></li>
-<li><a href="#org09d9279">7.2. SourceTree から接続</a>
+<li><a href="#org608cf18">7.1. GitBucket で sample リポジトリの作成</a></li>
+<li><a href="#org7cd358b">7.2. SourceTree から接続</a>
 <ul>
-<li><a href="#org08bd877">7.2.1. クローン</a></li>
-<li><a href="#org0d039aa">7.2.2. コミット</a></li>
-<li><a href="#orgeb9675f">7.2.3. プッシュ</a></li>
+<li><a href="#org8c59927">7.2.1. クローン</a></li>
+<li><a href="#org5e7270f">7.2.2. コミット</a></li>
+<li><a href="#orge9c7490">7.2.3. プッシュ</a></li>
 </ul>
 </li>
-<li><a href="#org005c7c8">7.3. GitBucket で 確認</a></li>
+<li><a href="#orgc31ba99">7.3. GitBucket で 確認</a></li>
 </ul>
 </li>
-<li><a href="#orgf343153">8. 参考</a></li>
+<li><a href="#org4e4887d">8. 参考</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org3615e6b" class="outline-2">
-<h2 id="org3615e6b"><span class="section-number-2">1</span> 環境</h2>
+<div id="outline-container-org71ae660" class="outline-2">
+<h2 id="org71ae660"><span class="section-number-2">1.</span> 環境</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>サーバー
@@ -312,12 +266,12 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgeffb07f" class="outline-2">
-<h2 id="orgeffb07f"><span class="section-number-2">2</span> Git サーバーの構築</h2>
+<div id="outline-container-orgc197244" class="outline-2">
+<h2 id="orgc197244"><span class="section-number-2">2.</span> Git サーバーの構築</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org513272d" class="outline-3">
-<h3 id="org513272d"><span class="section-number-3">2.1</span> Java 8 のダンロード</h3>
+<div id="outline-container-org669345c" class="outline-3">
+<h3 id="org669345c"><span class="section-number-3">2.1.</span> Java 8 のダンロード</h3>
 <div class="outline-text-3" id="text-2-1">
 <ol class="org-ol">
 <li><a href="https://java.com/ja/download/manual.jsp">https://java.com/ja/download/manual.jsp</a> にアクセス</li>
@@ -326,8 +280,8 @@ for the JavaScript code in this tag.
 </ol>
 </div>
 </div>
-<div id="outline-container-org824478f" class="outline-3">
-<h3 id="org824478f"><span class="section-number-3">2.2</span> Tomcat 7 のインストール</h3>
+<div id="outline-container-orgcf567cf" class="outline-3">
+<h3 id="orgcf567cf"><span class="section-number-3">2.2.</span> Tomcat 7 のインストール</h3>
 <div class="outline-text-3" id="text-2-2">
 <ol class="org-ol">
 <li><a href="http://tomcat.apache.org/download-70.cgi">http://tomcat.apache.org/download-70.cgi</a> にアクセス</li>
@@ -336,34 +290,34 @@ for the JavaScript code in this tag.
 conf/server.xml を、下記の通り変更 (検索キーワード文字化け防止)
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">*** <span style="color: #008000;">"/f/Program Files/Apache Software Foundation/Tomcat 7.0/conf/server.xml.orig"</span>   2016-06-28 15:05:32.34805../0000 +0900
---- <span style="color: #008000;">"/f/Program Files/Apache Software Foundation/Tomcat 7.0/conf/server.xml"</span>    2016-06-28 15:06:25.659592300 +0900
+<pre class="src src-sh">*** "/f/Program Files/Apache Software Foundation/Tomcat 7.0/conf/server.xml.orig"	2016-06-28 15:05:32.34805../0000 +0900
+--- "/f/Program Files/Apache Software Foundation/Tomcat 7.0/conf/server.xml"	2016-06-28 15:06:25.659592300 +0900
 ***************
 *** 70,76 ****
       --&gt;
-      &lt;Connector <span style="color: #BA36A5;">port</span>=<span style="color: #008000;">"50001"</span> <span style="color: #BA36A5;">protocol</span>=<span style="color: #008000;">"HTTP/1.1"</span>
-                 <span style="color: #BA36A5;">connectionTimeout</span>=<span style="color: #008000;">"2../0000"</span>
-!                <span style="color: #BA36A5;">redirectPort</span>=<span style="color: #008000;">"8443"</span> /&gt;
-      &lt;!-- A <span style="color: #008000;">"Connector"</span> using the shared thread pool--&gt;
+      &lt;Connector port="50001" protocol="HTTP/1.1"
+                 connectionTimeout="2../0000"
+!                redirectPort="8443" /&gt;
+      &lt;!-- A "Connector" using the shared thread pool--&gt;
       &lt;!--
-      &lt;Connector <span style="color: #BA36A5;">executor</span>=<span style="color: #008000;">"tomcatThreadPool"</span>
+      &lt;Connector executor="tomcatThreadPool"
 --- 70,78 ----
       --&gt;
-      &lt;Connector <span style="color: #BA36A5;">port</span>=<span style="color: #008000;">"50001"</span> <span style="color: #BA36A5;">protocol</span>=<span style="color: #008000;">"HTTP/1.1"</span>
-                 <span style="color: #BA36A5;">connectionTimeout</span>=<span style="color: #008000;">"2../0000"</span>
-!                <span style="color: #BA36A5;">redirectPort</span>=<span style="color: #008000;">"8443"</span>
-!                <span style="color: #BA36A5;">URIEncoding</span>=<span style="color: #008000;">"UTF-8"</span>
-!                <span style="color: #BA36A5;">useBodyEncodingForURI</span>=<span style="color: #008000;">"true"</span> /&gt;
-      &lt;!-- A <span style="color: #008000;">"Connector"</span> using the shared thread pool--&gt;
+      &lt;Connector port="50001" protocol="HTTP/1.1"
+                 connectionTimeout="2../0000"
+!                redirectPort="8443"
+!                URIEncoding="UTF-8"
+!                useBodyEncodingForURI="true" /&gt;
+      &lt;!-- A "Connector" using the shared thread pool--&gt;
       &lt;!--
-      &lt;Connector <span style="color: #BA36A5;">executor</span>=<span style="color: #008000;">"tomcatThreadPool"</span>
+      &lt;Connector executor="tomcatThreadPool"
 </pre>
 </div></li>
 </ol>
 </div>
 </div>
-<div id="outline-container-org56dcad3" class="outline-3">
-<h3 id="org56dcad3"><span class="section-number-3">2.3</span> GitBucket のインストールと起動</h3>
+<div id="outline-container-orga8395ec" class="outline-3">
+<h3 id="orga8395ec"><span class="section-number-3">2.3.</span> GitBucket のインストールと起動</h3>
 <div class="outline-text-3" id="text-2-3">
 <ol class="org-ol">
 <li><a href="https://github.com/takezoe/gitbucket/releases">https://github.com/takezoe/gitbucket/releases</a> から gitbucket.war をダウンロード</li>
@@ -378,8 +332,8 @@ conf/server.xml を、下記の通り変更 (検索キーワード文字化け�
 </div>
 </div>
 
-<div id="outline-container-org2cae6c4" class="outline-2">
-<h2 id="org2cae6c4"><span class="section-number-2">3</span> Git クライアントのインストール</h2>
+<div id="outline-container-orge725f20" class="outline-2">
+<h2 id="orge725f20"><span class="section-number-2">3.</span> Git クライアントのインストール</h2>
 <div class="outline-text-2" id="text-3">
 <ol class="org-ol">
 <li><a href="https://git-for-windows.github.io/">https://git-for-windows.github.io/</a> にアクセス</li>
@@ -389,8 +343,8 @@ conf/server.xml を、下記の通り変更 (検索キーワード文字化け�
 </div>
 </div>
 
-<div id="outline-container-orgfe8432e" class="outline-2">
-<h2 id="orgfe8432e"><span class="section-number-2">4</span> SourceTree のインストール</h2>
+<div id="outline-container-org00294a2" class="outline-2">
+<h2 id="org00294a2"><span class="section-number-2">4.</span> SourceTree のインストール</h2>
 <div class="outline-text-2" id="text-4">
 <ol class="org-ol">
 <li><a href="https://www.sourcetreeapp.com/">https://www.sourcetreeapp.com/</a> にアクセス</li>
@@ -405,12 +359,12 @@ conf/server.xml を、下記の通り変更 (検索キーワード文字化け�
 </div>
 </div>
 
-<div id="outline-container-orgfff124a" class="outline-2">
-<h2 id="orgfff124a"><span class="section-number-2">5</span> WinMerge のインストールと xdocdiff プラグインの設定</h2>
+<div id="outline-container-org06bd74a" class="outline-2">
+<h2 id="org06bd74a"><span class="section-number-2">5.</span> WinMerge のインストールと xdocdiff プラグインの設定</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-orgd09b5d3" class="outline-3">
-<h3 id="orgd09b5d3"><span class="section-number-3">5.1</span> WinMerge 日本語版</h3>
+<div id="outline-container-org842645a" class="outline-3">
+<h3 id="org842645a"><span class="section-number-3">5.1.</span> WinMerge 日本語版</h3>
 <div class="outline-text-3" id="text-5-1">
 <ol class="org-ol">
 <li><a href="http://www.geocities.co.jp/SiliconValley-SanJose/8165/winmerge.html">http://www.geocities.co.jp/SiliconValley-SanJose/8165/winmerge.html</a> にアクセス</li>
@@ -419,20 +373,20 @@ conf/server.xml を、下記の通り変更 (検索キーワード文字化け�
 </ol>
 </div>
 </div>
-<div id="outline-container-org0b58787" class="outline-3">
-<h3 id="org0b58787"><span class="section-number-3">5.2</span> xdocdiff</h3>
+<div id="outline-container-orgab93fc5" class="outline-3">
+<h3 id="orgab93fc5"><span class="section-number-3">5.2.</span> xdocdiff</h3>
 <div class="outline-text-3" id="text-5-2">
 <ol class="org-ol">
 <li><a href="http://freemind.s57.xrea.com/xdocdiffPlugin/">http://freemind.s57.xrea.com/xdocdiffPlugin/</a> にアクセス</li>
-<li>xdocdiffPlugin<sub>1</sub><sub>0</sub><sub>6d.zip</sub> をダウンロード</li>
+<li>xdocdiffPlugin_1_0_6d.zip をダウンロード</li>
 <li>xdoc2txt.exe、zlib.dll を WinMerge のインストールフォルダ（WinMerge.exe と同じフォルダ）にコピー</li>
-<li>amb<sub>xdocdiffPlugin.dll</sub> をインストールフォルダのサブフォルダ"MergePlugins"にコピー</li>
+<li>amb_xdocdiffPlugin.dll をインストールフォルダのサブフォルダ"MergePlugins"にコピー</li>
 </ol>
 </div>
 </div>
 </div>
-<div id="outline-container-orgbbac598" class="outline-2">
-<h2 id="orgbbac598"><span class="section-number-2">6</span> SourceTree で WinMerge を設定</h2>
+<div id="outline-container-org1922b1e" class="outline-2">
+<h2 id="org1922b1e"><span class="section-number-2">6.</span> SourceTree で WinMerge を設定</h2>
 <div class="outline-text-2" id="text-6">
 <ol class="org-ol">
 <li>WinMerge を起動
@@ -453,12 +407,12 @@ conf/server.xml を、下記の通り変更 (検索キーワード文字化け�
 </ol>
 </div>
 </div>
-<div id="outline-container-org2cabec4" class="outline-2">
-<h2 id="org2cabec4"><span class="section-number-2">7</span> 動作確認</h2>
+<div id="outline-container-org6790f85" class="outline-2">
+<h2 id="org6790f85"><span class="section-number-2">7.</span> 動作確認</h2>
 <div class="outline-text-2" id="text-7">
 </div>
-<div id="outline-container-org8ec022b" class="outline-3">
-<h3 id="org8ec022b"><span class="section-number-3">7.1</span> GitBucket で sample リポジトリの作成</h3>
+<div id="outline-container-org608cf18" class="outline-3">
+<h3 id="org608cf18"><span class="section-number-3">7.1.</span> GitBucket で sample リポジトリの作成</h3>
 <div class="outline-text-3" id="text-7-1">
 <ol class="org-ol">
 <li><a href="http://hostname:8080/gitbucket">http://hostname:8080/gitbucket</a> へ接続</li>
@@ -469,12 +423,12 @@ conf/server.xml を、下記の通り変更 (検索キーワード文字化け�
 </ol>
 </div>
 </div>
-<div id="outline-container-org09d9279" class="outline-3">
-<h3 id="org09d9279"><span class="section-number-3">7.2</span> SourceTree から接続</h3>
+<div id="outline-container-org7cd358b" class="outline-3">
+<h3 id="org7cd358b"><span class="section-number-3">7.2.</span> SourceTree から接続</h3>
 <div class="outline-text-3" id="text-7-2">
 </div>
-<div id="outline-container-org08bd877" class="outline-4">
-<h4 id="org08bd877"><span class="section-number-4">7.2.1</span> クローン</h4>
+<div id="outline-container-org8c59927" class="outline-4">
+<h4 id="org8c59927"><span class="section-number-4">7.2.1.</span> クローン</h4>
 <div class="outline-text-4" id="text-7-2-1">
 <ol class="org-ol">
 <li>[新規/クローンを作成する]を選択</li>
@@ -484,8 +438,8 @@ conf/server.xml を、下記の通り変更 (検索キーワード文字化け�
 </ol>
 </div>
 </div>
-<div id="outline-container-org0d039aa" class="outline-4">
-<h4 id="org0d039aa"><span class="section-number-4">7.2.2</span> コミット</h4>
+<div id="outline-container-org5e7270f" class="outline-4">
+<h4 id="org5e7270f"><span class="section-number-4">7.2.2.</span> コミット</h4>
 <div class="outline-text-4" id="text-7-2-2">
 <ol class="org-ol">
 <li>[保存先のパス] で指定したフォルダに適当なエクセルファイルを追加</li>
@@ -497,8 +451,8 @@ conf/server.xml を、下記の通り変更 (検索キーワード文字化け�
 </ol>
 </div>
 </div>
-<div id="outline-container-orgeb9675f" class="outline-4">
-<h4 id="orgeb9675f"><span class="section-number-4">7.2.3</span> プッシュ</h4>
+<div id="outline-container-orge9c7490" class="outline-4">
+<h4 id="orge9c7490"><span class="section-number-4">7.2.3.</span> プッシュ</h4>
 <div class="outline-text-4" id="text-7-2-3">
 <ol class="org-ol">
 <li>[プッシュ]を選択</li>
@@ -511,8 +465,8 @@ conf/server.xml を、下記の通り変更 (検索キーワード文字化け�
 </div>
 </div>
 </div>
-<div id="outline-container-org005c7c8" class="outline-3">
-<h3 id="org005c7c8"><span class="section-number-3">7.3</span> GitBucket で 確認</h3>
+<div id="outline-container-orgc31ba99" class="outline-3">
+<h3 id="orgc31ba99"><span class="section-number-3">7.3.</span> GitBucket で 確認</h3>
 <div class="outline-text-3" id="text-7-3">
 <ol class="org-ol">
 <li><a href="http://hostname:8080/gitbucket">http://hostname:8080/gitbucket</a> へ接続</li>
@@ -523,8 +477,8 @@ conf/server.xml を、下記の通り変更 (検索キーワード文字化け�
 </div>
 </div>
 </div>
-<div id="outline-container-orgf343153" class="outline-2">
-<h2 id="orgf343153"><span class="section-number-2">8</span> 参考</h2>
+<div id="outline-container-org4e4887d" class="outline-2">
+<h2 id="org4e4887d"><span class="section-number-2">8.</span> 参考</h2>
 <div class="outline-text-2" id="text-8">
 <ul class="org-ul">
 <li><a href="https://github.com/gitbucket/gitbucket">GitHub - gitbucket/gitbucket: A Git platform powered by Scala with easy installation, high extensibility &amp; github API compatibility</a></li>
@@ -536,8 +490,8 @@ conf/server.xml を、下記の通り変更 (検索キーワード文字化け�
 </div>
 <div id="postamble" class="status">
 <p class="author">&#33879;&#32773;: clothoid</p>
-<p class="date">Created: 2022-08-27 Sat 17:03</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+<p class="date">Created: 2025-01-19 日 16:28</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
 </html>

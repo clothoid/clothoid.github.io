@@ -3,14 +3,14 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-10-09 Sat 11:11 -->
+<!-- 2025-01-19 日 16:28 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lrm;</title>
-<meta name="generator" content="Org mode" />
 <meta name="author" content="clothoid" />
-<style type="text/css">
- <!--/*--><![CDATA[/*><!--*/
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
   .subtitle { text-align: center;
@@ -31,8 +31,9 @@
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
   pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
     padding: 8pt;
     font-family: monospace;
     overflow: auto;
@@ -40,22 +41,22 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
-    padding-top: 1.2em;
+    overflow: auto;
   }
   pre.src:before {
     display: none;
     position: absolute;
-    background-color: white;
-    top: -10px;
-    right: 10px;
+    top: -8px;
+    right: 12px;
     padding: 3px;
-    border: 1px solid black;
+    color: #555;
+    background-color: #f2f2f299;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -190,92 +191,45 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
-  /*]]>*/-->
+  .org-svg { }
 </style>
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
-</script>
 </head>
 <body>
-<div id="content">
-<div id="table-of-contents">
+<div id="content" class="content">
+<div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
-<div id="text-table-of-contents">
+<div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org0e7d54b">1. 2020-09-21</a>
+<li><a href="#org1b81bff">1. 2020-09-21</a>
 <ul>
-<li><a href="#orgc0e6638">1.1. 06:41</a></li>
-<li><a href="#orgcdb5048">1.2. 06:51</a></li>
-<li><a href="#org963f905">1.3. 07:01</a></li>
-<li><a href="#org90df82c">1.4. 07:35</a></li>
-<li><a href="#orgd9a504f">1.5. 14:46</a></li>
-<li><a href="#org5dc91ff">1.6. 14:47 leaf の config error</a></li>
-<li><a href="#orgaccaccc">1.7. 15:01 Warning (leaf): Error in `calendar' block.  Error msg: Symbol’s value as variable is void: calendar-iso-date-display-form</a></li>
+<li><a href="#orge5a1755">1.1. 06:41</a></li>
+<li><a href="#org04a020c">1.2. 06:51</a></li>
+<li><a href="#org9f74f99">1.3. 07:01</a></li>
+<li><a href="#org12279d4">1.4. 07:35</a></li>
+<li><a href="#org69b42b2">1.5. 14:46</a></li>
+<li><a href="#org15ffeec">1.6. 14:47 leaf の config error</a></li>
+<li><a href="#org5a6540a">1.7. 15:01 Warning (leaf): Error in `calendar' block.  Error msg: Symbol’s value as variable is void: calendar-iso-date-display-form</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org0e7d54b" class="outline-2">
-<h2 id="org0e7d54b"><span class="section-number-2">1</span> 2020-09-21</h2>
+<div id="outline-container-org1b81bff" class="outline-2">
+<h2 id="org1b81bff"><span class="section-number-2">1.</span> 2020-09-21</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orgc0e6638" class="outline-3">
-<h3 id="orgc0e6638"><span class="section-number-3">1.1</span> 06:41</h3>
+<div id="outline-container-orge5a1755" class="outline-3">
+<h3 id="orge5a1755"><span class="section-number-3">1.1.</span> 06:41</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 M-x leaf-convert-insert-template ediff-wind で
 </p>
 
 <div class="org-src-container">
-<pre class="src src-elisp">(<span style="color: #0000FF;">leaf</span> ediff-wind
-  <span style="color: #006FE0;">:doc</span> <span style="color: #008000;">"window manipulation utilities"</span>
-  <span style="color: #006FE0;">:tag</span> <span style="color: #008000;">"builtin"</span>
-  <span style="color: #006FE0;">:added</span> <span style="color: #008000;">"2020-09-21"</span>)<span style="color: #E8E8E8; background-color: #FFFFAB;">   </span>
+<pre class="src src-elisp">(leaf ediff-wind
+  :doc "window manipulation utilities"
+  :tag "builtin"
+  :added "2020-09-21")   
 </pre>
 </div>
 
@@ -284,11 +238,11 @@ M-x leaf-convert-insert-template ediff-wind で
 </p>
 
 <div class="org-src-container">
-<pre class="src src-elisp">(<span style="color: #0000FF;">leaf</span> ediff-wind
-  <span style="color: #006FE0;">:doc</span> <span style="color: #008000;">"window manipulation utilities"</span>
-  <span style="color: #006FE0;">:tag</span> <span style="color: #008000;">"builtin"</span>
-  <span style="color: #006FE0;">:added</span> <span style="color: #008000;">"2020-09-21"</span>
-  <span style="color: #006FE0;">:custom</span> ())
+<pre class="src src-elisp">(leaf ediff-wind
+  :doc "window manipulation utilities"
+  :tag "builtin"
+  :added "2020-09-21"
+  :custom ())
 </pre>
 </div>
 
@@ -298,14 +252,14 @@ M-x leaf-convert-insert-template ediff-wind で
 </div>
 </div>
 
-<div id="outline-container-orgcdb5048" class="outline-3">
-<h3 id="orgcdb5048"><span class="section-number-3">1.2</span> 06:51</h3>
+<div id="outline-container-org04a020c" class="outline-3">
+<h3 id="org04a020c"><span class="section-number-3">1.2.</span> 06:51</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 これ。これがでる。:add があって、:config とか、:custom とかすると。leafで。
 </p>
 
-<pre class="example">
+<pre class="example" id="org01ab34c">
 Debugger entered--Lisp error: (error "leaf: Unrecognized keyword :added")
   signal(error ("leaf: Unrecognized keyword :added"))
   leaf-sort-values-plist((:doc nil :tag nil :added ("2020-09-21") :config nil :leaf-autoload nil :leaf-defer nil :leaf-protect nil :leaf-defun nil :leaf-defvar nil))
@@ -323,48 +277,48 @@ Debugger entered--Lisp error: (error "leaf: Unrecognized keyword :added")
 </pre>
 </div>
 </div>
-<div id="outline-container-org963f905" class="outline-3">
-<h3 id="org963f905"><span class="section-number-3">1.3</span> 07:01</h3>
+<div id="outline-container-org9f74f99" class="outline-3">
+<h3 id="org9f74f99"><span class="section-number-3">1.3.</span> 07:01</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 :emacs&lt;, :emacs&lt;=, :emacs=, :emacs&gt;, :emacs&gt;= keywords の使い方、全然分からない。
 </p>
 </div>
 </div>
-<div id="outline-container-org90df82c" class="outline-3">
-<h3 id="org90df82c"><span class="section-number-3">1.4</span> 07:35</h3>
+<div id="outline-container-org12279d4" class="outline-3">
+<h3 id="org12279d4"><span class="section-number-3">1.4.</span> 07:35</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 わかった。:custom のあとには '() が必要で、 :config のあとには何もいらないのかな。
 </p>
 </div>
 </div>
-<div id="outline-container-orgd9a504f" class="outline-3">
-<h3 id="orgd9a504f"><span class="section-number-3">1.5</span> 14:46</h3>
+<div id="outline-container-org69b42b2" class="outline-3">
+<h3 id="org69b42b2"><span class="section-number-3">1.5.</span> 14:46</h3>
 </div>
-<div id="outline-container-org5dc91ff" class="outline-3">
-<h3 id="org5dc91ff"><span class="section-number-3">1.6</span> 14:47 leaf の config error</h3>
+<div id="outline-container-org15ffeec" class="outline-3">
+<h3 id="org15ffeec"><span class="section-number-3">1.6.</span> 14:47 leaf の config error</h3>
 <div class="outline-text-3" id="text-1-6">
 <p>
 leaf の :config に入れると以下のエラー
 </p>
-<pre class="example">
+<pre class="example" id="orgaeb3e0b">
 Warning (leaf): Error in `auto-install' block.  Error msg: Symbol’s function definition is void: auto-install-compatibility-setup
 </pre>
 </div>
 </div>
-<div id="outline-container-orgaccaccc" class="outline-3">
-<h3 id="orgaccaccc"><span class="section-number-3">1.7</span> 15:01 Warning (leaf): Error in `calendar' block.  Error msg: Symbol’s value as variable is void: calendar-iso-date-display-form</h3>
+<div id="outline-container-org5a6540a" class="outline-3">
+<h3 id="org5a6540a"><span class="section-number-3">1.7.</span> 15:01 Warning (leaf): Error in `calendar' block.  Error msg: Symbol’s value as variable is void: calendar-iso-date-display-form</h3>
 <div class="outline-text-3" id="text-1-7">
 <p>
 以下でも leaf だとエラー。
 </p>
 
 <div class="org-src-container">
-<pre class="src src-elisp"><span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">&#24180;&#26376;&#26085;&#12434;&#12381;&#12429;&#12360;&#12390;&#34920;&#31034;</span>
-(<span style="color: #0000FF;">setq</span> calendar-date-display-form calendar-iso-date-display-form)
-(<span style="color: #0000FF;">setq</span> calendar-month-header calendar-iso-month-header)
-(<span style="color: #0000FF;">setq</span> diary-date-forms diary-iso-date-forms)
+<pre class="src src-elisp">;; 年月日をそろえて表示
+(setq calendar-date-display-form calendar-iso-date-display-form)
+(setq calendar-month-header calendar-iso-month-header)
+(setq diary-date-forms diary-iso-date-forms)
 </pre>
 </div>
 </div>
@@ -373,8 +327,8 @@ Warning (leaf): Error in `auto-install' block.  Error msg: Symbol’s function d
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: clothoid</p>
-<p class="date">Created: 2021-10-09 Sat 11:11</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+<p class="date">Created: 2025-01-19 日 16:28</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
 </html>

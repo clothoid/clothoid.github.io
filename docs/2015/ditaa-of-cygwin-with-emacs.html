@@ -3,14 +3,14 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
 <head>
-<!-- 2021-10-09 Sat 11:11 -->
+<!-- 2025-01-19 日 16:28 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>ditaa of cygwin with emacs org-mode</title>
-<meta name="generator" content="Org mode" />
 <meta name="author" content="clothoid" />
-<style type="text/css">
- <!--/*--><![CDATA[/*><!--*/
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
   .subtitle { text-align: center;
@@ -31,8 +31,9 @@
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
   pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
     padding: 8pt;
     font-family: monospace;
     overflow: auto;
@@ -40,22 +41,22 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
-    padding-top: 1.2em;
+    overflow: auto;
   }
   pre.src:before {
     display: none;
     position: absolute;
-    background-color: white;
-    top: -10px;
-    right: 10px;
+    top: -8px;
+    right: 12px;
     padding: 3px;
-    border: 1px solid black;
+    color: #555;
+    background-color: #f2f2f299;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -190,80 +191,33 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
-  /*]]>*/-->
+  .org-svg { }
 </style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6390292679676181" crossorigin="anonymous"></script>
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
-</script>
 </head>
 <body>
 <div id="org-div-home-and-up">
  <a accesskey="h" href="https://clothoid.github.io/sitemap.html"> UP </a>
  |
  <a accesskey="H" href="https://clothoid.github.io/"> HOME </a>
-</div><div id="content">
+</div><div id="content" class="content">
 <h1 class="title">ditaa of cygwin with emacs org-mode</h1>
-<div id="table-of-contents">
+<div id="table-of-contents" role="doc-toc">
 <h2>&#30446;&#27425;</h2>
-<div id="text-table-of-contents">
+<div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org9f86481">1. 問題</a></li>
-<li><a href="#org953ab37">2. 環境</a></li>
-<li><a href="#org21686d5">3. 対処方法</a></li>
-<li><a href="#org5bb20af">4. 理由</a></li>
-<li><a href="#org3937b33">5. 結果</a></li>
-<li><a href="#org6d0cb3d">6. 参考</a></li>
+<li><a href="#org252d4fe">1. 問題</a></li>
+<li><a href="#org21afaa3">2. 環境</a></li>
+<li><a href="#orgebc8217">3. 対処方法</a></li>
+<li><a href="#orgc50fb8e">4. 理由</a></li>
+<li><a href="#org093682c">5. 結果</a></li>
+<li><a href="#org5144670">6. 参考</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org9f86481" class="outline-2">
-<h2 id="org9f86481"><span class="section-number-2">1</span> 問題</h2>
+<div id="outline-container-org252d4fe" class="outline-2">
+<h2 id="org252d4fe"><span class="section-number-2">1.</span> 問題</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>gnupack (Cygwin) の環境で、Windows の java を使い org-babel-execute-src-block を使いたい</li>
@@ -272,8 +226,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org953ab37" class="outline-2">
-<h2 id="org953ab37"><span class="section-number-2">2</span> 環境</h2>
+<div id="outline-container-org21afaa3" class="outline-2">
+<h2 id="org21afaa3"><span class="section-number-2">2.</span> 環境</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>Windows 7 64bit</li>
@@ -284,7 +238,7 @@ for the JavaScript code in this tag.
 <li>Org-mode version 8.2.10</li>
 <li>Windows java version "1.8.0 _ 66"
 <ul class="org-ul">
-<li>Java(TM) SE Runtime Environment (build 1.8.0<sub>66</sub>-b18)</li>
+<li>Java(TM) SE Runtime Environment (build 1.8.0_66-b18)</li>
 <li>Java HotSpot(TM) 64-Bit Server VM (build 25.66-b18, mixed mode)</li>
 </ul></li>
 <li>ditaa 0.9</li>
@@ -292,67 +246,67 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org21686d5" class="outline-2">
-<h2 id="org21686d5"><span class="section-number-2">3</span> 対処方法</h2>
+<div id="outline-container-orgebc8217" class="outline-2">
+<h2 id="orgebc8217"><span class="section-number-2">3.</span> 対処方法</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 ob-ditaa.el を以下のように修正する。
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><span style="color: #CC0000; background-color: #FFFF88;">*** /home/clothoid/Dropbox/.emacs.d/local-lisp/org-8.2.10/lisp/ob-ditaa.el.orig</span><span style="color: #CC0000; background-color: #FFFF88;"> </span><span style="color: #CC0000; background-color: #FFFF88;">2014-12-09 23:42:18.../0000../00000 +0900</span>
-<span style="color: #CC0000; background-color: #FFFF88;">--- /home/clothoid/Dropbox/.emacs.d/local-lisp/org-8.2.10/lisp/ob-ditaa.el</span><span style="color: #CC0000; background-color: #FFFF88;">  </span><span style="color: #CC0000; background-color: #FFFF88;">2015-12-09 15:52:55.../0000../00000 +0900</span>
+<pre class="src src-emacs-lisp">*** /home/clothoid/Dropbox/.emacs.d/local-lisp/org-8.2.10/lisp/ob-ditaa.el.orig	2014-12-09 23:42:18.../0000../00000 +0900
+--- /home/clothoid/Dropbox/.emacs.d/local-lisp/org-8.2.10/lisp/ob-ditaa.el	2015-12-09 15:52:55.../0000../00000 +0900
 ***************
 *** 90,103 ****
-       (java (cdr (assoc <span style="color: #006FE0;">:java</span> params)))
-       (in-file (org-babel-temp-file <span style="color: #008000;">"ditaa-"</span>))
-       (eps (cdr (assoc <span style="color: #006FE0;">:eps</span> params)))
+       (java (cdr (assoc :java params)))
+       (in-file (org-babel-temp-file "ditaa-"))
+       (eps (cdr (assoc :eps params)))
        (cmd (concat org-babel-ditaa-java-cmd
-                <span style="color: #008000;">" "</span> java <span style="color: #008000;">" "</span> org-ditaa-jar-option <span style="color: #008000;">" "</span>
+                " " java " " org-ditaa-jar-option " "
 !               (shell-quote-argument
 !                (expand-file-name
-!             (<span style="color: #0000FF;">if</span> eps org-ditaa-eps-jar-path org-ditaa-jar-path)))
-                <span style="color: #008000;">" "</span> cmdline
-!               <span style="color: #008000;">" "</span> (org-babel-process-file-name in-file)
-!               <span style="color: #008000;">" "</span> (org-babel-process-file-name out-file)))
-       (pdf-cmd (<span style="color: #0000FF;">when</span> (<span style="color: #0000FF;">and</span> (<span style="color: #0000FF;">or</span> (string= (file-name-extension out-file) <span style="color: #008000;">"pdf"</span>)
-                       (cdr (assoc <span style="color: #006FE0;">:pdf</span> params))))
+!             (if eps org-ditaa-eps-jar-path org-ditaa-jar-path)))
+                " " cmdline
+!               " " (org-babel-process-file-name in-file)
+!               " " (org-babel-process-file-name out-file)))
+       (pdf-cmd (when (and (or (string= (file-name-extension out-file) "pdf")
+                       (cdr (assoc :pdf params))))
               (concat
 --- 90,124 ----
-       (java (cdr (assoc <span style="color: #006FE0;">:java</span> params)))
-       (in-file (org-babel-temp-file <span style="color: #008000;">"ditaa-"</span>))
-       (eps (cdr (assoc <span style="color: #006FE0;">:eps</span> params)))
+       (java (cdr (assoc :java params)))
+       (in-file (org-babel-temp-file "ditaa-"))
+       (eps (cdr (assoc :eps params)))
 +      (jar-file-name (shell-quote-argument
 +              (expand-file-name
-+               (<span style="color: #0000FF;">if</span> eps org-ditaa-eps-jar-path org-ditaa-jar-path))))
-+      (emacs-p (string-match <span style="color: #008000;">"cygwin"</span> (emacs-version)))
++               (if eps org-ditaa-eps-jar-path org-ditaa-jar-path))))
++      (emacs-p (string-match "cygwin" (emacs-version)))
 +      (jar-file-name-wrapped
-+       (<span style="color: #0000FF;">if</span> emacs-p
-+           <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">Cygwin doesn't have Jave, have to use Windows native Java.</span>
-+           <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">So Cygwin paths must be converted to Windows paths.</span>
-+           (format <span style="color: #008000;">"`cygpath -w %s`"</span> jar-file-name)
++       (if emacs-p
++           ;; Cygwin doesn't have Jave, have to use Windows native Java.
++           ;; So Cygwin paths must be converted to Windows paths.
++           (format "`cygpath -w %s`" jar-file-name)
 +         jar-file-name))
 +      (in-file-wrapped
-+       (<span style="color: #0000FF;">if</span> emacs-p
-+           (format <span style="color: #008000;">"`cygpath -w %s`"</span> (org-babel-process-file-name in-file))
++       (if emacs-p
++           (format "`cygpath -w %s`" (org-babel-process-file-name in-file))
 +         (org-babel-process-file-name in-file)))
 +      (out-file-wrapped
-+       (<span style="color: #0000FF;">if</span> emacs-p
-+           (format <span style="color: #008000;">"`cygpath -w %s`"</span> (org-babel-process-file-name out-file))
++       (if emacs-p
++           (format "`cygpath -w %s`" (org-babel-process-file-name out-file))
 +         (org-babel-process-file-name out-file)))
        (cmd (concat org-babel-ditaa-java-cmd
-                <span style="color: #008000;">" "</span> java <span style="color: #008000;">" "</span> org-ditaa-jar-option <span style="color: #008000;">" "</span>
-!               <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">(shell-quote-argument</span>
-!               <span style="color: #8D8D84;">;;  </span><span style="color: #8D8D84; font-style: italic;">(expand-file-name</span>
-!               <span style="color: #8D8D84;">;;     </span><span style="color: #8D8D84; font-style: italic;">(if eps org-ditaa-eps-jar-path org-ditaa-jar-path)))</span>
+                " " java " " org-ditaa-jar-option " "
+!               ;; (shell-quote-argument
+!               ;;  (expand-file-name
+!               ;;     (if eps org-ditaa-eps-jar-path org-ditaa-jar-path)))
 !               jar-file-name-wrapped
-                <span style="color: #008000;">" "</span> cmdline
-!               <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">" " (org-babel-process-file-name in-file)</span>
-!               <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">" " (org-babel-process-file-name out-file)))</span>
-!               <span style="color: #008000;">" "</span> in-file-wrapped
-!               <span style="color: #008000;">" "</span> out-file-wrapped))
-       (pdf-cmd (<span style="color: #0000FF;">when</span> (<span style="color: #0000FF;">and</span> (<span style="color: #0000FF;">or</span> (string= (file-name-extension out-file) <span style="color: #008000;">"pdf"</span>)
-                       (cdr (assoc <span style="color: #006FE0;">:pdf</span> params))))
+                " " cmdline
+!               ;; " " (org-babel-process-file-name in-file)
+!               ;; " " (org-babel-process-file-name out-file)))
+!               " " in-file-wrapped
+!               " " out-file-wrapped))
+       (pdf-cmd (when (and (or (string= (file-name-extension out-file) "pdf")
+                       (cdr (assoc :pdf params))))
               (concat
 </pre>
 </div>
@@ -360,14 +314,14 @@ ob-ditaa.el を以下のように修正する。
 </div>
 
 
-<div id="outline-container-org5bb20af" class="outline-2">
-<h2 id="org5bb20af"><span class="section-number-2">4</span> 理由</h2>
+<div id="outline-container-orgc50fb8e" class="outline-2">
+<h2 id="orgc50fb8e"><span class="section-number-2">4.</span> 理由</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 ob-ditta.el は cygwin のパスまで解釈してくれる分けではない。例えば、以下のように書いて、C-c C-c を実行すると
 </p>
 
-<pre class="example">
+<pre class="example" id="org6bbd7d4">
 #+begin_src ditaa :file 2015-12-16-182508-ditaa_example1.png
   /-----------------\
   | Summer Triangle |
@@ -391,7 +345,7 @@ ob-ditaa.el では
 が実行されてしまい、以下のように <b>Message</b> に出力されるように、エラーとなってしまう。
 </p>
 
-<pre class="example">
+<pre class="example" id="org2ef7372">
 executing Ditaa code block...
 java -Dfile.encoding=UTF-8 -jar /home/clothoid/bin/ditaa.jar  /c/temp/gnupack/babel-7616WAi/ditaa-7616CMn /home/clothoid/junk/2015-12-16-182508-ditaa_example1.png
 
@@ -414,14 +368,14 @@ Code block evaluation complete.
 </div>
 </div>
 
-<div id="outline-container-org3937b33" class="outline-2">
-<h2 id="org3937b33"><span class="section-number-2">5</span> 結果</h2>
+<div id="outline-container-org093682c" class="outline-2">
+<h2 id="org093682c"><span class="section-number-2">5.</span> 結果</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 <b>Message</b> バッファは以下のとおり。
 </p>
 
-<pre class="example">
+<pre class="example" id="org5841ac8">
 executing Ditaa code block...
 java -Dfile.encoding=UTF-8 -jar `cygpath -w /home/clothoid/bin/ditaa.jar`  `cygpath -w /c/temp/gnupack/babel-6976x_8/ditaa-69761AF` `cygpath -w /home/clothoid/junk/2015-12-16-182508-ditaa_example1.png`
 
@@ -441,15 +395,15 @@ Code block evaluation complete.
 </p>
 
 
-<div class="figure">
+<div id="org8e1db2e" class="figure">
 <p><img src="../img/2015/2015-12-16-182508-ditaa_example1.png" alt="2015-12-16-182508-ditaa_example1.png" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org6d0cb3d" class="outline-2">
-<h2 id="org6d0cb3d"><span class="section-number-2">6</span> 参考</h2>
+<div id="outline-container-org5144670" class="outline-2">
+<h2 id="org5144670"><span class="section-number-2">6.</span> 参考</h2>
 <div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li><a href="https://lists.gnu.org/archive/html/emacs-orgmode/2013-07/msg00669.html">Re: ob-ditaa.el for Cygwin </a></li>
@@ -461,8 +415,8 @@ Code block evaluation complete.
 </div>
 <div id="postamble" class="status">
 <p class="author">&#33879;&#32773;: clothoid</p>
-<p class="date">Created: 2021-10-09 Sat 11:11</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+<p class="date">Created: 2025-01-19 日 16:28</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
 </html>

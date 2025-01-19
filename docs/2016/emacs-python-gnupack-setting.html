@@ -3,14 +3,14 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
 <head>
-<!-- 2022-08-27 Sat 17:03 -->
+<!-- 2025-01-19 日 16:28 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>emacs 24 で Python の環境を作る</title>
-<meta name="generator" content="Org mode" />
 <meta name="author" content="clothoid" />
-<style type="text/css">
- <!--/*--><![CDATA[/*><!--*/
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
   .subtitle { text-align: center;
@@ -31,8 +31,9 @@
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
   pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
     padding: 8pt;
     font-family: monospace;
     overflow: auto;
@@ -40,22 +41,22 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
-    padding-top: 1.2em;
+    overflow: auto;
   }
   pre.src:before {
     display: none;
     position: absolute;
-    background-color: white;
-    top: -10px;
-    right: 10px;
+    top: -8px;
+    right: 12px;
     padding: 3px;
-    border: 1px solid black;
+    color: #555;
+    background-color: #f2f2f299;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -190,86 +191,39 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
-  /*]]>*/-->
+  .org-svg { }
 </style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6390292679676181" crossorigin="anonymous"></script>
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
-</script>
 </head>
 <body>
 <div id="org-div-home-and-up">
  <a accesskey="h" href="https://clothoid.github.io/sitemap.html"> UP </a>
  |
  <a accesskey="H" href="https://clothoid.github.io/"> HOME </a>
-</div><div id="content">
+</div><div id="content" class="content">
 <h1 class="title">emacs 24 で Python の環境を作る</h1>
-<div id="table-of-contents">
+<div id="table-of-contents" role="doc-toc">
 <h2>&#30446;&#27425;</h2>
-<div id="text-table-of-contents">
+<div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgbd0db6f">1. 環境</a></li>
-<li><a href="#orgfd0759d">2. python</a></li>
-<li><a href="#org724e2f8">3. easy<sub>install</sub></a></li>
-<li><a href="#org28d9178">4. pip</a></li>
-<li><a href="#org00ecbdc">5. virtualenv</a></li>
-<li><a href="#orgd3b007f">6. PEP8</a></li>
-<li><a href="#org052bd67">7. pyflakes</a></li>
-<li><a href="#org33adc40">8. jedi</a></li>
-<li><a href="#orgc15ceb3">9. 参考</a></li>
+<li><a href="#org23d9e0e">1. 環境</a></li>
+<li><a href="#org9ba30c9">2. python</a></li>
+<li><a href="#orgfcd9fcf">3. easy_install</a></li>
+<li><a href="#org0a4dad9">4. pip</a></li>
+<li><a href="#org1037721">5. virtualenv</a></li>
+<li><a href="#org1f17695">6. PEP8</a></li>
+<li><a href="#orga4209de">7. pyflakes</a></li>
+<li><a href="#org659153e">8. jedi</a></li>
+<li><a href="#orgc171da2">9. 参考</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgbd0db6f" class="outline-2">
-<h2 id="orgbd0db6f"><span class="section-number-2">1</span> 環境</h2>
+<div id="outline-container-org23d9e0e" class="outline-2">
+<h2 id="org23d9e0e"><span class="section-number-2">1.</span> 環境</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>Windows 7 64bit</li>
-<li>gnupack<sub>devel</sub>-13.06-2015.11.08
+<li>gnupack_devel-13.06-2015.11.08
 <ul class="org-ul">
 <li>binutils 2.25-4</li>
 <li>libuuid-devel 2.25.2-2</li>
@@ -278,7 +232,7 @@ for the JavaScript code in this tag.
 <li>Python 2.7.10
 <ul class="org-ul">
 <li>python-setuptools 15.2-1</li>
-<li>easy<sub>install</sub> 2.7</li>
+<li>easy_install 2.7</li>
 <li>pip 8.1.1 from /usr/lib/python2.7/site-packages/pip-8.1.1-py2.7.egg (python 2.7)
 <ul class="org-ul">
 <li>apipkg==1.4</li>
@@ -305,8 +259,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgfd0759d" class="outline-2">
-<h2 id="orgfd0759d"><span class="section-number-2">2</span> python</h2>
+<div id="outline-container-org9ba30c9" class="outline-2">
+<h2 id="org9ba30c9"><span class="section-number-2">2.</span> python</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
 <pre class="src src-sh">$ apt-cyg install python
@@ -317,7 +271,7 @@ Python 2.7.10
 <p>
 emacs で python を快適に使用するために、python-mode を入れる。
 </p>
-<pre class="example">
+<pre class="example" id="org3b0ffbf">
 M-x package-install python-mode
 </pre>
 <p>
@@ -326,16 +280,16 @@ init.el の設定は以下のとおり。
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(add-hook 'python-mode-hook
                    '(lambda ()
-                        (<span style="color: #0000FF;">setq</span> indent-tabs-mode nil)
-                        (<span style="color: #0000FF;">setq</span> indent-level 4)
-                        (<span style="color: #0000FF;">setq</span> python-indent 4)
-                        (<span style="color: #0000FF;">setq</span> tab-width 4)))
+                        (setq indent-tabs-mode nil)
+                        (setq indent-level 4)
+                        (setq python-indent 4)
+                        (setq tab-width 4)))
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org724e2f8" class="outline-2">
-<h2 id="org724e2f8"><span class="section-number-2">3</span> easy<sub>install</sub></h2>
+<div id="outline-container-orgfcd9fcf" class="outline-2">
+<h2 id="orgfcd9fcf"><span class="section-number-2">3.</span> easy_install</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 python のパッケージ管理ツール。python-setuptools の中に入っている。
@@ -349,11 +303,11 @@ setuptools 15.2
 </div>
 </div>
 
-<div id="outline-container-org28d9178" class="outline-2">
-<h2 id="org28d9178"><span class="section-number-2">4</span> pip</h2>
+<div id="outline-container-org0a4dad9" class="outline-2">
+<h2 id="org0a4dad9"><span class="section-number-2">4.</span> pip</h2>
 <div class="outline-text-2" id="text-4">
 <p>
-easy<sub>install</sub> の強化版。
+easy_install の強化版。
 </p>
 <div class="org-src-container">
 <pre class="src src-sh">$ apt-cyg install binutils libuuid-devel
@@ -365,8 +319,8 @@ pip 8.1.1 from /usr/lib/python2.7/site-packages/pip-8.1.1-py2.7.egg (python 2.7)
 </div>
 </div>
 
-<div id="outline-container-org00ecbdc" class="outline-2">
-<h2 id="org00ecbdc"><span class="section-number-2">5</span> virtualenv</h2>
+<div id="outline-container-org1037721" class="outline-2">
+<h2 id="org1037721"><span class="section-number-2">5.</span> virtualenv</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 プロジェクト毎に仮想環境を作れるツール。
@@ -375,7 +329,7 @@ pip 8.1.1 from /usr/lib/python2.7/site-packages/pip-8.1.1-py2.7.egg (python 2.7)
 <pre class="src src-sh">$ easy_install-2.7 virtualenv
 $ easy_install-2.7 virtualenvwrapper
 $ source virtualenvwrapper.sh
-$ export <span style="color: #BA36A5;">WORKON_HOME</span>=~/.virtualenvs
+$ export WORKON_HOME=~/.virtualenvs
 $ virtualenv --version
 15.0.1
 </pre>
@@ -397,8 +351,8 @@ $ rmvirtualenv myproject
 </div>
 </div>
 
-<div id="outline-container-orgd3b007f" class="outline-2">
-<h2 id="orgd3b007f"><span class="section-number-2">6</span> PEP8</h2>
+<div id="outline-container-org1f17695" class="outline-2">
+<h2 id="org1f17695"><span class="section-number-2">6.</span> PEP8</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 Python のコーディング規約 PEP8 のチェックなどを簡単にするツール群。
@@ -420,7 +374,7 @@ $ pep8 2016-03-29-174409.py
 </div>
 
 <p>
-pytest-pep8 は、pep8 をより見易くしたもの。例えば、以下のように使う<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>。
+pytest-pep8 は、pep8 をより見易くしたもの。例えば、以下のように使う<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>。
 </p>
 <div class="org-src-container">
 <pre class="src src-sh">$ cat 2016-03-29-174409.py
@@ -440,7 +394,7 @@ __________________________________ PEP8-check __________________________________
 import sys, os
           ^
 
-=========================== 1 failed<span style="color: #0000FF;"> in</span> 0.02 seconds ===========================
+=========================== 1 failed in 0.02 seconds ===========================
 </pre>
 </div>
 
@@ -459,25 +413,25 @@ import os
 <p>
 pep8 を emacs から利用するために、package を入れる。
 </p>
-<pre class="example">
+<pre class="example" id="org06d6d18">
 M-x package-install RET python-pep8 RET 
 </pre>
 <p>
 そして、init.el に以下を記述
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #0000FF;">require</span> <span style="color: #008000;">"python-pep8"</span>)
-<span style="color: #8D8D84;">; </span><span style="color: #8D8D84; font-style: italic;">pep8 &#12398;&#12452;&#12531;&#12473;&#12488;&#12540;&#12523;&#12497;&#12473;&#12434;&#25351;&#23450;</span>
-(<span style="color: #0000FF;">defcustom</span> <span style="color: #BA36A5;">python-pep8-command</span> <span style="color: #008000;">"/usr/bin/pep8"</span>
-  <span style="color: #036A07;">"PEP8 command."</span>
-  <span style="color: #006FE0;">:type</span> '(file)
-  <span style="color: #006FE0;">:group</span> 'python-pep8)
+<pre class="src src-emacs-lisp">(require "python-pep8")
+; pep8 のインストールパスを指定
+(defcustom python-pep8-command "/usr/bin/pep8"
+  "PEP8 command."
+  :type '(file)
+  :group 'python-pep8)
 </pre>
 </div>
 <p>
 python-pep8 の使い方は、例えば、2016-03-29-174409.py を開き、M-x python-pep8 とすると python-pep8 バッファに以下のように表示される。
 </p>
-<pre class="example">
+<pre class="example" id="org774f5ed">
 [*python-pep8*]
 ===
 -*- mode: python-pep8; default-directory: "~/junk/" -*-
@@ -492,8 +446,8 @@ PEP8 finished at Tue Mar 29 18:01:10
 </div>
 </div>
 
-<div id="outline-container-org052bd67" class="outline-2">
-<h2 id="org052bd67"><span class="section-number-2">7</span> pyflakes</h2>
+<div id="outline-container-orga4209de" class="outline-2">
+<h2 id="orga4209de"><span class="section-number-2">7.</span> pyflakes</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 Python の文法エラーをチェックするもの。
@@ -507,21 +461,21 @@ pyflakes は、例えば、以下のように使う。
 </p>
 <div class="org-src-container">
 <pre class="src src-sh">$ cat 2016-03-29-180555.py
-<span style="color: #8D8D84;">#</span><span style="color: #8D8D84; font-style: italic;">!/usr/bin/env python</span>
-<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">-*- coding: utf-8 -*-</span>
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
-<span style="color: #0000FF;">if</span> __name__ == <span style="color: #008000;">'__main__'</span>
-        print <span style="color: #008000;">'OK!'</span>
+if __name__ == '__main__'
+        print 'OK!'
 $ pyflakes 2016-03-29-180555.py
 2016-03-29-180555.py:4:26: invalid syntax
-<span style="color: #0000FF;">if</span> __name__ == <span style="color: #008000;">'__main__'</span>
+if __name__ == '__main__'
                          ^
 $ cat 2016-03-29-180555.py
-<span style="color: #8D8D84;">#</span><span style="color: #8D8D84; font-style: italic;">!/usr/bin/env python</span>
-<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">-*- coding: utf-8 -*-</span>
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
-<span style="color: #0000FF;">if</span> __name__ == <span style="color: #008000;">'__main__'</span>:
-        print <span style="color: #008000;">'OK!'</span>
+if __name__ == '__main__':
+        print 'OK!'
 $ pyflakes 2016-03-29-180555.py
 $ python 2016-03-29-180555.py
 OK!
@@ -531,7 +485,7 @@ OK!
 <p>
 pyflakes を emacs から使うために、以下のように設定する。
 </p>
-<pre class="example">
+<pre class="example" id="orge247868">
 M-x package-install RET flymake RET
 M-x package-install RET flymake-python-pyflakes RET 
 M-x package-install RET flymake-cursor RET 
@@ -540,8 +494,8 @@ M-x package-install RET flymake-cursor RET
 init.el は以下のようにする。
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #0000FF;">require</span> '<span style="color: #D0372D;">flymake-python-pyflakes</span>)
-(<span style="color: #0000FF;">require</span> '<span style="color: #D0372D;">flymake-cursor</span>)
+<pre class="src src-emacs-lisp">(require 'flymake-python-pyflakes)
+(require 'flymake-cursor)
 (add-hook 'python-mode-hook 'flymake-python-pyflakes-load)
 </pre>
 </div>
@@ -550,27 +504,27 @@ init.el は以下のようにする。
 flymake-python-pyflakes および flymake-cursor の使い方は、例えば、以下のようなファイルで、
 </p>
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #8D8D84;">#</span><span style="color: #8D8D84; font-style: italic;">!/usr/bin/</span><span style="color: #0000FF;">env</span><span style="color: #8D8D84; font-style: italic;"> python</span>
-<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">-*- coding: utf-8 -*-</span>
+<pre class="src src-sh">#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
-<span style="color: #0000FF;">if</span> __name__ == <span style="color: #008000;">'__main__'</span>
-        print <span style="color: #008000;">'OK!'</span>
+if __name__ == '__main__'
+        print 'OK!'
 </pre>
 </div>
 <p>
 if の行にカーソルがくると、ミニバッファに以下のように表示される。
 </p>
-<pre class="example">
+<pre class="example" id="orga4464c5">
 invalid syntax
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org33adc40" class="outline-2">
-<h2 id="org33adc40"><span class="section-number-2">8</span> jedi</h2>
+<div id="outline-container-org659153e" class="outline-2">
+<h2 id="org659153e"><span class="section-number-2">8.</span> jedi</h2>
 <div class="outline-text-2" id="text-8">
 <p>
-python でのかしこい補完機能<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>。
+python でのかしこい補完機能<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup>。
 </p>
 <div class="org-src-container">
 <pre class="src src-sh">pip install epc jedi
@@ -579,7 +533,7 @@ python でのかしこい補完機能<sup><a id="fnr.2" class="footref" href="#f
 <p>
 emacs から利用するために、以下を設定する。
 </p>
-<pre class="example">
+<pre class="example" id="orge8ee716">
 M-x package-install RET jedi RET
 </pre>
 <p>
@@ -587,7 +541,7 @@ init.el は以下のとおり。
 </p>
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(add-hook 'python-mode-hook 'jedi:setup)
-(<span style="color: #0000FF;">setq</span> jedi:complete-on-dot t)
+(setq jedi:complete-on-dot t)
 </pre>
 </div>
 <p>
@@ -600,8 +554,8 @@ init.el は以下のとおり。
 </div>
 </div>
 
-<div id="outline-container-orgc15ceb3" class="outline-2">
-<h2 id="orgc15ceb3"><span class="section-number-2">9</span> 参考</h2>
+<div id="outline-container-orgc171da2" class="outline-2">
+<h2 id="orgc171da2"><span class="section-number-2">9.</span> 参考</h2>
 <div class="outline-text-2" id="text-9">
 <ul class="org-ul">
 <li><a href="http://qiita.com/kunst1080/items/8349ad2d3bbe808651d1">Cygwin 環境に virtualenv を入れてみた - Qiita</a></li>
@@ -613,7 +567,7 @@ init.el は以下のとおり。
 <li><a href="http://tkf.github.io/emacs-jedi/latest/">Jedi.el - Python auto-completion for Emacs — Emacs Jedi 0.2.0alpha2 documentation</a></li>
 <li><a href="http://yukke.hateblo.jp/entry/2015/01/09/222311">emacs+pyflakes+flymake で python の構文チェックを勝手にしてもらう - yukke::note</a></li>
 <li><a href="http://hiroom2.jimdo.com/2015/09/18/emacs%E3%81%AEflymake%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9/">emacs の flymake パッケージの使い方 - Narrow Escape</a></li>
-<li><a href="http://www.yunabe.jp/docs/python_package_management.html">Python パッケージ管理技術まとめ (pip, setuptools, easy<sub>install</sub>, etc)</a></li>
+<li><a href="http://www.yunabe.jp/docs/python_package_management.html">Python パッケージ管理技術まとめ (pip, setuptools, easy_install, etc)</a></li>
 <li><a href="http://pep8-ja.readthedocs.org/ja/latest/">はじめに — pep8-ja 1.0 ドキュメント</a></li>
 <li><a href="http://qiita.com/kitsuyui/items/5ab4608003a29ff7689f">Python の Lint (文法チェッカ) まとめ - flake8 + hacking を使う - - Qiita</a></li>
 </ul>
@@ -623,11 +577,11 @@ init.el は以下のとおり。
 <h2 class="footnotes">&#33050;&#27880;: </h2>
 <div id="text-footnotes">
 
-<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 表示されるまで、くっそ重い。。。。
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2" role="doc-backlink">2</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 auto-complete と同時設定するとうまく効かなかった。
 </p></div></div>
 
@@ -636,8 +590,8 @@ auto-complete と同時設定するとうまく効かなかった。
 </div></div>
 <div id="postamble" class="status">
 <p class="author">&#33879;&#32773;: clothoid</p>
-<p class="date">Created: 2022-08-27 Sat 17:03</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+<p class="date">Created: 2025-01-19 日 16:28</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
 </html>

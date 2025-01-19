@@ -3,15 +3,15 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
 <head>
-<!-- 2022-08-27 Sat 17:03 -->
+<!-- 2025-01-19 日 16:29 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>emacs の flycheck で textlint を利用し、日本語の自動校正を行う</title>
-<meta name="generator" content="Org mode" />
 <meta name="author" content="clothoid" />
 <meta name="keywords" content="emacs flycheck nodejs textlint japanese" />
-<style type="text/css">
- <!--/*--><![CDATA[/*><!--*/
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
   .subtitle { text-align: center;
@@ -32,8 +32,9 @@
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
   pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
     padding: 8pt;
     font-family: monospace;
     overflow: auto;
@@ -41,22 +42,22 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
-    padding-top: 1.2em;
+    overflow: auto;
   }
   pre.src:before {
     display: none;
     position: absolute;
-    background-color: white;
-    top: -10px;
-    right: 10px;
+    top: -8px;
+    right: 12px;
     padding: 3px;
-    border: 1px solid black;
+    color: #555;
+    background-color: #f2f2f299;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -191,122 +192,85 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
-  /*]]>*/-->
+  .org-svg { }
 </style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6390292679676181" crossorigin="anonymous"></script>
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
 </script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        displayAlign: "center",
-        displayIndent: "0em",
 
-        "HTML-CSS": { scale: 100,
-                        linebreaks: { automatic: "false" },
-                        webFont: "TeX"
-                       },
-        SVG: {scale: 100,
-              linebreaks: { automatic: "false" },
-              font: "TeX"},
-        NativeMML: {scale: 100},
-        TeX: { equationNumbers: {autoNumber: "AMS"},
-               MultLineWidth: "85%",
-               TagSide: "right",
-               TagIndent: ".8em"
-             }
-});
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
 </script>
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
 <div id="org-div-home-and-up">
  <a accesskey="h" href="https://clothoid.github.io/sitemap.html"> UP </a>
  |
  <a accesskey="H" href="https://clothoid.github.io/"> HOME </a>
-</div><div id="content">
+</div><div id="content" class="content">
 <h1 class="title">emacs の flycheck で textlint を利用し、日本語の自動校正を行う</h1>
-<div id="table-of-contents">
+<div id="table-of-contents" role="doc-toc">
 <h2>&#30446;&#27425;</h2>
-<div id="text-table-of-contents">
+<div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org1179c72">1. 目的</a></li>
-<li><a href="#orgdd5e2c2">2. Windows</a>
+<li><a href="#org6bf87f3">1. 目的</a></li>
+<li><a href="#org421f8a5">2. Windows</a>
 <ul>
-<li><a href="#orgc10e2a6">2.1. 環境</a></li>
-<li><a href="#org44267e2">2.2. nodejs のインストールと設定</a></li>
-<li><a href="#orgdb13659">2.3. textlint のインストールと設定 </a></li>
-<li><a href="#org3024584">2.4. emacs の設定</a></li>
+<li><a href="#org3df3086">2.1. 環境</a></li>
+<li><a href="#orgecd0184">2.2. nodejs のインストールと設定</a></li>
+<li><a href="#orge9f89cb">2.3. textlint のインストールと設定 </a></li>
+<li><a href="#org8b1c349">2.4. emacs の設定</a></li>
 </ul>
 </li>
-<li><a href="#orgeb64475">3. Linux (Debian)</a>
+<li><a href="#org513c5d7">3. Linux (Debian)</a>
 <ul>
-<li><a href="#orgc05c846">3.1. 環境</a></li>
-<li><a href="#org8b1689f">3.2. nodejs のインストールと設定</a></li>
-<li><a href="#orgd58c0c2">3.3. textlint のインストールと設定 </a></li>
-<li><a href="#org66b55b9">3.4. emacs の設定</a></li>
+<li><a href="#org27bc99e">3.1. 環境</a></li>
+<li><a href="#org97adb59">3.2. nodejs のインストールと設定</a></li>
+<li><a href="#orgd210b50">3.3. textlint のインストールと設定 </a></li>
+<li><a href="#orgea50f8f">3.4. emacs の設定</a></li>
 </ul>
 </li>
-<li><a href="#orgbf347a5">4. やりたいけど、分からないこと</a></li>
-<li><a href="#org8a8afd5">5. 参考</a></li>
+<li><a href="#org6ec9a08">4. やりたいけど、分からないこと</a></li>
+<li><a href="#orgb5181d8">5. 参考</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org1179c72" class="outline-2">
-<h2 id="org1179c72"><span class="section-number-2">1</span> 目的</h2>
+<div id="outline-container-org6bf87f3" class="outline-2">
+<h2 id="org6bf87f3"><span class="section-number-2">1.</span> 目的</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 textlint を emacs の flycheck で利用し、日本語の文章をチェックするよう設定する。
 </p>
 
 
-<div class="figure">
+<div id="org762d78d" class="figure">
 <p><img src="../img/2018/Screenshot_from_2018-06-26_15-23-39.png" alt="Screenshot_from_2018-06-26_15-23-39.png" width="800px" />
 </p>
 </div>
@@ -337,12 +301,12 @@ textlint を emacs の flycheck で利用し、日本語の文章をチェック
 </div>
 
 
-<div id="outline-container-orgdd5e2c2" class="outline-2">
-<h2 id="orgdd5e2c2"><span class="section-number-2">2</span> Windows</h2>
+<div id="outline-container-org421f8a5" class="outline-2">
+<h2 id="org421f8a5"><span class="section-number-2">2.</span> Windows</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgc10e2a6" class="outline-3">
-<h3 id="orgc10e2a6"><span class="section-number-3">2.1</span> 環境</h3>
+<div id="outline-container-org3df3086" class="outline-3">
+<h3 id="org3df3086"><span class="section-number-3">2.1.</span> 環境</h3>
 <div class="outline-text-3" id="text-2-1">
 <ul class="org-ul">
 <li>Windows 7/10 pro</li>
@@ -353,8 +317,8 @@ textlint を emacs の flycheck で利用し、日本語の文章をチェック
 </div>
 </div>
 
-<div id="outline-container-org44267e2" class="outline-3">
-<h3 id="org44267e2"><span class="section-number-3">2.2</span> nodejs のインストールと設定</h3>
+<div id="outline-container-orgecd0184" class="outline-3">
+<h3 id="orgecd0184"><span class="section-number-3">2.2.</span> nodejs のインストールと設定</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 textlint は npm で提供されているため、nodejs をインストールする。
@@ -365,43 +329,43 @@ textlint は npm で提供されているため、nodejs をインストール�
 <ol class="org-ol">
 <li><a href="https://nodejs.org/en/">nodejsの公式</a> より、[other download] を選択</li>
 <li>[Windows Binary (.zip)] より、[64bit] を選択</li>
-<li>[node-v10.5.0-win-x64.zip] を適当な場所(例えば %HOME%\app\node-v10.5.0-win-x64)に展開<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup></li>
+<li>[node-v10.5.0-win-x64.zip] を適当な場所(例えば %HOME%\app\node-v10.5.0-win-x64)に展開<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup></li>
 <li><p>
 (オプション) 以下の手順で Proxy を設定する
 </p>
 <div class="org-src-container">
 <pre class="src src-powershell">PS &gt; cd $Env:HOME\app\node-v10.5.0-win-x64
 PS &gt; .\npm config set proxy http://proxy.example.com:8080
-PS &gt; .\npm config set <span style="color: #006699;">https-proxy</span> https://proxy.example.com:8080
+PS &gt; .\npm config set https-proxy https://proxy.example.com:8080
 </pre>
 </div></li>
 </ol>
 </div>
 </div>
 
-<div id="outline-container-orgdb13659" class="outline-3">
-<h3 id="orgdb13659"><span class="section-number-3">2.3</span> textlint のインストールと設定 <sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup></h3>
+<div id="outline-container-orge9f89cb" class="outline-3">
+<h3 id="orge9f89cb"><span class="section-number-3">2.3.</span> textlint のインストールと設定 <sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup></h3>
 <div class="outline-text-3" id="text-2-3">
 <ol class="org-ol">
 <li><p>
 textlint をインストール (ちょっと時間かかる)
 </p>
 <div class="org-src-container">
-<pre class="src src-powershell">PS &gt; .\npm install <span style="color: #D0372D;">-g</span> textlint
+<pre class="src src-powershell">PS &gt; .\npm install -g textlint
 </pre>
 </div></li>
 <li><p>
-ルールプリセットのインストール (ちょっと時間かかる)<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup><sup>, </sup><sup><a id="fnr.4" class="footref" href="#fn.4">4</a></sup>
+ルールプリセットのインストール (ちょっと時間かかる)<sup><a id="fnr.3" class="footref" href="#fn.3" role="doc-backlink">3</a></sup><sup>, </sup><sup><a id="fnr.4" class="footref" href="#fn.4" role="doc-backlink">4</a></sup>
 </p>
 <div class="org-src-container">
-<pre class="src src-powershell">PS &gt; .\npm install <span style="color: #D0372D;">-g</span> textlint textlint-rule-preset-japanese textlint-rule-preset-jtf-style
+<pre class="src src-powershell">PS &gt; .\npm install -g textlint textlint-rule-preset-japanese textlint-rule-preset-jtf-style
 </pre>
 </div></li>
 <li><p>
 設定ファイルを作成
 </p>
 <div class="org-src-container">
-<pre class="src src-powershell">PS &gt; cd <span style="color: #BA36A5;">$</span><span style="color: #6434A3; text-decoration: underline;">Env</span><span style="color: #BA36A5;">:HOME</span>
+<pre class="src src-powershell">PS &gt; cd $Env:HOME
 PS &gt; .\app\node-v10.5.0-win-x64\textlint --init
 </pre>
 </div></li>
@@ -410,17 +374,17 @@ PS &gt; .\app\node-v10.5.0-win-x64\textlint --init
 </p>
 <div class="org-src-container">
 <pre class="src src-json">{
-    <span style="color: #0000FF;">"rules"</span>: {
-        <span style="color: #0000FF;">"preset-japanese"</span>: <span style="color: #D0372D;">true</span>,
-        <span style="color: #0000FF;">"preset-jtf-style"</span>: <span style="color: #D0372D;">true</span>    
+    "rules": {
+        "preset-japanese": true,
+        "preset-jtf-style": true	
     }
 }
 </pre>
 </div></li>
 <li><p>
-テスト用の test.md を <b>utf-8</b> で以下のように作成<sup><a id="fnr.5" class="footref" href="#fn.5">5</a></sup><sup>, </sup><sup><a id="fnr.6" class="footref" href="#fn.6">6</a></sup>
+テスト用の test.md を <b>utf-8</b> で以下のように作成<sup><a id="fnr.5" class="footref" href="#fn.5" role="doc-backlink">5</a></sup><sup>, </sup><sup><a id="fnr.6" class="footref" href="#fn.6" role="doc-backlink">6</a></sup>
 </p>
-<pre class="example">
+<pre class="example" id="org409c4be">
 我輩は猫である。
 この文章を校正してください、お願いします, ダメ?、そこをなんとか、して欲しいところです
 </pre></li>
@@ -433,50 +397,50 @@ v10.2.1
 PS &gt; .\app\node-v10.5.0-win-x64\textlint test.md
 
 HOME\test.md
-1:5   error    &#26412;&#25991;: <span style="color: #008000;">"&#12391;&#12354;&#12427;"</span>&#35519; &#12392; <span style="color: #008000;">"&#12391;&#12377;&#12414;&#12377;"</span>&#35519; &#12364;&#28151;&#22312; =&gt; <span style="color: #008000;">"&#12391;&#12354;&#12427;&#12290;"</span> &#12364;&#12391;&#12354;&#12427;&#35519;
+1:5   error    本文: "である"調 と "ですます"調 が混在 =&gt; "である。" がである調
       Total:
-      &#12391;&#12354;&#12427;  : 1
-      &#12391;&#12377;&#12414;&#12377;: 1                                                                                                   <span style="color: #006699;">preset-japanese</span>/no-mix-dearu-desumasu
-2:21  &#10003; error  &#21477;&#35501;&#28857;&#12395;&#12399;&#20840;&#35282;&#12398;&#12300;&#12289;&#12301;&#12392;&#12300;&#12290;&#12301;&#12434;&#20351;&#12356;&#12414;&#12377;&#12290;&#21644;&#25991;&#12398;&#21477;&#35501;&#28857;&#12392;&#12375;&#12390;&#12500;&#12522;&#12458;&#12489;(.)&#12392;&#12459;&#12531;&#12510;(,)&#12434;&#20351;&#29992;&#12375;&#12414;&#12379;&#12435;&#12290;  preset-jtf-style/1.2.1.&#21477;&#28857;(&#12290;)&#12392;&#35501;&#28857;(&#12289;)
-2:25  &#10003; error  &#30097;&#21839;&#31526;(&#65311;)&#12434;&#20351;&#29992;&#12377;&#12427;&#22580;&#21512;&#12399;&#12300;&#20840;&#35282;&#12301;&#12391;&#34920;&#35352;&#12375;&#12414;&#12377;&#12290;                                                    preset-jtf-style/4.2.2.&#30097;&#21839;&#31526;(&#65311;)
+      である  : 1
+      ですます: 1                                                                                                   preset-japanese/no-mix-dearu-desumasu
+2:21  ✓ error  句読点には全角の「、」と「。」を使います。和文の句読点としてピリオド(.)とカンマ(,)を使用しません。  preset-jtf-style/1.2.1.句点(。)と読点(、)
+2:25  ✓ error  疑問符(？)を使用する場合は「全角」で表記します。                                                    preset-jtf-style/4.2.2.疑問符(？)
 
-&#10006; 3 problems (3 errors, 0 warnings)
-&#10003; 2 fixable problems.
-<span style="color: #0000FF;">Try</span> to run: $ textlint --fix <span style="color: #6434A3;">[file]</span>
+✖ 3 problems (3 errors, 0 warnings)
+✓ 2 fixable problems.
+Try to run: $ textlint --fix [file]
 </pre>
 </div></li>
 </ol>
 </div>
 </div>
 
-<div id="outline-container-org3024584" class="outline-3">
-<h3 id="org3024584"><span class="section-number-3">2.4</span> emacs の設定</h3>
+<div id="outline-container-org8b1c349" class="outline-3">
+<h3 id="org8b1c349"><span class="section-number-3">2.4.</span> emacs の設定</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 init.el を以下のように設定する。
 </p>
 
 <div class="org-src-container">
-<pre class="src src-elisp"><span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">add PATH</span>
-(setenv <span style="color: #008000;">"PATH"</span>
+<pre class="src src-elisp">;; add PATH
+(setenv "PATH"
   (concat
-   <span style="color: #008000;">"~/app/node-v10.5.0-win-x64;"</span>
+   "~/app/node-v10.5.0-win-x64;"
 
-   (getenv <span style="color: #008000;">"PATH"</span>)))
-(<span style="color: #0000FF;">setq</span> exec-path (parse-colon-path (getenv <span style="color: #008000;">"PATH"</span>)))
+   (getenv "PATH")))
+(setq exec-path (parse-colon-path (getenv "PATH")))
 
-<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">flycheck for textlint</span>
-(<span style="color: #0000FF;">require</span> '<span style="color: #D0372D;">flycheck</span>)
-(<span style="color: #0000FF;">flycheck-define-checker</span> textlint
-  <span style="color: #036A07;">"A linter for prose."</span>
-  <span style="color: #006FE0;">:command</span> (<span style="color: #008000;">"textlint"</span> <span style="color: #008000;">"--format"</span> <span style="color: #008000;">"unix"</span> source-inplace)
- <span style="color: #006FE0;">:error-patterns</span>
-  ((warning line-start (file-name) <span style="color: #008000;">":"</span> line <span style="color: #008000;">":"</span> column <span style="color: #008000;">": "</span>
-        (id (one-or-more (not (any <span style="color: #008000;">" "</span>))))
+;; flycheck for textlint
+(require 'flycheck)
+(flycheck-define-checker textlint
+  "A linter for prose."
+  :command ("textlint" "--format" "unix" source-inplace)
+ :error-patterns
+  ((warning line-start (file-name) ":" line ":" column ": "
+        (id (one-or-more (not (any " "))))
         (message (one-or-more not-newline)
-         (zero-or-more <span style="color: #008000;">"\n"</span> (any <span style="color: #008000;">" "</span>) (one-or-more not-newline)))
+         (zero-or-more "\n" (any " ") (one-or-more not-newline)))
         line-end))
-  <span style="color: #006FE0;">:modes</span> (text-mode markdown-mode))
+  :modes (text-mode markdown-mode))
 
 (add-to-list 'flycheck-checkers 'textlint)
 (add-hook 'markdown-mode-hook 'flycheck-mode)
@@ -487,12 +451,12 @@ init.el を以下のように設定する。
 </div>
 
 
-<div id="outline-container-orgeb64475" class="outline-2">
-<h2 id="orgeb64475"><span class="section-number-2">3</span> Linux (Debian)</h2>
+<div id="outline-container-org513c5d7" class="outline-2">
+<h2 id="org513c5d7"><span class="section-number-2">3.</span> Linux (Debian)</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-orgc05c846" class="outline-3">
-<h3 id="orgc05c846"><span class="section-number-3">3.1</span> 環境</h3>
+<div id="outline-container-org27bc99e" class="outline-3">
+<h3 id="org27bc99e"><span class="section-number-3">3.1.</span> 環境</h3>
 <div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
 <li>debian 9.4</li>
@@ -503,20 +467,20 @@ init.el を以下のように設定する。
 </div>
 </div>
 
-<div id="outline-container-org8b1689f" class="outline-3">
-<h3 id="org8b1689f"><span class="section-number-3">3.2</span> nodejs のインストールと設定</h3>
+<div id="outline-container-org97adb59" class="outline-3">
+<h3 id="org97adb59"><span class="section-number-3">3.2.</span> nodejs のインストールと設定</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 textlint は npm で提供されているため、nodejs をインストールする。
 Debian Stretch で提供されている nodejs ではバージョンが古く、npm も提供されないため、公式サイトからダウンロードしてくる必要がある。
-ここでは textlint だけのために nodejs をインストールするため、パッケージは使用しない<sup><a id="fnr.7" class="footref" href="#fn.7">7</a></sup>。
+ここでは textlint だけのために nodejs をインストールするため、パッケージは使用しない<sup><a id="fnr.7" class="footref" href="#fn.7" role="doc-backlink">7</a></sup>。
 すでにインストール済みの場合、この作業は不要である。
 </p>
 
 <ol class="org-ol">
 <li><a href="https://nodejs.org/en/">nodejsの公式</a> より、[other download] を選択</li>
 <li>[Linux Binaries (x64)] より、[64bit] を選択</li>
-<li>[node-v10.5.0-linux-x64.tar.xz] を適当な場所(例えば ~\app\node-v10.5.0-linux-x64)に展開<sup><a id="fnr.1.100" class="footref" href="#fn.1">1</a></sup></li>
+<li>[node-v10.5.0-linux-x64.tar.xz] を適当な場所(例えば ~\app\node-v10.5.0-linux-x64)に展開<sup><a id="fnr.1.100" class="footref" href="#fn.1" role="doc-backlink">1</a></sup></li>
 <li><p>
 (オプション) 以下の手順で Proxy を設定する
 </p>
@@ -530,22 +494,22 @@ $ ./node npm config set https-proxy https://proxy.example.com:8080
 </div>
 </div>
 
-<div id="outline-container-orgd58c0c2" class="outline-3">
-<h3 id="orgd58c0c2"><span class="section-number-3">3.3</span> textlint のインストールと設定 <sup><a id="fnr.2.100" class="footref" href="#fn.2">2</a></sup></h3>
+<div id="outline-container-orgd210b50" class="outline-3">
+<h3 id="orgd210b50"><span class="section-number-3">3.3.</span> textlint のインストールと設定 <sup><a id="fnr.2.100" class="footref" href="#fn.2" role="doc-backlink">2</a></sup></h3>
 <div class="outline-text-3" id="text-3-3">
 <ol class="org-ol">
 <li><p>
 textlint をインストール (ちょっと時間かかる)
 </p>
 <div class="org-src-container">
-<pre class="src src-powershell">$ ./node npm install <span style="color: #D0372D;">-g</span> textlint
+<pre class="src src-powershell">$ ./node npm install -g textlint
 </pre>
 </div></li>
 <li><p>
-ルールプリセットのインストール (ちょっと時間かかる<sup><a id="fnr.3.100" class="footref" href="#fn.3">3</a></sup>)
+ルールプリセットのインストール (ちょっと時間かかる<sup><a id="fnr.3.100" class="footref" href="#fn.3" role="doc-backlink">3</a></sup>)
 </p>
 <div class="org-src-container">
-<pre class="src src-powershell">$ ./node npm install <span style="color: #D0372D;">-g</span> textlint-rule-preset-japanese textlint-rule-preset-jtf-style
+<pre class="src src-powershell">$ ./node npm install -g textlint-rule-preset-japanese textlint-rule-preset-jtf-style
 </pre>
 </div></li>
 <li><p>
@@ -553,7 +517,7 @@ textlint をインストール (ちょっと時間かかる)
 </p>
 <div class="org-src-container">
 <pre class="src src-powershell">$ cd ~
-$ ./app/<span style="color: #006699;">node-v10</span>.5.0-linux-x64/bin/node ./app/<span style="color: #006699;">node-v10</span>.5.0-linux-x64/bin/textlint --init
+$ ./app/node-v10.5.0-linux-x64/bin/node ./app/node-v10.5.0-linux-x64/bin/textlint --init
 </pre>
 </div></li>
 <li><p>
@@ -561,17 +525,17 @@ $ ./app/<span style="color: #006699;">node-v10</span>.5.0-linux-x64/bin/node ./a
 </p>
 <div class="org-src-container">
 <pre class="src src-json">{
-    <span style="color: #0000FF;">"rules"</span>: {
-        <span style="color: #0000FF;">"preset-japanese"</span>: <span style="color: #D0372D;">true</span>,
-        <span style="color: #0000FF;">"preset-jtf-style"</span>: <span style="color: #D0372D;">true</span>    
+    "rules": {
+        "preset-japanese": true,
+        "preset-jtf-style": true	
     }
 }
 </pre>
 </div></li>
 <li><p>
-テスト用の test.md を <b>utf-8</b> で以下のように作成<sup><a id="fnr.5.100" class="footref" href="#fn.5">5</a></sup><sup>, </sup><sup><a id="fnr.6.100" class="footref" href="#fn.6">6</a></sup>
+テスト用の test.md を <b>utf-8</b> で以下のように作成<sup><a id="fnr.5.100" class="footref" href="#fn.5" role="doc-backlink">5</a></sup><sup>, </sup><sup><a id="fnr.6.100" class="footref" href="#fn.6" role="doc-backlink">6</a></sup>
 </p>
-<pre class="example">
+<pre class="example" id="orgbe6ec6c">
 我輩は猫である。
 この文章を校正してください、お願いします, ダメ?、そこをなんとか、して欲しいところです
 </pre></li>
@@ -579,59 +543,59 @@ $ ./app/<span style="color: #006699;">node-v10</span>.5.0-linux-x64/bin/node ./a
 テストを実行
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">  $ ./app/node-v10.5.0-linux-x64/bin/node ./app/node-v10.5.0-linux-x64/bin/textlint --version
-  v10.2.1
-  $ ./app/node-v10.5.0-linux-x64/bin/node ./app/node-v10.5.0-linux-x64/bin/textlint test.md
+<pre class="src src-sh">$ ./app/node-v10.5.0-linux-x64/bin/node ./app/node-v10.5.0-linux-x64/bin/textlint --version
+v10.2.1
+$ ./app/node-v10.5.0-linux-x64/bin/node ./app/node-v10.5.0-linux-x64/bin/textlint test.md
 
-  /home/clothoid/test.md
-  1:5   error    &#26412;&#25991;&#12434;&#25964;&#20307;(&#12391;&#12377;&#12414;&#12377;&#35519;)&#12395;&#32113;&#19968;&#12375;&#12390;&#19979;&#12373;&#12356;&#12290;
-         &#26412;&#25991;&#12398;&#25991;&#20307;&#12399;&#12289;&#25964;&#20307;(&#12391;&#12377;&#12414;&#12377;&#35519;)&#12354;&#12427;&#12356;&#12399;&#24120;&#20307;(&#12391;&#12354;&#12427;&#35519;)&#12398;&#12393;&#12385;&#12425;&#12363;&#12391;&#32113;&#19968;&#12375;&#12414;&#12377;&#12290;
-         <span style="color: #008000;">"&#12391;&#12354;&#12427;&#12290;"</span>&#12364;&#24120;&#20307;(&#12391;&#12354;&#12427;&#35519;)&#12391;&#12377;&#12290;                                               preset-jtf-style/1.1.1.&#26412;&#25991;
-  1:5   error    &#26412;&#25991;: <span style="color: #008000;">"&#12391;&#12354;&#12427;"</span>&#35519; &#12392; <span style="color: #008000;">"&#12391;&#12377;&#12414;&#12377;"</span>&#35519; &#12364;&#28151;&#22312; =&gt; <span style="color: #008000;">"&#12391;&#12354;&#12427;&#12290;"</span> &#12364;&#12391;&#12354;&#12427;&#35519;
+/home/clothoid/test.md
+1:5   error    本文を敬体(ですます調)に統一して下さい。
+	       本文の文体は、敬体(ですます調)あるいは常体(である調)のどちらかで統一します。
+	       "である。"が常体(である調)です。                                               preset-jtf-style/1.1.1.本文
+1:5   error    本文: "である"調 と "ですます"調 が混在 =&gt; "である。" がである調
 
-    Total:
-    &#12391;&#12354;&#12427;  : 1
-    &#12391;&#12377;&#12414;&#12377;: 1                                                                             preset-japanese/no-mix-dearu-desumasu
-2:21  &#10003; error  &#20840;&#35282;&#12398;&#12500;&#12522;&#12458;&#12489;&#12392;&#12459;&#12531;&#12510;&#12399;&#20351;&#29992;&#12375;&#12414;&#12379;&#12435;&#12290;                                      preset-jtf-style/1.2.2.&#12500;&#12522;&#12458;&#12489;(<span style="color: #006FE0;">.</span>)&#12392;&#12459;&#12531;&#12510;(,)
-2:24  &#10003; error  &#30097;&#21839;&#31526;(&#65311;)&#12434;&#20351;&#29992;&#12377;&#12427;&#22580;&#21512;&#12399;&#12300;&#20840;&#35282;&#12301;&#12391;&#34920;&#35352;&#12375;&#12414;&#12377;&#12290;                            preset-jtf-style/4.2.2.&#30097;&#21839;&#31526;(&#65311;)
+      Total:
+      である  : 1
+      ですます: 1                                                                             preset-japanese/no-mix-dearu-desumasu
+  2:21  ✓ error  全角のピリオドとカンマは使用しません。                                      preset-jtf-style/1.2.2.ピリオド(.)とカンマ(,)
+  2:24  ✓ error  疑問符(？)を使用する場合は「全角」で表記します。                            preset-jtf-style/4.2.2.疑問符(？)
 
-  &#10006; 4 problems (4 errors, 0 warnings)
-  &#10003; 2 fixable problems.
-  Try to run: $ textlint --fix [file]
+✖ 4 problems (4 errors, 0 warnings)
+✓ 2 fixable problems.
+Try to run: $ textlint --fix [file]
 </pre>
 </div></li>
 <li><p>
 PATH の追加
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">$ export <span style="color: #BA36A5;">PATH</span>=$<span style="color: #BA36A5;">PATH</span>:~/app/node-v10.5.0-linux-x64/bin/
+<pre class="src src-sh">$ export PATH=$PATH:~/app/node-v10.5.0-linux-x64/bin/
 </pre>
 </div></li>
 </ol>
 </div>
 </div>
 
-<div id="outline-container-org66b55b9" class="outline-3">
-<h3 id="org66b55b9"><span class="section-number-3">3.4</span> emacs の設定</h3>
+<div id="outline-container-orgea50f8f" class="outline-3">
+<h3 id="orgea50f8f"><span class="section-number-3">3.4.</span> emacs の設定</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 init.el を以下のように設定する。
 </p>
 
 <div class="org-src-container">
-<pre class="src src-elisp"><span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">flycheck for textlint</span>
-(<span style="color: #0000FF;">require</span> '<span style="color: #D0372D;">flycheck</span>)
-(<span style="color: #0000FF;">flycheck-define-checker</span>
+<pre class="src src-elisp">;; flycheck for textlint
+(require 'flycheck)
+(flycheck-define-checker
  textlint
- <span style="color: #036A07;">"A linter for prose."</span>
- <span style="color: #006FE0;">:command</span> (<span style="color: #008000;">"textlint"</span> <span style="color: #008000;">"--format"</span> <span style="color: #008000;">"unix"</span> source-inplace)
- <span style="color: #006FE0;">:error-patterns</span>
- ((warning line-start (file-name) <span style="color: #008000;">":"</span> line <span style="color: #008000;">":"</span> column <span style="color: #008000;">": "</span>
-           (id (one-or-more (not (any <span style="color: #008000;">" "</span>))))
+ "A linter for prose."
+ :command ("textlint" "--format" "unix" source-inplace)
+ :error-patterns
+ ((warning line-start (file-name) ":" line ":" column ": "
+           (id (one-or-more (not (any " "))))
            (message (one-or-more not-newline)
-                    (zero-or-more <span style="color: #008000;">"\n"</span> (any <span style="color: #008000;">" "</span>) (one-or-more not-newline)))
+                    (zero-or-more "\n" (any " ") (one-or-more not-newline)))
            line-end))
- <span style="color: #006FE0;">:modes</span> (text-mode markdown-mode))
+ :modes (text-mode markdown-mode))
 
 (add-to-list 'flycheck-checkers 'textlint)
 (add-hook 'markdown-mode-hook 'flycheck-mode)
@@ -641,11 +605,11 @@ init.el を以下のように設定する。
 </div>
 </div>
 
-<div id="outline-container-orgbf347a5" class="outline-2">
-<h2 id="orgbf347a5"><span class="section-number-2">4</span> やりたいけど、分からないこと</h2>
+<div id="outline-container-org6ec9a08" class="outline-2">
+<h2 id="org6ec9a08"><span class="section-number-2">4.</span> やりたいけど、分からないこと</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
-<li>org-mode への対応<sup><a id="fnr.8" class="footref" href="#fn.8">8</a></sup></li>
+<li>org-mode への対応<sup><a id="fnr.8" class="footref" href="#fn.8" role="doc-backlink">8</a></sup></li>
 <li>"You must install peer dependencies yourself" と出る理由への対処(nodejs インストーラー版やパッケージでも同じ)</li>
 <li>Windows と debian で textlint の出力結果が微妙に違う理由への対処</li>
 <li>PATH を init.el に設定する方法(現在は .bashrc に書いて exec-path-from-shell.el で対処)</li>
@@ -653,8 +617,8 @@ init.el を以下のように設定する。
 </div>
 </div>
 
-<div id="outline-container-org8a8afd5" class="outline-2">
-<h2 id="org8a8afd5"><span class="section-number-2">5</span> 参考</h2>
+<div id="outline-container-orgb5181d8" class="outline-2">
+<h2 id="orgb5181d8"><span class="section-number-2">5.</span> 参考</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li><a href="https://textlint.github.io/">textlint</a></li>
@@ -676,19 +640,19 @@ init.el を以下のように設定する。
 <h2 class="footnotes">&#33050;&#27880;: </h2>
 <div id="text-footnotes">
 
-<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 Windows の場合、いわゆる"ホームディレクトリ"は環境変数 HOME で指定できる
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2" role="doc-backlink">2</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 node.js の package.json があるプロジェクトなら &#x2013;save-dev とかでインストールして使うことが<a href="https://textlint.github.io/">推奨されている</a>
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3" role="doc-backlink">3</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 textlint だけでは校正ルールが入っていない
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4">4</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4" role="doc-backlink">4</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 インストール中に以下のワーニングが出るが無視して大丈夫っぽい
 </p>
 <div class="org-src-container">
@@ -698,19 +662,19 @@ npm WARN textlint-rule-prh@5.0.1 requires a peer of textlint@&gt;= 5.5.0 but non
 </pre>
 </div></div></div>
 
-<div class="footdef"><sup><a id="fn.5" class="footnum" href="#fnr.5">5</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.5" class="footnum" href="#fnr.5" role="doc-backlink">5</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 cp932 だと動かなかった
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.6" class="footnum" href="#fnr.6">6</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.6" class="footnum" href="#fnr.6" role="doc-backlink">6</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 拡張子は .md か .txt じゃないとダメ
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.7" class="footnum" href="#fnr.7">7</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.7" class="footnum" href="#fnr.7" role="doc-backlink">7</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 パッケージマネージャーを使用したインストール方法は<a href="https://nodejs.org/ja/download/package-manager/">こちら</a>
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.8" class="footnum" href="#fnr.8">8</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.8" class="footnum" href="#fnr.8" role="doc-backlink">8</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 せめて、.org の拡張子で .md の textlint を動かしたい
 </p></div></div>
 
@@ -719,8 +683,8 @@ cp932 だと動かなかった
 </div></div>
 <div id="postamble" class="status">
 <p class="author">&#33879;&#32773;: clothoid</p>
-<p class="date">Created: 2022-08-27 Sat 17:03</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+<p class="date">Created: 2025-01-19 日 16:29</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
 </html>

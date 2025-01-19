@@ -3,14 +3,14 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-10-09 Sat 11:11 -->
+<!-- 2025-01-19 日 16:28 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lrm;</title>
-<meta name="generator" content="Org mode" />
 <meta name="author" content="clothoid" />
-<style type="text/css">
- <!--/*--><![CDATA[/*><!--*/
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
   .subtitle { text-align: center;
@@ -31,8 +31,9 @@
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
   pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
     padding: 8pt;
     font-family: monospace;
     overflow: auto;
@@ -40,22 +41,22 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
-    padding-top: 1.2em;
+    overflow: auto;
   }
   pre.src:before {
     display: none;
     position: absolute;
-    background-color: white;
-    top: -10px;
-    right: 10px;
+    top: -8px;
+    right: 12px;
     padding: 3px;
-    border: 1px solid black;
+    color: #555;
+    background-color: #f2f2f299;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -190,106 +191,59 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
-  /*]]>*/-->
+  .org-svg { }
 </style>
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
-</script>
 </head>
 <body>
-<div id="content">
-<div id="table-of-contents">
+<div id="content" class="content">
+<div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
-<div id="text-table-of-contents">
+<div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org17ddd1d">1. 2020-10-21</a>
+<li><a href="#org6dcc6e4">1. 2020-10-21</a>
 <ul>
-<li><a href="#org8392074">1.1. 09:49 org-export-directory</a></li>
-<li><a href="#org1ed7dca">1.2. 22:27 org-publish-project-alist</a></li>
+<li><a href="#org9199455">1.1. 09:49 org-export-directory</a></li>
+<li><a href="#org4bbe892">1.2. 22:27 org-publish-project-alist</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org17ddd1d" class="outline-2">
-<h2 id="org17ddd1d"><span class="section-number-2">1</span> 2020-10-21</h2>
+<div id="outline-container-org6dcc6e4" class="outline-2">
+<h2 id="org6dcc6e4"><span class="section-number-2">1.</span> 2020-10-21</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org8392074" class="outline-3">
-<h3 id="org8392074"><span class="section-number-3">1.1</span> 09:49 org-export-directory</h3>
+<div id="outline-container-org9199455" class="outline-3">
+<h3 id="org9199455"><span class="section-number-3">1.1.</span> 09:49 org-export-directory</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 以下を設定しても、
 </p>
 
 <div class="org-src-container">
-<pre class="src src-elisp"><span style="color: #8D8D84;">; </span><span style="color: #8D8D84; font-style: italic;">-*- Mode: Emacs-Lisp ; Coding: utf-8 -*-</span>
+<pre class="src src-elisp">; -*- Mode: Emacs-Lisp ; Coding: utf-8 -*-
 
-<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">ox.el</span>
-<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">&#12496;&#12483;&#12463;&#12464;&#12521;&#12454;&#12531;&#12489;&#12391;&#22793;&#25563;&#12377;&#12427;</span>
-<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">http://d.hatena.ne.jp/rubikitch/20101107/org2html</span>
-<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">(setq org-export-run-in-background t)  ; =&gt; old version?</span>
-(<span style="color: #0000FF;">setq</span> org-export-in-background t)
+;; ox.el
+;; バックグラウンドで変換する
+;; http://d.hatena.ne.jp/rubikitch/20101107/org2html
+;; (setq org-export-run-in-background t)  ; =&gt; old version?
+(setq org-export-in-background t)
 
-<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">org-mode&#12391;&#21029;&#12398;&#12487;&#12451;&#12524;&#12463;&#12488;&#12522;&#12395;HTML&#20182;&#12456;&#12463;&#12473;&#12509;&#12540;&#12488;&#12377;&#12427; | sshfs&#25903;&#25588;</span>
-<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">http://emacs.rubikitch.com/org-export-to-html-another-directory/</span>
+;; org-modeで別のディレクトリにHTML他エクスポートする | sshfs支援
+;; http://emacs.rubikitch.com/org-export-to-html-another-directory/
 
-(<span style="color: #0000FF;">defvar</span> <span style="color: #BA36A5;">org-export-directory</span> nil)
+(defvar org-export-directory nil)
 
-(<span style="color: #0000FF;">defun</span> <span style="color: #006699;">org-export-output-file-name--set-directory</span>
-    (orig-fn extension <span style="color: #6434A3;">&amp;optional</span> subtreep pub-dir)
-  (<span style="color: #0000FF;">setq</span> pub-dir (<span style="color: #0000FF;">or</span> pub-dir org-export-directory))
+(defun org-export-output-file-name--set-directory
+    (orig-fn extension &amp;optional subtreep pub-dir)
+  (setq pub-dir (or pub-dir org-export-directory))
   (funcall orig-fn extension subtreep pub-dir))
 
 (advice-add
- 'org-export-output-file-name <span style="color: #006FE0;">:around</span>
+ 'org-export-output-file-name :around
  'org-export-output-file-name--set-directory)
 
-(<span style="color: #0000FF;">setq</span> org-export-directory nil)
+(setq org-export-directory nil)
 </pre>
 </div>
 
@@ -297,14 +251,14 @@ for the JavaScript code in this tag.
 以下のようなエラーが出るようになってしまった。
 </p>
 
-<pre class="example">
+<pre class="example" id="orgf3de15e">
 Initializing asynchronous export process
 apply: Wrong type argument: stringp, nil
 </pre>
 </div>
 </div>
-<div id="outline-container-org1ed7dca" class="outline-3">
-<h3 id="org1ed7dca"><span class="section-number-3">1.2</span> 22:27 org-publish-project-alist</h3>
+<div id="outline-container-org4bbe892" class="outline-3">
+<h3 id="org4bbe892"><span class="section-number-3">1.2.</span> 22:27 org-publish-project-alist</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 以下の挙動おかしくない。。。なんか思ったとおりにソートされないんだけど。
@@ -320,8 +274,8 @@ apply: Wrong type argument: stringp, nil
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: clothoid</p>
-<p class="date">Created: 2021-10-09 Sat 11:11</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+<p class="date">Created: 2025-01-19 日 16:28</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
 </html>

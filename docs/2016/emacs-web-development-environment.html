@@ -3,14 +3,14 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
 <head>
-<!-- 2022-08-27 Sat 17:03 -->
+<!-- 2025-01-19 日 16:28 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>emacs 24 で Web 開発の環境を作る</title>
-<meta name="generator" content="Org mode" />
 <meta name="author" content="clothoid" />
-<style type="text/css">
- <!--/*--><![CDATA[/*><!--*/
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
   .subtitle { text-align: center;
@@ -31,8 +31,9 @@
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
   pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
     padding: 8pt;
     font-family: monospace;
     overflow: auto;
@@ -40,22 +41,22 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
-    padding-top: 1.2em;
+    overflow: auto;
   }
   pre.src:before {
     display: none;
     position: absolute;
-    background-color: white;
-    top: -10px;
-    right: 10px;
+    top: -8px;
+    right: 12px;
     padding: 3px;
-    border: 1px solid black;
+    color: #555;
+    background-color: #f2f2f299;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -190,83 +191,36 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
-  /*]]>*/-->
+  .org-svg { }
 </style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6390292679676181" crossorigin="anonymous"></script>
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
-</script>
 </head>
 <body>
 <div id="org-div-home-and-up">
  <a accesskey="h" href="https://clothoid.github.io/sitemap.html"> UP </a>
  |
  <a accesskey="H" href="https://clothoid.github.io/"> HOME </a>
-</div><div id="content">
+</div><div id="content" class="content">
 <h1 class="title">emacs 24 で Web 開発の環境を作る</h1>
-<div id="table-of-contents">
+<div id="table-of-contents" role="doc-toc">
 <h2>&#30446;&#27425;</h2>
-<div id="text-table-of-contents">
+<div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgdcfdcf0">1. 環境</a></li>
-<li><a href="#org83ec40a">2. emmet-mode</a></li>
-<li><a href="#orgd227df8">3. web-mode</a></li>
-<li><a href="#org18c404b">4. js2-mode</a></li>
-<li><a href="#org0297a71">5. MozRepl + moz.el</a></li>
-<li><a href="#org174ba38">6. flycheck</a></li>
-<li><a href="#orga344414">7. nxml-mode</a></li>
-<li><a href="#org4f0cc11">8. json-mode</a></li>
-<li><a href="#org605b474">9. 参考</a></li>
+<li><a href="#orgdad9cb1">1. 環境</a></li>
+<li><a href="#org90dbeb4">2. emmet-mode</a></li>
+<li><a href="#org8b8423b">3. web-mode</a></li>
+<li><a href="#org0473a57">4. js2-mode</a></li>
+<li><a href="#org34086b0">5. MozRepl + moz.el</a></li>
+<li><a href="#orgc634bee">6. flycheck</a></li>
+<li><a href="#org546abc0">7. nxml-mode</a></li>
+<li><a href="#org44c742e">8. json-mode</a></li>
+<li><a href="#orgcf2b516">9. 参考</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgdcfdcf0" class="outline-2">
-<h2 id="orgdcfdcf0"><span class="section-number-2">1</span> 環境</h2>
+<div id="outline-container-orgdad9cb1" class="outline-2">
+<h2 id="orgdad9cb1"><span class="section-number-2">1.</span> 環境</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>Windows 7 64bit</li>
@@ -287,25 +241,25 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-org83ec40a" class="outline-2">
-<h2 id="org83ec40a"><span class="section-number-2">2</span> emmet-mode</h2>
+<div id="outline-container-org90dbeb4" class="outline-2">
+<h2 id="org90dbeb4"><span class="section-number-2">2.</span> emmet-mode</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-HTML や CSS を簡単に記述できる emmet 記法を emacs 上で使用するもの <sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>。
+HTML や CSS を簡単に記述できる emmet 記法を emacs 上で使用するもの <sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>。
 </p>
-<pre class="example">
+<pre class="example" id="org5c2294e">
 M-x package-install emmet-mode
 </pre>
 <p>
 init.el は以下のような感じ。
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #0000FF;">require</span> '<span style="color: #D0372D;">emmet-mode</span>)
+<pre class="src src-emacs-lisp">(require 'emmet-mode)
 (add-hook 'web-mode-hook 'emmet-mode)
-<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">(eval-after-load "emmet-mode"</span>
-<span style="color: #8D8D84;">;;   </span><span style="color: #8D8D84; font-style: italic;">'(define-key emmet-mode-keymap (kbd "C-j") nil)) ;; C-j &#12399; newline &#12398;&#12414;&#12414;&#12395;&#12375;&#12390;&#12362;&#12367;</span>
-(add-hook 'emmet-mode-hook (<span style="color: #0000FF;">lambda</span> () (<span style="color: #0000FF;">setq</span> emmet-indentation 2)))
-(define-key emmet-mode-keymap (kbd <span style="color: #008000;">"C-&lt;return&gt;"</span>) 'emmet-expand-line)
+;; (eval-after-load "emmet-mode"
+;;   '(define-key emmet-mode-keymap (kbd "C-j") nil)) ;; C-j は newline のままにしておく
+(add-hook 'emmet-mode-hook (lambda () (setq emmet-indentation 2)))
+(define-key emmet-mode-keymap (kbd "C-&lt;return&gt;") 'emmet-expand-line)
 </pre>
 </div>
 <p>
@@ -319,8 +273,8 @@ init.el は以下のような感じ。
 として、C-&lt;return&gt; すると
 </p>
 <div class="org-src-container">
-<pre class="src src-html">&lt;<span style="color: #006699;">a</span> <span style="color: #BA36A5;">href</span>=<span style="color: #008000;">""</span>&gt;&lt;/<span style="color: #006699;">a</span>&gt;
-&lt;<span style="color: #006699;">b</span>&gt;&lt;/<span style="color: #006699;">b</span>&gt;
+<pre class="src src-html">&lt;a href=""&gt;&lt;/a&gt;
+&lt;b&gt;&lt;/b&gt;
 </pre>
 </div>
 <p>
@@ -329,48 +283,48 @@ init.el は以下のような感じ。
 </div>
 </div>
 
-<div id="outline-container-orgd227df8" class="outline-2">
-<h2 id="orgd227df8"><span class="section-number-2">3</span> web-mode</h2>
+<div id="outline-container-org8b8423b" class="outline-2">
+<h2 id="org8b8423b"><span class="section-number-2">3.</span> web-mode</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 HTML、JavaScript、CSS、PHP、JSP、Twig、Jinja2、ASPX、ERB、FreeMarker 包括的にサポートする環境。
 </p>
-<pre class="example">
+<pre class="example" id="org4c6505d">
 M-x package-install web-mode
 </pre>
 <p>
 init.el は以下のような感じ。
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #0000FF;">require</span> '<span style="color: #D0372D;">web-mode</span>)
-<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">*.phtml, *.html, *.htm, *.tpl.php, *.jsp, *.ascx, *.aspx, *.erb</span>
-(add-to-list 'auto-mode-alist '(<span style="color: #008000;">"\\.p?html?\\'"</span> . web-mode))
-(add-to-list 'auto-mode-alist '(<span style="color: #008000;">"\\.tpl\\.php\\'"</span> . web-mode))
-(add-to-list 'auto-mode-alist '(<span style="color: #008000;">"\\.jsp\\'"</span> . web-mode))
-(add-to-list 'auto-mode-alist '(<span style="color: #008000;">"\\.as[cp]x\\'"</span> . web-mode))
-(add-to-list 'auto-mode-alist '(<span style="color: #008000;">"\\.erb\\'"</span> . web-mode))
-<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">&#12394;&#12380;&#12363; C-;&#12395; C-c C-;&#12392;&#21516;&#12376;&#27231;&#33021;&#12364;&#21106;&#12426;&#24403;&#12390;&#12425;&#12428;&#12390;&#12427;&#12398;&#12391;&#21066;&#38500;&#12377;&#12427;</span>
-(define-key web-mode-map (kbd <span style="color: #008000;">"C-;"</span>) nil)
-<span style="color: #8D8D84;">;;;</span><span style="color: #E8E8E8; background-color: #FFFFAB;"> </span>
+<pre class="src src-emacs-lisp">(require 'web-mode)
+;; *.phtml, *.html, *.htm, *.tpl.php, *.jsp, *.ascx, *.aspx, *.erb
+(add-to-list 'auto-mode-alist '("\\.p?html?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.jsp\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+;; なぜか C-;に C-c C-;と同じ機能が割り当てられてるので削除する
+(define-key web-mode-map (kbd "C-;") nil)
+;;; 
 (add-hook 'web-mode-hook 'rainbow-mode)
 </pre>
 </div>
 <p>
 さらに、org-mode と合わせるよう、以下のように設定している。
 </p>
-<pre class="example">
+<pre class="example" id="orga630fbb">
 M-x package-install smartrep
 </pre>
 <p>
 init.el は以下のように。
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #0000FF;">require</span> '<span style="color: #D0372D;">smartrep</span>)
-(smartrep-define-key web-mode-map <span style="color: #008000;">"C-c"</span>
-  '((<span style="color: #008000;">"C-p"</span> . web-mode-parent-element)
-    (<span style="color: #008000;">"C-n"</span> . web-mode-match-tag)
-    (<span style="color: #008000;">"C-l"</span> . web-mode-previous-element)
-    (<span style="color: #008000;">"C-m"</span> . web-mode-mark-and-expand)))
+<pre class="src src-emacs-lisp">(require 'smartrep)
+(smartrep-define-key web-mode-map "C-c"
+  '(("C-p" . web-mode-parent-element)
+    ("C-n" . web-mode-match-tag)
+    ("C-l" . web-mode-previous-element)
+    ("C-m" . web-mode-mark-and-expand)))
 </pre>
 </div>
 <p>
@@ -378,22 +332,22 @@ init.el は以下のように。
 </p>
 </div>
 </div>
-<div id="outline-container-org18c404b" class="outline-2">
-<h2 id="org18c404b"><span class="section-number-2">4</span> js2-mode</h2>
+<div id="outline-container-org0473a57" class="outline-2">
+<h2 id="org0473a57"><span class="section-number-2">4.</span> js2-mode</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 超強力な JavaScript のモード。
 </p>
-<pre class="example">
+<pre class="example" id="orgbbab0d3">
 M-x package-install js2-mode
 </pre>
 <p>
 init.el は以下のような感じ。
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #0000FF;">require</span> '<span style="color: #D0372D;">js2-mode</span>)
-(add-to-list 'auto-mode-alist '(<span style="color: #008000;">"\\.js$"</span> . js2-mode))
-(add-to-list 'auto-mode-alist '(<span style="color: #008000;">"\\.jsx\\'"</span> . js2-jsx-mode))
+<pre class="src src-emacs-lisp">(require 'js2-mode)
+(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx\\'" . js2-jsx-mode))
 </pre>
 </div>
 <p>
@@ -401,8 +355,8 @@ init.el は以下のような感じ。
 </p>
 </div>
 </div>
-<div id="outline-container-org0297a71" class="outline-2">
-<h2 id="org0297a71"><span class="section-number-2">5</span> MozRepl + moz.el</h2>
+<div id="outline-container-org34086b0" class="outline-2">
+<h2 id="org34086b0"><span class="section-number-2">5.</span> MozRepl + moz.el</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 MozRepl は telnet 経由で Mozilla ベースのブラウザ(firefox や waterfox など)を操作するアドオン。
@@ -418,7 +372,7 @@ MozRepl は telnet 経由で Mozilla ベースのブラウザ(firefox や waterf
 <p>
 moz.el は MozRepl と連携をとるもの。
 </p>
-<pre class="example">
+<pre class="example" id="orgdebc2f4">
 M-x package-install moz.el
 </pre>
 
@@ -426,15 +380,15 @@ M-x package-install moz.el
 init.el は以下のような感じ。
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #0000FF;">require</span> '<span style="color: #D0372D;">moz</span>)
+<pre class="src src-emacs-lisp">(require 'moz)
 (add-hook 'js2-mode-hook 'moz-minor-mode)
 
-<span style="color: #8D8D84;">;;; </span><span style="color: #8D8D84; font-style: italic;">&#12522;&#12525;&#12540;&#12489;&#12398;&#35373;&#23450;</span>
-(<span style="color: #0000FF;">defun</span> <span style="color: #006699;">reload-firefox-if-local</span> ()
-  (<span style="color: #0000FF;">interactive</span>)
+;;; リロードの設定
+(defun reload-firefox-if-local ()
+  (interactive)
   (comint-send-string
     (inferior-moz-process)
-<span style="color: #CC0000; background-color: #FFFF88;">    </span><span style="color: #CC0000; background-color: #FFFF88;">"if (content.location.host == \"localhost\" || content.location.host == \"\") { BrowserReload(); }"</span><span style="color: #CC0000; background-color: #FFFF88;">))</span>
+    "if (content.location.host == \"localhost\" || content.location.host == \"\") { BrowserReload(); }"))
 </pre>
 </div>
 
@@ -442,42 +396,42 @@ init.el は以下のような感じ。
 使い方は例えば、jstest.html として以下のものを用意しておいて、MozRepl を入れたブラウザで開き、
 </p>
 <div class="org-src-container">
-<pre class="src src-html">&lt;<span style="color: #006699;">html</span>&gt;
-    &lt;<span style="color: #006699;">head</span>&gt;
-    &lt;<span style="color: #006699;">title</span>&gt;<span style="color: #000000; font-weight: bold; text-decoration: underline;">sample</span>&lt;/<span style="color: #006699;">title</span>&gt;
-    &lt;/<span style="color: #006699;">head</span>&gt;
-    &lt;<span style="color: #006699;">body</span>&gt;
-    &lt;<span style="color: #006699;">script</span> <span style="color: #BA36A5;">src</span>=<span style="color: #008000;">"./jstest.js"</span> <span style="color: #BA36A5;">type</span>=<span style="color: #008000;">"text/javascript"</span>&gt;&lt;/<span style="color: #006699;">script</span>&gt;
-    &lt;/<span style="color: #006699;">body</span>&gt;
-&lt;/<span style="color: #006699;">html</span>&gt;
+<pre class="src src-html">&lt;html&gt;
+    &lt;head&gt;
+  	&lt;title&gt;sample&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+  	&lt;script src="./jstest.js" type="text/javascript"&gt;&lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
 </pre>
 </div>
 <p>
 test.js として、同じ場所に、以下のような内容で用意しておいて、
 </p>
 <div class="org-src-container">
-<pre class="src src-js">document.write(<span style="color: #008000;">"Hello, World!"</span>);
+<pre class="src src-js">document.write("Hello, World!");
 </pre>
 </div>
 <p>
-Hello, World! の文字列を適当に変えた後、M-x reload-firefox-if-local とすると自動でブラウザ表示が更新される<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>。
+Hello, World! の文字列を適当に変えた後、M-x reload-firefox-if-local とすると自動でブラウザ表示が更新される<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup>。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org174ba38" class="outline-2">
-<h2 id="org174ba38"><span class="section-number-2">6</span> flycheck</h2>
+<div id="outline-container-orgc634bee" class="outline-2">
+<h2 id="orgc634bee"><span class="section-number-2">6.</span> flycheck</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 構文チェックツール。
 </p>
-<pre class="example">
+<pre class="example" id="org79c1891">
 M-x package-install flycheck
 </pre>
 </div>
 </div>
-<div id="outline-container-orga344414" class="outline-2">
-<h2 id="orga344414"><span class="section-number-2">7</span> nxml-mode</h2>
+<div id="outline-container-org546abc0" class="outline-2">
+<h2 id="org546abc0"><span class="section-number-2">7.</span> nxml-mode</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 nxml-mode はデフォルトで入っている。構文チェックツールとして cygwin の xmllint を使う。
@@ -493,28 +447,28 @@ $ xmllint --version
 init.el は以下のような感じ。smartrep は web-mode と同じ感じに。
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #0000FF;">require</span> '<span style="color: #D0372D;">nxml-mode</span>)
-(add-to-list 'auto-mode-alist '(<span style="color: #008000;">"\\.xml$"</span> . nxml-mode))
+<pre class="src src-emacs-lisp">(require 'nxml-mode)
+(add-to-list 'auto-mode-alist '("\\.xml$" . nxml-mode))
 (add-hook 'nxlm-mode-hook #'flycheck-mode)
 (add-hook 'nxlm-mode-hook 'emmet-mode)
-(<span style="color: #0000FF;">require</span> '<span style="color: #D0372D;">smartrep</span>)
-(smartrep-define-key nxml-mode-map <span style="color: #008000;">"C-c"</span>
-  '((<span style="color: #008000;">"C-p"</span> . nxml-backward-element)
-    (<span style="color: #008000;">"C-n"</span> . nxml-forward-element) <span style="color: #b22222; background-color: #ff8c00;"> </span><span style="color: #8D8D84;">; </span><span style="color: #8D8D84; font-style: italic;">&#12487;&#12501;&#12457;&#12523;&#12488;&#12399; rng-next-error</span>
-    (<span style="color: #008000;">"C-u"</span> . nxml-up-element)
-    (<span style="color: #008000;">"C-d"</span> . nxml-down-element)
+(require 'smartrep)
+(smartrep-define-key nxml-mode-map "C-c"
+  '(("C-p" . nxml-backward-element)
+    ("C-n" . nxml-forward-element) 	; デフォルトは rng-next-error
+    ("C-u" . nxml-up-element)
+    ("C-d" . nxml-down-element)
     ))
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org4f0cc11" class="outline-2">
-<h2 id="org4f0cc11"><span class="section-number-2">8</span> json-mode</h2>
+<div id="outline-container-org44c742e" class="outline-2">
+<h2 id="org44c742e"><span class="section-number-2">8.</span> json-mode</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 json-mode を入れる。
 </p>
-<pre class="example">
+<pre class="example" id="org91e6e57">
 M-x package-install json-mode
 </pre>
 
@@ -523,8 +477,8 @@ init.el は以下のような感じ。
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #0000FF;">require</span> '<span style="color: #D0372D;">json-mode</span>)
-(add-to-list 'auto-mode-alist '(<span style="color: #008000;">"\\.json$"</span> . json-mode))
+<pre class="src src-emacs-lisp">(require 'json-mode)
+(add-to-list 'auto-mode-alist '("\\.json$" . json-mode))
 </pre>
 </div>
 
@@ -533,7 +487,7 @@ init.el は以下のような感じ。
 その後、PATH を設定して動作確認する。
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">$ export <span style="color: #BA36A5;">PATH</span>=$<span style="color: #BA36A5;">PATH</span>:/home/clothoid/node_modules/.bin/jsonlint
+<pre class="src src-sh">$ export PATH=$PATH:/home/clothoid/node_modules/.bin/jsonlint
 $ which jsonlint
 /home/clothoid/node_modules/.bin/jsonlint
 $ jsonlint --version
@@ -542,24 +496,24 @@ $ jsonlint --version
 </div>
 
 <p>
-使い方は以下のような感じ<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup>。
+使い方は以下のような感じ<sup><a id="fnr.3" class="footref" href="#fn.3" role="doc-backlink">3</a></sup>。
 </p>
 
 <div class="org-src-container">
 <pre class="src src-sh">$ cat 2016-03-31-191947.json
-[{ <span style="color: #008000;">"name"</span>:<span style="color: #008000;">"clothoid"</span>, <span style="color: #008000;">"favarite"</span>:[<span style="color: #008000;">"kashima antlers"</span> <span style="color: #008000;">"emacs"</span>]},]
+[{ "name":"clothoid", "favarite":["kashima antlers" "emacs"]},]
 $ jsonlint 2016-03-31-191947.json
 [Error: Parse error on line 1:
-...:[<span style="color: #008000;">"kashima antlers"</span> <span style="color: #008000;">"emacs"</span>]},]
+...:["kashima antlers" "emacs"]},]
 -----------------------^
-Expecting <span style="color: #008000;">'EOF'</span>, <span style="color: #008000;">'}'</span>, <span style="color: #008000;">':'</span>, <span style="color: #008000;">','</span>, <span style="color: #008000;">']'</span>, got <span style="color: #008000;">'STRING'</span>]
+Expecting 'EOF', '}', ':', ',', ']', got 'STRING']
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org605b474" class="outline-2">
-<h2 id="org605b474"><span class="section-number-2">9</span> 参考</h2>
+<div id="outline-container-orgcf2b516" class="outline-2">
+<h2 id="orgcf2b516"><span class="section-number-2">9.</span> 参考</h2>
 <div class="outline-text-2" id="text-9">
 <ul class="org-ul">
 <li><a href="http://catcher-in-the-tech.net/55/">Emacs の便利な設定 - Catcher in the tech</a></li>
@@ -585,15 +539,15 @@ Expecting <span style="color: #008000;">'EOF'</span>, <span style="color: #00800
 <li><a href="http://nkenbou.hatenablog.com/entry/2015/05/04/150434">Cygwin 版 Emacs の flycheck (JSHint) で JavaScript のシンタックスチェックをする - nkenbou のはまり日記</a></li>
 </ul>
 
-<div class="HTML">
+<div class="HTML" id="orgb1b6781">
 <p>
 &lt;a href="<a href="https://twitter.com/share">https://twitter.com/share</a>" class="twitter-share-button" data-via="clothoid" data-size="large"&gt;Tweet&lt;/a&gt;
-&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/<sup>http</sup>:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;
 </p>
 
 </div>
 
-<div class="HTML">
+<div class="HTML" id="org5e7b9a6">
 <p>
 &lt;script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"&gt;&lt;/script&gt;
 &lt;!&#x2013; responsive &#x2013;&gt;
@@ -614,14 +568,14 @@ Expecting <span style="color: #008000;">'EOF'</span>, <span style="color: #00800
 <h2 class="footnotes">&#33050;&#27880;: </h2>
 <div id="text-footnotes">
 
-<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 これの古いものに zencoding-mode というものがある。
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2" role="doc-backlink">2</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 after-save-hook に reload-firefox-if-local を add-hook するような設定もよくある。昔、これをやって、org-html-export-to-html や org-html-export-as-html で以下のようなエラーが出てハマッたことがあったから、使ってない。reload-firefox-if-local をどこかのキーバインドに割り当てて使うのがいいと思う。
 </p>
-<pre class="example">
+<pre class="example" id="org286d141">
 Can't start MozRepl, the error message was:
 
      make client process failed: connection refused, :name, MozRepl, :buffer, *MozRepl*, :host, localhost, :service, 4242, :nowait, nil
@@ -638,11 +592,11 @@ MozRepl is also available directly from Firefox add-on
 pages, but is updated less frequently there.
 </pre></div></div>
 
-<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3" role="doc-backlink">3</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 (add-hook 'json-mode-hook #'flycheck-mode) としたいところだけど、以下のエラーが出る。この理由はコレ→ <a href="http://nkenbou.hatenablog.com/entry/2015/05/04/150434">Cygwin 版 Emacs の flycheck (JSHint) で JavaScript のシンタックスチェックをする - nkenbou のはまり日記</a>
 </p>
 
-<pre class="example">
+<pre class="example" id="org37f622c">
 Error: ENOENT: no such file or directory, open 'E:\c\temp\gnupack\flycheck7352doC\2016-03-31-191947.json'
     at Error (native)
     at Object.fs.openSync (fs.js:584:18)
@@ -661,8 +615,8 @@ Error: ENOENT: no such file or directory, open 'E:\c\temp\gnupack\flycheck7352do
 </div></div>
 <div id="postamble" class="status">
 <p class="author">&#33879;&#32773;: clothoid</p>
-<p class="date">Created: 2022-08-27 Sat 17:03</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+<p class="date">Created: 2025-01-19 日 16:28</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
 </html>

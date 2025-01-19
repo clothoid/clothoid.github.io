@@ -3,15 +3,15 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
 <head>
-<!-- 2022-08-27 Sat 17:03 -->
+<!-- 2025-01-19 日 16:28 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Debian HDD 増設時の設定手順</title>
-<meta name="generator" content="Org mode" />
 <meta name="author" content="clothoid" />
 <meta name="keywords" content="debian stretch 9 add hdd" />
-<style type="text/css">
- <!--/*--><![CDATA[/*><!--*/
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
   .subtitle { text-align: center;
@@ -32,8 +32,9 @@
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
   pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
     padding: 8pt;
     font-family: monospace;
     overflow: auto;
@@ -41,22 +42,22 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
-    padding-top: 1.2em;
+    overflow: auto;
   }
   pre.src:before {
     display: none;
     position: absolute;
-    background-color: white;
-    top: -10px;
-    right: 10px;
+    top: -8px;
+    right: 12px;
     padding: 3px;
-    border: 1px solid black;
+    color: #555;
+    background-color: #f2f2f299;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -191,90 +192,43 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
-  /*]]>*/-->
+  .org-svg { }
 </style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6390292679676181" crossorigin="anonymous"></script>
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
-</script>
 </head>
 <body>
 <div id="org-div-home-and-up">
  <a accesskey="h" href="https://clothoid.github.io/sitemap.html"> UP </a>
  |
  <a accesskey="H" href="https://clothoid.github.io/"> HOME </a>
-</div><div id="content">
+</div><div id="content" class="content">
 <h1 class="title">Debian HDD 増設時の設定手順</h1>
-<div id="table-of-contents">
+<div id="table-of-contents" role="doc-toc">
 <h2>&#30446;&#27425;</h2>
-<div id="text-table-of-contents">
+<div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org1d3b888">1. 手順</a>
+<li><a href="#org60cdc02">1. 手順</a>
 <ul>
-<li><a href="#org094e31c">1.1. HDD が認識されているか確認</a></li>
-<li><a href="#org3333685">1.2. パーティションの作成</a></li>
-<li><a href="#org310ee87">1.3. ファイルシステムの作成</a></li>
-<li><a href="#org7278d7a">1.4. マウント</a></li>
-<li><a href="#org046d0a9">1.5. 自動マウント設定</a></li>
-<li><a href="#org4c8243b">1.6. 自分のものにする</a></li>
+<li><a href="#org6cbdc3c">1.1. HDD が認識されているか確認</a></li>
+<li><a href="#orgb190e80">1.2. パーティションの作成</a></li>
+<li><a href="#org9ae6465">1.3. ファイルシステムの作成</a></li>
+<li><a href="#orgbb44887">1.4. マウント</a></li>
+<li><a href="#org3242540">1.5. 自動マウント設定</a></li>
+<li><a href="#org0e083b7">1.6. 自分のものにする</a></li>
 </ul>
 </li>
-<li><a href="#org923a17b">2. 環境</a></li>
-<li><a href="#orga5f87a7">3. 参考</a></li>
+<li><a href="#org090a2d8">2. 環境</a></li>
+<li><a href="#org1166ead">3. 参考</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org1d3b888" class="outline-2">
-<h2 id="org1d3b888"><span class="section-number-2">1</span> 手順</h2>
+<div id="outline-container-org60cdc02" class="outline-2">
+<h2 id="org60cdc02"><span class="section-number-2">1.</span> 手順</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org094e31c" class="outline-3">
-<h3 id="org094e31c"><span class="section-number-3">1.1</span> HDD が認識されているか確認</h3>
+<div id="outline-container-org6cbdc3c" class="outline-3">
+<h3 id="org6cbdc3c"><span class="section-number-3">1.1.</span> HDD が認識されているか確認</h3>
 <div class="outline-text-3" id="text-1-1">
 <div class="org-src-container">
 <pre class="src src-sh">clothoid@silverstone:~$ sudo fdisk -l
@@ -327,16 +281,16 @@ I/O size (minimum/optimal): 512 bytes / 512 bytes
 
 /dev/sdc:
 
- <span style="color: #BA36A5;">Model</span>=WDC WD20EZAZ-00GGJB0, <span style="color: #BA36A5;">FwRev</span>=80.00A80, <span style="color: #BA36A5;">SerialNo</span>=WD-WX82A305HTN1
- <span style="color: #BA36A5;">Config</span>={ HardSect NotMFM HdSw&gt;15uSec SpinMotCtl Fixed DTR&gt;5Mbs FmtGapReq }
- <span style="color: #BA36A5;">RawCHS</span>=16383/16/63, <span style="color: #BA36A5;">TrkSize</span>=0, <span style="color: #BA36A5;">SectSize</span>=0, <span style="color: #BA36A5;">ECCbytes</span>=0
- <span style="color: #BA36A5;">BuffType</span>=unknown, <span style="color: #BA36A5;">BuffSize</span>=unknown, <span style="color: #BA36A5;">MaxMultSect</span>=16, <span style="color: #BA36A5;">MultSect</span>=16
- (maybe): <span style="color: #BA36A5;">CurCHS</span>=16383/16/63, <span style="color: #BA36A5;">CurSects</span>=16514064, <span style="color: #BA36A5;">LBA</span>=yes, <span style="color: #BA36A5;">LBAsects</span>=3907029168
- <span style="color: #BA36A5;">IORDY</span>=on/off, <span style="color: #BA36A5;">tPIO</span>={min:120,w/IORDY:120}, <span style="color: #BA36A5;">tDMA</span>={min:120,rec:120}
+ Model=WDC WD20EZAZ-00GGJB0, FwRev=80.00A80, SerialNo=WD-WX82A305HTN1
+ Config={ HardSect NotMFM HdSw&gt;15uSec SpinMotCtl Fixed DTR&gt;5Mbs FmtGapReq }
+ RawCHS=16383/16/63, TrkSize=0, SectSize=0, ECCbytes=0
+ BuffType=unknown, BuffSize=unknown, MaxMultSect=16, MultSect=16
+ (maybe): CurCHS=16383/16/63, CurSects=16514064, LBA=yes, LBAsects=3907029168
+ IORDY=on/off, tPIO={min:120,w/IORDY:120}, tDMA={min:120,rec:120}
  PIO modes:  pio0 pio3 pio4 
  DMA modes:  mdma0 mdma1 mdma2 
  UDMA modes: udma0 udma1 udma2 udma3 udma4 udma5 *udma6 
- <span style="color: #BA36A5;">AdvancedPM</span>=no <span style="color: #BA36A5;">WriteCache</span>=enabled
+ AdvancedPM=no WriteCache=enabled
  Drive conforms to: unknown:  ATA/ATAPI-1,2,3,4,5,6,7
 
  * signifies the current active mode
@@ -349,20 +303,20 @@ Model から増設したHDDを同定。
 </div>
 </div>
 
-<div id="outline-container-org3333685" class="outline-3">
-<h3 id="org3333685"><span class="section-number-3">1.2</span> パーティションの作成</h3>
+<div id="outline-container-orgb190e80" class="outline-3">
+<h3 id="orgb190e80"><span class="section-number-3">1.2.</span> パーティションの作成</h3>
 <div class="outline-text-3" id="text-1-2">
 <div class="org-src-container">
 <pre class="src src-sh">clothoid@silverstone:~$ sudo fdisk /dev/sdc
 
-Welcome to fdisk (util-linux 2.29.2)<span style="color: #006FE0;">.</span>
-Changes will remain<span style="color: #0000FF;"> in</span> memory only, until you decide to write them.
+Welcome to fdisk (util-linux 2.29.2).
+Changes will remain in memory only, until you decide to write them.
 Be careful before using the write command.
 
 Device does not contain a recognized partition table.
 Created a new DOS disklabel with disk identifier 0x5f388f93.
 
-<span style="color: #006699;">Command</span> (m for help): m
+Command (m for help): m
 
 Help:
 
@@ -401,18 +355,18 @@ Help:
    s   create a new empty Sun partition table
 
 
-<span style="color: #006699;">Command</span> (m for help): n
+Command (m for help): n
 Partition type
    p   primary (0 primary, 0 extended, 4 free)
    e   extended (container for logical partitions)
-<span style="color: #006699;">Select</span> (default p): p
+Select (default p): p
 Partition number (1-4, default 1): 1
 First sector (2048-3907029167, default 2048): 
 Last sector, +sectors or +size{K,M,G,T,P} (2048-3907029167, default 3907029167): 
 
-Created a new partition 1 of type <span style="color: #008000;">'Linux'</span> and of size 1.8 TiB.
+Created a new partition 1 of type 'Linux' and of size 1.8 TiB.
 
-<span style="color: #006699;">Command</span> (m for help): p
+Command (m for help): p
 Disk /dev/sdc: 1.8 TiB, 2000398934016 bytes, 3907029168 sectors
 Units: sectors of 1 * 512 = 512 bytes
 Sector size (logical/physical): 512 bytes / 4096 bytes
@@ -423,7 +377,7 @@ Disk identifier: 0x5f388f93
 Device     Boot Start        End    Sectors  Size Id Type
 /dev/sdc1        2048 3907029167 3907027120  1.8T 83 Linux
 
-<span style="color: #006699;">Command</span> (m for help): w
+Command (m for help): w
 The partition table has been altered.
 Calling ioctl() to re-read partition table.
 Syncing disks.
@@ -485,15 +439,15 @@ I/O size (minimum/optimal): 512 bytes / 512 bytes
 をして、以下を確認。
 </p>
 
-<pre class="example">
+<pre class="example" id="org6edde89">
 Device     Boot Start        End    Sectors  Size Id Type
 /dev/sdc1        2048 3907029167 3907027120  1.8T 83 Linux
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org310ee87" class="outline-3">
-<h3 id="org310ee87"><span class="section-number-3">1.3</span> ファイルシステムの作成</h3>
+<div id="outline-container-org9ae6465" class="outline-3">
+<h3 id="org9ae6465"><span class="section-number-3">1.3.</span> ファイルシステムの作成</h3>
 <div class="outline-text-3" id="text-1-3">
 <div class="org-src-container">
 <pre class="src src-sh">clothoid@silverstone:~$ sudo mkfs -t ext4 /dev/sdc1
@@ -515,8 +469,8 @@ Writing superblocks and filesystem accounting information: done
 </div>
 </div>
 
-<div id="outline-container-org7278d7a" class="outline-3">
-<h3 id="org7278d7a"><span class="section-number-3">1.4</span> マウント</h3>
+<div id="outline-container-orgbb44887" class="outline-3">
+<h3 id="orgbb44887"><span class="section-number-3">1.4.</span> マウント</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 現状を確認。
@@ -581,8 +535,8 @@ tmpfs                             1.5G   17k  1.5G   1% /run/user/1000
 </div>
 </div>
 
-<div id="outline-container-org046d0a9" class="outline-3">
-<h3 id="org046d0a9"><span class="section-number-3">1.5</span> 自動マウント設定</h3>
+<div id="outline-container-org3242540" class="outline-3">
+<h3 id="org3242540"><span class="section-number-3">1.5.</span> 自動マウント設定</h3>
 <div class="outline-text-3" id="text-1-5">
 <p>
 UUIDの確認
@@ -590,14 +544,14 @@ UUIDの確認
 
 <div class="org-src-container">
 <pre class="src src-sh">clothoid@silverstone:~$ sudo blkid /dev/sdc1
-/dev/sdc1: <span style="color: #BA36A5;">UUID</span>=<span style="color: #008000;">"ca684648-42c1-4002-b7c0-d1e818da96f1"</span> <span style="color: #BA36A5;">TYPE</span>=<span style="color: #008000;">"ext4"</span> <span style="color: #BA36A5;">PARTUUID</span>=<span style="color: #008000;">"5f388f93-01"</span>
+/dev/sdc1: UUID="ca684648-42c1-4002-b7c0-d1e818da96f1" TYPE="ext4" PARTUUID="5f388f93-01"
 </pre>
 </div>
 
 <p>
 fstab に追記。
 </p>
-<pre class="example">
+<pre class="example" id="org7801c59">
 # /etc/fstab: static file system information.
 #
 # Use 'blkid' to print the universally unique identifier for a
@@ -623,8 +577,8 @@ UUID=ca684648-42c1-4002-b7c0-d1e818da96f1 /2000g               ext4    defaults 
 </div>
 </div>
 
-<div id="outline-container-org4c8243b" class="outline-3">
-<h3 id="org4c8243b"><span class="section-number-3">1.6</span> 自分のものにする</h3>
+<div id="outline-container-org0e083b7" class="outline-3">
+<h3 id="org0e083b7"><span class="section-number-3">1.6.</span> 自分のものにする</h3>
 <div class="outline-text-3" id="text-1-6">
 <div class="org-src-container">
 <pre class="src src-sh">clothoid@silverstone:~$ ll / |more
@@ -651,23 +605,23 @@ drwxr-xr-x   2 root     root      4096 Apr 11 15:00 bin
 </div>
 </div>
 
-<div id="outline-container-org923a17b" class="outline-2">
-<h2 id="org923a17b"><span class="section-number-2">2</span> 環境</h2>
+<div id="outline-container-org090a2d8" class="outline-2">
+<h2 id="org090a2d8"><span class="section-number-2">2.</span> 環境</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
 <pre class="src src-sh">clothoid@silverstone:~$ lsb_release -a
 No LSB modules are available.
-Distributor ID: Debian
-Description:    Debian GNU/Linux 9.12 (stretch)
-Release:    9.12
-Codename:   stretch
+Distributor ID:	Debian
+Description:	Debian GNU/Linux 9.12 (stretch)
+Release:	9.12
+Codename:	stretch
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orga5f87a7" class="outline-2">
-<h2 id="orga5f87a7"><span class="section-number-2">3</span> 参考</h2>
+<div id="outline-container-org1166ead" class="outline-2">
+<h2 id="org1166ead"><span class="section-number-2">3.</span> 参考</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li><a href="https://qiita.com/bwtakacy/items/c181f661e8655c42d85a">https://qiita.com/bwtakacy/items/c181f661e8655c42d85a</a></li>
@@ -677,8 +631,8 @@ Codename:   stretch
 </div>
 <div id="postamble" class="status">
 <p class="author">&#33879;&#32773;: clothoid</p>
-<p class="date">Created: 2022-08-27 Sat 17:03</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+<p class="date">Created: 2025-01-19 日 16:28</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
 </html>

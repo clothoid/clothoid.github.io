@@ -3,15 +3,15 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
 <head>
-<!-- 2022-08-27 Sat 17:03 -->
+<!-- 2025-01-19 日 16:28 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>IIJmio で携帯料金を節約</title>
-<meta name="generator" content="Org mode" />
 <meta name="author" content="clothoid" />
 <meta name="keywords" content="IIJmio au docomo" />
-<style type="text/css">
- <!--/*--><![CDATA[/*><!--*/
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
   .subtitle { text-align: center;
@@ -32,8 +32,9 @@
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
   pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
     padding: 8pt;
     font-family: monospace;
     overflow: auto;
@@ -41,22 +42,22 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
-    padding-top: 1.2em;
+    overflow: auto;
   }
   pre.src:before {
     display: none;
     position: absolute;
-    background-color: white;
-    top: -10px;
-    right: 10px;
+    top: -8px;
+    right: 12px;
     padding: 3px;
-    border: 1px solid black;
+    color: #555;
+    background-color: #f2f2f299;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -191,83 +192,36 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
-  /*]]>*/-->
+  .org-svg { }
 </style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6390292679676181" crossorigin="anonymous"></script>
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
-</script>
 </head>
 <body>
 <div id="org-div-home-and-up">
  <a accesskey="h" href="https://clothoid.github.io/sitemap.html"> UP </a>
  |
  <a accesskey="H" href="https://clothoid.github.io/"> HOME </a>
-</div><div id="content">
+</div><div id="content" class="content">
 <h1 class="title">IIJmio で携帯料金を節約</h1>
-<div id="table-of-contents">
+<div id="table-of-contents" role="doc-toc">
 <h2>&#30446;&#27425;</h2>
-<div id="text-table-of-contents">
+<div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org7825f3c">1. 概要</a></li>
-<li><a href="#orgef599e7">2. 背景</a>
+<li><a href="#orgd367ba2">1. 概要</a></li>
+<li><a href="#org0a923ee">2. 背景</a>
 <ul>
-<li><a href="#org2072865">2.1. 状況</a></li>
-<li><a href="#org69e9208">2.2. 過去請求料</a></li>
+<li><a href="#org028f346">2.1. 状況</a></li>
+<li><a href="#org7266475">2.2. 過去請求料</a></li>
 </ul>
 </li>
-<li><a href="#org63668b7">3. 方法</a></li>
-<li><a href="#org2a28edd">4. 結果</a></li>
+<li><a href="#orga4d1a5b">3. 方法</a></li>
+<li><a href="#org376f99a">4. 結果</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org7825f3c" class="outline-2">
-<h2 id="org7825f3c"><span class="section-number-2">1</span> 概要</h2>
+<div id="outline-container-orgd367ba2" class="outline-2">
+<h2 id="orgd367ba2"><span class="section-number-2">1.</span> 概要</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 今まで、au と DMM を利用して、2500 円くらいの通信費を払っていた。
@@ -277,12 +231,12 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgef599e7" class="outline-2">
-<h2 id="orgef599e7"><span class="section-number-2">2</span> 背景</h2>
+<div id="outline-container-org0a923ee" class="outline-2">
+<h2 id="org0a923ee"><span class="section-number-2">2.</span> 背景</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org2072865" class="outline-3">
-<h3 id="org2072865"><span class="section-number-3">2.1</span> 状況</h3>
+<div id="outline-container-org028f346" class="outline-3">
+<h3 id="org028f346"><span class="section-number-3">2.1.</span> 状況</h3>
 <div class="outline-text-3" id="text-2-1">
 <ul class="org-ul">
 <li>au
@@ -328,8 +282,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org69e9208" class="outline-3">
-<h3 id="org69e9208"><span class="section-number-3">2.2</span> 過去請求料</h3>
+<div id="outline-container-org7266475" class="outline-3">
+<h3 id="org7266475"><span class="section-number-3">2.2.</span> 過去請求料</h3>
 <div class="outline-text-3" id="text-2-2">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -372,8 +326,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org63668b7" class="outline-2">
-<h2 id="org63668b7"><span class="section-number-2">3</span> 方法</h2>
+<div id="outline-container-orga4d1a5b" class="outline-2">
+<h2 id="orga4d1a5b"><span class="section-number-2">3.</span> 方法</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li><a href="https://www.nttdocomo.co.jp/support/procedure/change_release/owner/">ドコモ 名義変更</a></li>
@@ -382,8 +336,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org2a28edd" class="outline-2">
-<h2 id="org2a28edd"><span class="section-number-2">4</span> 結果</h2>
+<div id="outline-container-org376f99a" class="outline-2">
+<h2 id="org376f99a"><span class="section-number-2">4.</span> 結果</h2>
 <div class="outline-text-2" id="text-4">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -427,8 +381,8 @@ for the JavaScript code in this tag.
 </div>
 <div id="postamble" class="status">
 <p class="author">&#33879;&#32773;: clothoid</p>
-<p class="date">Created: 2022-08-27 Sat 17:03</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+<p class="date">Created: 2025-01-19 日 16:28</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
 </html>

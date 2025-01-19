@@ -1,0 +1,1099 @@
+#+SETUPFILE: ../0000/00org-web-template
+#+TITLE: emacs でお気に入りの設定 2025
+#+DESCRIPTION: My favorite emacs setting
+#+KEYWORDS: elisp emacs lisp
+#+SUBTITLE:
+#+OPTIONS: ^:{}
+
+* 環境
+
+- Ubuntu 24.04.1 LTS
+- GNU Emacs 29.3 (build 1, x86_64-pc-linux-gnu, GTK+ Version 3.24.41, cairo version 1.18.0) of 2024-04-01, modified by Debian
+
+* elpaca
+
+elpaca-manager を起動した時、省略せずに、一覧を一気に出したい
+
+#+begin_src elisp
+;; elpaca-manager で全てを一括で表示する
+(setq elpaca-ui-row-limit nil)
+#+end_src
+
+* ddskk
+
+** ddskk の設定フォルダの変更
+#+begin_src elisp
+(setq skk-user-directory "~/.emacs.d/.ddskk")
+#+end_src
+
+** azik の設定("~/.emacs.d/.ddskk/init")。
+
+#+begin_src elisp
+(setq skk-use-azik t)
+(setq skk-sticky-key [henkan])
+#+end_src
+
+** stikey の設定("~/.emacs.d/.ddskk/init")
+
+#+begin_src elisp
+;; (setq skk-sticky-key [convert])
+(setq skk-sticky-key [henkan])
+#+end_src
+
+** 全角の入力
+
+#+begin_src elisp
+(setq skk-rom-kana-rule-list '(("z " nil "　")))
+#+end_src
+
+* 標準機能のカスタマイズ
+
+** C-x C-c で容易にEmacsを終了させないように質問するようにする
+
+#+begin_src elisp
+(setq confirm-kill-emacs 'y-or-n-p)
+#+end_src
+
+** ファイルパスからファイルを開く
+
+#+begin_src elisp
+(ffap-bindings)
+#+end_src
+
+** なんか変なメーラ起動するのやめて
+
+#+begin_src elisp
+(global-set-key (kbd "C-c m") nil)
+#+end_src
+
+** C-h はどこでも DEL
+
+#+begin_src elisp
+(define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
+#+end_src
+
+** Scroll Lock は返してね
+
+#+begin_src elisp
+;; PC 切り換え機に割り当てるので
+(global-set-key (kbd "<Scroll_Lock>") 'ignore)
+#+end_src
+
+** backup ファイルとかロックファイルとか、まとめてね
+
+#+begin_src elisp
+;; backup に 関する設定
+;; http://yohshiy.blog.fc2.com/blog-entry-319.html
+;; バックアップファイル (foo.txt~)
+(setq backup-directory-alist
+      '((".*" . "~/.emacs.d/backup/emacs-backup-files")))
+;; 番号付けによる複数保存
+(setq version-control     t)  ;; 実行の有無
+(setq kept-new-versions   10)  ;; 最新の保持数
+(setq kept-old-versions   10)  ;; 最古の保持数
+(setq delete-old-versions t)  ;; 範囲外を削除
+
+;; 自動保存ファイル (#foo.txt#)
+(setq auto-save-file-name-transforms
+      '((".*" "~/.emacs.d/backup/auto-saved-files" t)))
+;; 保存の間隔
+(setq auto-save-timeout 10)     ;; 秒   (デフォルト : 30)
+(setq auto-save-interval 100)   ;; 打鍵 (デフォルト : 300)
+
+;; 自動保存リストファイル (~/.emacs.d/auto-save-list/.saves-xxxx)
+(setq auto-save-list-file-prefix "~/tmp/.saves-")
+
+;; ロックファイル (.#foo.txt)
+;; 作成しない
+(setq create-lockfiles nil)
+#+end_src
+
+* ediff
+#+begin_src elisp
+(use-package ediff
+  :ensure nil  ;; Emacs標準のライブラリなので :ensure nil を指定
+  :init
+  ;; ediff時に新しいフレームを作らない(シンプルになる)
+  (setq ediff-window-setup-function 'ediff-setup-windows-plain)
+  ;; diffのバッファを上下ではなく左右に並べる
+  (setq ediff-split-window-function 'split-window-horizontally))
+#+end_src
+
+* iserch でも C-h は DEL
+
+#+begin_src elisp
+(use-package isearch
+  :ensure nil
+  :bind (:map isearch-mode-map
+              ("C-h" . isearch-del-char)))
+#+end_src
+
+* whitespace の見え方
+
+#+begin_src elisp
+(use-package whitespace
+  :ensure nil                      ;; whitespace は組み込みなので ensure は nil
+  :commands (whitespace-mode)      ;; コマンドをオートロードしたい場合に指定
+  :init
+  ;; 基本的な変数設定などは :init で
+  (setq whitespace-style
+        '(face
+          trailing
+          tabs
+          spaces
+          lines
+          lines-tail
+          newline
+          indentation::tab
+          indentation::space
+          indentation
+          big-indent
+          space-after-tab::tab
+          space-after-tab::pace
+          space-after-tab
+          space-before-tab::tab
+          space-before-tab::space
+          space-before-tab
+          tab-mark
+          newline-mark))
+
+  ;; 全角スペースを可視化
+  (setq whitespace-space-regexp "\\(\u3000+\\)")
+
+  :hook
+  ;; 対象のモードで自動的に whitespace-mode を有効化
+  ((lisp-mode
+    emacs-lisp-mode
+    lisp-interaction-mode
+    c-common-mode
+    perl-mode
+    python-mode
+    org-mode
+    markdown-mode) . whitespace-mode)
+
+  :custom-face
+  ;; custom-set-faces の代わりに :custom-face でまとめることが可能
+  (whitespace-big-indent ((t (:background "alice blue" :foreground "black"))))
+  (whitespace-line ((t (:background "alice blue" :foreground "black"))))
+
+  :config
+  ;; さらに必要な設定を :config にまとめる
+  (set-face-attribute 'whitespace-tab nil
+                      :foreground "light grey"
+                      :background 'unspecified
+                      :underline nil)
+  (set-face-attribute 'whitespace-newline nil
+                      :foreground "light grey")
+  (set-face-attribute 'whitespace-space nil
+                      :background "pink"
+                      :foreground 'unspecified
+                      :underline nil
+                      :weight 'bold))
+#+end_src
+
+* key-chord
+
+jkでview-modeに入る。もうちょっと活用できそうだけどなあ。
+
+#+begin_src elisp
+(use-package key-chord
+  :ensure t
+  :demand t
+  :custom
+  (key-chord-two-keys-delay 0.08)
+  :init
+  (key-chord-mode 1)
+  :config
+  (key-chord-define-global "jk" 'view-mode)
+  ;; (key-chord-define-global "fn" 'open-junk-file)
+  ;; (key-chord-define-global "fj" 'org-capture)
+  )
+#+end_src
+
+* shell-pop
+
+f12がいい感じ
+
+#+begin_src elisp
+(use-package shell-pop
+  :ensure t
+  :bind
+  ("<f12>" . shell-pop)
+  :custom
+  (shell-pop-shell-type '("eshell" "*eshell*" (lambda nil (eshell)))))
+#+end_src
+
+* 時を感じるで有名なやつ
+
+#+begin_src elisp
+(use-package sky-color-clock
+  :ensure (:host github :repo "tsuu32/sky-color-clock" :branch "master")
+  :config
+  (sky-color-clock-initialize 35) ; Tokyo, Japan
+  (setq sky-color-clock-format "%Y-%m-%d (%a) %H:%M")
+  (push '(:eval (sky-color-clock)) (default-value 'mode-line-format))
+  )
+#+end_src
+
+* smartrep をページャーとして
+
+#+begin_src elisp
+(use-package smartrep
+  :ensure t
+  :init
+  ;; C-l を一旦グローバルで未割り当てにする
+  (global-unset-key (kbd "C-l"))
+  :config
+  ;; "C-l" に続くキー操作を smartrep で定義
+  (smartrep-define-key
+   global-map "C-l"
+   '(("h" . backward-char)
+     ("l" . forward-char)
+     ("j" . next-line)
+     ("n" . next-line)
+     ("k" . previous-line)
+     ("p" . previous-line)
+     ("b" . scroll-down)
+     ("SPC" . scroll-up)
+     ("f" . forward-word)
+     ("e" . move-end-of-line)
+     ("a" . move-beginning-of-line)
+     ("J" . (lambda () (interactive) (scroll-up 1)))
+     ("K" . (lambda () (interactive) (scroll-down 1)))
+     ("g" . beginning-of-buffer)
+     ("G" . end-of-buffer)
+     ("r" . repeat)
+     ("o" . open-line)
+     ("C-l" . recenter-top-bottom))))
+#+end_src
+
+* viewer-mode で色を変える
+
+#+begin_src elisp
+(use-package viewer
+  :ensure t
+  :config
+  (viewer-stay-in-setup)
+  (setq viewer-modeline-color-unwritable "tomato"
+        viewer-modeline-color-view "orange")
+  (viewer-change-modeline-color-setup)
+  (setq view-mode-default-regexp "\\.ml$"))
+#+end_src
+
+* visual-replace
+
+ずっとvisual-regexpを使ってたけど、今回乗り変えた。
+
+#+begin_src elisp
+(use-package visual-replace
+  :defer t
+  :hook
+  ;; Visual Replaceのミニバッファが立ち上がったら、
+  ;; 自動でクエリモードに切り替える
+  (visual-replace-minibuffer-mode . visual-replace-toggle-query)
+  :bind (("C-c r" . visual-replace)
+         :map isearch-mode-map
+         ("C-c r" . visual-replace-from-isearch)))
+#+end_src
+
+* 昔の org-structure
+
+#+begin_src elisp
+(use-package org-tempo
+  :ensure nil
+  :after org
+  :config
+  (add-to-list 'org-structure-template-alist '("el" . "src elisp"))
+  (add-to-list 'org-structure-template-alist '("py" . "src python"))
+  (add-to-list 'org-structure-template-alist '("sh" . "src shell")))
+#+end_src
+
+* org-agenda を q で閉じるだけ
+
+#+begin_src elisp
+(use-package org-agenda
+  :ensure nil
+  :after org
+  :bind (:map org-agenda-mode-map
+              ("q" . quit-window))
+  )
+#+end_src
+
+* ox-publish のオプション多すぎ
+
+#+begin_src elisp
+;; ----------------------------------------
+;; 6. Org Export: ox-publish
+;; ----------------------------------------
+(use-package ox-publish
+  :after org
+  :ensure nil
+  :config
+  (setq org-publish-project-alist
+        '(("gitpages-org"
+           ;; 1) 必須設定 -------------------------------------
+           :base-directory "~/clothoid.github.io/clothoid.github.io/org/" ;; ソース (Org) ファイルのあるディレクトリ
+           :base-extension "org" ;; 対象となるファイル拡張子
+           :publishing-directory "~/clothoid.github.io/clothoid.github.io/docs/" ;; 出力先ディレクトリ
+           :publishing-function org-html-publish-to-html ;; HTML に変換する関数
+           :recursive t ;; サブディレクトリを再帰的に処理するかどうか
+
+           ;; 2) よく使う基本オプション -------------------------
+           :headline-levels 4 ;; 見出しを何階層まで出力するか
+           :auto-preamble t   ;; テンプレート（プレアンブル）を自動挿入
+           ;; :auto-postamble t   ;; ポストアンブルを自動挿入 (デフォルト t)
+           ;; :auto-index t       ;; (古いオプション) インデックス生成を自動化 (Org 9.0以降は推奨されていない)
+           :auto-sitemap t    ;; サイトマップ (目次) の自動生成
+           :sitemap-title "site map" ;; サイトマップのタイトル
+           :sitemap-style list        ;; サイトマップの形式: `list` か `tree` か `random`
+           :sitemap-sort-files anti-chronologically ;; ファイルを新しい順にソート
+           ;; :sitemap-sort-folders nil ;; サブディレクトリのソート (nil, first, last)
+           ;; :sitemap-filename "sitemap.org" ;; サイトマップファイル名
+           ;; :sitemap-file-entry-format "%t"  ;; サイトマップでのエントリ表示形式 (%t=タイトル, %f=ファイル名, など)
+           ;; :sitemap-date-format "%Y-%m-%d"   ;; 日付の表示形式
+           ;; :sitemap-ignore-case nil          ;; 大文字小文字を無視してソートするかどうか
+           ;; :sitemap-exclude "Private"        ;; この正規表現にマッチするファイルをサイトマップに含めない
+           ;; :sitemap-function nil             ;; カスタムでサイトマップを生成したい場合の関数
+           ;; :sitemap-format-entry nil         ;; 各エントリのフォーマット関数
+
+           ;; 3) HTML 出力オプション --------------------------
+           :html_link_up "index.html"   ;; アップリンク用 (上位ページへのリンク)
+           :html_link_home "index.html" ;; ホームリンク用
+           ;; :html_doctype "html5"        ;; <!DOCTYPE html> の種類 (例: "html5")
+           ;; :html_extension "html"       ;; 出力ファイルの拡張子
+           ;; :html_head "<link rel=\"stylesheet\" href=\"style.css\" />" ;; <head> に追加する要素
+           ;; :html_head_include_default_style t  ;; Org デフォルトの CSS を含めるかどうか
+           ;; :html_head_include_scripts t        ;; Org デフォルトのスクリプトを含めるかどうか
+           ;; :html_preamble nil          ;; HTML の <body> 内、本文開始前に挿入する内容
+           ;; :html_postamble nil         ;; HTML の <body> 内、本文終了後に挿入する内容
+           ;; :htmlized_source t          ;; ソースブロックを HTML のソース表示にするかどうか
+           ;; :inline-css nil             ;; HTML 内に CSS をインラインで埋め込むかどうか (古いオプション)
+           ;; :style "<link rel=\"stylesheet\" type=\"text/css\" href=\"mystyle.css\"/>" ;; 古い形式でのスタイル指定 (Org 8 以前)
+           ;; :style-include-default nil  ;; 古い形式でのデフォルト CSS を含めるかどうか
+           ;; :style-include-scripts nil  ;; 古い形式でのデフォルトスクリプトを含めるかどうか
+
+           ;; 4) Table of Contents, 見出し番号など ------------
+           ;; :with-toc t                ;; 目次を表示するかどうか
+           ;; :section-numbers t         ;; 見出し番号を付与するかどうか
+           ;; :table-of-contents t       ;; :with-toc の別名
+           ;; :preserve-breaks nil       ;; 改行をHTMLでも改行として扱うかどうか
+           ;; :with-author t             ;; 著者名の出力 ( #+AUTHOR: など )
+           ;; :with-creator t            ;; "Created by Org ..." のメタ情報を出力するか
+           ;; :with-email t              ;; メールアドレスの出力 ( #+EMAIL: など )
+           ;; :with-footnotes t          ;; 脚注を出力するか
+           ;; :with-latex t              ;; LaTeX 数式を変換 (デフォルト: t)
+           ;; :with-sub-superscript t    ;; ^ や _ 記号の上付き・下付き処理
+
+           ;; 5) 細かい制御オプション --------------------------
+           ;; :exclude "PrivateOrgFile.org" ;; 発行対象から除外するファイルを指定（正規表現）
+           ;; :include ("some.org")         ;; 発行対象に含めるファイルを明示的に指定
+           ;; :makeindex t                  ;; 索引ファイルを作る (古い方式)
+           ;; :index-style 'inline          ;; 索引のスタイル (inline, fancy)
+           ;; :timestamp nil                ;; ファイルの先頭にタイムスタンプを付加するか
+           )
+          ("gitpages-files"
+           :base-directory "~/clothoid.github.io/clothoid.github.io/org/"
+           :publishing-directory "~/clothoid.github.io/clothoid.github.io/docs/"
+           :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
+           :recursive t
+           :publishing-function org-publish-attachment
+           ;; :exclude "secret.png"
+           ;; :include ("somefile.css")
+           )
+          ("gitpages"
+           :components ("gitpages-org" "gitpages-files"))))
+  (message "ox-publish loaded."))
+#+end_src
+
+* org-modern
+
+おしゃれにしたいよ。
+
+#+begin_src elisp
+(use-package org-modern
+  :defer t
+  :after org
+  :hook (org-mode . org-modern-mode)
+  :config
+  ;; org-modern をグローバルに有効化
+  (global-org-modern-mode)
+
+  ;; https://misohena.jp/blog/2022-08-27-fix-org-table-lines-using-org-modern-and-org-indent.html
+  ;; org-indentを使っていると表の水平線の高さが狭まらない問題を修正する。
+  ;; インデントの空白文字列をdisplayプロパティで高さ1pxのspaceに置き換える。
+  (defun my-org-indent--compute-prefixes-after ()
+    (let ((prefixes org-indent--text-line-prefixes))
+      (dotimes (i (length prefixes))
+        (let* ((space-str (aref prefixes i))
+               (space-length (length space-str)))
+          (when (> space-length 0)
+            (aset prefixes i
+                  (org-add-props
+                      space-str
+                      nil
+                    'display (cons 'space
+                                   (list :width space-length
+                                         :height '(1))))))))))
+
+  (advice-add #'org-indent--compute-prefixes :after
+              #'my-org-indent--compute-prefixes-after)
+
+  ;; org-modern--table を差し替え
+  (defun org-modern--table ()
+    "Prettify vertical table lines."
+    (save-excursion
+      (let* ((beg (match-beginning 0))
+             (end (match-end 0))
+             (tbeg (match-beginning 1))
+             (tend (match-end 1))
+             ;; Unique objects
+             (sp1 (list 'space :width 1))
+             (sp2 (list 'space :width 1))
+             (color (face-attribute 'org-table :foreground nil t))
+             (inner (progn
+                      (goto-char beg)
+                      (forward-line)
+                      (re-search-forward "^[ \t]*|" (line-end-position) t)))
+             (separator (progn
+                          (goto-char beg)
+                          (re-search-forward "^[ \t]*|-" end 'noerror))))
+
+        ;; 横線を引く
+        (goto-char beg)
+        (when separator
+          ;; overline を引いて高さを縮める
+          (when (numberp org-modern-table-horizontal)
+            (add-face-text-property tbeg tend `(:overline ,color) 'append)
+            (add-face-text-property beg (1+ end)
+                                    `(:height ,org-modern-table-horizontal)
+                                    'append))
+          (while (re-search-forward "[^|+]+" tend 'noerror)
+            (let ((a (match-beginning 0))
+                  (b (match-end 0)))
+              (cl-loop for i from a below b do
+                       (put-text-property i (1+ i) 'display
+                                          (if (= 0 (mod i 2)) sp1 sp2))))))
+
+        ;; 縦線を引く
+        (goto-char beg)
+        (while (re-search-forward
+                "-+\\(?1:+\\)-\\|\\(?:^\\|[- ]\\)\\(?1:|\\)\\(?:$\\|[- ]\\)"
+                end 'noerror)
+          (let ((a (match-beginning 1))
+                (b (match-end 1)))
+            (cond
+             ((and org-modern-table-vertical (or (not separator) inner))
+              (add-text-properties
+               a b
+               `(display " " face (:inherit org-table :inverse-video t)))
+              ;; 高さを小さくする (ピクセル単位指定のため厳密な制御は困難)
+              (add-face-text-property a b `(:height 0.1) 'append))
+             ((and org-modern-table-horizontal separator)
+              (put-text-property a b 'display " "))
+             (t (put-text-property a b 'face 'org-hide)))))))))
+#+end_src
+
+* mykie でクルクル移動
+
+死ぬほど使ってる。。。なんでだろ。
+
+#+begin_src elisp
+(use-package mykie
+  :ensure t
+  :config
+  ;; :region&repeat を mykie:region-conditions に追加
+  (push '(:region&repeat . (mykie:repeat-p)) mykie:region-conditions)
+
+  ;; seq-home/seq-end 相当の機能で使う変数
+  (defvar mykie-seq-point nil)
+
+  ;; "C-a" に対する mykie の設定
+  (mykie:global-set-key "C-a"
+    :default (progn
+               (setq mykie-seq-point (point))
+               (beginning-of-line))
+    :repeat (cond
+             ((bobp)
+              (goto-char mykie-seq-point))
+             ((bolp)
+              (beginning-of-buffer))
+             (t
+              (beginning-of-line))))
+
+  ;; "C-e" に対する mykie の設定
+  (mykie:global-set-key "C-e"
+    :default (progn
+               (setq mykie-seq-point (point))
+               (end-of-line))
+    :repeat (cond
+             ((eobp)
+              (goto-char mykie-seq-point))
+             ((eolp)
+              (end-of-buffer))
+             (t
+              (end-of-line)))))
+#+end_src
+
+* icons-in-terminal-dired で elc も emacs アイコンにする
+
+#+begin_src elisp
+;; 1. icons-in-terminal-dired を使う場合の設定
+(use-package icons-in-terminal-dired
+  :ensure (icons-in-terminal-dired
+           :repo "takaxp/icons-in-terminal-dired"
+           :host github)
+  :if (display-graphic-p)             ;; GUI環境のみ使う場合
+  :hook (dired-mode . icons-in-terminal-dired-mode))
+
+;; 2. icons-in-terminal のアイコンルールを上書きする例
+(with-eval-after-load 'icons-in-terminal
+  ;; まずは ".elc" 用の既存ルールを削除 (いったんアイコンを消す)
+  (setq icons-in-terminal-icon-alist
+        (cl-remove-if (lambda (it)
+                        (string= (car it) "\\.elc"))
+                      icons-in-terminal-icon-alist))
+
+  ;; そして改めて ".elc" 用を好きなアイコンで再登録
+  (add-to-list 'icons-in-terminal-icon-alist
+               '("\\.elc"
+                 icons-in-terminal-fileicon "elisp"
+                 :height 1.0 :v-adjust -0.2 :face icons-in-terminal-purple))
+
+               0)
+;; 注意
+;; icons-in-terminal は icons-in-terminal-icon-alist のエントリを上から順に正規表現マッチして、
+;; 一番最初にヒットしたものを使う仕組み。
+;; デフォルト設定に
+;; 「`_test.`（または `-test.`）が含まれるファイル名はテストファイル扱いにして `test-generic` のアイコンを表示する」
+;; というルールが入っている
+;; `999_test.el` が先にそのパターンにマッチしてしまい、「テストファイル用アイコン」になってしまう
+#+end_src
+
+* ivy-with-migemo
+
+ありがてえ、ありがてね。
+
+#+begin_src elisp
+(use-package ivy-with-migemo
+  :ensure (:repo "https://gist.github.com/tam17aki/256094b57faad19d60eed7761c351d5b.git"
+           ;; Gist の中で必要なファイルがこれだけなら指定
+                 :files ("ivy-with-migemo.el"))
+  :init
+  ;; パッケージ読み込み前に設定しておきたい変数は :init に書く
+  (setq ivy-with-migemo-enable-command
+        '(swiper
+          swiper-isearch
+          counsel-recentf
+          counsel-rg
+          ivy-switch-buffer
+          counsel-locate))
+
+  (setq migemo-options '("--quiet" "--nonewline" "--emacs"))
+  :config
+  ;; パッケージ読み込み後に実行する設定
+  ;; (require 'migemo) ;; migemo-kill, migemo-initを呼ぶために require しておく
+  (migemo-kill)
+  (migemo-init)
+  (global-ivy-with-migemo-mode 1)
+  (message "ivy-with-migemo.el loaded")
+  )
+#+end_src
+
+* 自作の小さな関数
+
+** markdown から org へ変換
+
+ChatGPTもFeloもmarkdownコピーなので。。。要pandoc
+
+#+begin_src elisp
+;;; markdown-to-org.el --- Convert Markdown to Org-mode format using pandoc
+
+;; Copyright (C) 2023  Your Name
+
+;; Author: Your Name <your.name@example.com>
+;; URL: https://github.com/yourname/markdown-to-org
+;; Version: 0.1.0
+;; Keywords: markdown, org-mode, pandoc, convert
+;; Package-Requires: ((emacs "24.4"))
+;; License: MIT
+
+;;; Commentary:
+;;
+;; This package provides functions to convert Markdown text into Emacs
+;; org-mode text by using pandoc. You can use it in a buffer, region, or
+;; an external file.
+
+;;; Code:
+
+(defgroup markdown-to-org nil
+  "Convert Markdown to Org-mode with pandoc."
+  :group 'tools
+  :prefix "markdown-to-org-")
+
+(defcustom markdown-to-org-pandoc-path "pandoc"
+  "Path to the pandoc command."
+  :type 'string
+  :group 'markdown-to-org)
+
+(defun markdown-to-org--run-pandoc (beg end)
+  "Run pandoc on the region between BEG and END to convert Markdown to Org."
+  (let ((pandoc-cmd (format "%s -f markdown -t org" markdown-to-org-pandoc-path)))
+    (shell-command-on-region
+     beg
+     end
+     pandoc-cmd
+     ;; Insert results in current buffer, replacing the region
+     t
+     ;; Output buffer
+     t)))
+
+;;;###autoload
+(defun markdown-to-org-convert-region (beg end)
+  "Convert the Markdown in region (BEG to END) to Org-mode in-place."
+  (interactive "r")
+  (markdown-to-org--run-pandoc beg end)
+  (message "Converted Markdown region to Org-mode!"))
+
+;;;###autoload
+(defun markdown-to-org-convert-buffer ()
+  "Convert the entire buffer from Markdown to Org-mode."
+  (interactive)
+  (markdown-to-org--run-pandoc (point-min) (point-max))
+  (message "Converted entire buffer from Markdown to Org-mode!"))
+
+;;;###autoload
+(defun markdown-to-org-convert-file (input-file output-file)
+  "Convert INPUT-FILE (Markdown) to OUTPUT-FILE (Org-mode) using pandoc."
+  (interactive "fMarkdown file to convert: \nFOutput Org file: ")
+  (let ((pandoc-cmd (format "%s -f markdown -t org %s -o %s"
+                            markdown-to-org-pandoc-path
+                            (shell-quote-argument (expand-file-name input-file))
+                            (shell-quote-argument (expand-file-name output-file)))))
+    (shell-command pandoc-cmd)
+    (message "Converted %s to %s" input-file output-file)))
+
+(provide 'markdown-to-org)
+
+;;; markdown-to-org.el ends here
+#+end_src
+
+** 時間と日付のコピー
+#+begin_src elisp
+;; -*- Mode: Emacs-Lisp ; Coding: utf-8 -*-
+(require 'org)
+
+;; 時間をコピーする
+(defun copy-time ()
+  "現在時間をキルリングにセットする"
+  (interactive)
+  (kill-new (format-time-string "%Y-%m-%d-%H%M%S_")))
+
+(defun get-date ()
+  (interactive)
+  (let ((org-time-stamp-formats org-time-stamp-custom-formats))
+    (org-insert-time-stamp (current-time) nil)))
+
+(defun get-dtime ()
+  (interactive)
+  (let ((org-time-stamp-formats org-time-stamp-custom-formats))
+    (org-insert-time-stamp (current-time) t)))
+
+(provide 'get-and-copy-time-and-date)
+#+end_src
+** 透過の設定を interactive に変更
+
+#+begin_src elisp
+; -*- Mode: Emacs-Lisp ; Coding: utf-8 -*-
+;;; フレームを半透明にする
+;; (set-frame-parameter nil 'alpha 75)
+(defun frame-transparency (n)
+  "alphaをnに変更する"
+  (interactive "n value: ")
+  (set-frame-parameter nil 'alpha n))
+
+(provide 'frame-transparency)
+#+end_src
+** 行コピー
+
+標準でありそうだけど...
+
+#+begin_src elisp
+;; -*- Mode: Emacs-Lisp ; Coding: utf-8 -*-
+
+;; 現在行をコピーして下の行に貼り付ける
+(defun duplicate-this-line-forward (n)
+  "Duplicates the line point is on.  The point is next line.
+ With prefix arg, duplicate current line this many times."
+  (interactive "p")
+  (when (eq (point-at-eol)(point-max))
+    (save-excursion (end-of-line) (insert "\n")))
+  (save-excursion
+    (beginning-of-line)
+    (dotimes (i n)
+      (insert-buffer-substring (current-buffer) (point-at-bol)(1+ (point-at-eol))))))
+
+(provide 'duplicate-this-line-forward)
+#+end_src
+
+** OS連携[fn:window-ver]
+
+#+begin_src elisp
+;;; my-dired-extensions.el --- 自作 Dired 拡張や OS 連携
+
+;;; Code:
+
+(require 'dired)   ;; dired を拡張するので一応読み込む
+(require 'cl-lib)
+(require 'recentf)
+
+;;----------------------------------------
+;; OS 判定 & OS ごとにファイルを開くコマンドを決定するコード
+;;----------------------------------------
+(defun os-type ()
+  "現在の OS タイプを返す (cygwin, linux, darwin など)."
+  (let ((uname-str (shell-command-to-string "uname")))
+    (cond ((string-match "CYGWIN" uname-str)
+           'cygwin)
+          ((string-match "Linux" uname-str)
+           'linux)
+          ((string-match "Darwin" uname-str)
+           'darwin))))
+
+(defun os-open-command-name (os-type)
+  "OS-TYPE に応じて実行できるファイルオープンコマンドのパスを探す."
+  (let ((command-name-list (cl-case os-type
+                             ('cygwin '("sglstart" "cygstart"))
+                             ('linux  '("sglstart" "wslstart" "xdg-open" "gnome-open"))
+                             ('darwin '("open")))))
+    (catch 'loop
+      (dolist (command-name command-name-list)
+        (let* ((command1 (concat "which " command-name " 2> /dev/null"))
+               (command2 (if (file-remote-p default-directory)
+                             ;; リモートではログインシェルでコマンドを実行する
+                             (format "$0 -l -c '%s' 2> /dev/null" command1)
+                           command1))
+               (absolute-path-command-name
+                (replace-regexp-in-string
+                 "\n" ""
+                 (shell-command-to-string command2))))
+          (unless (string= absolute-path-command-name "")
+            (throw 'loop absolute-path-command-name)))))))
+
+;; コマンド名をホストごとにキャッシュ
+(defvar os-open-command-cache nil
+  "ホスト名をキーにして (OS-TYPE OS-OPEN-COMMAND-NAME) を保持するキャッシュ変数.")
+
+(defun os-open-command-cache ()
+  "ホストごとのコマンドキャッシュを返す."
+  (let* ((hostname (if (file-remote-p default-directory)
+                       (let* ((vec (tramp-dissect-file-name default-directory))
+                              (host (tramp-file-name-host vec))
+                              (user (tramp-file-name-user vec)))
+                         (if user
+                             (format "%s@%s" user host)
+                           host))
+                     "<localhost>")))
+    (cdr (or (assoc hostname os-open-command-cache)
+             (let* ((type (os-type))
+                    (cmd  (os-open-command-name type)))
+               (car (push (cons hostname (list type cmd))
+                          os-open-command-cache)))))))
+
+;;----------------------------------------
+;; OS で直接ファイルを開く
+;;----------------------------------------
+(defun os-open-command (filename)
+  "FILENAME を OS のコマンドで開く."
+  (interactive "FOpen file: ")
+  (let* ((filename (expand-file-name filename))
+         (default-directory (file-name-directory filename)))
+    (let* ((cache (os-open-command-cache))
+           (type  (nth 0 cache))
+           (cmd   (nth 1 cache)))
+      (if cmd
+          (let ((localname (if (file-remote-p filename)
+                               (tramp-file-name-localname
+                                (tramp-dissect-file-name filename))
+                             filename)))
+            (message "%s %s" (file-name-nondirectory cmd) localname)
+            (cond
+             ((and (eq type 'linux)
+                   (not (file-remote-p default-directory)))
+              ;; Linux + ローカル環境
+              (let (process-connection-type)
+                (start-process "os-open-command" nil cmd localname)))
+             (t
+              ;; リモートでも使えるように shell-command-to-string
+              (shell-command-to-string
+               (format "%s %s &" cmd (shell-quote-argument localname))))))
+        (message "利用できるコマンドがありません。")))))
+
+(defun os-open-command-2 (filename)
+  "FILENAME を recentf に登録してから OS で開く."
+  (interactive "FOpen file with recentf: ")
+  (recentf-push filename)
+  (os-open-command filename))
+
+;;----------------------------------------
+;; Dired でキー操作・マウス操作をしたとき OS で開く
+;;----------------------------------------
+(define-key dired-mode-map (kbd "W")
+  (lambda ()
+    (interactive)
+    (os-open-command-2 (dired-get-file-for-visit))))
+
+(define-key dired-mode-map [mouse-2]
+  (lambda (event)
+    (interactive "e")
+    (dired-mouse-find-file event 'os-open-command-2 'os-open-command-2)))
+
+(define-key dired-mode-map (kbd "E")
+  (lambda ()
+    (interactive)
+    (os-open-command (dired-current-directory))))
+
+(define-key dired-mode-map [mouse-3]
+  (lambda (event)
+    (interactive "e")
+    (mouse-select-window event)
+    (os-open-command (dired-current-directory))))
+
+;;----------------------------------------
+;; OS で開きたいファイルの拡張子リスト & find-file のアドバイス
+;;----------------------------------------
+(setq os-open-file-suffixes
+      '("doc" "docx"
+        "xls" "xlsx"
+        "ppt" "pptx"
+        "mdb" "mdbx"
+        "vsd" "vdx" "vsdx"
+        "mpp"
+        "pdf"
+        "bmp" "jpg"
+        "odt" "ott"
+        "odg" "otg"
+        "odp" "otp"
+        "ods" "ots"
+        "odf"))
+
+(defun os-open-file-p (filename)
+  "FILENAME が os-open-file-suffixes の拡張子を持つ通常ファイルなら t."
+  (when (file-regular-p filename)
+    (let ((ext (file-name-extension filename)))
+      (when (and ext
+                 (member (downcase ext) os-open-file-suffixes))
+        t))))
+
+(advice-add 'find-file :around
+            (lambda (orig-fun &rest args)
+              (let* ((file-name (nth 0 args))
+                     (target-name (or (file-symlink-p file-name)
+                                      file-name)))
+                (if (os-open-file-p target-name)
+                    (os-open-command-2 target-name)
+                  (apply orig-fun args)))))
+
+;;----------------------------------------
+;; dired-guess-shell の設定
+;;----------------------------------------
+(setq dired-guess-shell-alist-user
+      '(("\\.doc$"  (nth 1 (os-open-command-cache)))
+        ("\\.docx$" (nth 1 (os-open-command-cache)))
+        ("\\.xls$"  (nth 1 (os-open-command-cache)))
+        ("\\.xlsx$" (nth 1 (os-open-command-cache)))
+        ("\\.ppt$"  (nth 1 (os-open-command-cache)))
+        ("\\.pptx$" (nth 1 (os-open-command-cache)))
+        ("\\.mdb$"  (nth 1 (os-open-command-cache)))
+        ("\\.mdbx$" (nth 1 (os-open-command-cache)))
+        ("\\.vsd$"  (nth 1 (os-open-command-cache)))
+        ("\\.vdx$"  (nth 1 (os-open-command-cache)))
+        ("\\.vsdx$" (nth 1 (os-open-command-cache)))
+        ("\\.mpp$"  (nth 1 (os-open-command-cache)))
+        ("\\.pdf$"  (nth 1 (os-open-command-cache)))
+        ("\\.bmp$"  (nth 1 (os-open-command-cache)))
+        ("\\.odt$"  (nth 1 (os-open-command-cache)))
+        ("\\.ott$"  (nth 1 (os-open-command-cache)))
+        ("\\.odg$"  (nth 1 (os-open-command-cache)))
+        ("\\.otg$"  (nth 1 (os-open-command-cache)))
+        ("\\.odp$"  (nth 1 (os-open-command-cache)))
+        ("\\.otp$"  (nth 1 (os-open-command-cache)))
+        ("\\.ods$"  (nth 1 (os-open-command-cache)))
+        ("\\.ots$"  (nth 1 (os-open-command-cache)))
+        ("\\.odf$"  (nth 1 (os-open-command-cache)))))
+
+;;----------------------------------------
+;; Dired を 2つのウィンドウで開いているときに
+;; other-window へ copy/move/symlink する
+;;----------------------------------------
+(defun dired-do-copy-dwim ()
+  (interactive)
+  (let ((dired-dwim-target t))
+    (dired-do-copy)))
+
+(defun dired-do-rename-dwim ()
+  (interactive)
+  (let ((dired-dwim-target t))
+    (dired-do-rename)))
+
+(defun dired-do-symlink-dwim ()
+  (interactive)
+  (let ((dired-dwim-target t))
+    (dired-do-symlink)))
+
+(define-key dired-mode-map (kbd "c") 'dired-do-copy-dwim)
+(define-key dired-mode-map (kbd "r") 'dired-do-rename-dwim)
+(define-key dired-mode-map (kbd "s") 'dired-do-symlink-dwim)
+(define-key dired-mode-map (kbd "e") 'wdired-change-to-wdired-mode)
+
+;; dired-start-eshell を別の関数に remap
+(define-key dired-mode-map [remap dired-do-shell-command] 'dired-start-eshell)
+
+(provide 'dired-extensions)
+
+;;; dired-extensions.el ends here
+#+end_src
+
+** バッファ名をコピー
+標準でありそうだけど、見つからず...
+
+#+begin_src elisp
+;; -*- Mode: Emacs-Lisp ; Coding: utf-8 -*-
+
+;; バッファ名をコピーする
+(defun copy-buffer-name ()
+  (interactive)
+  (kill-new (buffer-name)))
+
+;; フルパスをコピーする
+(defun copy-fullpath-buffer-file-name ()
+  "カレントバッファのファイル名 (フルパス) をコピー"
+  (interactive)
+  (if buffer-file-name
+      (progn
+        (kill-new buffer-file-name)
+        (message buffer-file-name))
+    (message "ファイルじゃありません")))
+
+(provide 'copy-buffer-name)
+#+end_src
+
+** 現在のバッファとファイル名を同時に変更
+
+#+begin_src elisp
+; -*- Mode: Emacs-Lisp ; Coding: utf-8 -*-
+;; source: http://steve.yegge.googlepages.com/my-dot-emacs-file
+(defun rename-file-and-buffer (new-name)
+  "Renames both current buffer and file it's visiting to NEW-NAME."
+  (interactive "sNew name: ")
+  (let ((name (buffer-name))
+        (filename (buffer-file-name)))
+    (if (not filename)
+        (message "Buffer '%s' is not visiting a file!" name)
+      (if (get-buffer new-name)
+          (message "A buffer named '%s' already exists!" new-name)
+        (progn
+          (rename-file filename new-name 1)
+          (rename-buffer new-name)
+          (set-visited-file-name new-name)
+          (set-buffer-modified-p nil))))))
+
+(provide 'rename-file-and-buffer)
+#+end_src
+
+** 自動確固挿入
+
+smart paren がうまく動かなくなったので..
+
+#+begin_src elisp
+;; -*- Mode: Emacs-Lisp ; Coding: utf-8 -*-
+
+(defvar wrap-pairs-alist '(( "(" . ")")
+                           ( "[" . "]")
+                           ( "{" . "}")
+                           ( "<" . ">")
+                           ( "\"" . "\"")
+                           ( "'" . "'")))
+
+(defun get-right-wrap (left-wrap)
+  "左の囲み文字から右の囲み文字を取得する。"
+  (cdr (assoc left-wrap wrap-pairs-alist)))
+
+(defun wrap-region-with-auto-right (start end left-wrap)
+  "リージョンを指定された囲み文字で囲む。右の囲み文字は左の囲み文字から自動で類推される。"
+  (let* ((right-wrap (get-right-wrap left-wrap))
+         (end-marker (set-marker (make-marker) end)))
+    (save-excursion
+      (goto-char start)
+      (insert left-wrap)
+      (goto-char (marker-position end-marker))
+      (insert (or right-wrap "")))
+    (set-marker end-marker nil))) ; マーカーをクリーンアップ
+
+(defun wrap-region-or-insert (left-wrap)
+  "リージョンが選択されていればリージョンを指定された囲み文字で囲む。
+リージョンが選択されていなければ囲み文字を挿入し、カーソルを囲み文字の間に移動する。"
+  (interactive)
+  (if (use-region-p)
+      (wrap-region-with-auto-right (region-beginning) (region-end) left-wrap)
+    (let ((right-wrap (get-right-wrap left-wrap)))
+      (insert left-wrap (or right-wrap ""))
+      (backward-char (length (or right-wrap "")))))
+  (deactivate-mark)) ; リージョンの選択を解除
+
+(provide 'wrap-region-or-insert)
+#+end_src
+
+** os のバージョン
+#+begin_src elisp
+(defun get-os-version ()
+  "Return a string describing the OS version."
+  (cond
+   ;; macOS
+   ((eq system-type 'darwin)
+    (string-trim (shell-command-to-string "sw_vers -productVersion")))
+
+   ;; Linux
+   ((eq system-type 'gnu/linux)
+    (or
+     ;; まずは lsb_release があればそれを使う
+     (let ((lsb (executable-find "lsb_release")))
+       (when lsb
+         (string-trim
+          (shell-command-to-string (concat lsb " -d | cut -f2-")))))
+     ;; なければ /etc/os-release を試す
+     (when (file-readable-p "/etc/os-release")
+       (with-temp-buffer
+         (insert-file-contents "/etc/os-release")
+         (goto-char (point-min))
+         (if (re-search-forward "^PRETTY_NAME=\"\\(.*?\\)\"" nil t)
+             (match-string 1)
+           "Unknown Linux distribution")))
+     ;; 最後の手段: uname -r などで kernel version を返す
+     (string-trim (shell-command-to-string "uname -r"))))
+
+   ;; Windows
+   ((eq system-type 'windows-nt)
+    (string-trim (shell-command-to-string "ver")))
+
+   ;; 上記以外
+   (t "Unknown OS")))
+
+(defun os-version ()
+  "Display the OS version in *Messages*."
+  (interactive)
+  (message "Your OS version: %s" (get-os-version)))
+#+end_src
+** その他
+
+雑誌やメルマガに掲載されていたものは、そのまま書けないな。。。
+
+- other-window-or-split
+  - C-t で分割してなければ分割、していたら、C-o の挙動
+- view-mode-pager.el
+  - view-mode では、vi ライクな閲覧モード
+- yes-or-no-p.el
+  - yes/no を y/n で
+
+* Footnotes
+
+[fn:window-ver] Windows ネイティブ版があったはずだけど、wsl2 に移行してから、どっかいってしまった。探してみよう。。。 

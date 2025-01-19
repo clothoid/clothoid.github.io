@@ -3,15 +3,15 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
 <head>
-<!-- 2021-10-09 Sat 11:11 -->
+<!-- 2025-01-19 日 16:29 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>emacs の org-pandoc-export-to-pptx サンプル</title>
-<meta name="generator" content="Org mode" />
 <meta name="author" content="clothoid" />
 <meta name="keywords" content="emacs org pandoc office powerpoint pptx" />
-<style type="text/css">
- <!--/*--><![CDATA[/*><!--*/
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
   .subtitle { text-align: center;
@@ -32,8 +32,9 @@
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
   pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
     padding: 8pt;
     font-family: monospace;
     overflow: auto;
@@ -41,22 +42,22 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
-    padding-top: 1.2em;
+    overflow: auto;
   }
   pre.src:before {
     display: none;
     position: absolute;
-    background-color: white;
-    top: -10px;
-    right: 10px;
+    top: -8px;
+    right: 12px;
     padding: 3px;
-    border: 1px solid black;
+    color: #555;
+    background-color: #f2f2f299;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -191,77 +192,30 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
-  /*]]>*/-->
+  .org-svg { }
 </style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6390292679676181" crossorigin="anonymous"></script>
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
-</script>
 </head>
 <body>
 <div id="org-div-home-and-up">
  <a accesskey="h" href="https://clothoid.github.io/sitemap.html"> UP </a>
  |
  <a accesskey="H" href="https://clothoid.github.io/"> HOME </a>
-</div><div id="content">
+</div><div id="content" class="content">
 <h1 class="title">emacs の org-pandoc-export-to-pptx サンプル</h1>
-<div id="table-of-contents">
+<div id="table-of-contents" role="doc-toc">
 <h2>&#30446;&#27425;</h2>
-<div id="text-table-of-contents">
+<div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org3fc04b3">1. 環境</a></li>
-<li><a href="#orgea1b203">2. org ファイル</a></li>
-<li><a href="#org19dc551">3. 完成品の画像</a></li>
+<li><a href="#orgd090dde">1. 環境</a></li>
+<li><a href="#orgc686cc9">2. org ファイル</a></li>
+<li><a href="#org3e761bc">3. 完成品の画像</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org3fc04b3" class="outline-2">
-<h2 id="org3fc04b3"><span class="section-number-2">1</span> 環境</h2>
+<div id="outline-container-orgd090dde" class="outline-2">
+<h2 id="orgd090dde"><span class="section-number-2">1.</span> 環境</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>GNU Emacs 25.1.1 (x86_64-pc-linux-gnu, GTK+ Version 3.22.11) of 2017-09-15, modified by Debian</li>
@@ -274,105 +228,105 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgea1b203" class="outline-2">
-<h2 id="orgea1b203"><span class="section-number-2">2</span> org ファイル</h2>
+<div id="outline-container-orgc686cc9" class="outline-2">
+<h2 id="orgc686cc9"><span class="section-number-2">2.</span> org ファイル</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
-<pre class="src src-org"><span style="color: #008ED1; background-color: #EAEAFF;">#+TITLE:</span> <span style="color: #000000; font-size: 180%; font-weight: bold;">org-pandoc-export-to-pptx</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+DATE:</span> <span style="color: #484848;">&lt;Sun Mar 24 11:03:01 2019&gt;</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+AUTHOR:</span> <span style="color: #484848;">clothoid</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+LANGUAGE: ja</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+SELECT_TAGS: export</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+EXCLUDE_TAGS: noexport</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+CREATOR: Emacs 25.1.1 (Org mode 9.1.13)</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+DESCRIPTION:</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+SUBTITLE: with emacs</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+OPTIONS: ':nil *:t -:t ::t &lt;:t H:3 \n:nil ^:t arch:headline</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+OPTIONS: author:t</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+OPTIONS: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:t</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+OPTIONS: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+OPTIONS: timestamp:t title:t toc:t todo:t |:t</span>
+<pre class="src src-org">#+TITLE: org-pandoc-export-to-pptx
+#+DATE: &lt;Sun Mar 24 11:03:01 2019&gt;
+#+AUTHOR: clothoid
+#+LANGUAGE: ja
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport
+#+CREATOR: Emacs 25.1.1 (Org mode 9.1.13)
+#+DESCRIPTION:
+#+SUBTITLE: with emacs
+#+OPTIONS: ':nil *:t -:t ::t &lt;:t H:3 \n:nil ^:t arch:headline
+#+OPTIONS: author:t
+#+OPTIONS: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:t
+#+OPTIONS: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
+#+OPTIONS: timestamp:t title:t toc:t todo:t |:t
 
-<span style="color: #3C3C3C; background-color: #F0F0F0; font-size: 130%; font-weight: bold; text-decoration: overline;">* &#12399;&#12376;&#12417;&#12395;</span>
+* はじめに
 
-<span style="color: #123555; background-color: #E5F4FB; font-weight: bold; text-decoration: overline;">** org mode</span>
+** org mode
 
-   &#36817;&#24180;&#12289;emacs &#12398; org mode &#12364;&#27880;&#30446;&#12434;&#38598;&#12417;&#12390;&#12356;&#12427;&#12383;&#12417;&#12289;&#35519;&#26619;&#12375;&#12390;&#12356;&#12414;&#12377;&#12290;
+   近年、emacs の org mode が注目を集めているため、調査しています。
 
-<span style="color: #123555; background-color: #E5F4FB; font-weight: bold; text-decoration: overline;">** pandoc</span>
+** pandoc
 
-   org &#12384;&#12369;&#12391;&#12418;&#21313;&#20998;&#12394; export &#27231;&#33021;&#12364;&#12354;&#12426;&#12414;&#12377;&#12364;&#12289;pandoc &#12418;&#20351;&#29992;&#12377;&#12427;&#12392;&#24133;&#12364;&#24195;&#12364;&#12426;&#12414;&#12377;&#12290;
+   org だけでも十分な export 機能がありますが、pandoc も使用すると幅が広がります。
 
-<span style="color: #3C3C3C; background-color: #F0F0F0; font-size: 130%; font-weight: bold; text-decoration: overline;">* &#12522;&#12473;&#12488;</span>
+* リスト
 
   1. January
-     - &#20803;&#26086;
-     - &#25104;&#20154;&#12398;&#26085;
+     - 元旦
+     - 成人の日
   2. Feburuary
-     - &#24314;&#22269;&#35352;&#24565;&#12398;&#26085;
+     - 建国記念の日
 
-<span style="color: #3C3C3C; background-color: #F0F0F0; font-size: 130%; font-weight: bold; text-decoration: overline;">* &#25991;&#23383;&#12398;&#35013;&#39166;</span>
+* 文字の装飾
 
-  &#25991;&#23383;&#12434;&#35013;&#39166;&#12377;&#12427;&#35352;&#27861;&#12418;&#12356;&#12367;&#12388;&#12363;&#29992;&#24847;&#12373;&#12428;&#12390;&#12356;&#12414;&#12377;&#12290;
+  文字を装飾する記法もいくつか用意されています。
 
-  - <span style="color: #000000; font-weight: bold;">*&#22826;&#23383; abc*</span>
-  - <span style="color: #1A1A1A; font-style: italic;">/&#26012;&#20307; abc/</span>
-  - <span style="text-decoration: underline;">_&#19979;&#32218;&#20184;&#12365; abc_</span>
-  - <span style="text-decoration: line-through;">+&#21462;&#28040;&#32218;&#20184;&#12365; acb+</span>
+  - *太字 abc*
+  - /斜体 abc/
+  - _下線付き abc_
+  - +取消線付き acb+
 
-<span style="color: #3C3C3C; background-color: #F0F0F0; font-size: 130%; font-weight: bold; text-decoration: overline;">* &#12486;&#12540;&#12502;&#12523;</span>
+* テーブル
 
-  <span style="color: #006400; background-color: #EAFFEA;">|----------+----+----+----+----+-----|</span>
-  <span style="color: #006400; background-color: #EAFFEA;">|          | Q1 | Q2 | Q3 | Q4 | Sum |</span>
-  <span style="color: #006400; background-color: #EAFFEA;">|----------+----+----+----+----+-----|</span>
-  <span style="color: #006400; background-color: #EAFFEA;">| PC       | 30 |  0 | 50 |  0 |  80 |</span>
-  <span style="color: #006400; background-color: #EAFFEA;">| Software |  5 | 15 | 20 |  3 |  43 |</span>
-  <span style="color: #006400; background-color: #EAFFEA;">| Network  |  2 |  2 |  2 |  2 |   8 |</span>
-  <span style="color: #006400; background-color: #EAFFEA;">|----------+----+----+----+----+-----|</span>
-  <span style="color: #006400; background-color: #EAFFEA;">| Total    | 37 | 17 | 72 |  5 | 131 |</span>
-  <span style="color: #006400; background-color: #EAFFEA;">|----------+----+----+----+----+-----|</span>
+  |----------+----+----+----+----+-----|
+  |          | Q1 | Q2 | Q3 | Q4 | Sum |
+  |----------+----+----+----+----+-----|
+  | PC       | 30 |  0 | 50 |  0 |  80 |
+  | Software |  5 | 15 | 20 |  3 |  43 |
+  | Network  |  2 |  2 |  2 |  2 |   8 |
+  |----------+----+----+----+----+-----|
+  | Total    | 37 | 17 | 72 |  5 | 131 |
+  |----------+----+----+----+----+-----|
 
-<span style="color: #3C3C3C; background-color: #F0F0F0; font-size: 130%; font-weight: bold; text-decoration: overline;">* &#24341;&#29992;</span>
+* 引用
 
-  &#20197;&#19979;&#12399;&#24341;&#29992;&#12391;&#12377;&#12290;
+  以下は引用です。
 
-<span style="color: #555555; background-color: #E2E1D5; text-decoration: underline;">  #+BEGIN_QUOTE</span>
-  &#12377;&#12409;&#12390;&#12434;&#12391;&#12365;&#12427;&#38480;&#12426;&#12471;&#12531;&#12503;&#12523;&#12395;&#12379;&#12424;&#65294;
-  &#12383;&#12384;&#12375;&#12381;&#12428;&#20197;&#19978;&#12399;&#12471;&#12531;&#12503;&#12523;&#12395;&#12377;&#12427;&#12394;&#65294; -- &#12450;&#12452;&#12531;&#12471;&#12517;&#12479;&#12452;&#12531;
-<span style="color: #555555; background-color: #E2E1D5; text-decoration: overline;">  #+END_QUOTE  </span>
+  #+BEGIN_QUOTE
+  すべてをできる限りシンプルにせよ．
+  ただしそれ以上はシンプルにするな． -- アインシュタイン
+  #+END_QUOTE  
 
-<span style="color: #3C3C3C; background-color: #F0F0F0; font-size: 130%; font-weight: bold; text-decoration: overline;">* &#12503;&#12525;&#12464;&#12521;&#12512;&#12477;&#12540;&#12473;</span>
+* プログラムソース
 
-<span style="color: #555555; background-color: #E2E1D5; text-decoration: underline;">  #+BEGIN_SRC python</span>
-<span style="color: #000088; background-color: #FFFFE0;">  </span><span style="color: #0000FF; background-color: #FFFFE0;">class</span><span style="color: #000088; background-color: #FFFFE0;"> </span><span style="color: #6434A3; background-color: #FFFFE0;">TestClass</span><span style="color: #000088; background-color: #FFFFE0;">():</span>
-<span style="color: #000088; background-color: #FFFFE0;">      </span><span style="color: #0000FF; background-color: #FFFFE0;">def</span><span style="color: #000088; background-color: #FFFFE0;"> </span><span style="color: #006699; background-color: #FFFFE0;">__init__</span><span style="color: #000088; background-color: #FFFFE0;">(</span><span style="color: #0000FF; background-color: #FFFFE0;">self</span><span style="color: #000088; background-color: #FFFFE0;">, message):</span>
-<span style="color: #000088; background-color: #FFFFE0;">          </span><span style="color: #0000FF; background-color: #FFFFE0;">self</span><span style="color: #000088; background-color: #FFFFE0;">.value = message</span>
+  #+BEGIN_SRC python
+  class TestClass():
+      def __init__(self, message):
+          self.value = message
 
-<span style="color: #000088; background-color: #FFFFE0;">  </span><span style="color: #333333; background-color: #FFFFFF;">testinstance</span><span style="color: #000088; background-color: #FFFFE0;"> = TestClass(</span><span style="color: #008000; background-color: #FFFFE0;">"Hello!"</span><span style="color: #000088; background-color: #FFFFE0;">)</span>
-<span style="color: #000088; background-color: #FFFFE0;">  </span><span style="color: #0000FF; background-color: #FFFFE0;">print</span><span style="color: #000088; background-color: #FFFFE0;">(testinstance.value)</span>
-<span style="color: #555555; background-color: #E2E1D5; text-decoration: overline;">  #+END_SRC</span>
+  testinstance = TestClass("Hello!")
+  print(testinstance.value)
+  #+END_SRC
 
-<span style="color: #3C3C3C; background-color: #F0F0F0; font-size: 130%; font-weight: bold; text-decoration: overline;">* &#30011;&#20687;</span>
+* 画像
 
-  <span style="color: #006DAF; text-decoration: underline;"><a href="./emacs.png">./emacs.png</a></span>
+  [[./emacs.png]]
 
-<span style="color: #3C3C3C; background-color: #F0F0F0; font-size: 130%; font-weight: bold; text-decoration: overline;">* &#33050;&#27880;</span>
+* 脚注
 
-  &#12371;&#12371;&#12395;&#33050;&#27880;&#12391;&#12377;<span style="color: #008ED1; text-decoration: underline;">[fn:fntest]</span>
+  ここに脚注です[fn:fntest]
 
-<span style="color: #3C3C3C; background-color: #F0F0F0; font-size: 130%; font-weight: bold; text-decoration: overline;">* Footnotes</span>
+* Footnotes
 
-<span style="color: #008ED1; text-decoration: underline;">[fn:fntest]</span> &#12371;&#12428;&#12399;&#33050;&#27880;&#12391;&#12377;
+[fn:fntest] これは脚注です
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org19dc551" class="outline-2">
-<h2 id="org19dc551"><span class="section-number-2">3</span> 完成品の画像</h2>
+<div id="outline-container-org3e761bc" class="outline-2">
+<h2 id="org3e761bc"><span class="section-number-2">3.</span> 完成品の画像</h2>
 <div class="outline-text-2" id="text-3">
 
-<div class="figure">
+<div id="org7c28858" class="figure">
 <p><img src="../img/2019/org-pandoc-export-to-pptx.png" alt="org-pandoc-export-to-pptx.png" width="800px" />
 </p>
 </div>
@@ -381,8 +335,8 @@ for the JavaScript code in this tag.
 </div>
 <div id="postamble" class="status">
 <p class="author">&#33879;&#32773;: clothoid</p>
-<p class="date">Created: 2021-10-09 Sat 11:11</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+<p class="date">Created: 2025-01-19 日 16:29</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
 </html>

@@ -3,14 +3,14 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
 <head>
-<!-- 2021-10-09 Sat 11:11 -->
+<!-- 2025-01-19 日 16:28 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>漢字と平仮名、算用数字と漢数字</title>
-<meta name="generator" content="Org mode" />
 <meta name="author" content="clothoid" />
-<style type="text/css">
- <!--/*--><![CDATA[/*><!--*/
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
   .subtitle { text-align: center;
@@ -31,8 +31,9 @@
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
   pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
     padding: 8pt;
     font-family: monospace;
     overflow: auto;
@@ -40,22 +41,22 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
-    padding-top: 1.2em;
+    overflow: auto;
   }
   pre.src:before {
     display: none;
     position: absolute;
-    background-color: white;
-    top: -10px;
-    right: 10px;
+    top: -8px;
+    right: 12px;
     padding: 3px;
-    border: 1px solid black;
+    color: #555;
+    background-color: #f2f2f299;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -190,77 +191,30 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
-  /*]]>*/-->
+  .org-svg { }
 </style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6390292679676181" crossorigin="anonymous"></script>
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
-</script>
 </head>
 <body>
 <div id="org-div-home-and-up">
  <a accesskey="h" href="https://clothoid.github.io/sitemap.html"> UP </a>
  |
  <a accesskey="H" href="https://clothoid.github.io/"> HOME </a>
-</div><div id="content">
+</div><div id="content" class="content">
 <h1 class="title">漢字と平仮名、算用数字と漢数字</h1>
-<div id="table-of-contents">
+<div id="table-of-contents" role="doc-toc">
 <h2>&#30446;&#27425;</h2>
-<div id="text-table-of-contents">
+<div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org1a174e3">1. 漢字を平仮名に直した方がいいもの</a></li>
-<li><a href="#orgd5a6bce">2. 漢数字と算用数字の使い分け</a></li>
-<li><a href="#orgcc88c2f">3. 参考</a></li>
+<li><a href="#orge052b26">1. 漢字を平仮名に直した方がいいもの</a></li>
+<li><a href="#orge9413d5">2. 漢数字と算用数字の使い分け</a></li>
+<li><a href="#org071fafe">3. 参考</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org1a174e3" class="outline-2">
-<h2 id="org1a174e3"><span class="section-number-2">1</span> 漢字を平仮名に直した方がいいもの</h2>
+<div id="outline-container-orge052b26" class="outline-2">
+<h2 id="orge052b26"><span class="section-number-2">1.</span> 漢字を平仮名に直した方がいいもの</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 以下を参考にした。
@@ -291,12 +245,12 @@ IME の癖とかをどうやって直していくかも問題かもしれない�
 <tbody>
 <tr>
 <td class="org-left">事</td>
-<td class="org-left">こと <sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup></td>
+<td class="org-left">こと <sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup></td>
 </tr>
 
 <tr>
 <td class="org-left">物</td>
-<td class="org-left">もの <sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup></td>
+<td class="org-left">もの <sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup></td>
 </tr>
 
 <tr>
@@ -326,7 +280,7 @@ IME の癖とかをどうやって直していくかも問題かもしれない�
 
 <tr>
 <td class="org-left">と言う</td>
-<td class="org-left">という <sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup></td>
+<td class="org-left">という <sup><a id="fnr.3" class="footref" href="#fn.3" role="doc-backlink">3</a></sup></td>
 </tr>
 
 <tr>
@@ -366,7 +320,7 @@ IME の癖とかをどうやって直していくかも問題かもしれない�
 
 <tr>
 <td class="org-left">そう言う</td>
-<td class="org-left">そういう <sup><a id="fnr.4" class="footref" href="#fn.4">4</a></sup></td>
+<td class="org-left">そういう <sup><a id="fnr.4" class="footref" href="#fn.4" role="doc-backlink">4</a></sup></td>
 </tr>
 
 <tr>
@@ -381,7 +335,7 @@ IME の癖とかをどうやって直していくかも問題かもしれない�
 
 <tr>
 <td class="org-left">あちらの方</td>
-<td class="org-left">あちらのほう <sup><a id="fnr.5" class="footref" href="#fn.5">5</a></sup></td>
+<td class="org-left">あちらのほう <sup><a id="fnr.5" class="footref" href="#fn.5" role="doc-backlink">5</a></sup></td>
 </tr>
 
 <tr>
@@ -411,7 +365,7 @@ IME の癖とかをどうやって直していくかも問題かもしれない�
 
 <tr>
 <td class="org-left">良いよ</td>
-<td class="org-left">いいよ <sup><a id="fnr.6" class="footref" href="#fn.6">6</a></sup></td>
+<td class="org-left">いいよ <sup><a id="fnr.6" class="footref" href="#fn.6" role="doc-backlink">6</a></sup></td>
 </tr>
 
 <tr>
@@ -468,8 +422,8 @@ IME の癖とかをどうやって直していくかも問題かもしれない�
 </div>
 </div>
 
-<div id="outline-container-orgd5a6bce" class="outline-2">
-<h2 id="orgd5a6bce"><span class="section-number-2">2</span> 漢数字と算用数字の使い分け</h2>
+<div id="outline-container-orge9413d5" class="outline-2">
+<h2 id="orge9413d5"><span class="section-number-2">2.</span> 漢数字と算用数字の使い分け</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 2015/04/17 付「朝日新聞」p37 より引用した、以下を参考にするのが良さそう。
@@ -505,8 +459,8 @@ IME の癖とかをどうやって直していくかも問題かもしれない�
 </div>
 </div>
 
-<div id="outline-container-orgcc88c2f" class="outline-2">
-<h2 id="orgcc88c2f"><span class="section-number-2">3</span> 参考</h2>
+<div id="outline-container-org071fafe" class="outline-2">
+<h2 id="org071fafe"><span class="section-number-2">3.</span> 参考</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li><a href="http://togetter.com/li/822130">【事→こと、時→とき】素人さんの原稿にありがちな平仮名にしたほうが読みやすい文字</a></li>
@@ -517,27 +471,27 @@ IME の癖とかをどうやって直していくかも問題かもしれない�
 <h2 class="footnotes">&#33050;&#27880;: </h2>
 <div id="text-footnotes">
 
-<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 そもそも使わない方が良い。事象、物事、タイミングは例外。
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2" role="doc-backlink">2</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 そもそも使わない方が良い。事象、物事、タイミングは例外。
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3" role="doc-backlink">3</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 実際に声に出していれば漢字
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4">4</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4" role="doc-backlink">4</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 実際に声に出していれば漢字
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.5" class="footnum" href="#fnr.5">5</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.5" class="footnum" href="#fnr.5" role="doc-backlink">5</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 人物の「方(かた)」は漢字
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.6" class="footnum" href="#fnr.6">6</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.6" class="footnum" href="#fnr.6" role="doc-backlink">6</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 「よい」との混同回避
 </p></div></div>
 
@@ -546,8 +500,8 @@ IME の癖とかをどうやって直していくかも問題かもしれない�
 </div></div>
 <div id="postamble" class="status">
 <p class="author">&#33879;&#32773;: clothoid</p>
-<p class="date">Created: 2021-10-09 Sat 11:11</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+<p class="date">Created: 2025-01-19 日 16:28</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
 </html>

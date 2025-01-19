@@ -3,15 +3,15 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
 <head>
-<!-- 2022-08-27 Sat 17:03 -->
+<!-- 2025-01-19 日 16:28 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>/bin/sh: 1: mecab-config: not found と RuntimeError</title>
-<meta name="generator" content="Org mode" />
 <meta name="author" content="clothoid" />
 <meta name="keywords" content="ubuntu mecab mecab-config not found python pip iconv g++ RuntimeError" />
-<style type="text/css">
- <!--/*--><![CDATA[/*><!--*/
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
   .subtitle { text-align: center;
@@ -32,8 +32,9 @@
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
   pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
     padding: 8pt;
     font-family: monospace;
     overflow: auto;
@@ -41,22 +42,22 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
-    padding-top: 1.2em;
+    overflow: auto;
   }
   pre.src:before {
     display: none;
     position: absolute;
-    background-color: white;
-    top: -10px;
-    right: 10px;
+    top: -8px;
+    right: 12px;
     padding: 3px;
-    border: 1px solid black;
+    color: #555;
+    background-color: #f2f2f299;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -191,79 +192,32 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
-  /*]]>*/-->
+  .org-svg { }
 </style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6390292679676181" crossorigin="anonymous"></script>
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
-</script>
 </head>
 <body>
 <div id="org-div-home-and-up">
  <a accesskey="h" href="https://clothoid.github.io/sitemap.html"> UP </a>
  |
  <a accesskey="H" href="https://clothoid.github.io/"> HOME </a>
-</div><div id="content">
+</div><div id="content" class="content">
 <h1 class="title">/bin/sh: 1: mecab-config: not found と RuntimeError</h1>
-<div id="table-of-contents">
+<div id="table-of-contents" role="doc-toc">
 <h2>&#30446;&#27425;</h2>
-<div id="text-table-of-contents">
+<div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org7b84695">1. 環境</a></li>
-<li><a href="#orgb9195d4">2. 手順</a></li>
-<li><a href="#org20d04ab">3. 確認</a></li>
-<li><a href="#orgbd3bd0c">4. 経緯</a></li>
-<li><a href="#org0a23205">5. 試行錯誤の手順</a></li>
+<li><a href="#org41d56f6">1. 環境</a></li>
+<li><a href="#org8741982">2. 手順</a></li>
+<li><a href="#org27decf3">3. 確認</a></li>
+<li><a href="#org32ea8c4">4. 経緯</a></li>
+<li><a href="#org616a6cc">5. 試行錯誤の手順</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org7b84695" class="outline-2">
-<h2 id="org7b84695"><span class="section-number-2">1</span> 環境</h2>
+<div id="outline-container-org41d56f6" class="outline-2">
+<h2 id="org41d56f6"><span class="section-number-2">1.</span> 環境</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>Ubuntu 20.04.1 LTS</li>
@@ -278,8 +232,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgb9195d4" class="outline-2">
-<h2 id="orgb9195d4"><span class="section-number-2">2</span> 手順</h2>
+<div id="outline-container-org8741982" class="outline-2">
+<h2 id="org8741982"><span class="section-number-2">2.</span> 手順</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
 <pre class="src src-sh">sudo apt update
@@ -290,72 +244,72 @@ sudo pip3 install mecab
 </div>
 </div>
 
-<div id="outline-container-org20d04ab" class="outline-2">
-<h2 id="org20d04ab"><span class="section-number-2">3</span> 確認</h2>
+<div id="outline-container-org27decf3" class="outline-2">
+<h2 id="org27decf3"><span class="section-number-2">3.</span> 確認</h2>
 <div class="outline-text-2" id="text-3">
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #8D8D84;">#</span><span style="color: #8D8D84; font-style: italic;">!/usr/bin/env python3</span>
-<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">-*- mode: python coding: utf-8 -*-</span>
+<pre class="src src-python">#!/usr/bin/env python3
+# -*- mode: python coding: utf-8 -*-
 
-<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">MeCab&#12398;&#12452;&#12531;&#12509;&#12540;&#12488;</span>
-<span style="color: #0000FF;">import</span> MeCab
+# MeCabのインポート
+import MeCab
 
-<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">&#20998;&#12363;&#12385;&#26360;&#12365;&#12398;&#12497;&#12540;&#12469;&#12540;&#12434;&#25351;&#23450;</span>
-<span style="color: #333333; background-color: #FFFFFF;">parser</span> = MeCab.Tagger(<span style="color: #008000;">"-Owakati"</span>)
+# 分かち書きのパーサーを指定
+parser = MeCab.Tagger("-Owakati")
 
-<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">&#35299;&#26512;&#23550;&#35937;</span>
-<span style="color: #333333; background-color: #FFFFFF;">text</span> = <span style="color: #008000;">"&#31169;&#12399;&#22303;&#26332;&#26085;&#12395;&#12469;&#12483;&#12459;&#12540;&#12434;&#35251;&#12414;&#12377;&#12290;"</span>
+# 解析対象
+text = "私は土曜日にサッカーを観ます。"
 
-<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">&#22793;&#25968;text&#12398;&#20998;&#12363;&#12385;&#26360;&#12365;&#12434;&#34892;&#12358;</span>
-<span style="color: #333333; background-color: #FFFFFF;">ans</span> = parser.parse(text)
+# 変数textの分かち書きを行う
+ans = parser.parse(text)
 
-<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">&#32080;&#26524;&#12398;&#34920;&#31034;</span>
-<span style="color: #0000FF;">print</span>(ans)                             <span style="color: #8D8D84; font-style: italic;"># =&gt; &#31169; &#12399; &#22303;&#26332;&#26085; &#12395; &#12469;&#12483;&#12459;&#12540; &#12434; &#35251; &#12414;&#12377; &#12290;</span><span style="color: #E8E8E8; background-color: #FFFFAB;"> </span>
+# 結果の表示
+print(ans)                             # =&gt; 私 は 土曜日 に サッカー を 観 ます 。 
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #8D8D84;">#</span><span style="color: #8D8D84; font-style: italic;">!/usr/bin/env python3</span>
-<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">-*- mode: python coding: utf-8 -*-</span>
+<pre class="src src-python">#!/usr/bin/env python3
+# -*- mode: python coding: utf-8 -*-
 
-<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">MeCab&#12398;&#12452;&#12531;&#12509;&#12540;&#12488;</span>
-<span style="color: #0000FF;">import</span> MeCab
+# MeCabのインポート
+import MeCab
 
-<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">&#20998;&#12363;&#12385;&#26360;&#12365;&#12398;&#12497;&#12540;&#12469;&#12540;&#12434;&#25351;&#23450;</span>
-<span style="color: #333333; background-color: #FFFFFF;">parser</span> = MeCab.Tagger(<span style="color: #008000;">"-Ochasen"</span>)
+# 分かち書きのパーサーを指定
+parser = MeCab.Tagger("-Ochasen")
 
-<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">&#35299;&#26512;&#23550;&#35937;</span>
-<span style="color: #333333; background-color: #FFFFFF;">text</span> = <span style="color: #008000;">"&#31169;&#12399;&#22303;&#26332;&#26085;&#12395;&#12469;&#12483;&#12459;&#12540;&#12434;&#35251;&#12414;&#12377;&#12290;"</span>
+# 解析対象
+text = "私は土曜日にサッカーを観ます。"
 
-<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">&#22793;&#25968;text&#12398;&#20998;&#12363;&#12385;&#26360;&#12365;&#12434;&#34892;&#12358;</span>
-<span style="color: #333333; background-color: #FFFFFF;">ans</span> = parser.parse(text)
+# 変数textの分かち書きを行う
+ans = parser.parse(text)
 
-<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">&#32080;&#26524;&#12398;&#34920;&#31034;</span>
-<span style="color: #0000FF;">print</span>(ans)
-<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">=&gt;</span>
-<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">&#31169;</span><span style="color: #E8E8E8; background-color: #ffffff;">    </span><span style="color: #8D8D84; font-style: italic;">&#12527;&#12479;&#12471;</span><span style="color: #E8E8E8; background-color: #ffffff;">  </span><span style="color: #8D8D84; font-style: italic;">&#31169;</span><span style="color: #E8E8E8; background-color: #ffffff;">  </span><span style="color: #8D8D84; font-style: italic;">&#21517;&#35422;-&#20195;&#21517;&#35422;-&#19968;&#33324;</span>
-<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">&#12399;</span><span style="color: #E8E8E8; background-color: #ffffff;">    </span><span style="color: #8D8D84; font-style: italic;">&#12495;</span><span style="color: #E8E8E8; background-color: #ffffff;">  </span><span style="color: #8D8D84; font-style: italic;">&#12399;</span><span style="color: #E8E8E8; background-color: #ffffff;">  </span><span style="color: #8D8D84; font-style: italic;">&#21161;&#35422;-&#20418;&#21161;&#35422;</span>
-<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">&#22303;&#26332;&#26085;</span><span style="color: #E8E8E8; background-color: #ffffff;">    </span><span style="color: #8D8D84; font-style: italic;">&#12489;&#12520;&#12454;&#12499;</span><span style="color: #E8E8E8; background-color: #ffffff;">    </span><span style="color: #8D8D84; font-style: italic;">&#22303;&#26332;&#26085;</span><span style="color: #E8E8E8; background-color: #ffffff;">  </span><span style="color: #8D8D84; font-style: italic;">&#21517;&#35422;-&#21103;&#35422;&#21487;&#33021;</span>
-<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">&#12395;</span><span style="color: #E8E8E8; background-color: #ffffff;">    </span><span style="color: #8D8D84; font-style: italic;">&#12491;</span><span style="color: #E8E8E8; background-color: #ffffff;">  </span><span style="color: #8D8D84; font-style: italic;">&#12395;</span><span style="color: #E8E8E8; background-color: #ffffff;">  </span><span style="color: #8D8D84; font-style: italic;">&#21161;&#35422;-&#26684;&#21161;&#35422;-&#19968;&#33324;</span>
-<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">&#12469;&#12483;&#12459;&#12540;</span><span style="color: #E8E8E8; background-color: #ffffff;">  </span><span style="color: #8D8D84; font-style: italic;">&#12469;&#12483;&#12459;&#12540;</span><span style="color: #E8E8E8; background-color: #ffffff;">    </span><span style="color: #8D8D84; font-style: italic;">&#12469;&#12483;&#12459;&#12540;</span><span style="color: #E8E8E8; background-color: #ffffff;">    </span><span style="color: #8D8D84; font-style: italic;">&#21517;&#35422;-&#19968;&#33324;</span>
-<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">&#12434;</span><span style="color: #E8E8E8; background-color: #ffffff;">    </span><span style="color: #8D8D84; font-style: italic;">&#12530;</span><span style="color: #E8E8E8; background-color: #ffffff;">  </span><span style="color: #8D8D84; font-style: italic;">&#12434;</span><span style="color: #E8E8E8; background-color: #ffffff;">  </span><span style="color: #8D8D84; font-style: italic;">&#21161;&#35422;-&#26684;&#21161;&#35422;-&#19968;&#33324;</span>
-<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">&#35251;</span><span style="color: #E8E8E8; background-color: #ffffff;">    </span><span style="color: #8D8D84; font-style: italic;">&#12511;</span><span style="color: #E8E8E8; background-color: #ffffff;">  </span><span style="color: #8D8D84; font-style: italic;">&#35251;&#12427;</span><span style="color: #E8E8E8; background-color: #ffffff;">    </span><span style="color: #8D8D84; font-style: italic;">&#21205;&#35422;-&#33258;&#31435;</span><span style="color: #E8E8E8; background-color: #ffffff;">   </span><span style="color: #8D8D84; font-style: italic;">&#19968;&#27573;</span><span style="color: #E8E8E8; background-color: #ffffff;">    </span><span style="color: #8D8D84; font-style: italic;">&#36899;&#29992;&#24418;</span>
-<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">&#12414;&#12377;</span><span style="color: #E8E8E8; background-color: #ffffff;">  </span><span style="color: #8D8D84; font-style: italic;">&#12510;&#12473;</span><span style="color: #E8E8E8; background-color: #ffffff;">    </span><span style="color: #8D8D84; font-style: italic;">&#12414;&#12377;</span><span style="color: #E8E8E8; background-color: #ffffff;">    </span><span style="color: #8D8D84; font-style: italic;">&#21161;&#21205;&#35422;</span><span style="color: #E8E8E8; background-color: #ffffff;">  </span><span style="color: #8D8D84; font-style: italic;">&#29305;&#27530;&#12539;&#12510;&#12473;</span><span style="color: #E8E8E8; background-color: #ffffff;">  </span><span style="color: #8D8D84; font-style: italic;">&#22522;&#26412;&#24418;</span>
-<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">&#12290;</span><span style="color: #E8E8E8; background-color: #ffffff;">    </span><span style="color: #8D8D84; font-style: italic;">&#12290;</span><span style="color: #E8E8E8; background-color: #ffffff;">  </span><span style="color: #8D8D84; font-style: italic;">&#12290;</span><span style="color: #E8E8E8; background-color: #ffffff;">  </span><span style="color: #8D8D84; font-style: italic;">&#35352;&#21495;-&#21477;&#28857;</span>
-<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">EOS</span>
+# 結果の表示
+print(ans)
+# =&gt;
+# 私	ワタシ	私	名詞-代名詞-一般
+# は	ハ	は	助詞-係助詞
+# 土曜日	ドヨウビ	土曜日	名詞-副詞可能
+# に	ニ	に	助詞-格助詞-一般
+# サッカー	サッカー	サッカー	名詞-一般
+# を	ヲ	を	助詞-格助詞-一般
+# 観	ミ	観る	動詞-自立	一段	連用形
+# ます	マス	ます	助動詞	特殊・マス	基本形
+# 。	。	。	記号-句点
+# EOS
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgbd3bd0c" class="outline-2">
-<h2 id="orgbd3bd0c"><span class="section-number-2">4</span> 経緯</h2>
+<div id="outline-container-org32ea8c4" class="outline-2">
+<h2 id="org32ea8c4"><span class="section-number-2">4.</span> 経緯</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 python で mecab を利用しようと思い、pipしたら以下のエラーが発生。
 </p>
 
-<pre class="example">
+<pre class="example" id="org919eb4e">
 lothoid@silverstone:~$ sudo pip3 install mecab
 Collecting mecab
   Using cached mecab-0.996.2.tar.gz (62 kB)
@@ -384,10 +338,10 @@ mecab がインストールされていない。
 </div>
 </div>
 
-<div id="outline-container-org0a23205" class="outline-2">
-<h2 id="org0a23205"><span class="section-number-2">5</span> 試行錯誤の手順</h2>
+<div id="outline-container-org616a6cc" class="outline-2">
+<h2 id="org616a6cc"><span class="section-number-2">5.</span> 試行錯誤の手順</h2>
 <div class="outline-text-2" id="text-5">
-<pre class="example">
+<pre class="example" id="org24bd0aa">
 clothoid@silverstone:~$ sudo apt install mecab
 パッケージリストを読み込んでいます... 完了
 依存関係ツリーを作成しています                
@@ -462,7 +416,7 @@ libc-bin (2.31-0ubuntu9) のトリガを処理しています ...
 これでいいかと思って、やったけどエラー。
 </p>
 
-<pre class="example">
+<pre class="example" id="org9d45928">
 clothoid@silverstone:~$ sudo pip3 install mecab
 Collecting mecab
   Using cached mecab-0.996.2.tar.gz (62 kB)
@@ -488,7 +442,7 @@ ERROR: Command errored out with exit status 1: python setup.py egg_info Check th
 追加で、libmecab-dev
 </p>
 
-<pre class="example">
+<pre class="example" id="orge25b090">
 clothoid@silverstone:~$ sudo apt install libmecab-dev
 パッケージリストを読み込んでいます... 完了
 依存関係ツリーを作成しています                
@@ -515,7 +469,7 @@ clothoid@silverstone:~$ mecab-config --version
 これで、python の mcab パッケージはインストールできる。
 </p>
 
-<pre class="example">
+<pre class="example" id="org1f7a587">
 lothoid@silverstone:~$ sudo pip3 install mecab
 Collecting mecab
   Using cached mecab-0.996.2.tar.gz (62 kB)
@@ -532,7 +486,7 @@ Successfully installed mecab-0.996.2
 パースに -Owakati を指定した場合は問題ないが、-Ochasen を指定した場合は以下のランタイムエラー
 </p>
 
-<pre class="example">
+<pre class="example" id="orgb570927">
 Traceback (most recent call last):
   File "2020-09-08-165153.py", line 10, in &lt;module&gt;
     m = MeCab.Tagger("-Ochasen")
@@ -545,7 +499,7 @@ RuntimeError
 追加で、以下を実施にて解決。
 </p>
 
-<pre class="example">
+<pre class="example" id="org710d646">
 sudo apt install mecab-ipadic mecab-ipadic-utf8
 </pre>
 </div>
@@ -553,8 +507,8 @@ sudo apt install mecab-ipadic mecab-ipadic-utf8
 </div>
 <div id="postamble" class="status">
 <p class="author">&#33879;&#32773;: clothoid</p>
-<p class="date">Created: 2022-08-27 Sat 17:03</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+<p class="date">Created: 2025-01-19 日 16:28</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
 </html>

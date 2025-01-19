@@ -3,15 +3,15 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
 <head>
-<!-- 2022-08-27 Sat 17:03 -->
+<!-- 2025-01-19 日 16:29 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>org で minted ハイライト表示した PDF 一発作成</title>
-<meta name="generator" content="Org mode" />
 <meta name="author" content="clothoid" />
 <meta name="keywords" content="git" />
-<style type="text/css">
- <!--/*--><![CDATA[/*><!--*/
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
   .subtitle { text-align: center;
@@ -32,8 +32,9 @@
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
   pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
     padding: 8pt;
     font-family: monospace;
     overflow: auto;
@@ -41,22 +42,22 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
-    padding-top: 1.2em;
+    overflow: auto;
   }
   pre.src:before {
     display: none;
     position: absolute;
-    background-color: white;
-    top: -10px;
-    right: 10px;
+    top: -8px;
+    right: 12px;
     padding: 3px;
-    border: 1px solid black;
+    color: #555;
+    background-color: #f2f2f299;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -191,83 +192,36 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
-  /*]]>*/-->
+  .org-svg { }
 </style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6390292679676181" crossorigin="anonymous"></script>
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
-</script>
 </head>
 <body>
 <div id="org-div-home-and-up">
  <a accesskey="h" href="https://clothoid.github.io/sitemap.html"> UP </a>
  |
  <a accesskey="H" href="https://clothoid.github.io/"> HOME </a>
-</div><div id="content">
+</div><div id="content" class="content">
 <h1 class="title">org で minted ハイライト表示した PDF 一発作成</h1>
-<div id="table-of-contents">
+<div id="table-of-contents" role="doc-toc">
 <h2>&#30446;&#27425;</h2>
-<div id="text-table-of-contents">
+<div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org367fa43">1. 環境</a></li>
-<li><a href="#org3be78d6">2. texlive</a></li>
-<li><a href="#orga3d9a8a">3. pygmentize</a></li>
-<li><a href="#org7b1862b">4. emacs の設定</a></li>
-<li><a href="#orgac879a0">5. org mode sample</a></li>
-<li><a href="#orgefc3ad6">6. 結果</a></li>
-<li><a href="#orgdce33f2">7. 参考</a></li>
+<li><a href="#org5c81acd">1. 環境</a></li>
+<li><a href="#orgf937a07">2. texlive</a></li>
+<li><a href="#orgfe03e86">3. pygmentize</a></li>
+<li><a href="#org08beb13">4. emacs の設定</a></li>
+<li><a href="#org8c681de">5. org mode sample</a></li>
+<li><a href="#org60e7c04">6. 結果</a></li>
+<li><a href="#org854ab1b">7. 参考</a></li>
 </ul>
 </div>
 </div>
 
 
 
-<div id="outline-container-org367fa43" class="outline-2">
-<h2 id="org367fa43"><span class="section-number-2">1</span> 環境</h2>
+<div id="outline-container-org5c81acd" class="outline-2">
+<h2 id="org5c81acd"><span class="section-number-2">1.</span> 環境</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>Debian GNU/Linux: 9.4 (stretch)</li>
@@ -278,8 +232,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org3be78d6" class="outline-2">
-<h2 id="org3be78d6"><span class="section-number-2">2</span> texlive</h2>
+<div id="outline-container-orgf937a07" class="outline-2">
+<h2 id="orgf937a07"><span class="section-number-2">2.</span> texlive</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
 <pre class="src src-sh">~$ sudo apt install texlive-full -y
@@ -292,15 +246,15 @@ for the JavaScript code in this tag.
 
 <div class="org-src-container">
 <pre class="src src-sh">~$ sudo apt update
-~$ apt-get update &#8211;fix-missing
+~$ apt-get update –fix-missing
 ~$ sudo apt install texlive-full -y
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orga3d9a8a" class="outline-2">
-<h2 id="orga3d9a8a"><span class="section-number-2">3</span> pygmentize</h2>
+<div id="outline-container-orgfe03e86" class="outline-2">
+<h2 id="orgfe03e86"><span class="section-number-2">3.</span> pygmentize</h2>
 <div class="outline-text-2" id="text-3">
 <div class="org-src-container">
 <pre class="src src-sh">~$ sudo apt install python-pygments -y
@@ -309,139 +263,139 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org7b1862b" class="outline-2">
-<h2 id="org7b1862b"><span class="section-number-2">4</span> emacs の設定</h2>
+<div id="outline-container-org08beb13" class="outline-2">
+<h2 id="org08beb13"><span class="section-number-2">4.</span> emacs の設定</h2>
 <div class="outline-text-2" id="text-4">
 <div class="org-src-container">
-<pre class="src src-elisp"><span style="color: #8D8D84;">; </span><span style="color: #8D8D84; font-style: italic;">-*- Mode: Emacs-Lisp ; Coding: utf-8 -*-</span>
-<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">babel &#12434;&#20351;&#29992;&#12375;&#12390;&#12356;&#12427;&#20013;&#12391; tab &#12434;&#20351;&#12358;&#12392;&#12289;.tex &#12391; ^^I &#12395;&#22793;&#25563;&#12373;&#12428;&#12390;&#12375;&#12414;&#12358;&#12398;&#12391;&#12289;&#12473;&#12506;&#12540;&#12473;&#12434;&#20351;&#12358;</span>
-(<span style="color: #0000FF;">setq-default</span> tab-width 4 indent-tabs-mode nil)
+<pre class="src src-elisp">; -*- Mode: Emacs-Lisp ; Coding: utf-8 -*-
+;; babel を使用している中で tab を使うと、.tex で ^^I に変換されてしまうので、スペースを使う
+(setq-default tab-width 4 indent-tabs-mode nil)
 
-(<span style="color: #0000FF;">require</span> '<span style="color: #D0372D;">ox-latex</span>)
-(<span style="color: #0000FF;">require</span> '<span style="color: #D0372D;">ox-bibtex</span>)
+(require 'ox-latex)
+(require 'ox-bibtex)
 
-<span style="color: #8D8D84;">;;; </span><span style="color: #8D8D84; font-style: italic;">&#21213;&#25163;&#12395;&#20837;&#21147;&#12373;&#12360;&#12425;&#12428;&#12358; \hypersetup{} &#12399;&#20351;&#12431;&#12394;&#12356;</span>
-(<span style="color: #0000FF;">setq</span> org-latex-with-hyperref nil)
+;;; 勝手に入力さえられう \hypersetup{} は使わない
+(setq org-latex-with-hyperref nil)
 
-(<span style="color: #0000FF;">setq</span> org-latex-pdf-process
-      '(<span style="color: #008000;">"platex -shell-escape %f"</span>
-        <span style="color: #008000;">"platex -shell-escape %f"</span>
-        <span style="color: #008000;">"dvipdfmx %b.dvi"</span>))
+(setq org-latex-pdf-process
+      '("platex -shell-escape %f"
+        "platex -shell-escape %f"
+        "dvipdfmx %b.dvi"))
 
-(add-to-list 'org-latex-packages-alist <span style="color: #008000;">"\\hypersetup{setpagesize=false}"</span> t)
-(add-to-list 'org-latex-packages-alist <span style="color: #008000;">"\\hypersetup{colorlinks=true}"</span> t)
-(add-to-list 'org-latex-packages-alist <span style="color: #008000;">"\\hypersetup{linkcolor=blue}"</span> t)
+(add-to-list 'org-latex-packages-alist "\\hypersetup{setpagesize=false}" t)
+(add-to-list 'org-latex-packages-alist "\\hypersetup{colorlinks=true}" t)
+(add-to-list 'org-latex-packages-alist "\\hypersetup{linkcolor=blue}" t)
 
-(<span style="color: #0000FF;">setq</span> org-export-latex-listings t)
-(<span style="color: #0000FF;">setq</span> org-latex-listings 'minted)
-<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">&#12479;&#12452;&#12488;&#12523;&#12388;&#12369;&#12427;&#22580;&#21512;</span>
-<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">(setq org-latex-title-command "\\maketitle")</span>
-<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">&#30446;&#27425;&#20986;&#21147;&#12377;&#12427;&#22580;&#21512;</span>
-<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">(setq org-latex-toc-command</span>
-<span style="color: #8D8D84;">;;       </span><span style="color: #8D8D84; font-style: italic;">"\\tableofcontents\n")</span>
-(<span style="color: #0000FF;">setq</span> org-latex-toc-command nil)
-(<span style="color: #0000FF;">setq</span> org-latex-text-markup-alist '((bold . <span style="color: #008000;">"\\textbf{%s}"</span>)
+(setq org-export-latex-listings t)
+(setq org-latex-listings 'minted)
+;; タイトルつける場合
+;; (setq org-latex-title-command "\\maketitle")
+;; 目次出力する場合
+;; (setq org-latex-toc-command
+;;       "\\tableofcontents\n")
+(setq org-latex-toc-command nil)
+(setq org-latex-text-markup-alist '((bold . "\\textbf{%s}")
                 (code . verb)
-                (italic . <span style="color: #008000;">"\\it{%s}"</span>)
-                (strike-through . <span style="color: #008000;">"\\sout{%s}"</span>)
-                (underline . <span style="color: #008000;">"\\uline{%s}"</span>)
+                (italic . "\\it{%s}")
+                (strike-through . "\\sout{%s}")
+                (underline . "\\uline{%s}")
                 (verbatim . protectedtexttt)))
 
-(<span style="color: #0000FF;">setq</span> org-latex-minted-options
-      '((<span style="color: #008000;">"frame"</span> <span style="color: #008000;">"lines"</span>)
-        (<span style="color: #008000;">"framesep=2mm"</span>)
-        (<span style="color: #008000;">"linenos=true"</span>)
-        (<span style="color: #008000;">"baselinestretch=1.2"</span>)
-        (<span style="color: #008000;">"fontsize=\\footnotesize"</span>)
-        (<span style="color: #008000;">"breaklines"</span>)
+(setq org-latex-minted-options
+      '(("frame" "lines")
+        ("framesep=2mm")
+        ("linenos=true")
+        ("baselinestretch=1.2")
+        ("fontsize=\\footnotesize")
+        ("breaklines")
         ))
 
 
-<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">&#12452;&#12531;&#12487;&#12531;&#12488;&#12377;&#12427;&#12392; *.tex &#12395;&#12381;&#12398;&#12414;&#12414;&#20837;&#12387;&#12390;&#12375;&#12414;&#12358;</span>
+;; インデントすると *.tex にそのまま入ってしまう
 (add-to-list 'org-latex-classes
-             '(<span style="color: #008000;">"myjsarticle"</span>
-               <span style="color: #008000;">"\\documentclass{jsarticle}</span>
-<span style="color: #008000;">[NO-DEFAULT-PACKAGES]</span>
-<span style="color: #008000;">\\usepackage{amsfonts}</span>
-<span style="color: #008000;">\\usepackage{amsmath}</span>
-<span style="color: #008000;">% \\usepackage{newtxtext,newtxmath}</span>
-<span style="color: #008000;">\\usepackage[normalem]{ulem}</span>
-<span style="color: #008000;">\\usepackage{textcomp}</span>
-<span style="color: #008000;">\\usepackage{minted}</span>
-<span style="color: #008000;">\\usemintedstyle{emacs}</span>
-<span style="color: #008000;">\\usepackage[dvipdfmx]{graphicx}</span>
-<span style="color: #008000;">\\usepackage[dvipdfmx]{color}</span>
-<span style="color: #008000;">\\usepackage{booktabs}</span>
-<span style="color: #008000;">\\usepackage{longtable}</span>
-<span style="color: #008000;">\\usepackage{wrapfig}</span>
-<span style="color: #008000;">\\usepackage[dvipdfmx]{hyperref}</span>
-<span style="color: #008000;">\\usepackage{pxjahyper}</span>
-<span style="color: #008000;">% \\hypersetup{pdfencoding=auto}"</span>
-  (<span style="color: #008000;">"\\section{%s}"</span> . <span style="color: #008000;">"\\section*{%s}"</span>)
-  (<span style="color: #008000;">"\\subsection{%s}"</span> . <span style="color: #008000;">"\\subsection*{%s}"</span>)
-  (<span style="color: #008000;">"\\subsubsection{%s}"</span> . <span style="color: #008000;">"\\subsubsection*{%s}"</span>)
-  (<span style="color: #008000;">"\\paragraph{%s}"</span> . <span style="color: #008000;">"\\paragraph*{%s}"</span>)
-  (<span style="color: #008000;">"\\subparagraph{%s}"</span> . <span style="color: #008000;">"\\subparagraph*{%s}"</span>)))
+             '("myjsarticle"
+               "\\documentclass{jsarticle}
+[NO-DEFAULT-PACKAGES]
+\\usepackage{amsfonts}
+\\usepackage{amsmath}
+% \\usepackage{newtxtext,newtxmath}
+\\usepackage[normalem]{ulem}
+\\usepackage{textcomp}
+\\usepackage{minted}
+\\usemintedstyle{emacs}
+\\usepackage[dvipdfmx]{graphicx}
+\\usepackage[dvipdfmx]{color}
+\\usepackage{booktabs}
+\\usepackage{longtable}
+\\usepackage{wrapfig}
+\\usepackage[dvipdfmx]{hyperref}
+\\usepackage{pxjahyper}
+% \\hypersetup{pdfencoding=auto}"
+  ("\\section{%s}" . "\\section*{%s}")
+  ("\\subsection{%s}" . "\\subsection*{%s}")
+  ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+  ("\\paragraph{%s}" . "\\paragraph*{%s}")
+  ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgac879a0" class="outline-2">
-<h2 id="orgac879a0"><span class="section-number-2">5</span> org mode sample</h2>
+<div id="outline-container-org8c681de" class="outline-2">
+<h2 id="org8c681de"><span class="section-number-2">5.</span> org mode sample</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 M-x org-latex-export-to-pdf で PDF を生成
 </p>
 
 <div class="org-src-container">
-<pre class="src src-org"><span style="color: #008ED1; background-color: #EAEAFF;">#+OPTIONS: ':nil *:t -:t ::t &lt;:t H:3 \n:nil ^:t arch:headline</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+OPTIONS: author:t broken-links:nil c:nil creator:nil</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+OPTIONS: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:t</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+OPTIONS: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+OPTIONS: timestamp:t title:nil toc:3 todo:t |:t</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+LATEX_CLASS: myjsarticle</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+LATEX_CLASS_OPTIONS: [12pt,a4paper,titlepage]</span>
-<span style="color: #008ED1; background-color: #EAEAFF;">#+LATEX_COMPILER: dvipdfmx</span>
+<pre class="src src-org">#+OPTIONS: ':nil *:t -:t ::t &lt;:t H:3 \n:nil ^:t arch:headline
+#+OPTIONS: author:t broken-links:nil c:nil creator:nil
+#+OPTIONS: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:t
+#+OPTIONS: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
+#+OPTIONS: timestamp:t title:nil toc:3 todo:t |:t
+#+LATEX_CLASS: myjsarticle
+#+LATEX_CLASS_OPTIONS: [12pt,a4paper,titlepage]
+#+LATEX_COMPILER: dvipdfmx
 
-<span style="color: #3C3C3C; background-color: #F0F0F0; font-size: 130%; font-weight: bold; text-decoration: overline;">* Python</span>
+* Python
 
-<span style="color: #555555; background-color: #E2E1D5; text-decoration: underline;">  #+BEGIN_SRC python</span>
-<span style="color: #000088; background-color: #FFFFE0;">  </span><span style="color: #8D8D84; background-color: #FFFFE0; font-style: italic;"># fizzbuzz sample</span>
-<span style="color: #000088; background-color: #FFFFE0;">  </span><span style="color: #0000FF; background-color: #FFFFE0;">def</span><span style="color: #000088; background-color: #FFFFE0;"> </span><span style="color: #006699; background-color: #FFFFE0;">main</span><span style="color: #000088; background-color: #FFFFE0;">():</span>
-<span style="color: #000088; background-color: #FFFFE0;">      </span><span style="color: #0000FF; background-color: #FFFFE0;">for</span><span style="color: #000088; background-color: #FFFFE0;"> x </span><span style="color: #0000FF; background-color: #FFFFE0;">in</span><span style="color: #000088; background-color: #FFFFE0;"> </span><span style="color: #006FE0; background-color: #FFFFE0;">xrange</span><span style="color: #000088; background-color: #FFFFE0;">(</span><span style="color: #333333; background-color: #FFFFFF;">1</span><span style="color: #000088; background-color: #FFFFE0;">, </span><span style="color: #333333; background-color: #FFFFFF;">10</span><span style="color: #000088; background-color: #FFFFE0;">):</span>
-<span style="color: #000088; background-color: #FFFFE0;">          </span><span style="color: #333333; background-color: #FFFFFF;">div3</span><span style="color: #000088; background-color: #FFFFE0;"> = x % </span><span style="color: #333333; background-color: #FFFFFF;">3</span><span style="color: #000088; background-color: #FFFFE0;"> == </span><span style="color: #333333; background-color: #FFFFFF;">0</span>
-<span style="color: #000088; background-color: #FFFFE0;">          </span><span style="color: #333333; background-color: #FFFFFF;">div5</span><span style="color: #000088; background-color: #FFFFE0;"> = x % </span><span style="color: #333333; background-color: #FFFFFF;">5</span><span style="color: #000088; background-color: #FFFFE0;"> == </span><span style="color: #333333; background-color: #FFFFFF;">0</span>
-<span style="color: #000088; background-color: #FFFFE0;">          </span><span style="color: #0000FF; background-color: #FFFFE0;">if</span><span style="color: #000088; background-color: #FFFFE0;"> div3 </span><span style="color: #0000FF; background-color: #FFFFE0;">and</span><span style="color: #000088; background-color: #FFFFE0;"> div5:</span>
-<span style="color: #000088; background-color: #FFFFE0;">              </span><span style="color: #0000FF; background-color: #FFFFE0;">print</span><span style="color: #000088; background-color: #FFFFE0;"> </span><span style="color: #008000; background-color: #FFFFE0;">'FizzBuzz'</span>
-<span style="color: #000088; background-color: #FFFFE0;">          </span><span style="color: #0000FF; background-color: #FFFFE0;">elif</span><span style="color: #000088; background-color: #FFFFE0;"> div3:</span>
-<span style="color: #000088; background-color: #FFFFE0;">              </span><span style="color: #0000FF; background-color: #FFFFE0;">print</span><span style="color: #000088; background-color: #FFFFE0;"> </span><span style="color: #008000; background-color: #FFFFE0;">'Fizz'</span>
-<span style="color: #000088; background-color: #FFFFE0;">          </span><span style="color: #0000FF; background-color: #FFFFE0;">elif</span><span style="color: #000088; background-color: #FFFFE0;"> div5:</span>
-<span style="color: #000088; background-color: #FFFFE0;">              </span><span style="color: #0000FF; background-color: #FFFFE0;">print</span><span style="color: #000088; background-color: #FFFFE0;"> </span><span style="color: #008000; background-color: #FFFFE0;">'Buzz'</span>
-<span style="color: #000088; background-color: #FFFFE0;">          </span><span style="color: #0000FF; background-color: #FFFFE0;">else</span><span style="color: #000088; background-color: #FFFFE0;">:</span>
-<span style="color: #000088; background-color: #FFFFE0;">              </span><span style="color: #0000FF; background-color: #FFFFE0;">print</span><span style="color: #000088; background-color: #FFFFE0;"> x</span>
+  #+BEGIN_SRC python
+  # fizzbuzz sample
+  def main():
+      for x in xrange(1, 10):
+          div3 = x % 3 == 0
+          div5 = x % 5 == 0
+          if div3 and div5:
+              print 'FizzBuzz'
+          elif div3:
+              print 'Fizz'
+          elif div5:
+              print 'Buzz'
+          else:
+              print x
 
-<span style="color: #000088; background-color: #FFFFE0;">  </span><span style="color: #0000FF; background-color: #FFFFE0;">if</span><span style="color: #000088; background-color: #FFFFE0;"> </span><span style="color: #006FE0; background-color: #FFFFE0;">__name__</span><span style="color: #000088; background-color: #FFFFE0;"> == </span><span style="color: #008000; background-color: #FFFFE0;">'__main__'</span><span style="color: #000088; background-color: #FFFFE0;">:</span>
-<span style="color: #000088; background-color: #FFFFE0;">      main()</span>
-<span style="color: #555555; background-color: #E2E1D5; text-decoration: overline;">  #+END_SRC</span>
+  if __name__ == '__main__':
+      main()
+  #+END_SRC
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgefc3ad6" class="outline-2">
-<h2 id="orgefc3ad6"><span class="section-number-2">6</span> 結果</h2>
+<div id="outline-container-org60e7c04" class="outline-2">
+<h2 id="org60e7c04"><span class="section-number-2">6.</span> 結果</h2>
 <div class="outline-text-2" id="text-6">
 
-<div class="figure">
+<div id="org98e38f3" class="figure">
 <p><img src="../img/2018/2018-06-11-193501.jpg" alt="2018-06-11-193501.jpg" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgdce33f2" class="outline-2">
-<h2 id="orgdce33f2"><span class="section-number-2">7</span> 参考</h2>
+<div id="outline-container-org854ab1b" class="outline-2">
+<h2 id="org854ab1b"><span class="section-number-2">7.</span> 参考</h2>
 <div class="outline-text-2" id="text-7">
 <ul class="org-ul">
 <li><a href="http://yamam1.blogspot.jp/2014/10/tex.html">http://yamam1.blogspot.jp/2014/10/tex.html</a></li>
@@ -454,8 +408,8 @@ M-x org-latex-export-to-pdf で PDF を生成
 </div>
 <div id="postamble" class="status">
 <p class="author">&#33879;&#32773;: clothoid</p>
-<p class="date">Created: 2022-08-27 Sat 17:03</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+<p class="date">Created: 2025-01-19 日 16:29</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
 </html>
