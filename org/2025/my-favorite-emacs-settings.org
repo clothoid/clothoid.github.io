@@ -26,11 +26,12 @@ elpaca-manager を起動した時、省略せずに、一覧を一気に出し�
 (setq skk-user-directory "~/.emacs.d/.ddskk")
 #+end_src
 
-** azik の設定("~/.emacs.d/.ddskk/init")。
+** azik の設定("~/.emacs.d/.ddskk/init")
+
+超高速タイピング。
 
 #+begin_src elisp
 (setq skk-use-azik t)
-(setq skk-sticky-key [henkan])
 #+end_src
 
 ** stikey の設定("~/.emacs.d/.ddskk/init")
@@ -579,7 +580,7 @@ f12がいい感じ
 
 * ivy-with-migemo
 
-ありがてえ、ありがてね。
+ありがてえ、ありがてえ。。。
 
 #+begin_src elisp
 (use-package ivy-with-migemo
@@ -1095,8 +1096,6 @@ smart paren がうまく動かなくなったので..
 
 雑誌やメルマガに掲載されていたものは、そのまま書けないな。。。
 
-- other-window-or-split
-  - C-t で分割してなければ分割、していたら、C-o の挙動
 - view-mode-pager.el
   - view-mode では、vi ライクな閲覧モード
 - yes-or-no-p.el
