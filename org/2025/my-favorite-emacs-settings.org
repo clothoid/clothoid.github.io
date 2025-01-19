@@ -531,7 +531,15 @@ f12がいい感じ
              ((eolp)
               (end-of-buffer))
              (t
-              (end-of-line)))))
+              (end-of-line))))
+
+  (mykie:global-set-key "C-t"
+    :default
+    (progn
+       (when (one-window-p)
+         (split-window-horizontally))
+       (other-window 1)))
+  )
 #+end_src
 
 * icons-in-terminal-dired で elc も emacs アイコンにする

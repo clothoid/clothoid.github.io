@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
 <head>
-<!-- 2025-01-19 日 16:28 -->
+<!-- 2025-01-19 日 17:16 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>emacs でお気に入りの設定 2025</title>
@@ -910,7 +910,15 @@ f12がいい感じ
              ((eolp)
               (end-of-buffer))
              (t
-              (end-of-line)))))
+              (end-of-line))))
+
+  (mykie:global-set-key "C-t"
+    :default
+    (progn
+       (when (one-window-p)
+         (split-window-horizontally))
+       (other-window 1)))
+  )
 </pre>
 </div>
 </div>
@@ -1561,7 +1569,7 @@ Windows ネイティブ版があったはずだけど、wsl2 に移行してか�
 </div></div>
 <div id="postamble" class="status">
 <p class="author">&#33879;&#32773;: clothoid</p>
-<p class="date">Created: 2025-01-19 日 16:28</p>
+<p class="date">Created: 2025-01-19 日 17:16</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
